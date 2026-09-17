@@ -66,7 +66,7 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" >}}
-{{< badge "v0.6.0" type="accent" appearance="solid" >}}
+{{< badge "v0.6.1" type="accent" appearance="solid" >}}
 
 {{< badge "Custom"
   bg="#111827" fg="#f9fafb" border="#60a5fa"
@@ -75,7 +75,7 @@ A precedência é **defaults do projeto → preset → componente → item indiv
   shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 ```
 
-**Output:** {{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" >}} {{< badge "v0.6.0" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+**Output:** {{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" >}} {{< badge "v0.6.1" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 
 A forma AST-native continua usando uma classe interna prefixada, para não colidir com `.badge` do Bootstrap:
 
@@ -121,6 +121,8 @@ Cada heading inicia uma etapa.
 
 ## Steps — bolinhas
 
+As bolinhas agora são **vazadas por padrão**. `dot-color` controla a cor do contorno; o preenchimento permanece transparente até que `dot-fill` seja definido.
+
 ### Herdando defaults do `_quarto.yml`
 
 ```markdown
@@ -155,24 +157,24 @@ Valide os registros.
 Publique o resultado.
 :::
 
-### Override no bloco e por etapa
+### Alterando a cor de cada bolinha
 
 ```markdown
 ::: {.steps type="dots"
   dot-color="#8c959f"
-  dot-size="0.72rem"
+  dot-size="0.78rem"
   line-color="#d0d7de"
   line-width="1.5px"}
 
-## Extrair {dot-color="#2563eb" dot-size="0.62rem"}
+## Extrair {dot-color="#2563eb"}
 
 Baixe os registros novos.
 
-## Deduplicar {dot-color="#f59e0b" dot-size="1.1rem" line-color="#f59e0b" line-width="3px"}
+## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}
 
 Reconcilie coletas e identificações.
 
-## Publicar {dot-color="#2da44e" dot-size="0.85rem" line-width="2px"}
+## Publicar {dot-color="#16a34a"}
 
 Atualize a base curada.
 :::
@@ -180,18 +182,59 @@ Atualize a base curada.
 
 **Output:**
 
-::: {.steps type="dots" dot-color="#8c959f" dot-size="0.72rem" line-color="#d0d7de" line-width="1.5px"}
-## Extrair {dot-color="#2563eb" dot-size="0.62rem"}
+::: {.steps type="dots" dot-color="#8c959f" dot-size="0.78rem" line-color="#d0d7de" line-width="1.5px"}
+## Extrair {dot-color="#2563eb"}
 
 Baixe os registros novos.
 
-## Deduplicar {dot-color="#f59e0b" dot-size="1.1rem" line-color="#f59e0b" line-width="3px"}
+## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}
 
 Reconcilie coletas e identificações.
 
-## Publicar {dot-color="#2da44e" dot-size="0.85rem" line-width="2px"}
+## Publicar {dot-color="#16a34a"}
 
 Atualize a base curada.
+:::
+
+### Preenchimento opcional
+
+`dot-fill` permite preencher apenas as etapas desejadas. `dot-border-width` controla a espessura do contorno independentemente da linha vertical.
+
+```markdown
+::: {.steps type="dots"
+  dot-color="#64748b"
+  dot-size="0.82rem"
+  line-color="#cbd5e1"
+  line-width="2px"}
+
+## Pendente
+
+Continua vazada.
+
+## Em execução {dot-color="#2563eb" dot-fill="#2563eb"}
+
+Bolinha azul preenchida.
+
+## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
+
+Bolinha verde preenchida.
+:::
+```
+
+**Output:**
+
+::: {.steps type="dots" dot-color="#64748b" dot-size="0.82rem" line-color="#cbd5e1" line-width="2px"}
+## Pendente
+
+Continua vazada.
+
+## Em execução {dot-color="#2563eb" dot-fill="#2563eb"}
+
+Bolinha azul preenchida.
+
+## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
+
+Bolinha verde preenchida.
 :::
 
 ## Lista ordenada circulada
@@ -232,7 +275,7 @@ A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG p
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.0
+- `main` release v0.6.1
 :::
 ```
 
@@ -253,7 +296,7 @@ A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG p
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.0
+- `main` release v0.6.1
 :::
 
 ## File tree — aninhamento profundo e ícones
