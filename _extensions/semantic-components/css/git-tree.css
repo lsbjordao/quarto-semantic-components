@@ -7,4 +7,4 @@
 .semantic-git-tree li>ul::before{content:"";position:absolute;left:var(--git-node-x);top:-.25rem;width:var(--git-lane-gap);height:.86rem;box-sizing:border-box;border-left:var(--git-line-width) solid var(--semantic-git-line);border-bottom:var(--git-line-width) solid var(--semantic-git-line);border-bottom-left-radius:.62rem;pointer-events:none;z-index:1}
 .semantic-git-tree li>ul::after{content:"";position:absolute;left:var(--git-node-x);bottom:.02rem;width:var(--git-lane-gap);height:.74rem;box-sizing:border-box;border-right:var(--git-line-width) solid var(--semantic-git-line);border-bottom:var(--git-line-width) solid var(--semantic-git-line);border-bottom-right-radius:.62rem;pointer-events:none;z-index:1}
 .semantic-git-tree li>ul>li::before{border-color:color-mix(in srgb,currentColor 82%,transparent)}
-.semantic-git-tree li>ul>li>ul{--git-lane-gap:.78rem;padding-bottom:.28rem}
+.semantic-git-tree li>ul>li>ul{padding-bottom:.28rem}
