@@ -1,12 +1,16 @@
 title: Quarto Semantic Components
 author: Lucas Sá Barreto Jordão
-version: 0.7.1
+version: 0.8.0
 quarto-required: ">=1.4.0"
 contributes:
   filters:
     - steps.lua
     - file-tree.lua
     - git-tree.lua
+    - timeline.lua
+    - pipeline.lua
+    - changelog.lua
     - badges.lua
+    - details.lua
   shortcodes:
     - badges-shortcodes.lua
