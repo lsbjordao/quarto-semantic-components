@@ -70,6 +70,7 @@ extensions:
     node-size: "0.68rem"
     lane-gap: "0.82rem"
     row-height: "36px"
+    content-gap: "0.55rem"
 ```
 
 Também são aceitos os namespaces `semantic-components:` e `extensions.semantic-components`.
@@ -209,6 +210,19 @@ A extensão infere os parents da seguinte forma:
 - retorno a uma profundidade menor → o próximo commit da lane pai é tratado como merge commit;
 - retorno de vários níveis de uma vez → o commit recebe múltiplos parents (merge tipo octopus).
 
+### Alinhamento hierárquico do conteúdo
+
+No HTML, a lane gráfica e o conteúdo do commit compartilham a mesma hierarquia horizontal. A tag/branch e a descrição começam logo depois do nó correspondente, em vez de todas as linhas textuais começarem depois da lane mais profunda. Isso produz uma “escadinha” visual coerente com os níveis dos branches.
+
+`lane-gap` controla a distância entre lanes e `content-gap` controla apenas o espaço entre a bolinha do commit e sua tag/descrição:
+
+```yaml
+extensions:
+  git-tree:
+    lane-gap: "0.82rem"
+    content-gap: "0.55rem"
+```
+
 ### Direção TB ou BT
 
 O mesmo DAG pode ser exibido em qualquer das duas direções verticais:
@@ -250,7 +264,7 @@ Para histórias que não podem ser inferidas apenas pela indentação, atribua i
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.7.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.7.1" head="true"} merge feature/badges
 :::
 ```
 
@@ -264,7 +278,7 @@ Para histórias que não podem ser inferidas apenas pela indentação, atribua i
 
 No HTML, `HEAD` e tags aparecem como labels adicionais. A lane continua sendo determinada pela profundidade da lista; os parents determinam as arestas do DAG.
 
-Defaults disponíveis para `git-tree`: `direction`, `line-color`, `line-width`, `node-size`, `lane-gap`, `row-height` e `node-bg`.
+Defaults disponíveis para `git-tree`: `direction`, `line-color`, `line-width`, `node-size`, `lane-gap`, `row-height`, `content-gap` e `node-bg`.
 
 Em PDF/DOCX, a estrutura continua como uma lista semântica legível.
 
