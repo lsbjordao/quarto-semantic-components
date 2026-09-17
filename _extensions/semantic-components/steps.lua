@@ -9,7 +9,7 @@ local function is_html() return FORMAT and FORMAT:match('html') ~= nil end
 
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
-    name = 'quarto-semantic-components', version = '0.4.0',
+    name = 'quarto-semantic-components', version = '0.4.1',
     stylesheets = {
       'css/base.css', 'css/steps.css', 'css/file-tree.css',
       'css/git-tree.css', 'css/badges.css'
@@ -26,8 +26,22 @@ local function mode(el)
   return 'numbered'
 end
 
-local function step_title(header)
-  return pandoc.Plain({pandoc.Span(header.content, pandoc.Attr('', {'semantic-step-title'}))})
+local function visual_span(class_name, variable, value)
+  local attributes = {}
+  if value and value ~= '' then attributes.style = variable .. ':' .. value .. ';' end
+  return pandoc.Span({}, pandoc.Attr('', {class_name}, attributes))
+end
+
+local function step_title(header, list_mode)
+  local title = pandoc.Span(header.content, pandoc.Attr(header.identifier or '', {'semantic-step-title'}))
+  if list_mode ~= 'dots' or not is_html() then return pandoc.Plain({title}) end
+  local dot = header.attributes and (header.attributes['dot-color'] or header.attributes['marker-color']) or nil
+  local line = header.attributes and (header.attributes['line-color'] or header.attributes['connector-color']) or nil
+  return pandoc.Plain({
+    visual_span('semantic-step-marker', '--semantic-step-item-dot-color', dot),
+    visual_span('semantic-step-connector', '--semantic-step-item-line-color', line),
+    title
+  })
 end
 
 local function from_headings(blocks, list_mode)
@@ -37,7 +51,7 @@ local function from_headings(blocks, list_mode)
   local before, items, current = pandoc.List(), pandoc.List(), nil
   for _, block in ipairs(blocks) do
     if block.t == 'Header' and block.level == level then
-      current = pandoc.List({step_title(block)}); items:insert(current)
+      current = pandoc.List({step_title(block, list_mode)}); items:insert(current)
     elseif current then current:insert(block)
     else before:insert(block) end
   end
@@ -65,16 +79,46 @@ local function append_style(el, declaration)
   el.attributes.style = value .. declaration .. ';'
 end
 
+local function has_marker(item)
+  for _, block in ipairs(item) do
+    if block.t == 'Plain' or block.t == 'Para' then
+      for _, inline in ipairs(block.content) do
+        if inline.t == 'Span' and has_class(inline, 'semantic-step-marker') then return true end
+      end
+      return false
+    end
+  end
+  return false
+end
+
+local function ensure_dot_markers(blocks)
+  if not is_html() then return end
+  for _, block in ipairs(blocks) do
+    if block.t == 'BulletList' then
+      for _, item in ipairs(block.content) do
+        if not has_marker(item) then
+          item:insert(1, pandoc.Plain({
+            visual_span('semantic-step-marker', '--semantic-step-item-dot-color', nil),
+            visual_span('semantic-step-connector', '--semantic-step-item-line-color', nil)
+          }))
+        end
+      end
+      return
+    end
+  end
+end
+
 local function transform_steps(el)
   local list_mode = mode(el)
   add_class(el, 'semantic-steps'); add_class(el, 'semantic-steps-' .. list_mode)
   if list_mode == 'dots' then
     local dot = attr(el, 'dot-color') or attr(el, 'marker-color')
     local line = attr(el, 'line-color') or attr(el, 'connector-color')
-    if dot and dot ~= '' then append_style(el, '--semantic-step-dot-color:' .. dot); el.attributes['data-dot-color'] = dot end
-    if line and line ~= '' then append_style(el, '--semantic-step-line-color:' .. line); el.attributes['data-line-color'] = line end
+    if dot and dot ~= '' then append_style(el, '--semantic-step-dot-color:' .. dot) end
+    if line and line ~= '' then append_style(el, '--semantic-step-line-color:' .. line) end
   end
   el.content = from_headings(el.content, list_mode) or normalize_list(el.content, list_mode)
+  if list_mode == 'dots' then ensure_dot_markers(el.content) end
   if not is_html() then el.attributes['data-semantic-steps'] = list_mode end
   return el
 end
