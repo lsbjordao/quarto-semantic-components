@@ -81,7 +81,8 @@ return {
     local attrs = {
       ['data-badge-variant'] = variant,
       ['data-badge-size'] = size,
-      ['data-badge-appearance'] = appearance
+      ['data-badge-appearance'] = appearance,
+      ['data-semantic-badge-resolved'] = 'true'
     }
     if preset_key and preset then attrs['data-badge-key'] = preset_key end
     if #style > 0 then attrs['style'] = table.concat(style, ';') .. ';' end
