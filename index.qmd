@@ -13,7 +13,7 @@ Esta página demonstra os componentes da extensão **Quarto Semantic Components*
 
 ## Defaults de projeto no `_quarto.yml`
 
-A versão 0.5.0 permite definir presets e defaults uma única vez para todo o projeto. Este próprio repositório usa:
+Este próprio repositório usa defaults compartilhados:
 
 ```yaml
 extensions:
@@ -44,117 +44,40 @@ extensions:
     lane-gap: "0.82rem"
 ```
 
-A precedência é: **defaults do projeto → atributos do componente → atributos do item**.
-
-### Badge usando apenas a chave
-
-```markdown
-{{< semantic-badge stable >}}
-{{< semantic-badge experimental >}}
-{{< semantic-badge "Release estável" key="stable" >}}
-```
-
-**Output:** {{< semantic-badge stable >}} {{< semantic-badge experimental >}} {{< semantic-badge "Release estável" key="stable" >}}
-
-### Steps herdando os defaults
-
-```markdown
-::: {.steps type="dots"}
-## Extrair
-
-Baixe os dados.
-
-## Validar
-
-Valide os registros.
-
-## Publicar
-
-Publique o resultado.
-:::
-```
-
-**Output:**
-
-::: {.steps type="dots"}
-## Extrair
-
-Baixe os dados.
-
-## Validar
-
-Valide os registros.
-
-## Publicar
-
-Publique o resultado.
-:::
-
-### File tree herdando `icons: devicon`
-
-```markdown
-:::file-tree
-- analysis.R
-- pipeline.py
-- app.js
-- types.ts
-:::
-```
-
-**Output:**
-
-:::file-tree
-- analysis.R
-- pipeline.py
-- app.js
-- types.ts
-:::
-
-Também é aceito o namespace explícito:
-
-```yaml
-semantic-components:
-  badge:
-    defaults:
-      shape: pill
-      size: sm
-    presets:
-      - key: stable
-        colour: springgreen
-  steps:
-    dot-size: "0.8rem"
-```
+A precedência é **defaults do projeto → preset → componente → item individual**.
 
 ## Badges inline
 
-A extensão usa `semantic-badge`, de propósito, para coexistir com [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge). Aqui o foco é personalização livre por instância, além dos presets de projeto.
+> O shortcode público agora é `badge`. Como [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) usa o mesmo nome, o projeto deve escolher qual extensão de badge deseja usar.
+
+### Presets definidos no projeto
 
 ```markdown
-{{< semantic-badge "Beta" >}}
-{{< semantic-badge "Estável" type="success" icon="✓" >}}
-{{< semantic-badge "Experimental custom" type="warning" >}}
-{{< semantic-badge "v0.5.0" type="accent" appearance="solid" >}}
+{{< badge stable >}}
+{{< badge experimental >}}
+{{< badge "Release estável" key="stable" >}}
 ```
 
-**Output:** {{< semantic-badge "Beta" >}} {{< semantic-badge "Estável" type="success" icon="✓" >}} {{< semantic-badge "Experimental custom" type="warning" >}} {{< semantic-badge "v0.5.0" type="accent" appearance="solid" >}}
+**Output:** {{< badge stable >}} {{< badge experimental >}} {{< badge "Release estável" key="stable" >}}
 
 ### Personalização livre
 
 ```markdown
-{{< semantic-badge "Custom"
+{{< badge "Beta" >}}
+{{< badge "Estável" type="success" icon="✓" >}}
+{{< badge "Experimental" type="warning" >}}
+{{< badge "v0.6.0" type="accent" appearance="solid" >}}
+
+{{< badge "Custom"
   bg="#111827" fg="#f9fafb" border="#60a5fa"
   border-width="2px" radius="0.35rem" size="md"
   padding="0.22em 0.75em" weight="750"
   shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
-
-{{< semantic-badge "Source" type="info" icon="↗" icon-position="end"
-  href="https://github.com/lsbjordao/quarto-semantic-components"
-  title="Abrir o repositório" >}}
 ```
 
-**Output:** {{< semantic-badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}} {{< semantic-badge "Source" type="info" icon="↗" icon-position="end" href="https://github.com/lsbjordao/quarto-semantic-components" title="Abrir o repositório" >}}
+**Output:** {{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" >}} {{< badge "v0.6.0" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 
-Também é possível usar a sintaxe Pandoc diretamente:
+A forma AST-native continua usando uma classe interna prefixada, para não colidir com `.badge` do Bootstrap:
 
 ```markdown
 [AST-native]{.semantic-badge key="stable" appearance="outline" size="md"}
@@ -163,8 +86,6 @@ Também é possível usar a sintaxe Pandoc diretamente:
 **Output:** [AST-native]{.semantic-badge key="stable" appearance="outline" size="md"}
 
 ## Steps — numerado
-
-Os exemplos usam `##` como nível padrão das etapas. O filtro usa o **primeiro nível de heading encontrado**, portanto outros níveis continuam funcionando.
 
 ```markdown
 :::steps
@@ -200,48 +121,41 @@ Cada heading inicia uma etapa.
 
 ## Steps — bolinhas
 
-### Defaults sobrescritos no bloco
+### Herdando defaults do `_quarto.yml`
 
 ```markdown
-::: {.steps type="dots"
-  dot-color="#6366f1"
-  dot-size="0.8rem"
-  line-color="#a5b4fc"
-  line-width="2px"}
-
+::: {.steps type="dots"}
 ## Extrair
 
-Baixe os registros novos.
+Baixe os dados.
 
-## Deduplicar
+## Validar
 
-Reconcilie coletas e identificações.
+Valide os registros.
 
 ## Publicar
 
-Atualize a base curada.
+Publique o resultado.
 :::
 ```
 
 **Output:**
 
-::: {.steps type="dots" dot-color="#6366f1" dot-size="0.8rem" line-color="#a5b4fc" line-width="2px"}
+::: {.steps type="dots"}
 ## Extrair
 
-Baixe os registros novos.
+Baixe os dados.
 
-## Deduplicar
+## Validar
 
-Reconcilie coletas e identificações.
+Valide os registros.
 
 ## Publicar
 
-Atualize a base curada.
+Publique o resultado.
 :::
 
-### Personalização por etapa
-
-O bloco fornece os defaults locais; cada `##` pode sobrescrever `dot-color`, `dot-size`, `line-color` e `line-width` apenas naquela etapa.
+### Override no bloco e por etapa
 
 ```markdown
 ::: {.steps type="dots"
@@ -300,7 +214,7 @@ Atualize a base curada.
 
 ## Git tree
 
-`git-tree` usa listas aninhadas para representar branches. O grafo é desenhado por CSS: nós, linhas e curvas; não usa caracteres ASCII.
+A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG por lanes. Merges de vários níveis são desenhados sequencialmente, em vez de criar ganchos de pseudo-elementos CSS.
 
 ```markdown
 :::git-tree
@@ -313,12 +227,12 @@ Atualize a base curada.
   - `feature/icons` adiciona links em arquivos
 - `main` merge feature/icons
 - `main` inicia componentes inline
-  - `feature/badges` cria semantic-badge
+  - `feature/badges` cria badge
   - `feature/badges` adiciona customização visual
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.5.0
+- `main` release v0.6.0
 :::
 ```
 
@@ -334,19 +248,17 @@ Atualize a base curada.
   - `feature/icons` adiciona links em arquivos
 - `main` merge feature/icons
 - `main` inicia componentes inline
-  - `feature/badges` cria semantic-badge
+  - `feature/badges` cria badge
   - `feature/badges` adiciona customização visual
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.5.0
+- `main` release v0.6.0
 :::
 
-Os defaults `line-color`, `line-width`, `node-size`, `lane-gap`, `row-indent` e `node-bg` podem ser definidos no `_quarto.yml` ou diretamente no bloco.
+## File tree — aninhamento profundo e ícones
 
-## File tree — Devicon e aninhamento profundo
-
-O `_quarto.yml` da galeria já define **Devicon como provider padrão**, portanto não é necessário repetir `icons="devicon"`.
+O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`, `_quarto.yml` e `quarto.yml`, a extensão usa o ícone oficial hospedado pelo próprio Quarto (`https://quarto.org/quarto.png`) porque Devicon não fornece um glifo do Quarto.
 
 ```markdown
 :::file-tree
@@ -372,13 +284,12 @@ O `_quarto.yml` da galeria já define **Devicon como provider padrão**, portant
       - +migrations
         - schema.sql esquema
         - indexes.sql índices
-      - cache.sqlite cache local
+  - +docs
+    - report.qmd relatório Quarto
   - +data
     - +raw
       - occurrences.csv dados brutos
     - +processed
-      - +silver
-        - normalized.parquet dados normalizados
       - +gold
         - occurrences.parquet base curada
   - README.md documentação
@@ -411,13 +322,12 @@ O `_quarto.yml` da galeria já define **Devicon como provider padrão**, portant
       - +migrations
         - schema.sql esquema
         - indexes.sql índices
-      - cache.sqlite cache local
+  - +docs
+    - report.qmd relatório Quarto
   - +data
     - +raw
       - occurrences.csv dados brutos
     - +processed
-      - +silver
-        - normalized.parquet dados normalizados
       - +gold
         - occurrences.parquet base curada
   - README.md documentação
@@ -426,8 +336,6 @@ O `_quarto.yml` da galeria já define **Devicon como provider padrão**, portant
 
 ## File tree — arquivos como links
 
-O próprio nome do arquivo pode ser um link Markdown para GitHub, documentação ou qualquer URL escolhida pelo autor.
-
 ```markdown
 :::file-tree
 - +_extensions
@@ -452,12 +360,13 @@ O próprio nome do arquivo pode ser um link Markdown para GitHub, documentação
 - [`index.qmd`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/index.qmd) galeria
 :::
 
-## File tree — escolhendo a biblioteca de ícones
+## File tree — providers e ícones customizados
 
 ```markdown
 ::: {.file-tree icons="devicon"}
 - analysis.R
 - pipeline.py
+- report.qmd
 - app.js
 - types.ts
 :::
@@ -465,30 +374,26 @@ O próprio nome do arquivo pode ser um link Markdown para GitHub, documentação
 ::: {.file-tree icons="simple-icons"}
 - analysis.R
 - pipeline.py
+- report.qmd
 - app.js
 - types.ts
 :::
 
-::: {.file-tree icons="builtin"}
-- analysis.R
-- pipeline.py
-- app.js
-- types.ts
-:::
-
-::: {.file-tree icons="none"}
-- analysis.R
-- pipeline.py
-- app.js
-- types.ts
+:::file-tree
+- `analysis.R`{icon="devicon:r"} R
+- `pipeline.py`{icon="devicon:python"} Python
+- `species.csv`{icon="leaf"} dados de espécies
+- `golden.parquet`{icon="★"} base ouro
+- `deduplicate.py`{icon="🧬"} deduplicação
 :::
 ```
 
-**Devicon:**
+**Devicon/default:**
 
 ::: {.file-tree icons="devicon"}
 - analysis.R
 - pipeline.py
+- report.qmd
 - app.js
 - types.ts
 :::
@@ -498,41 +403,12 @@ O próprio nome do arquivo pode ser um link Markdown para GitHub, documentação
 ::: {.file-tree icons="simple-icons"}
 - analysis.R
 - pipeline.py
+- report.qmd
 - app.js
 - types.ts
 :::
 
-**Builtin:**
-
-::: {.file-tree icons="builtin"}
-- analysis.R
-- pipeline.py
-- app.js
-- types.ts
-:::
-
-**Sem ícones:**
-
-::: {.file-tree icons="none"}
-- analysis.R
-- pipeline.py
-- app.js
-- types.ts
-:::
-
-## File tree — ícone customizado por arquivo
-
-```markdown
-:::file-tree
-- `analysis.R`{icon="devicon:r"} R
-- `pipeline.py`{icon="devicon:python"} Python
-- `species.csv`{icon="leaf"} dados de espécies
-- `golden.parquet`{icon="★"} base ouro
-- `deduplicate.py`{icon="🧬"} deduplicação
-:::
-```
-
-**Output:**
+**Customizados:**
 
 :::file-tree
 - `analysis.R`{icon="devicon:r"} R
@@ -542,8 +418,10 @@ O próprio nome do arquivo pode ser um link Markdown para GitHub, documentação
 - `deduplicate.py`{icon="🧬"} deduplicação
 :::
 
-Providers disponíveis: `devicon` (padrão), `simple-icons`, `builtin` e `none`.
+## Inspiração e formatos
 
-## Compatibilidade de formatos
+As ideias de **Steps** e **File Tree** foram inspiradas em componentes de documentação do [Vocs](https://vocs.dev/), mas a implementação desta extensão é própria e orientada ao AST do Pandoc.
 
-Os componentes mantêm estrutura semântica no AST do Pandoc. HTML recebe a apresentação rica; em PDF e DOCX, listas, links e conteúdo textual permanecem legíveis e editáveis. Ícones externos e conectores gráficos são decoração HTML e degradam sem comprometer o conteúdo.
+- **HTML**: apresentação completa, ícones, badges e Git tree em SVG;
+- **PDF**: conteúdo estrutural e links são preservados;
+- **DOCX**: listas, links e texto permanecem editáveis.
