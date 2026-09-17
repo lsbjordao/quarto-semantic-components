@@ -11,8 +11,8 @@ Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.de
 - `steps`: sequência numerada;
 - `steps type="dots"`: steps com bolinhas vazadas por padrão e ampla personalização;
 - `circle-list`: lista ordenada com números circulados;
-- `git-tree`: histórico Git com lanes, branches e merges em SVG no HTML;
-- `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips, ícones e pastas expansíveis/colapsáveis em HTML;
+- `git-tree`: grafo de commits Git (DAG) com branches, merges, tags, `HEAD` e direções TB/BT;
+- `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips, ícones e pastas colapsáveis em HTML;
 - `badge`: badge inline com presets de projeto e personalização por instância.
 
 ## Instalação
@@ -53,12 +53,6 @@ extensions:
       appearance: solid
       icon: "✓"
 
-    - key: experimental
-      label: Experimental
-      type: info
-      appearance: outline
-      icon: "⚗"
-
   steps:
     dot-color: "#8c959f"
     dot-size: "0.72rem"
@@ -70,10 +64,12 @@ extensions:
     expanded: true
 
   git-tree:
+    direction: TB
     line-color: "#9aa0a6"
     line-width: "2px"
     node-size: "0.68rem"
     lane-gap: "0.82rem"
+    row-height: "36px"
 ```
 
 Também são aceitos os namespaces `semantic-components:` e `extensions.semantic-components`.
@@ -100,21 +96,6 @@ A classe pública `.badge` é convertida internamente pela extensão para uma cl
 ### Compatibilidade com `mcanouil/quarto-badge`
 
 O projeto [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) também registra um shortcode chamado `badge`. Portanto, um projeto deve **escolher qual extensão será responsável por `{{< badge ... >}}`**; não é recomendado carregar as duas extensões de badge simultaneamente.
-
-A proposta deste projeto é oferecer personalização livre por instância, além de presets definidos no projeto:
-
-```markdown
-{{< badge "Custom"
-  bg="#111827"
-  fg="#fff"
-  border="#60a5fa"
-  border-width="2px"
-  radius="0.35rem"
-  padding="0.2em 0.7em"
-  shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
-```
-
-Opções incluem `type`/`variant`, `size`, `shape`, `appearance`, `icon`, `icon-position`, `href`, `title`, `fg`, `bg`, `colour`/`color`, `border`, `border-width`, `radius`, `padding`, `weight`, `font-size`, `letter-spacing`, `shadow`, `uppercase`, `font="mono"` e `class`/`classes`.
 
 ## Steps
 
@@ -179,9 +160,7 @@ Conteúdo.
 :::
 ```
 
-Defaults e overrides disponíveis: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color` e `line-width`.
-
-Aliases: `marker-color`, `marker-fill`, `marker-size`, `marker-border-width`, `connector-color` e `connector-width`.
+Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color` e `line-width`.
 
 ## Circle list
 
@@ -194,9 +173,20 @@ Aliases: `marker-color`, `marker-fill`, `marker-size`, `marker-border-width`, `c
 :::
 ```
 
-## Git tree
+## Git tree: um grafo de commits, não apenas uma árvore visual
 
-Branches são escritos como listas aninhadas. No HTML, a extensão lineariza o histórico e desenha lanes, nós, branch-outs e merges em SVG.
+O Git é modelado como um **DAG de commits**. No `git-tree`:
+
+- cada bolinha representa um commit;
+- cada aresta conecta um commit pai a um commit filho;
+- uma bifurcação sempre começa em um commit;
+- um merge sempre termina em um commit;
+- o texto entre crases representa a lane/branch mostrada ao lado daquele commit;
+- `tag=` e `head=true` podem anexar referências adicionais ao commit.
+
+### Sintaxe simples
+
+A sintaxe por listas aninhadas continua sendo a forma mais curta:
 
 ```markdown
 :::git-tree
@@ -206,25 +196,81 @@ Branches são escritos como listas aninhadas. No HTML, a extensão lineariza o h
   - `feature/icons` adiciona Devicon
     - `docs/icons` documenta providers
     - `docs/icons` adiciona exemplos
+  - `feature/icons` merge docs/icons
   - `feature/icons` adiciona links
 - `main` merge feature/icons
 :::
 ```
 
-Em PDF/DOCX a estrutura continua sendo uma lista semântica legível.
+A extensão infere os parents da seguinte forma:
 
-Defaults disponíveis no `_quarto.yml`: `line-color`, `line-width`, `node-size`, `lane-gap` e `node-bg`.
+- mesma profundidade → próximo commit da mesma lane;
+- aumento de profundidade → branch criado a partir do commit imediatamente anterior;
+- retorno a uma profundidade menor → o próximo commit da lane pai é tratado como merge commit;
+- retorno de vários níveis de uma vez → o commit recebe múltiplos parents (merge tipo octopus).
+
+### Direção TB ou BT
+
+O mesmo DAG pode ser exibido em qualquer das duas direções verticais:
+
+```markdown
+::: {.git-tree direction="TB"}
+...
+:::
+```
+
+`TB` (`top → bottom`) mostra o commit mais antigo no topo e é o default. `BT` (`bottom → top`) mantém o mesmo DAG, mas mostra os commits mais recentes no topo:
+
+```markdown
+::: {.git-tree direction="BT"}
+...
+:::
+```
+
+Também é possível definir uma vez no `_quarto.yml`:
+
+```yaml
+extensions:
+  git-tree:
+    direction: BT
+```
+
+`orientation=` é aceito como alias de `direction=`.
+
+### DAG explícito: ids e parents
+
+Para histórias que não podem ser inferidas apenas pela indentação, atribua ids aos commits e declare os parents explicitamente:
+
+```markdown
+:::git-tree
+- `main`{#c1} initial commit
+- `main`{#c2 parent="c1"} arquitetura base
+  - `feature/badges`{#c3 parent="c2"} cria badge
+  - `feature/badges`{#c4 parent="c3"} customização visual
+    - `test/badges`{#c5 parent="c4"} cobre variantes
+    - `test/badges`{#c6 parent="c5"} cobre links
+  - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
+- `main`{#c8 parents="c2,c7" tag="v0.7.0" head="true"} merge feature/badges
+:::
+```
+
+`parents=` prevalece sobre a inferência automática. Use uma lista separada por vírgulas para merge commits. `parents="none"` cria explicitamente um root commit.
+
+### Referências adicionais
+
+```markdown
+- `main`{#release tag="v1.0.0" head="true"} release
+```
+
+No HTML, `HEAD` e tags aparecem como labels adicionais. A lane continua sendo determinada pela profundidade da lista; os parents determinam as arestas do DAG.
+
+Defaults disponíveis para `git-tree`: `direction`, `line-color`, `line-width`, `node-size`, `lane-gap`, `row-height` e `node-bg`.
+
+Em PDF/DOCX, a estrutura continua como uma lista semântica legível.
 
 ## File tree
 
 ### Aninhamento profundo e ícones automáticos
-
-```yaml
-extensions:
-  file-tree:
-    icons: devicon
-    expanded: true
-```
 
 ```markdown
 :::file-tree
@@ -245,53 +291,31 @@ Providers disponíveis: `devicon`, `simple-icons`, `builtin` e `none`.
 
 Para `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o símbolo oficial do Quarto servido pelo próprio site.
 
-### Pastas expansíveis e colapsáveis no HTML
+### Pastas expansíveis em HTML
 
-Pastas com filhos são interativas em HTML. Elas ficam abertas por padrão para preservar o comportamento tradicional do componente. Clique no chevron ou no nome da pasta para abrir/fechar; o controle também é acessível por teclado através do botão do chevron.
-
-O estado padrão do projeto pode ser definido no `_quarto.yml`:
+Pastas com filhos podem ser expandidas/colapsadas em HTML. O default é aberto:
 
 ```yaml
 extensions:
   file-tree:
-    expanded: false
+    expanded: true
 ```
 
-Também é possível definir o estado de uma árvore inteira:
+Pode ser sobrescrito no bloco ou por pasta:
 
 ```markdown
 ::: {.file-tree expanded="false"}
-- +src
+- [+src]{expanded="true"}
   - app.ts
   - styles.css
-- +docs
+- [+docs]{collapsed="true"}
   - index.qmd
 :::
 ```
 
-Ou sobrescrever diretórios individualmente usando atributos Pandoc:
-
-```markdown
-:::file-tree
-- [+src]{expanded="false"}
-  - +components
-    - Button.ts
-    - Card.ts
-  - app.ts
-- [+docs]{open="true"}
-  - index.qmd
-- [+data]{collapsed="true"}
-  - raw.csv
-:::
-```
-
-Aliases aceitos: `expanded`/`open` e `collapsed`. Em PDF e DOCX a árvore continua sempre estruturalmente expandida e legível; a interação existe apenas em HTML.
-
-Se uma pasta também for um link, clicar no link continua navegando. O chevron e o restante da linha controlam a expansão.
+Aliases: `expanded`, `open` e `collapsed`.
 
 ### Texto normal ou inline code
-
-A extensão preserva a sintaxe escolhida pelo autor:
 
 ```markdown
 :::file-tree
@@ -303,8 +327,6 @@ A extensão preserva a sintaxe escolhida pelo autor:
 ```
 
 ### Tooltip opcional
-
-`tooltip=` e `info=` adicionam um ícone de informação em HTML:
 
 ```markdown
 :::file-tree
@@ -325,7 +347,7 @@ A extensão preserva a sintaxe escolhida pelo autor:
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, badges, tooltips, árvores colapsáveis, conectores e Git tree em SVG;
+- **HTML**: apresentação completa, ícones, badges, tooltips, file tree interativo e Git DAG em SVG;
 - **PDF**: conteúdo estrutural e links são preservados; decoração HTML degrada com segurança;
 - **DOCX**: listas, links e texto permanecem editáveis.
 
