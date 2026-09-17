@@ -45,10 +45,12 @@ extensions:
     expanded: true
 
   git-tree:
+    direction: TB
     line-color: "#9aa0a6"
     line-width: "2px"
     node-size: "0.68rem"
     lane-gap: "0.82rem"
+    row-height: "36px"
 ```
 
 A precedência é **defaults do projeto → preset → componente → item individual**.
@@ -76,21 +78,14 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.6.7" type="accent" appearance="solid" >}}
-{{< badge "Custom"
-  bg="#111827" fg="#f9fafb" border="#60a5fa"
-  border-width="2px" radius="0.35rem" size="md"
-  padding="0.22em 0.75em" weight="750"
-  shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+{{< badge "v0.7.0" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.6.7" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.7.0" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
-
-A forma AST-native também usa apenas `badge`:
 
 ```markdown
 [AST-native]{.badge key="stable" appearance="outline" size="md"}
@@ -105,19 +100,15 @@ Todos os exemplos de `steps` usam quatro etapas.
 ```markdown
 :::steps
 ## Instale a extensão
-
 Use `quarto add lsbjordao/quarto-semantic-components`.
 
 ## Ative o filtro
-
 Inclua `semantic-components` em `filters`.
 
 ## Configure os componentes
-
 Defina defaults no `_quarto.yml` se desejar.
 
 ## Escreva normalmente
-
 Cada heading inicia uma etapa.
 :::
 ```
@@ -126,44 +117,36 @@ Cada heading inicia uma etapa.
 
 :::steps
 ## Instale a extensão
-
 Use `quarto add lsbjordao/quarto-semantic-components`.
 
 ## Ative o filtro
-
 Inclua `semantic-components` em `filters`.
 
 ## Configure os componentes
-
 Defina defaults no `_quarto.yml` se desejar.
 
 ## Escreva normalmente
-
 Cada heading inicia uma etapa.
 :::
 
 ## Steps — bolinhas
 
-As bolinhas são **vazadas por padrão**. `dot-color` controla o contorno e `dot-fill` permite preenchimento opcional.
+As bolinhas são vazadas por padrão. `dot-color` controla o contorno e `dot-fill` permite preenchimento opcional.
 
-### Herdando defaults do `_quarto.yml`
+### Default do projeto
 
 ```markdown
 ::: {.steps type="dots"}
 ## Extrair
-
 Baixe os dados.
 
 ## Validar
-
 Valide os registros.
 
 ## Transformar
-
-Prepare os dados para publicação.
+Prepare os dados.
 
 ## Publicar
-
 Publique o resultado.
 :::
 ```
@@ -172,23 +155,19 @@ Publique o resultado.
 
 ::: {.steps type="dots"}
 ## Extrair
-
 Baixe os dados.
 
 ## Validar
-
 Valide os registros.
 
 ## Transformar
-
-Prepare os dados para publicação.
+Prepare os dados.
 
 ## Publicar
-
 Publique o resultado.
 :::
 
-### Alterando a cor de cada bolinha
+### Cor e tamanho por bolinha
 
 ```markdown
 ::: {.steps type="dots"
@@ -198,19 +177,15 @@ Publique o resultado.
   line-width="1.5px"}
 
 ## Extrair {dot-color="#2563eb"}
-
 Baixe os registros novos.
 
 ## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}
-
 Reconcilie coletas e identificações.
 
 ## Revisar {dot-color="#8b5cf6"}
-
 Revise a base processada.
 
 ## Publicar {dot-color="#16a34a"}
-
 Atualize a base curada.
 :::
 ```
@@ -219,66 +194,49 @@ Atualize a base curada.
 
 ::: {.steps type="dots" dot-color="#8c959f" dot-size="0.78rem" line-color="#9aa0a6" line-width="1.5px"}
 ## Extrair {dot-color="#2563eb"}
-
 Baixe os registros novos.
 
 ## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}
-
 Reconcilie coletas e identificações.
 
 ## Revisar {dot-color="#8b5cf6"}
-
 Revise a base processada.
 
 ## Publicar {dot-color="#16a34a"}
-
 Atualize a base curada.
 :::
 
 ### Preenchimento opcional
 
 ```markdown
-::: {.steps type="dots"
-  dot-color="#64748b"
-  dot-size="0.82rem"
-  line-color="#94a3b8"
-  line-width="2px"}
-
+::: {.steps type="dots" line-width="2px"}
 ## Pendente
-
 Continua vazada.
 
 ## Em execução {dot-color="#2563eb" dot-fill="#2563eb"}
-
 Bolinha azul preenchida.
 
 ## Em revisão {dot-color="#f59e0b" dot-fill="#f59e0b"}
-
 Bolinha laranja preenchida.
 
 ## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
-
 Bolinha verde preenchida.
 :::
 ```
 
 **Output:**
 
-::: {.steps type="dots" dot-color="#64748b" dot-size="0.82rem" line-color="#94a3b8" line-width="2px"}
+::: {.steps type="dots" line-width="2px"}
 ## Pendente
-
 Continua vazada.
 
 ## Em execução {dot-color="#2563eb" dot-fill="#2563eb"}
-
 Bolinha azul preenchida.
 
 ## Em revisão {dot-color="#f59e0b" dot-fill="#f59e0b"}
-
 Bolinha laranja preenchida.
 
 ## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
-
 Bolinha verde preenchida.
 :::
 
@@ -302,18 +260,21 @@ Bolinha verde preenchida.
 4. Quarto item
 :::
 
-## Git tree
+## Git tree — DAG de commits
 
-A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branches e merges em SVG.
+O gráfico representa commits e relações parent → child. Branches saem de nós; merges terminam em nós.
+
+### Sintaxe simples — direção TB
 
 ```markdown
-:::git-tree
+::: {.git-tree direction="TB"}
 - `main` initial commit
 - `main` cria a arquitetura base
   - `feature/icons` abre o branch de ícones
   - `feature/icons` adiciona Devicon
     - `docs/icons` documenta os providers
     - `docs/icons` adiciona exemplos
+  - `feature/icons` merge docs/icons
   - `feature/icons` adiciona links em arquivos
 - `main` merge feature/icons
 - `main` inicia componentes inline
@@ -321,35 +282,92 @@ A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branc
   - `feature/badges` adiciona customização visual
     - `test/badges` cobre variantes
     - `test/badges` cobre links
+  - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.6.7
+- `main` release v0.7.0
+:::
+```
+
+**Output:**
+
+::: {.git-tree direction="TB"}
+- `main` initial commit
+- `main` cria a arquitetura base
+  - `feature/icons` abre o branch de ícones
+  - `feature/icons` adiciona Devicon
+    - `docs/icons` documenta os providers
+    - `docs/icons` adiciona exemplos
+  - `feature/icons` merge docs/icons
+  - `feature/icons` adiciona links em arquivos
+- `main` merge feature/icons
+- `main` inicia componentes inline
+  - `feature/badges` cria badge
+  - `feature/badges` adiciona customização visual
+    - `test/badges` cobre variantes
+    - `test/badges` cobre links
+  - `feature/badges` merge test/badges
+- `main` merge feature/badges
+- `main` release v0.7.0
+:::
+
+### Mesmo DAG — direção BT
+
+`BT` apenas inverte a direção de leitura; as relações entre commits permanecem as mesmas.
+
+```markdown
+::: {.git-tree direction="BT"}
+- `main` initial commit
+- `main` arquitetura base
+  - `feature/api` cria API
+  - `feature/api` implementa endpoints
+- `main` merge feature/api
+- `main` release
+:::
+```
+
+**Output:**
+
+::: {.git-tree direction="BT"}
+- `main` initial commit
+- `main` arquitetura base
+  - `feature/api` cria API
+  - `feature/api` implementa endpoints
+- `main` merge feature/api
+- `main` release
+:::
+
+### DAG explícito — ids, parents, tag e HEAD
+
+Quando a indentação não é suficiente, declare a história explicitamente. `parents=` prevalece sobre a inferência automática.
+
+```markdown
+:::git-tree
+- `main`{#c1} initial commit
+- `main`{#c2 parent="c1"} arquitetura base
+  - `feature/badges`{#c3 parent="c2"} cria badge
+  - `feature/badges`{#c4 parent="c3"} customização visual
+    - `test/badges`{#c5 parent="c4"} cobre variantes
+    - `test/badges`{#c6 parent="c5"} cobre links
+  - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
+- `main`{#c8 parents="c2,c7" tag="v0.7.0" head="true"} merge feature/badges
 :::
 ```
 
 **Output:**
 
 :::git-tree
-- `main` initial commit
-- `main` cria a arquitetura base
-  - `feature/icons` abre o branch de ícones
-  - `feature/icons` adiciona Devicon
-    - `docs/icons` documenta os providers
-    - `docs/icons` adiciona exemplos
-  - `feature/icons` adiciona links em arquivos
-- `main` merge feature/icons
-- `main` inicia componentes inline
-  - `feature/badges` cria badge
-  - `feature/badges` adiciona customização visual
-    - `test/badges` cobre variantes
-    - `test/badges` cobre links
-- `main` merge feature/badges
-- `main` release v0.6.7
+- `main`{#c1} initial commit
+- `main`{#c2 parent="c1"} arquitetura base
+  - `feature/badges`{#c3 parent="c2"} cria badge
+  - `feature/badges`{#c4 parent="c3"} customização visual
+    - `test/badges`{#c5 parent="c4"} cobre variantes
+    - `test/badges`{#c6 parent="c5"} cobre links
+  - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
+- `main`{#c8 parents="c2,c7" tag="v0.7.0" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
 
-O `_quarto.yml` da galeria define **Devicon como provider padrão** e mantém as pastas abertas inicialmente. Para `.qmd`, `_quarto.yml` e `quarto.yml`, a extensão usa o símbolo circular oficial do Quarto.
-
 ```markdown
 :::file-tree
 - +project
@@ -364,26 +382,19 @@ O `_quarto.yml` da galeria define **Devicon como provider padrão** e mantém as
       - +web
         - +src
           - +components
-            - chart.ts componente de gráfico
-            - table.ts componente de tabela
-          - app.ts aplicação
-          - chart.js gráficos
-          - styles.css estilos
-          - index.html página
+            - chart.ts
+            - table.ts
+          - app.ts
     - +database
       - +migrations
-        - schema.sql esquema
-        - indexes.sql índices
+        - schema.sql
   - +docs
-    - report.qmd relatório Quarto
+    - report.qmd
   - +data
-    - +raw
-      - occurrences.csv dados brutos
     - +processed
-      - +gold
-        - occurrences.parquet base curada
-  - README.md documentação
-  - _quarto.yml configuração Quarto
+      - occurrences.parquet
+  - README.md
+  - _quarto.yml
 :::
 ```
 
@@ -402,31 +413,22 @@ O `_quarto.yml` da galeria define **Devicon como provider padrão** e mantém as
       - +web
         - +src
           - +components
-            - chart.ts componente de gráfico
-            - table.ts componente de tabela
-          - app.ts aplicação
-          - chart.js gráficos
-          - styles.css estilos
-          - index.html página
+            - chart.ts
+            - table.ts
+          - app.ts
     - +database
       - +migrations
-        - schema.sql esquema
-        - indexes.sql índices
+        - schema.sql
   - +docs
-    - report.qmd relatório Quarto
+    - report.qmd
   - +data
-    - +raw
-      - occurrences.csv dados brutos
     - +processed
-      - +gold
-        - occurrences.parquet base curada
-  - README.md documentação
-  - _quarto.yml configuração Quarto
+      - occurrences.parquet
+  - README.md
+  - _quarto.yml
 :::
 
-## File tree — pastas expansíveis e colapsáveis
-
-Em HTML, toda pasta que contém filhos pode ser aberta e fechada. O default do projeto é `expanded: true`, mas ele pode ser alterado no `_quarto.yml`, no bloco inteiro ou por diretório. Clique no chevron ou no nome da pasta; links dentro da pasta continuam navegando normalmente.
+## File tree — expandir e colapsar pastas
 
 ```markdown
 ::: {.file-tree expanded="false"}
@@ -435,7 +437,6 @@ Em HTML, toda pasta que contém filhos pode ser aberta e fechada. O default do p
     - Button.ts
     - Card.ts
   - app.ts
-  - styles.css
 - [+docs]{open="false"}
   - index.qmd
   - api.qmd
@@ -453,7 +454,6 @@ Em HTML, toda pasta que contém filhos pode ser aberta e fechada. O default do p
     - Button.ts
     - Card.ts
   - app.ts
-  - styles.css
 - [+docs]{open="false"}
   - index.qmd
   - api.qmd
@@ -462,11 +462,7 @@ Em HTML, toda pasta que contém filhos pode ser aberta e fechada. O default do p
   - processed.parquet
 :::
 
-Em PDF e DOCX, a hierarquia permanece sempre visível; a interação é exclusiva do HTML.
-
-## File tree — texto normal ou inline code
-
-O `file-tree` preserva a escolha do autor. Um nome sem crases fica como texto normal; um nome entre crases recebe a semântica/estilo de inline code. A mesma regra vale para links.
+## File tree — texto normal, inline code, links e tooltip
 
 ```markdown
 :::file-tree
@@ -474,6 +470,8 @@ O `file-tree` preserva a escolha do autor. Um nome sem crases fica como texto no
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
+- [analysis.R]{tooltip="Script principal de análise em R"}
+- [`pipeline.py`]{info="Pipeline de ingestão e validação"}
 :::
 ```
 
@@ -484,28 +482,8 @@ O `file-tree` preserva a escolha do autor. Um nome sem crases fica como texto no
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-:::
-
-## File tree — tooltip de informação
-
-`tooltip=` ou `info=` adiciona um pequeno ícone de informação em HTML.
-
-```markdown
-:::file-tree
 - [analysis.R]{tooltip="Script principal de análise em R"}
-- [`pipeline.py`]{tooltip="Pipeline de ingestão e validação"}
-- [app.ts](https://github.com/lsbjordao/quarto-semantic-components){tooltip="Abrir o repositório"}
-- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){info="Ver a implementação do componente"}
-:::
-```
-
-**Output:**
-
-:::file-tree
-- [analysis.R]{tooltip="Script principal de análise em R"}
-- [`pipeline.py`]{tooltip="Pipeline de ingestão e validação"}
-- [app.ts](https://github.com/lsbjordao/quarto-semantic-components){tooltip="Abrir o repositório"}
-- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){info="Ver a implementação do componente"}
+- [`pipeline.py`]{info="Pipeline de ingestão e validação"}
 :::
 
 ## File tree — providers e ícones customizados
@@ -519,20 +497,12 @@ O `file-tree` preserva a escolha do autor. Um nome sem crases fica como texto no
 - types.ts
 :::
 
-::: {.file-tree icons="simple-icons"}
-- analysis.R
-- pipeline.py
-- report.qmd
-- app.js
-- types.ts
-:::
-
 :::file-tree
-- `analysis.R`{icon="devicon:r"} R em inline code
-- pipeline.py Python em texto normal
-- `species.csv`{icon="leaf"} dados de espécies
-- `golden.parquet`{icon="★"} base ouro
-- `deduplicate.py`{icon="🧬"} deduplicação
+- `analysis.R`{icon="devicon:r"}
+- pipeline.py
+- `species.csv`{icon="leaf"}
+- `golden.parquet`{icon="★"}
+- `deduplicate.py`{icon="🧬"}
 :::
 ```
 
@@ -546,30 +516,20 @@ O `file-tree` preserva a escolha do autor. Um nome sem crases fica como texto no
 - types.ts
 :::
 
-**Simple Icons:**
-
-::: {.file-tree icons="simple-icons"}
-- analysis.R
-- pipeline.py
-- report.qmd
-- app.js
-- types.ts
-:::
-
 **Customizados:**
 
 :::file-tree
-- `analysis.R`{icon="devicon:r"} R em inline code
-- pipeline.py Python em texto normal
-- `species.csv`{icon="leaf"} dados de espécies
-- `golden.parquet`{icon="★"} base ouro
-- `deduplicate.py`{icon="🧬"} deduplicação
+- `analysis.R`{icon="devicon:r"}
+- pipeline.py
+- `species.csv`{icon="leaf"}
+- `golden.parquet`{icon="★"}
+- `deduplicate.py`{icon="🧬"}
 :::
 
 ## Inspiração e formatos
 
-As ideias de **Steps** e **File Tree** foram inspiradas em componentes de documentação do [Vocs](https://vocs.dev/), mas a implementação desta extensão é própria e orientada ao AST do Pandoc.
+As ideias de **Steps** e **File Tree** foram inspiradas em componentes do [Vocs](https://vocs.dev/), mas a implementação é própria e orientada ao AST do Pandoc.
 
-- **HTML**: apresentação completa, ícones, badges, tooltips, árvores colapsáveis e Git tree em SVG;
+- **HTML**: apresentação completa, badges, file tree interativo, tooltips e Git DAG em SVG;
 - **PDF**: conteúdo estrutural e links são preservados;
 - **DOCX**: listas, links e texto permanecem editáveis.
