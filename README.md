@@ -49,19 +49,26 @@ extensions:
   badge:
     - key: stable
       label: Estável
-      colour: springgreen
-      fg: "#102a18"
+      type: success
       appearance: solid
+      icon: "✓"
 
     - key: experimental
       label: Experimental
-      class: bg-info
-      appearance: solid
+      type: info
+      appearance: outline
+      icon: "⚗"
+
+    - key: deprecated
+      label: Deprecated
+      type: danger
+      appearance: soft
+      icon: "!"
 
   steps:
     dot-color: "#8c959f"
     dot-size: "0.72rem"
-    line-color: "#d0d7de"
+    line-color: "#9aa0a6"
     line-width: "1.5px"
 
   file-tree:
@@ -81,9 +88,9 @@ Também são aceitos os namespaces `semantic-components:` e `extensions.semantic
 O shortcode público é **`badge`**:
 
 ```markdown
-{{< badge "Beta" >}}
-{{< badge "Estável" type="success" icon="✓" >}}
 {{< badge stable >}}
+{{< badge experimental >}}
+{{< badge deprecated >}}
 {{< badge "Release estável" key="stable" >}}
 ```
 
@@ -94,6 +101,9 @@ O projeto [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) ta
 A proposta deste projeto é oferecer personalização livre por instância, além de presets de projeto:
 
 ```markdown
+{{< badge "Beta" >}}
+{{< badge "Estável" type="success" icon="✓" >}}
+{{< badge "Experimental" type="warning" appearance="outline" >}}
 {{< badge "Custom"
   bg="#111827"
   fg="#fff"
@@ -106,12 +116,10 @@ A proposta deste projeto é oferecer personalização livre por instância, alé
 
 Opções incluem `type`/`variant`, `size`, `shape`, `appearance`, `icon`, `icon-position`, `href`, `title`, `fg`, `bg`, `colour`/`color`, `border`, `border-width`, `radius`, `padding`, `weight`, `font-size`, `letter-spacing`, `shadow`, `uppercase`, `font="mono"` e `class`/`classes`.
 
-Internamente as classes CSS continuam prefixadas como `.semantic-badge` para não colidir com a classe `.badge` do Bootstrap/Quarto.
-
-Também existe a forma AST-native:
+Internamente as classes CSS continuam prefixadas como `.semantic-badge` para não colidir com a classe `.badge` do Bootstrap/Quarto. Labels do shortcode são tratados como texto simples; para conteúdo inline rico, use a forma AST-native:
 
 ```markdown
-[Beta]{.semantic-badge key="experimental" appearance="outline"}
+[**Beta**]{.semantic-badge key="experimental" appearance="outline"}
 ```
 
 ## Steps
@@ -153,7 +161,7 @@ Conteúdo.
 ::: {.steps type="dots"
   dot-color="#8c959f"
   dot-size="0.72rem"
-  line-color="#d0d7de"
+  line-color="#9aa0a6"
   line-width="1.5px"}
 
 ## Extrair {dot-color="#2563eb"}
@@ -200,7 +208,7 @@ Aliases disponíveis: `marker-color`, `marker-fill`, `marker-size`, `marker-bord
 
 ## Git tree
 
-Branches são escritos como listas aninhadas. No HTML, a extensão lineariza o histórico e desenha **lanes, nós, branch-outs e merges em SVG**, o que evita os ganchos e sobreposições produzidos por pseudo-elementos CSS em árvores muito aninhadas.
+Branches são escritos como listas aninhadas. No HTML, a extensão lineariza o histórico e desenha **lanes, nós, branch-outs e merges em SVG**, sem caracteres ASCII. O conteúdo textual fica alinhado à esquerda após a coluna fixa do grafo.
 
 ```markdown
 :::git-tree
