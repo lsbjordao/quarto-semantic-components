@@ -38,3 +38,4 @@ extensions:
     node-size: "0.68rem"
     lane-gap: "0.82rem"
     row-height: "36px"
+    content-gap: "0.55rem"
