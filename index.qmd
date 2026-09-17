@@ -20,13 +20,19 @@ extensions:
   badge:
     - key: stable
       label: Estável
-      colour: springgreen
-      fg: "#102a18"
+      type: success
       appearance: solid
+      icon: "✓"
     - key: experimental
       label: Experimental
-      class: bg-info
-      appearance: solid
+      type: info
+      appearance: outline
+      icon: "⚗"
+    - key: deprecated
+      label: Deprecated
+      type: danger
+      appearance: soft
+      icon: "!"
 
   steps:
     dot-color: "#8c959f"
@@ -48,26 +54,30 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 
 ## Badges inline
 
-> O shortcode público agora é `badge`. Como [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) usa o mesmo nome, o projeto deve escolher qual extensão de badge deseja usar.
+> O shortcode público é `badge`. Como [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) usa o mesmo nome, o projeto deve escolher qual extensão de badge deseja usar.
 
 ### Presets definidos no projeto
+
+O código fica literal com `shortcodes=false`; abaixo dele, os mesmos shortcodes são realmente executados.
 
 ```{.markdown shortcodes=false}
 {{< badge stable >}}
 {{< badge experimental >}}
+{{< badge deprecated >}}
 {{< badge "Release estável" key="stable" >}}
 ```
 
-**Output:** {{< badge stable >}} {{< badge experimental >}} {{< badge "Release estável" key="stable" >}}
+**Output:**
+
+{{< badge stable >}} {{< badge experimental >}} {{< badge deprecated >}} {{< badge "Release estável" key="stable" >}}
 
 ### Personalização livre
 
 ```{.markdown shortcodes=false}
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
-{{< badge "Experimental" type="warning" >}}
-{{< badge "v0.6.3" type="accent" appearance="solid" >}}
-
+{{< badge "Experimental" type="warning" appearance="outline" >}}
+{{< badge "v0.6.4" type="accent" appearance="solid" >}}
 {{< badge "Custom"
   bg="#111827" fg="#f9fafb" border="#60a5fa"
   border-width="2px" radius="0.35rem" size="md"
@@ -75,9 +85,11 @@ A precedência é **defaults do projeto → preset → componente → item indiv
   shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 ```
 
-**Output:** {{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" >}} {{< badge "v0.6.3" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+**Output:**
 
-A forma AST-native continua usando uma classe interna prefixada, para não colidir com `.badge` do Bootstrap:
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.6.4" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+
+A forma AST-native continua disponível e é útil quando o label precisa conter Markdown inline:
 
 ```markdown
 [AST-native]{.semantic-badge key="stable" appearance="outline" size="md"}
@@ -121,7 +133,7 @@ Cada heading inicia uma etapa.
 
 ## Steps — bolinhas
 
-As bolinhas agora são **vazadas por padrão**. `dot-color` controla a cor do contorno; o preenchimento permanece transparente até que `dot-fill` seja definido.
+As bolinhas são **vazadas por padrão**. `dot-color` controla o contorno e `dot-fill` permite preenchimento opcional.
 
 ### Herdando defaults do `_quarto.yml`
 
@@ -198,8 +210,6 @@ Atualize a base curada.
 
 ### Preenchimento opcional
 
-`dot-fill` permite preencher apenas as etapas desejadas. `dot-border-width` controla a espessura do contorno independentemente da linha vertical.
-
 ```markdown
 ::: {.steps type="dots"
   dot-color="#64748b"
@@ -257,7 +267,7 @@ Bolinha verde preenchida.
 
 ## Git tree
 
-A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG por lanes. Merges de vários níveis são desenhados sequencialmente, em vez de criar ganchos de pseudo-elementos CSS.
+A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branches e merges em SVG.
 
 ```markdown
 :::git-tree
@@ -275,7 +285,7 @@ A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG p
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.3
+- `main` release v0.6.4
 :::
 ```
 
@@ -296,12 +306,12 @@ A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG p
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.3
+- `main` release v0.6.4
 :::
 
 ## File tree — aninhamento profundo e ícones
 
-O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`, `_quarto.yml` e `quarto.yml`, a extensão usa o símbolo circular oficial hospedado em `https://quarto.org/favicon.png`, porque Devicon não fornece um glifo do Quarto.
+O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`, `_quarto.yml` e `quarto.yml`, a extensão usa o símbolo circular oficial do Quarto.
 
 ```markdown
 :::file-tree
