@@ -9,7 +9,7 @@ local function is_html() return FORMAT and FORMAT:match('html') ~= nil end
 
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
-    name = 'quarto-semantic-components', version = '0.4.1',
+    name = 'quarto-semantic-components', version = '0.4.2',
     stylesheets = {
       'css/base.css', 'css/steps.css', 'css/file-tree.css',
       'css/git-tree.css', 'css/badges.css'
@@ -26,20 +26,41 @@ local function mode(el)
   return 'numbered'
 end
 
-local function visual_span(class_name, variable, value)
+local function visual_span(class_name, styles)
+  local declarations = {}
+  for _, pair in ipairs(styles or {}) do
+    local variable, value = pair[1], pair[2]
+    if value and value ~= '' then declarations[#declarations + 1] = variable .. ':' .. value .. ';' end
+  end
   local attributes = {}
-  if value and value ~= '' then attributes.style = variable .. ':' .. value .. ';' end
+  if #declarations > 0 then attributes.style = table.concat(declarations) end
   return pandoc.Span({}, pandoc.Attr('', {class_name}, attributes))
+end
+
+local function heading_attr(header, primary, alias)
+  if not header.attributes then return nil end
+  return header.attributes[primary] or (alias and header.attributes[alias]) or nil
 end
 
 local function step_title(header, list_mode)
   local title = pandoc.Span(header.content, pandoc.Attr(header.identifier or '', {'semantic-step-title'}))
   if list_mode ~= 'dots' or not is_html() then return pandoc.Plain({title}) end
-  local dot = header.attributes and (header.attributes['dot-color'] or header.attributes['marker-color']) or nil
-  local line = header.attributes and (header.attributes['line-color'] or header.attributes['connector-color']) or nil
+
+  local dot_color = heading_attr(header, 'dot-color', 'marker-color')
+  local dot_size = heading_attr(header, 'dot-size', 'marker-size')
+  local line_color = heading_attr(header, 'line-color', 'connector-color')
+  local line_width = heading_attr(header, 'line-width', 'connector-width')
+
   return pandoc.Plain({
-    visual_span('semantic-step-marker', '--semantic-step-item-dot-color', dot),
-    visual_span('semantic-step-connector', '--semantic-step-item-line-color', line),
+    visual_span('semantic-step-marker', {
+      {'--semantic-step-item-dot-color', dot_color},
+      {'--semantic-step-item-dot-size', dot_size}
+    }),
+    visual_span('semantic-step-connector', {
+      {'--semantic-step-item-line-color', line_color},
+      {'--semantic-step-item-line-width', line_width},
+      {'--semantic-step-item-dot-size', dot_size}
+    }),
     title
   })
 end
@@ -98,8 +119,8 @@ local function ensure_dot_markers(blocks)
       for _, item in ipairs(block.content) do
         if not has_marker(item) then
           item:insert(1, pandoc.Plain({
-            visual_span('semantic-step-marker', '--semantic-step-item-dot-color', nil),
-            visual_span('semantic-step-connector', '--semantic-step-item-line-color', nil)
+            visual_span('semantic-step-marker', {}),
+            visual_span('semantic-step-connector', {})
           }))
         end
       end
@@ -112,10 +133,14 @@ local function transform_steps(el)
   local list_mode = mode(el)
   add_class(el, 'semantic-steps'); add_class(el, 'semantic-steps-' .. list_mode)
   if list_mode == 'dots' then
-    local dot = attr(el, 'dot-color') or attr(el, 'marker-color')
-    local line = attr(el, 'line-color') or attr(el, 'connector-color')
-    if dot and dot ~= '' then append_style(el, '--semantic-step-dot-color:' .. dot) end
-    if line and line ~= '' then append_style(el, '--semantic-step-line-color:' .. line) end
+    local dot_color = attr(el, 'dot-color') or attr(el, 'marker-color')
+    local dot_size = attr(el, 'dot-size') or attr(el, 'marker-size')
+    local line_color = attr(el, 'line-color') or attr(el, 'connector-color')
+    local line_width = attr(el, 'line-width') or attr(el, 'connector-width')
+    if dot_color and dot_color ~= '' then append_style(el, '--semantic-step-dot-color:' .. dot_color) end
+    if dot_size and dot_size ~= '' then append_style(el, '--semantic-step-dot-size:' .. dot_size) end
+    if line_color and line_color ~= '' then append_style(el, '--semantic-step-line-color:' .. line_color) end
+    if line_width and line_width ~= '' then append_style(el, '--semantic-step-line-width:' .. line_width) end
   end
   el.content = from_headings(el.content, list_mode) or normalize_list(el.content, list_mode)
   if list_mode == 'dots' then ensure_dot_markers(el.content) end
