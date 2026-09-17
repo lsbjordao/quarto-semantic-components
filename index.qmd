@@ -258,7 +258,7 @@ A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG p
 
 ## File tree — aninhamento profundo e ícones
 
-O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`, `_quarto.yml` e `quarto.yml`, a extensão usa o ícone oficial hospedado pelo próprio Quarto (`https://quarto.org/quarto.png`) porque Devicon não fornece um glifo do Quarto.
+O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`, `_quarto.yml` e `quarto.yml`, a extensão usa o símbolo circular oficial hospedado em `https://quarto.org/favicon.png`, porque Devicon não fornece um glifo do Quarto.
 
 ```markdown
 :::file-tree
