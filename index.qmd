@@ -11,18 +11,132 @@ filters:
 
 Esta página demonstra os componentes da extensão **Quarto Semantic Components**. Em cada seção, o código-fonte aparece **antes** do resultado renderizado.
 
+## Defaults de projeto no `_quarto.yml`
+
+A versão 0.5.0 permite definir presets e defaults uma única vez para todo o projeto. Este próprio repositório usa:
+
+```yaml
+extensions:
+  badge:
+    - key: stable
+      label: Estável
+      colour: springgreen
+      fg: "#102a18"
+      appearance: solid
+    - key: experimental
+      label: Experimental
+      class: bg-info
+      appearance: solid
+
+  steps:
+    dot-color: "#8c959f"
+    dot-size: "0.72rem"
+    line-color: "#d0d7de"
+    line-width: "1.5px"
+
+  file-tree:
+    icons: devicon
+
+  git-tree:
+    line-color: "#9aa0a6"
+    line-width: "2px"
+    node-size: "0.68rem"
+    lane-gap: "0.82rem"
+```
+
+A precedência é: **defaults do projeto → atributos do componente → atributos do item**.
+
+### Badge usando apenas a chave
+
+```markdown
+{{< semantic-badge stable >}}
+{{< semantic-badge experimental >}}
+{{< semantic-badge "Release estável" key="stable" >}}
+```
+
+**Output:** {{< semantic-badge stable >}} {{< semantic-badge experimental >}} {{< semantic-badge "Release estável" key="stable" >}}
+
+### Steps herdando os defaults
+
+```markdown
+::: {.steps type="dots"}
+## Extrair
+
+Baixe os dados.
+
+## Validar
+
+Valide os registros.
+
+## Publicar
+
+Publique o resultado.
+:::
+```
+
+**Output:**
+
+::: {.steps type="dots"}
+## Extrair
+
+Baixe os dados.
+
+## Validar
+
+Valide os registros.
+
+## Publicar
+
+Publique o resultado.
+:::
+
+### File tree herdando `icons: devicon`
+
+```markdown
+:::file-tree
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+```
+
+**Output:**
+
+:::file-tree
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+
+Também é aceito o namespace explícito:
+
+```yaml
+semantic-components:
+  badge:
+    defaults:
+      shape: pill
+      size: sm
+    presets:
+      - key: stable
+        colour: springgreen
+  steps:
+    dot-size: "0.8rem"
+```
+
 ## Badges inline
 
-A extensão usa `semantic-badge`, de propósito, para coexistir com [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge). Aqui o foco é personalização livre por instância.
+A extensão usa `semantic-badge`, de propósito, para coexistir com [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge). Aqui o foco é personalização livre por instância, além dos presets de projeto.
 
 ```markdown
 {{< semantic-badge "Beta" >}}
 {{< semantic-badge "Estável" type="success" icon="✓" >}}
-{{< semantic-badge "Experimental" type="warning" >}}
-{{< semantic-badge "v0.4.2" type="accent" appearance="solid" >}}
+{{< semantic-badge "Experimental custom" type="warning" >}}
+{{< semantic-badge "v0.5.0" type="accent" appearance="solid" >}}
 ```
 
-**Output:** {{< semantic-badge "Beta" >}} {{< semantic-badge "Estável" type="success" icon="✓" >}} {{< semantic-badge "Experimental" type="warning" >}} {{< semantic-badge "v0.4.2" type="accent" appearance="solid" >}}
+**Output:** {{< semantic-badge "Beta" >}} {{< semantic-badge "Estável" type="success" icon="✓" >}} {{< semantic-badge "Experimental custom" type="warning" >}} {{< semantic-badge "v0.5.0" type="accent" appearance="solid" >}}
 
 ### Personalização livre
 
@@ -43,14 +157,14 @@ A extensão usa `semantic-badge`, de propósito, para coexistir com [`mcanouil/q
 Também é possível usar a sintaxe Pandoc diretamente:
 
 ```markdown
-[AST-native]{.semantic-badge variant="success" appearance="outline" size="md"}
+[AST-native]{.semantic-badge key="stable" appearance="outline" size="md"}
 ```
 
-**Output:** [AST-native]{.semantic-badge variant="success" appearance="outline" size="md"}
+**Output:** [AST-native]{.semantic-badge key="stable" appearance="outline" size="md"}
 
 ## Steps — numerado
 
-Os exemplos usam `##` como nível padrão das etapas. O filtro, porém, usa o **primeiro nível de heading encontrado**, portanto outros níveis continuam funcionando.
+Os exemplos usam `##` como nível padrão das etapas. O filtro usa o **primeiro nível de heading encontrado**, portanto outros níveis continuam funcionando.
 
 ```markdown
 :::steps
@@ -86,9 +200,7 @@ Cada heading inicia uma etapa.
 
 ## Steps — bolinhas
 
-### Defaults do bloco
-
-Além das cores, o tamanho da bolinha e a espessura da linha podem ser definidos para todo o componente.
+### Defaults sobrescritos no bloco
 
 ```markdown
 ::: {.steps type="dots"
@@ -129,7 +241,7 @@ Atualize a base curada.
 
 ### Personalização por etapa
 
-O bloco fornece os defaults; cada `##` pode sobrescrever `dot-color`, `dot-size`, `line-color` e `line-width` apenas naquela etapa.
+O bloco fornece os defaults locais; cada `##` pode sobrescrever `dot-color`, `dot-size`, `line-color` e `line-width` apenas naquela etapa.
 
 ```markdown
 ::: {.steps type="dots"
@@ -188,7 +300,7 @@ Atualize a base curada.
 
 ## Git tree
 
-`git-tree` usa listas aninhadas para representar branches. O grafo é desenhado por CSS: nós, linhas e curvas; não usa caracteres ASCII. As lanes são compactas para que branches e commits fiquem visualmente próximos, como em um visualizador Git.
+`git-tree` usa listas aninhadas para representar branches. O grafo é desenhado por CSS: nós, linhas e curvas; não usa caracteres ASCII.
 
 ```markdown
 :::git-tree
@@ -206,7 +318,7 @@ Atualize a base curada.
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.4.2
+- `main` release v0.5.0
 :::
 ```
 
@@ -227,17 +339,17 @@ Atualize a base curada.
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.4.2
+- `main` release v0.5.0
 :::
 
-A sintaxe antiga `steps type="git"` permanece apenas por compatibilidade.
+Os defaults `line-color`, `line-width`, `node-size`, `lane-gap`, `row-indent` e `node-bg` podem ser definidos no `_quarto.yml` ou diretamente no bloco.
 
 ## File tree — Devicon e aninhamento profundo
 
-**Devicon é o provider padrão.** R, Python, JavaScript, TypeScript e outras linguagens usam seus ícones reais.
+O `_quarto.yml` da galeria já define **Devicon como provider padrão**, portanto não é necessário repetir `icons="devicon"`.
 
 ```markdown
-::: {.file-tree icons="devicon"}
+:::file-tree
 - +project
   - +src
     - +pipelines
@@ -276,7 +388,7 @@ A sintaxe antiga `steps type="git"` permanece apenas por compatibilidade.
 
 **Output:**
 
-::: {.file-tree icons="devicon"}
+:::file-tree
 - +project
   - +src
     - +pipelines
