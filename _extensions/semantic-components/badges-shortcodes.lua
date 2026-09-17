@@ -26,10 +26,56 @@ local function truthy(value)
   return value == 'true' or value == '1' or value == 'yes'
 end
 
+-- Shortcode positional/named arguments are lists of Pandoc inlines. Keep those
+-- nodes intact rather than stringify -> Str round-tripping them; this preserves
+-- spaces, emphasis/code, and avoids empty labels with newer Quarto/Pandoc builds.
+local function copy_inlines(value)
+  local out = pandoc.List()
+  if value == nil then return out end
+  if type(value) == 'string' then
+    if value ~= '' then out:insert(pandoc.Str(value)) end
+    return out
+  end
+  for _, inline in ipairs(value) do out:insert(inline) end
+  return out
+end
+
+local function argument_text(value)
+  if value == nil then return nil end
+  local result = text(value)
+  if result and result ~= '' then return result end
+
+  -- Defensive fallback for inline lists if stringify ever returns an empty value.
+  local parts = {}
+  if type(value) == 'table' then
+    for _, inline in ipairs(value) do
+      if inline.t == 'Str' then parts[#parts + 1] = inline.text
+      elseif inline.t == 'Space' or inline.t == 'SoftBreak' or inline.t == 'LineBreak' then parts[#parts + 1] = ' '
+      elseif inline.text then parts[#parts + 1] = tostring(inline.text) end
+    end
+  end
+  result = table.concat(parts):gsub('^%s+', ''):gsub('%s+$', '')
+  return result ~= '' and result or nil
+end
+
+local function text_inlines(value)
+  local out = pandoc.List()
+  if not value or value == '' then return out end
+  -- Metadata labels are plain text. Split whitespace into real Space nodes.
+  local first = true
+  for word in tostring(value):gmatch('%S+') do
+    if not first then out:insert(pandoc.Space()) end
+    out:insert(pandoc.Str(word))
+    first = false
+  end
+  return out
+end
+
 return {
   ['badge'] = function(args, kwargs, meta)
-    local first = text(args[1])
-    local explicit_key = text(kwargs['key'])
+    local first_arg = args[1]
+    local first = argument_text(first_arg)
+    local explicit_key = argument_text(kwargs['key'])
     local preset_key = explicit_key or first
     local preset = config.preset(meta, 'badge', preset_key)
 
@@ -37,13 +83,20 @@ return {
       return config.resolve(meta, 'badge', kwargs, preset, key, aliases)
     end
 
-    local label
-    if text(kwargs['text']) then
-      label = text(kwargs['text'])
-    elseif explicit_key and first then
-      label = first
+    local label_inlines
+    if kwargs['text'] ~= nil then
+      label_inlines = copy_inlines(kwargs['text'])
+    elseif explicit_key and first_arg ~= nil then
+      label_inlines = copy_inlines(first_arg)
     else
-      label = config.value(preset, 'label', {'text'}) or first or preset_key or ''
+      local preset_label = config.value(preset, 'label', {'text'})
+      if preset_label and preset_label ~= '' then
+        label_inlines = text_inlines(preset_label)
+      elseif first_arg ~= nil then
+        label_inlines = copy_inlines(first_arg)
+      else
+        label_inlines = text_inlines(preset_key or '')
+      end
     end
 
     local variant = token(value('type', {'variant'}), 'neutral', variants)
@@ -92,9 +145,9 @@ return {
 
     local inlines = pandoc.List()
     local icon_span = icon and icon ~= '' and pandoc.Span({ pandoc.Str(icon) }, pandoc.Attr('', { 'semantic-badge-icon' })) or nil
-    if icon_span and icon_position ~= 'end' then inlines:insert(icon_span) inlines:insert(pandoc.Space()) end
-    inlines:insert(pandoc.Str(label))
-    if icon_span and icon_position == 'end' then inlines:insert(pandoc.Space()) inlines:insert(icon_span) end
+    if icon_span and icon_position ~= 'end' then inlines:insert(icon_span); inlines:insert(pandoc.Space()) end
+    for _, inline in ipairs(label_inlines) do inlines:insert(inline) end
+    if icon_span and icon_position == 'end' then inlines:insert(pandoc.Space()); inlines:insert(icon_span) end
 
     local badge = pandoc.Span(inlines, pandoc.Attr('', classes, attrs))
     if href and href ~= '' then return pandoc.Link({ badge }, href, title) end
