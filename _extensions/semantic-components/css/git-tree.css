@@ -9,11 +9,19 @@
   overflow-x:auto;
 }
 .semantic-git-tree .git-tree-rows{min-width:max-content}
-.semantic-git-tree .git-tree-entry{margin:0;padding:0;min-height:var(--git-row-height)}
-.semantic-git-tree .git-tree-entry>p{display:grid;grid-template-columns:auto auto;align-items:start;column-gap:var(--git-content-gap);margin:0;min-height:var(--git-row-height)}
-.semantic-git-tree .git-tree-graph{display:block;overflow:visible;flex:none}
+.semantic-git-tree .git-tree-entry{
+  display:grid;
+  grid-template-columns:auto auto;
+  align-items:center;
+  column-gap:var(--git-content-gap);
+  margin:0;
+  padding:0;
+  min-height:var(--git-row-height);
+}
+.semantic-git-tree .git-tree-entry>p{display:contents;margin:0}
+.semantic-git-tree .git-tree-graph{display:block;overflow:visible;align-self:center}
 .semantic-git-tree .git-tree-edge{fill:none;stroke:var(--semantic-git-line);stroke-width:var(--git-line-width);stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .semantic-git-tree .git-tree-node{fill:var(--semantic-git-node-bg);stroke:currentColor;stroke-width:var(--git-line-width);vector-effect:non-scaling-stroke}
-.semantic-git-tree .git-tree-content{display:inline-flex;align-items:baseline;gap:.42rem;white-space:nowrap;line-height:1.25;padding-top:.02rem}
+.semantic-git-tree .git-tree-content{display:inline-flex;align-items:baseline;gap:.42rem;white-space:nowrap;line-height:1.25;padding:0;align-self:center}
 .semantic-git-tree .git-tree-ref code{display:inline-block;padding:.06em .4em;border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-radius:999px;background:color-mix(in srgb,currentColor 6%,transparent);color:inherit;font-size:.76em;font-weight:650}
 .semantic-git-tree .git-tree-message{font-family:var(--bs-font-monospace,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace);font-size:.9em}
