@@ -80,7 +80,7 @@ local function transform(el,meta)
   for _,b in ipairs(el.content) do
     if b.t=='Header' and b.level==release_level then
       flush_release(); release=b
-    elseif release and b.t=='Header' and b.level>release_level then
+    elseif release and b.t=='Header' and b.level==release_level+1 then
       flush_group(); group_header=b
     elseif group_header then
       group_body:insert(b)
