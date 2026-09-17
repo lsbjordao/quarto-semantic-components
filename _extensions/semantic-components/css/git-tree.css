@@ -7,21 +7,29 @@
   border-radius:.7rem;
   padding:.9rem 1rem;
   overflow-x:auto;
+  text-align:left;
 }
-.semantic-git-tree .git-tree-rows{min-width:max-content}
+.semantic-git-tree .git-tree-rows{
+  min-width:max-content;
+  text-align:left;
+}
 .semantic-git-tree .git-tree-entry{
   display:grid;
-  grid-template-columns:auto auto;
+  grid-template-columns:max-content max-content;
+  justify-content:start;
+  justify-items:start;
   align-items:center;
   column-gap:var(--git-content-gap);
+  width:max-content;
   margin:0;
   padding:0;
   min-height:var(--git-row-height);
+  text-align:left;
 }
 .semantic-git-tree .git-tree-entry>p{display:contents;margin:0}
-.semantic-git-tree .git-tree-graph{display:block;overflow:visible;align-self:center}
+.semantic-git-tree .git-tree-graph{display:block;overflow:visible;align-self:center;justify-self:start}
 .semantic-git-tree .git-tree-edge{fill:none;stroke:var(--semantic-git-line);stroke-width:var(--git-line-width);stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .semantic-git-tree .git-tree-node{fill:var(--semantic-git-node-bg);stroke:currentColor;stroke-width:var(--git-line-width);vector-effect:non-scaling-stroke}
-.semantic-git-tree .git-tree-content{display:inline-flex;align-items:baseline;gap:.42rem;white-space:nowrap;line-height:1.25;padding:0;align-self:center}
+.semantic-git-tree .git-tree-content{display:inline-flex;align-items:baseline;justify-content:flex-start;gap:.42rem;white-space:nowrap;line-height:1.25;padding:0;align-self:center;justify-self:start;text-align:left}
 .semantic-git-tree .git-tree-ref code{display:inline-block;padding:.06em .4em;border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-radius:999px;background:color-mix(in srgb,currentColor 6%,transparent);color:inherit;font-size:.76em;font-weight:650}
-.semantic-git-tree .git-tree-message{font-family:var(--bs-font-monospace,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace);font-size:.9em}
+.semantic-git-tree .git-tree-message{font-family:var(--bs-font-monospace,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace);font-size:.9em;text-align:left}
