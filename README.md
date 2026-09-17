@@ -12,7 +12,7 @@ Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.de
 - `steps type="dots"`: bolinhas vazadas por padrão, com cor, preenchimento, tamanho, espessura de borda, cor da linha e espessura configuráveis globalmente e por etapa;
 - `circle-list`: lista ordenada com números circulados;
 - `git-tree`: histórico Git com lanes e merges renderizados em SVG no HTML, sem ASCII art;
-- `file-tree`: árvore de arquivos com aninhamento profundo, links e providers de ícones;
+- `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips e providers de ícones;
 - `badge`: badge inline altamente customizável e compatível com presets de projeto.
 
 ## Instalação
@@ -59,12 +59,6 @@ extensions:
       appearance: outline
       icon: "⚗"
 
-    - key: deprecated
-      label: Deprecated
-      type: danger
-      appearance: soft
-      icon: "!"
-
   steps:
     dot-color: "#8c959f"
     dot-size: "0.72rem"
@@ -88,9 +82,9 @@ Também são aceitos os namespaces `semantic-components:` e `extensions.semantic
 O shortcode público é **`badge`**:
 
 ```markdown
+{{< badge "Beta" >}}
+{{< badge "Estável" type="success" icon="✓" >}}
 {{< badge stable >}}
-{{< badge experimental >}}
-{{< badge deprecated >}}
 {{< badge "Release estável" key="stable" >}}
 ```
 
@@ -101,9 +95,6 @@ O projeto [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) ta
 A proposta deste projeto é oferecer personalização livre por instância, além de presets de projeto:
 
 ```markdown
-{{< badge "Beta" >}}
-{{< badge "Estável" type="success" icon="✓" >}}
-{{< badge "Experimental" type="warning" appearance="outline" >}}
 {{< badge "Custom"
   bg="#111827"
   fg="#fff"
@@ -116,10 +107,12 @@ A proposta deste projeto é oferecer personalização livre por instância, alé
 
 Opções incluem `type`/`variant`, `size`, `shape`, `appearance`, `icon`, `icon-position`, `href`, `title`, `fg`, `bg`, `colour`/`color`, `border`, `border-width`, `radius`, `padding`, `weight`, `font-size`, `letter-spacing`, `shadow`, `uppercase`, `font="mono"` e `class`/`classes`.
 
-Internamente as classes CSS continuam prefixadas como `.semantic-badge` para não colidir com a classe `.badge` do Bootstrap/Quarto. Labels do shortcode são tratados como texto simples; para conteúdo inline rico, use a forma AST-native:
+Internamente as classes CSS continuam prefixadas como `.semantic-badge` para não colidir com a classe `.badge` do Bootstrap/Quarto.
+
+Também existe a forma AST-native:
 
 ```markdown
-[**Beta**]{.semantic-badge key="experimental" appearance="outline"}
+[Beta]{.semantic-badge key="experimental" appearance="outline"}
 ```
 
 ## Steps
@@ -208,7 +201,7 @@ Aliases disponíveis: `marker-color`, `marker-fill`, `marker-size`, `marker-bord
 
 ## Git tree
 
-Branches são escritos como listas aninhadas. No HTML, a extensão lineariza o histórico e desenha **lanes, nós, branch-outs e merges em SVG**, sem caracteres ASCII. O conteúdo textual fica alinhado à esquerda após a coluna fixa do grafo.
+Branches são escritos como listas aninhadas. No HTML, a extensão lineariza o histórico e desenha **lanes, nós, branch-outs e merges em SVG**.
 
 ```markdown
 :::git-tree
@@ -258,11 +251,39 @@ Depois:
 
 Providers disponíveis: `devicon`, `simple-icons`, `builtin` e `none`.
 
+### Texto normal ou inline code
+
+O estilo do nome do arquivo segue a sintaxe usada pelo autor. **Sem crases**, o nome permanece texto normal. **Com crases**, vira inline code do Quarto.
+
+```markdown
+:::file-tree
+- analysis.R texto normal
+- `pipeline.py` inline code
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
+- [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
+:::
+```
+
+Isso vale também para pastas explicitamente marcadas com `+`: se o nome for escrito como código, o filtro preserva essa escolha.
+
+### Tooltip de informação
+
+`tooltip=` (ou o alias `info=`) adiciona um pequeno ícone `i` em HTML. O tooltip é opcional e pode ser combinado com texto normal, inline code ou links:
+
+```markdown
+:::file-tree
+- [analysis.R]{tooltip="Script principal de análise em R"}
+- [`pipeline.py`]{tooltip="Pipeline de ingestão e validação"}
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components){tooltip="Abrir o repositório"}
+- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){tooltip="Ver a implementação"}
+:::
+```
+
+O ícone de informação é apenas uma affordance HTML; PDF/DOCX preservam o nome e os links sem inserir um `i` decorativo.
+
 ### Ícone oficial do Quarto
 
-Devicon não fornece atualmente um glifo próprio do Quarto. Para arquivos `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o **símbolo oficial do Quarto** servido pelo próprio site em `https://quarto.org/favicon.png`. Esse é o mark circular azul usado como favicon oficial; o recurso `quarto.png`, por outro lado, é o wordmark horizontal completo.
-
-Se `icons="simple-icons"` for escolhido explicitamente, o provider Simple Icons continua sendo respeitado.
+Devicon não fornece atualmente um glifo próprio do Quarto. Para arquivos `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o **símbolo oficial do Quarto** servido pelo próprio site em `https://quarto.org/favicon.png`.
 
 ### Ícones customizados
 
@@ -276,19 +297,18 @@ Se `icons="simple-icons"` for escolhido explicitamente, o provider Simple Icons 
 
 ### Arquivos como links
 
+Links também respeitam a escolha entre texto normal e inline code:
+
 ```markdown
 :::file-tree
-- +_extensions
-  - +semantic-components
-    - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) steps
-    - [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua) file tree
-    - [`git-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/git-tree.lua) git tree
+- [steps.lua](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link normal
+- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua) link + inline code
 :::
 ```
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, conectores, SVG do Git tree e badges ricos;
+- **HTML**: apresentação completa, ícones, tooltips, conectores, SVG do Git tree e badges ricos;
 - **PDF**: conteúdo estrutural e links são preservados; decoração HTML degrada com segurança;
 - **DOCX**: listas, links e texto permanecem editáveis.
 
