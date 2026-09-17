@@ -29,6 +29,7 @@ extensions:
 
   file-tree:
     icons: devicon
+    expanded: true
 
   git-tree:
     line-color: "#9aa0a6"
