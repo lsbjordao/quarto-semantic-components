@@ -1,0 +1,287 @@
+/* Semantic Blocks for Quarto
+   Vocs-inspired steps + circled ordered lists + file trees.
+*/
+
+:root {
+  --semantic-line-width: 1.5px;
+  --semantic-step-marker-size: 1.85rem;
+  --semantic-step-gap: 1.05rem;
+  --semantic-tree-radius: 0.55rem;
+  --semantic-muted-opacity: 0.58;
+  --semantic-soft-opacity: 0.18;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Circled ordered list                                                       */
+/* -------------------------------------------------------------------------- */
+
+.circle-list > ol,
+.semantic-circle-list > ol {
+  list-style: none;
+  counter-reset: circle-counter;
+  padding-left: 0;
+}
+
+.circle-list > ol > li,
+.semantic-circle-list > ol > li {
+  counter-increment: circle-counter;
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.circle-list > ol > li::before,
+.semantic-circle-list > ol > li::before {
+  content: counter(circle-counter);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  width: 1.6em;
+  height: 1.6em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.circle-list > ol > li > :first-child,
+.semantic-circle-list > ol > li > :first-child {
+  margin-top: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Steps                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.semantic-steps > ol,
+.semantic-steps > ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.semantic-steps > ol {
+  counter-reset: semantic-step-counter;
+}
+
+.semantic-steps > ol > li,
+.semantic-steps > ul > li {
+  position: relative;
+  padding-left: calc(var(--semantic-step-marker-size) + var(--semantic-step-gap));
+  padding-bottom: 1.35rem;
+  margin: 0;
+}
+
+.semantic-steps > ol > li:last-child,
+.semantic-steps > ul > li:last-child {
+  padding-bottom: 0;
+}
+
+.semantic-steps > ol > li > :first-child,
+.semantic-steps > ul > li > :first-child {
+  margin-top: 0;
+}
+
+.semantic-steps > ol > li > :last-child,
+.semantic-steps > ul > li > :last-child {
+  margin-bottom: 0;
+}
+
+.semantic-step-title {
+  display: inline-block;
+  font-weight: 650;
+  margin-bottom: 0.25rem;
+}
+
+/* Shared vertical connector. */
+.semantic-steps > ol > li:not(:last-child)::after,
+.semantic-steps > ul > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--semantic-step-marker-size) / 2);
+  top: calc(var(--semantic-step-marker-size) + 0.18rem);
+  bottom: -0.12rem;
+  border-left: var(--semantic-line-width) solid currentColor;
+  opacity: 0.24;
+}
+
+/* Numbered steps — circled numbers. */
+.semantic-steps-numbered > ol > li {
+  counter-increment: semantic-step-counter;
+}
+
+.semantic-steps-numbered > ol > li::before {
+  content: counter(semantic-step-counter);
+  position: absolute;
+  left: 0;
+  top: 0.02rem;
+  width: var(--semantic-step-marker-size);
+  height: var(--semantic-step-marker-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--semantic-line-width) solid currentColor;
+  border-radius: 999px;
+  font-size: 0.82em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Dot steps — compact filled nodes. */
+.semantic-steps-dots > ul > li::before {
+  content: "";
+  position: absolute;
+  left: calc((var(--semantic-step-marker-size) - 0.72rem) / 2);
+  top: 0.48rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.semantic-steps-dots > ul > li:not(:last-child)::after {
+  top: 1.35rem;
+}
+
+/* Git-history steps — outlined commit nodes on a graph lane. */
+.semantic-steps-git > ul {
+  position: relative;
+}
+
+.semantic-steps-git > ul > li::before {
+  content: "";
+  position: absolute;
+  left: calc((var(--semantic-step-marker-size) - 0.82rem) / 2);
+  top: 0.39rem;
+  width: 0.82rem;
+  height: 0.82rem;
+  box-sizing: border-box;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  background: var(--bs-body-bg, var(--quarto-body-bg, Canvas));
+  z-index: 1;
+}
+
+.semantic-steps-git > ul > li:not(:last-child)::after {
+  left: calc(var(--semantic-step-marker-size) / 2 - 0.75px);
+  top: 1.2rem;
+  bottom: -0.4rem;
+  opacity: 0.46;
+}
+
+.semantic-steps-git .semantic-step-title {
+  font-family: var(--bs-font-monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.96em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* File tree                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.semantic-file-tree {
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: 0.65rem;
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+}
+
+@supports not (border-color: color-mix(in srgb, black 10%, transparent)) {
+  .semantic-file-tree {
+    border-color: currentColor;
+  }
+}
+
+.semantic-file-tree ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.semantic-file-tree > ul {
+  padding-left: 0;
+}
+
+.semantic-file-tree li {
+  position: relative;
+  margin: 0;
+  padding: 0.16rem 0 0.16rem 0.35rem;
+}
+
+.semantic-file-tree li > ul {
+  position: relative;
+  margin-left: 0.35rem;
+}
+
+.semantic-file-tree li > ul::before {
+  content: "";
+  position: absolute;
+  left: 0.05rem;
+  top: 0.05rem;
+  bottom: 0.55rem;
+  border-left: 1px solid currentColor;
+  opacity: var(--semantic-soft-opacity);
+}
+
+.file-tree-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  min-height: 1.3rem;
+  font-family: var(--bs-font-monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  white-space: nowrap;
+}
+
+.file-tree-row::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  top: 0.12rem;
+  background-color: currentColor;
+  opacity: 0.72;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.file-tree-file::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 2H6v16h10V7h-3V4Zm2 1.4V6h.6L15 5.4Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 2H6v16h10V7h-3V4Zm2 1.4V6h.6L15 5.4Z'/%3E%3C/svg%3E");
+}
+
+.file-tree-folder::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3 5a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v11a3 3 0 0 1-3 3H5a2 2 0 0 1-2-2V5Zm2 2v12h13a1 1 0 0 0 1-1V7h-8.17l-2-2H5v2Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3 5a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v11a3 3 0 0 1-3 3H5a2 2 0 0 1-2-2V5Zm2 2v12h13a1 1 0 0 0 1-1V7h-8.17l-2-2H5v2Z'/%3E%3C/svg%3E");
+}
+
+.file-tree-row code {
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  font-size: 1em;
+}
+
+.file-tree-comment {
+  font-family: var(--bs-body-font-family, system-ui, sans-serif);
+  font-size: 0.88em;
+  opacity: var(--semantic-muted-opacity);
+}
+
+.file-tree-highlighted {
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .semantic-steps *,
+  .semantic-file-tree * {
+    scroll-behavior: auto !important;
+  }
+}

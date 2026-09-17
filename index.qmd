@@ -1,0 +1,108 @@
+---
+title: "Semantic Blocks — exemplo"
+format:
+  html:
+    toc: true
+filters:
+  - semantic-blocks
+---
+
+Esta página demonstra todos os componentes da extensão.
+
+## Steps — numerado
+
+A sintaxe é deliberadamente próxima do Vocs: `:::steps` funciona como um fenced div do Pandoc/Quarto.
+
+:::steps
+### Instale a extensão
+
+Copie a pasta `_extensions/semantic-blocks` para o projeto ou instale o pacote da forma usual do Quarto.
+
+### Ative o filtro
+
+Inclua `semantic-blocks` em `filters` no YAML do documento ou do projeto.
+
+### Escreva normalmente
+
+Cada título dentro de `steps` inicia uma nova etapa. O conteúdo da etapa continua sendo Markdown comum.
+:::
+
+## Steps — bolinhas
+
+Use `type="dots"` para trocar os números por nós circulares preenchidos.
+
+::: {.steps type="dots"}
+### Baixe os dados
+
+Faça a ingestão das fontes necessárias.
+
+### Valide
+
+Execute as verificações de consistência.
+
+### Publique
+
+Gere o produto final.
+:::
+
+## Steps — estilo histórico Git
+
+`type="git"` usa uma linha vertical com nós semelhantes a commits.
+
+::: {.steps type="git"}
+### feat: cria estrutura inicial
+
+Primeiro estado funcional do projeto.
+
+### refactor: reorganiza módulos
+
+A arquitetura é simplificada sem alterar o resultado esperado.
+
+### release: publica versão 1.0
+
+Versão estável entregue.
+:::
+
+## Lista ordenada circulada
+
+Este componente incorpora a ideia da classe `.circle-list`.
+
+:::circle-list
+1. Primeiro item
+2. Segundo item, com **Markdown** normal
+3. Terceiro item
+:::
+
+## File tree
+
+A sintaxe segue a ideia do Vocs: listas aninhadas e `+` antes do nome para declarar explicitamente uma pasta. Uma pasta também é inferida quando o item possui filhos.
+
+:::file-tree
+- README.md documentação principal
+- quarto.yml configuração do projeto
+- +src código-fonte
+  - **main.ts** ponto de entrada destacado
+  - utils.ts utilitários
+  - +components componentes reutilizáveis
+    - Button.ts
+    - Card.ts
+- +public arquivos estáticos
+  - logo.svg
+  - robots.txt
+:::
+
+## File tree mínimo
+
+Não é obrigatório escrever `+` quando a hierarquia já deixa claro que o item é uma pasta.
+
+:::file-tree
+- project
+  - index.qmd
+  - styles.css
+  - assets
+    - logo.svg
+:::
+
+## Compatibilidade com outros formatos
+
+Os componentes são construídos sobre nós nativos da AST do Pandoc. No HTML, o CSS fornece o tratamento visual completo. Em DOCX e PDF, `steps` continua sendo uma lista ordenada ou não ordenada, `circle-list` continua sendo uma lista ordenada e `file-tree` continua sendo uma lista hierárquica legível.
