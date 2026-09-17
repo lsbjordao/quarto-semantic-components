@@ -58,8 +58,6 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 
 ### Presets definidos no projeto
 
-O código fica literal com `shortcodes=false`; abaixo dele, os mesmos shortcodes são realmente executados.
-
 ```{.markdown shortcodes=false}
 {{< badge stable >}}
 {{< badge experimental >}}
@@ -77,7 +75,7 @@ O código fica literal com `shortcodes=false`; abaixo dele, os mesmos shortcodes
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.6.4" type="accent" appearance="solid" >}}
+{{< badge "v0.6.5" type="accent" appearance="solid" >}}
 {{< badge "Custom"
   bg="#111827" fg="#f9fafb" border="#60a5fa"
   border-width="2px" radius="0.35rem" size="md"
@@ -87,9 +85,9 @@ O código fica literal com `shortcodes=false`; abaixo dele, os mesmos shortcodes
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.6.4" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.6.5" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 
-A forma AST-native continua disponível e é útil quando o label precisa conter Markdown inline:
+A forma AST-native continua disponível quando o label precisa conter Markdown inline:
 
 ```markdown
 [AST-native]{.semantic-badge key="stable" appearance="outline" size="md"}
@@ -285,7 +283,7 @@ A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branc
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.4
+- `main` release v0.6.5
 :::
 ```
 
@@ -306,7 +304,7 @@ A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branc
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.4
+- `main` release v0.6.5
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -387,30 +385,48 @@ O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`
   - _quarto.yml configuração Quarto
 :::
 
-## File tree — arquivos como links
+## File tree — texto normal ou inline code
+
+O `file-tree` agora preserva a escolha do autor. Um nome sem crases fica como texto normal; um nome entre crases recebe exatamente a semântica/estilo de inline code do Quarto. A mesma regra vale para links.
 
 ```markdown
 :::file-tree
-- +_extensions
-  - +semantic-components
-    - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) steps
-    - [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua) file tree
-    - [`git-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/git-tree.lua) git tree
-    - [`badges.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/badges.lua) badges
-- [`index.qmd`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/index.qmd) galeria
+- analysis.R texto normal
+- `pipeline.py` inline code
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
+- [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
 :::
 ```
 
 **Output:**
 
 :::file-tree
-- +_extensions
-  - +semantic-components
-    - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) steps
-    - [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua) file tree
-    - [`git-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/git-tree.lua) git tree
-    - [`badges.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/badges.lua) badges
-- [`index.qmd`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/index.qmd) galeria
+- analysis.R texto normal
+- `pipeline.py` inline code
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
+- [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
+:::
+
+## File tree — tooltip de informação
+
+`tooltip=` ou `info=` adiciona um pequeno ícone de informação em HTML. O tooltip é opcional e pode ser usado tanto em texto normal quanto em inline code ou links.
+
+```markdown
+:::file-tree
+- [analysis.R]{tooltip="Script principal de análise em R"}
+- [`pipeline.py`]{tooltip="Pipeline de ingestão e validação"}
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components){tooltip="Abrir o repositório"}
+- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){tooltip="Ver a implementação do componente"}
+:::
+```
+
+**Output:**
+
+:::file-tree
+- [analysis.R]{tooltip="Script principal de análise em R"}
+- [`pipeline.py`]{tooltip="Pipeline de ingestão e validação"}
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components){tooltip="Abrir o repositório"}
+- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){tooltip="Ver a implementação do componente"}
 :::
 
 ## File tree — providers e ícones customizados
@@ -433,8 +449,8 @@ O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`
 :::
 
 :::file-tree
-- `analysis.R`{icon="devicon:r"} R
-- `pipeline.py`{icon="devicon:python"} Python
+- `analysis.R`{icon="devicon:r"} R em inline code
+- pipeline.py Python em texto normal
 - `species.csv`{icon="leaf"} dados de espécies
 - `golden.parquet`{icon="★"} base ouro
 - `deduplicate.py`{icon="🧬"} deduplicação
@@ -464,8 +480,8 @@ O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`
 **Customizados:**
 
 :::file-tree
-- `analysis.R`{icon="devicon:r"} R
-- `pipeline.py`{icon="devicon:python"} Python
+- `analysis.R`{icon="devicon:r"} R em inline code
+- pipeline.py Python em texto normal
 - `species.csv`{icon="leaf"} dados de espécies
 - `golden.parquet`{icon="★"} base ouro
 - `deduplicate.py`{icon="🧬"} deduplicação
@@ -475,6 +491,6 @@ O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`
 
 As ideias de **Steps** e **File Tree** foram inspiradas em componentes de documentação do [Vocs](https://vocs.dev/), mas a implementação desta extensão é própria e orientada ao AST do Pandoc.
 
-- **HTML**: apresentação completa, ícones, badges e Git tree em SVG;
+- **HTML**: apresentação completa, ícones, badges, tooltips e Git tree em SVG;
 - **PDF**: conteúdo estrutural e links são preservados;
 - **DOCX**: listas, links e texto permanecem editáveis.
