@@ -196,7 +196,7 @@ Branches são escritos como listas aninhadas. No HTML, a extensão lineariza o h
 
 Em PDF/DOCX a estrutura continua sendo uma lista semântica legível.
 
-Defaults disponíveis no `_quarto.yml`: `line-color`, `line-width`, `node-size`, `lane-gap`, `row-indent` e `node-bg`.
+Defaults disponíveis no `_quarto.yml`: `line-color`, `line-width`, `node-size`, `lane-gap` e `node-bg`.
 
 ## File tree
 
@@ -231,7 +231,7 @@ Providers disponíveis: `devicon`, `simple-icons`, `builtin` e `none`.
 
 ### Ícone oficial do Quarto
 
-Devicon não fornece atualmente um glifo próprio do Quarto. Para arquivos `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o **ícone oficial servido pelo próprio Quarto** em `https://quarto.org/quarto.png`. A documentação oficial do Quarto também referencia esse recurso como “Quarto icon”.
+Devicon não fornece atualmente um glifo próprio do Quarto. Para arquivos `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o **símbolo oficial do Quarto** servido pelo próprio site em `https://quarto.org/favicon.png`. Esse é o mark circular azul usado como favicon oficial; o recurso `quarto.png`, por outro lado, é o wordmark horizontal completo.
 
 Se `icons="simple-icons"` for escolhido explicitamente, o provider Simple Icons continua sendo respeitado.
 
