@@ -1,4 +1,5 @@
--- File tree with links, selectable icon providers, optional inline-code labels and tooltips.
+-- File tree with links, selectable icon providers, optional inline-code labels,
+-- tooltips, and collapsible folders in HTML.
 local config=require('./config')
 local function has_class(el, name)
   for _, class in ipairs(el.classes or {}) do if class == name then return true end end
@@ -12,6 +13,21 @@ local function tail(inlines)
   local out = pandoc.List(); for i = 2, #inlines do out:insert(inlines[i]) end
   while #out > 0 and out[1].t == 'Space' do out:remove(1) end
   return out
+end
+local function truthy(value)
+  if value == nil then return nil end
+  value=tostring(value):lower()
+  if value=='true' or value=='1' or value=='yes' or value=='on' or value=='open' then return true end
+  if value=='false' or value=='0' or value=='no' or value=='off' or value=='closed' then return false end
+  return nil
+end
+
+if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
+  quarto.doc.add_html_dependency({
+    name='quarto-semantic-components-file-tree',
+    version='0.6.7',
+    scripts={'js/file-tree.js'}
+  })
 end
 
 local QUARTO_ICON = 'https://quarto.org/favicon.png'
@@ -81,6 +97,8 @@ local function apply_attrs(source, row)
   row.icon = attr(source,'icon') or row.icon
   row.icon_library = attr(source,'icon-library') or attr(source,'icons') or row.icon_library
   row.tooltip = attr(source,'tooltip') or attr(source,'info') or row.tooltip
+  row.expanded = attr(source,'expanded') or attr(source,'open') or row.expanded
+  row.collapsed = attr(source,'collapsed') or row.collapsed
 end
 
 local function parse_label(content, row)
@@ -130,8 +148,6 @@ end
 
 local function library_icon(name, lib)
   if not is_html() or lib == 'none' then return nil end
-  -- Devicon does not currently ship a Quarto glyph. For .qmd and Quarto
-  -- configuration files, use the official Quarto favicon/mark.
   if lib == 'devicon' and name == 'quarto' then
     return pandoc.RawInline('html','<img class="file-tree-library-icon file-tree-quarto-icon" src="'..QUARTO_ICON..'" alt="" aria-hidden="true" />')
   end
@@ -162,7 +178,15 @@ local function make_label(row, folder)
   return pandoc.Str(row.name)
 end
 
-local function make_row(row, folder, default_lib)
+local function folder_expanded(row, default_expanded)
+  local explicit=truthy(row.expanded)
+  if explicit~=nil then return explicit end
+  local collapsed=truthy(row.collapsed)
+  if collapsed~=nil then return not collapsed end
+  return default_expanded
+end
+
+local function make_row(row, folder, default_lib, default_expanded, has_children)
   local lib = library(row.icon_library or default_lib); local requested
   requested, lib = provider_icon(row.icon, lib)
   local icon_name = requested or automatic(row.name, folder)
@@ -180,6 +204,16 @@ local function make_row(row, folder, default_lib)
   if row.href then classes:insert('file-tree-linked') end
   if row.tooltip then classes:insert('file-tree-has-tooltip') end
 
+  local attrs={}
+  if is_html() and folder and has_children then
+    classes:insert('file-tree-collapsible')
+    local expanded=folder_expanded(row,default_expanded)
+    attrs['data-file-tree-toggle']='true'
+    attrs['data-file-tree-expanded']=expanded and 'true' or 'false'
+    attrs['data-file-tree-name']=row.name or 'folder'
+    attrs['aria-expanded']=expanded and 'true' or 'false'
+  end
+
   local out = pandoc.List()
   if icon then out:insert(icon); out:insert(pandoc.Space()) end
 
@@ -193,27 +227,27 @@ local function make_row(row, folder, default_lib)
     out:insert(pandoc.Space())
     out:insert(pandoc.Span(row.comment,pandoc.Attr('',{'file-tree-comment'})))
   end
-  return pandoc.Plain({pandoc.Span(out,pandoc.Attr('',classes))})
+  return pandoc.Plain({pandoc.Span(out,pandoc.Attr('',classes,attrs))})
 end
 
-local function walk(list, default_lib)
+local function walk(list, default_lib, default_expanded)
   for _, item in ipairs(list.content) do
     local nested, row_index, row_block
     for i, block in ipairs(item) do
       if block.t == 'BulletList' or block.t == 'OrderedList' then nested = block
       elseif not row_block and (block.t == 'Plain' or block.t == 'Para') then row_index,row_block=i,block end
     end
+    if nested and nested.t == 'OrderedList' then
+      nested=pandoc.BulletList(nested.content)
+      for i,b in ipairs(item) do if b.t=='OrderedList' then item[i]=nested break end end
+    end
     if row_block then
       local row=parse(row_block.content)
-      if row and row.name~='' then item[row_index]=make_row(row,row.folder or nested~=nil,default_lib) end
-    end
-    if nested then
-      if nested.t == 'OrderedList' then
-        nested=pandoc.BulletList(nested.content)
-        for i,b in ipairs(item) do if b.t=='OrderedList' then item[i]=nested break end end
+      if row and row.name~='' then
+        item[row_index]=make_row(row,row.folder or nested~=nil,default_lib,default_expanded,nested~=nil)
       end
-      walk(nested,default_lib)
     end
+    if nested then walk(nested,default_lib,default_expanded) end
   end
 end
 
@@ -222,11 +256,19 @@ local function transform(el,meta)
   add_class(el,'semantic-file-tree')
   local configured=config.default(meta,'file-tree','icons',{'icon-library'})
   local default_lib=library(attr(el,'icons') or attr(el,'icon-library') or configured)
+  local expanded_value=attr(el,'expanded') or attr(el,'open') or config.default(meta,'file-tree','expanded',{'open','folders-open'})
+  local collapsed_value=attr(el,'collapsed') or config.default(meta,'file-tree','collapsed',{'folders-collapsed'})
+  local default_expanded=truthy(expanded_value)
+  if default_expanded==nil then
+    local collapsed=truthy(collapsed_value)
+    default_expanded=collapsed==nil and true or not collapsed
+  end
   el.attributes['data-icon-library']=default_lib
+  el.attributes['data-folders-expanded']=default_expanded and 'true' or 'false'
   for i,block in ipairs(el.content) do
     if block.t=='BulletList' or block.t=='OrderedList' then
       if block.t=='OrderedList' then block=pandoc.BulletList(block.content); el.content[i]=block end
-      walk(block,default_lib)
+      walk(block,default_lib,default_expanded)
     end
   end
   return el
