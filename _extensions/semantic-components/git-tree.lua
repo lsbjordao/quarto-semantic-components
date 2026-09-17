@@ -1,4 +1,6 @@
--- Git-style history tree. HTML uses an SVG lane graph; non-HTML keeps semantic lists.
+-- Git commit graph. HTML renders a real node/edge DAG in SVG; non-HTML keeps
+-- semantic lists. The simple nested-list syntax infers parents, while optional
+-- commit ids / parent attributes allow explicit DAGs and merge commits.
 local config=require('./config')
 
 local function has_class(el,name)
@@ -17,13 +19,38 @@ local function append_style(el,declaration)
   el.attributes.style=current..declaration..';'
 end
 
+local function inline_attr(inline,key)
+  if not inline then return nil end
+  if key=='id' and inline.identifier and inline.identifier~='' then return inline.identifier end
+  return inline.attributes and inline.attributes[key] or nil
+end
+
+local function tail(inlines,start)
+  local out=pandoc.List()
+  for i=start or 2,#inlines do out:insert(inlines[i]) end
+  while #out>0 and out[1].t=='Space' do out:remove(1) end
+  return out
+end
+
 local function parse(inlines)
   if #inlines==0 then return {ref='commit',message=pandoc.List()} end
   local first=inlines[1]
   local row={message=pandoc.List()}
+
   if first.t=='Code' then
     row.ref=first.text
-    for i=2,#inlines do row.message:insert(inlines[i]) end
+    row.id=inline_attr(first,'id') or inline_attr(first,'commit') or inline_attr(first,'commit-id')
+    row.parents_spec=inline_attr(first,'parents') or inline_attr(first,'parent')
+    row.tag=inline_attr(first,'tag') or inline_attr(first,'tags')
+    row.head=inline_attr(first,'head')
+    row.message=tail(inlines,2)
+  elseif first.t=='Span' then
+    row.ref=stringify(first.content)
+    row.id=inline_attr(first,'id') or inline_attr(first,'commit') or inline_attr(first,'commit-id')
+    row.parents_spec=inline_attr(first,'parents') or inline_attr(first,'parent')
+    row.tag=inline_attr(first,'tag') or inline_attr(first,'tags')
+    row.head=inline_attr(first,'head')
+    row.message=tail(inlines,2)
   else
     local raw=stringify(inlines):gsub('^%s+',''):gsub('%s+$','')
     row.ref,row.text=raw:match('^(%S+)%s+(.+)$')
@@ -59,6 +86,10 @@ end
 local function make_semantic_row(row,depth)
   local classes=pandoc.List({'git-tree-row','git-tree-depth-'..tostring(depth or 0)})
   local out=pandoc.List({pandoc.Span({pandoc.Code(row.ref)},pandoc.Attr('',{'git-tree-ref'}))})
+  if row.tag and row.tag~='' then
+    out:insert(pandoc.Space())
+    out:insert(pandoc.Span({pandoc.Str(row.tag)},pandoc.Attr('',{'git-tree-tag'})))
+  end
   if #row.message>0 then
     out:insert(pandoc.Space())
     out:insert(pandoc.Span(row.message,pandoc.Attr('',{'git-tree-message'})))
@@ -100,95 +131,170 @@ local function fmt(n)
   return string.format('%.2f',n):gsub('0+$',''):gsub('%.$','')
 end
 
-local function line(x1,y1,x2,y2)
-  return '<line class="git-tree-edge" x1="'..fmt(x1)..'" y1="'..fmt(y1)..'" x2="'..fmt(x2)..'" y2="'..fmt(y2)..'" />'
+local function normal_direction(value)
+  value=(value or 'TB'):upper():gsub('[^A-Z]','')
+  if value=='BT' or value=='BOTTOMTOP' or value=='BOTTOMTOTOP' then return 'BT' end
+  return 'TB'
 end
 
-local function curve(x1,y1,x2,y2)
-  local span=math.max(4,math.abs(y2-y1)*0.55)
-  return '<path class="git-tree-edge" d="M '..fmt(x1)..' '..fmt(y1)..' C '..fmt(x1)..' '..fmt(y1+span)..', '..fmt(x2)..' '..fmt(y2-span)..', '..fmt(x2)..' '..fmt(y2)..'" />'
+local function truthy(value)
+  value=value and tostring(value):lower() or ''
+  return value=='true' or value=='1' or value=='yes' or value=='on' or value=='head'
 end
 
--- Each commit occupies one fixed-height row. The commit node sits at the row
--- centre; edges enter from y=0 and leave through y=height. This keeps the graph
--- horizontally aligned with the branch badge/message and makes rows connect
--- continuously without detached hooks.
-local function graph_svg(depth,prev_depth,next_depth,max_depth,lane,node_size)
-  local r=node_size/2
-  local pad=r+2
-  local height=32
-  local node_y=height/2
-  local width=pad*2+max_depth*lane
-  local function x(d) return pad+d*lane end
-  local parts={}
-
-  -- Ancestor lanes remain active while visiting nested branches.
-  for level=0,depth-1 do
-    local bottom=height
-    if next_depth and next_depth<depth and level>next_depth then
-      local steps=depth-next_depth
-      local index=depth-level
-      bottom=node_y+(height-node_y)*(index/steps)
-    end
-    parts[#parts+1]=line(x(level),0,x(level),bottom)
-  end
-
-  -- Incoming edge of the current lane.
-  if prev_depth~=nil then parts[#parts+1]=line(x(depth),0,x(depth),node_y) end
-
-  if next_depth==nil then
-    -- Final commit: no outgoing edge.
-  elseif next_depth==depth then
-    parts[#parts+1]=line(x(depth),node_y,x(depth),height)
-  elseif next_depth>depth then
-    -- Open a child branch. The parent lane continues straight down while the
-    -- child peels off from the current commit into the next row.
-    parts[#parts+1]=line(x(depth),node_y,x(depth),height)
-    local target_x=x(next_depth)
-    parts[#parts+1]=curve(x(depth),node_y,target_x,height)
-  else
-    -- Close one or more nested lanes. Merge sequentially inside the lower half
-    -- of the row so depth 2 -> 0 reads visually as 2 -> 1 -> 0.
-    local steps=depth-next_depth
-    local cx,cy=x(depth),node_y
-    for step=1,steps do
-      local target_depth=depth-step
-      local ny=node_y+(height-node_y)*(step/steps)
-      parts[#parts+1]=curve(cx,cy,x(target_depth),ny)
-      cx,cy=x(target_depth),ny
-    end
-  end
-
-  parts[#parts+1]='<circle class="git-tree-node" cx="'..fmt(x(depth))..'" cy="'..fmt(node_y)..'" r="'..fmt(r)..'" />'
-  return '<svg class="git-tree-graph" viewBox="0 0 '..fmt(width)..' '..fmt(height)..'" width="'..fmt(width)..'" height="'..fmt(height)..'" aria-hidden="true">'..table.concat(parts)..'</svg>',height
+local function append_unique(list,value)
+  if value==nil then return end
+  for _,item in ipairs(list) do if item==value then return end end
+  list[#list+1]=value
 end
 
-local function render_rows(rows,el,meta)
+local function infer_parents(rows)
+  local active={}
+  local id_map={}
   local max_depth=0
-  for _,row in ipairs(rows) do if row.depth>max_depth then max_depth=row.depth end end
-
-  local lane_value=attr(el,'lane-gap') or config.default(meta,'git-tree','lane-gap')
-  local node_value=attr(el,'node-size') or config.default(meta,'git-tree','node-size')
-  local lane=number_length(lane_value,13)
-  local node_size=number_length(node_value,11)
-  local out=pandoc.List()
 
   for i,row in ipairs(rows) do
-    local prev_depth=i>1 and rows[i-1].depth or nil
-    local next_depth=i<#rows and rows[i+1].depth or nil
-    local svg,height=graph_svg(row.depth,prev_depth,next_depth,max_depth,lane,node_size)
-    local content=pandoc.List({pandoc.Span({pandoc.Code(row.ref)},pandoc.Attr('',{'git-tree-ref'}))})
-    if #row.message>0 then
-      content:insert(pandoc.Space())
-      content:insert(pandoc.Span(row.message,pandoc.Attr('',{'git-tree-message'})))
-    end
-    local row_content=pandoc.List({
-      pandoc.RawInline('html',svg),
-      pandoc.Span(content,pandoc.Attr('',{'git-tree-content'}))
-    })
-    out:insert(pandoc.Div({pandoc.Plain(row_content)},pandoc.Attr('',{'git-tree-entry','git-tree-depth-'..tostring(row.depth)},{style='--git-row-height:'..fmt(height)..'px;'})))
+    row.index=i
+    row.id=row.id or ('c'..tostring(i))
+    id_map[row.id]=i
+    if row.depth>max_depth then max_depth=row.depth end
   end
-  return out
+
+  -- First pass: infer a valid commit DAG from nested-list depth. A child branch
+  -- starts at the immediately preceding commit. Returning to a shallower lane
+  -- creates a merge commit whose parents are the previous tip of the target lane
+  -- plus the tips of every lane being closed.
+  for i,row in ipairs(rows) do
+    local d=row.depth
+    local parents={}
+    if i>1 then
+      local pd=rows[i-1].depth
+      if d>pd then
+        append_unique(parents,i-1)
+      elseif d==pd then
+        append_unique(parents,active[d] or (i-1))
+      else
+        append_unique(parents,active[d])
+        for level=d+1,pd do append_unique(parents,active[level]) end
+        if #parents==0 then append_unique(parents,i-1) end
+        for level=d+1,max_depth do active[level]=nil end
+      end
+    end
+    row.parents=parents
+    active[d]=i
+  end
+
+  -- Second pass: explicit parent(s) override inference. This makes arbitrary DAGs
+  -- and merge commits representable without abandoning the compact list syntax.
+  for _,row in ipairs(rows) do
+    if row.parents_spec and row.parents_spec~='' then
+      local spec=tostring(row.parents_spec)
+      if spec:lower()=='none' or spec=='-' then
+        row.parents={}
+      else
+        local explicit={}
+        for id in spec:gmatch('[^,%s]+') do append_unique(explicit,id_map[id]) end
+        if #explicit>0 then row.parents=explicit end
+      end
+    end
+  end
+
+  return max_depth
+end
+
+local function edge_path(x1,y1,x2,y2)
+  if math.abs(x1-x2)<0.001 then
+    return '<line class="git-tree-edge" x1="'..fmt(x1)..'" y1="'..fmt(y1)..'" x2="'..fmt(x2)..'" y2="'..fmt(y2)..'" />'
+  end
+  local dy=y2-y1
+  local sign=dy>=0 and 1 or -1
+  local bend=math.max(10,math.abs(dy)*0.38)
+  local c1y=y1+sign*bend
+  local c2y=y2-sign*bend
+  return '<path class="git-tree-edge" d="M '..fmt(x1)..' '..fmt(y1)..' C '..fmt(x1)..' '..fmt(c1y)..', '..fmt(x2)..' '..fmt(c2y)..', '..fmt(x2)..' '..fmt(y2)..'" />'
+end
+
+local function graph_svg(rows,max_depth,lane,node_size,row_height,direction)
+  local r=node_size/2
+  local pad=r+3
+  local width=pad*2+max_depth*lane
+  local height=math.max(row_height,#rows*row_height)
+  local function x(row) return pad+row.depth*lane end
+  local function y(index)
+    if direction=='BT' then return (#rows-index+0.5)*row_height end
+    return (index-0.5)*row_height
+  end
+  local parts={}
+
+  -- Edges first, so commit nodes sit cleanly on top of all joins. Every edge is
+  -- commit-to-commit: branches originate at nodes and merges terminate at nodes.
+  for i,row in ipairs(rows) do
+    for _,parent_index in ipairs(row.parents or {}) do
+      local parent=rows[parent_index]
+      if parent then parts[#parts+1]=edge_path(x(parent),y(parent_index),x(row),y(i)) end
+    end
+  end
+
+  for i,row in ipairs(rows) do
+    parts[#parts+1]='<circle class="git-tree-node" data-commit="'..row.id..'" cx="'..fmt(x(row))..'" cy="'..fmt(y(i))..'" r="'..fmt(r)..'" />'
+  end
+
+  return '<svg class="git-tree-graph" viewBox="0 0 '..fmt(width)..' '..fmt(height)..'" width="'..fmt(width)..'" height="'..fmt(height)..'" aria-hidden="true">'..table.concat(parts)..'</svg>',height,width
+end
+
+local function ref_span(text,class_name)
+  return pandoc.Span({pandoc.Code(text)},pandoc.Attr('',{class_name}))
+end
+
+local function text_span(text,class_name)
+  return pandoc.Span({pandoc.Str(text)},pandoc.Attr('',{class_name}))
+end
+
+local function row_content(row)
+  local content=pandoc.List({ref_span(row.ref,'git-tree-ref')})
+  if truthy(row.head) then
+    content:insert(pandoc.Space())
+    content:insert(text_span('HEAD','git-tree-head'))
+  end
+  if row.tag and row.tag~='' then
+    for tag in tostring(row.tag):gmatch('[^,%s]+') do
+      content:insert(pandoc.Space())
+      content:insert(text_span(tag,'git-tree-tag'))
+    end
+  end
+  if #row.message>0 then
+    content:insert(pandoc.Space())
+    content:insert(pandoc.Span(row.message,pandoc.Attr('',{'git-tree-message'})))
+  end
+  return content
+end
+
+local function render_rows(rows,el,meta,direction)
+  local max_depth=infer_parents(rows)
+  local lane_value=attr(el,'lane-gap') or config.default(meta,'git-tree','lane-gap')
+  local node_value=attr(el,'node-size') or config.default(meta,'git-tree','node-size')
+  local row_height_value=attr(el,'row-height') or config.default(meta,'git-tree','row-height')
+  local lane=number_length(lane_value,13)
+  local node_size=number_length(node_value,11)
+  local row_height=number_length(row_height_value,36)
+  local svg,height=graph_svg(rows,max_depth,lane,node_size,row_height,direction)
+
+  local contents=pandoc.List()
+  if direction=='BT' then
+    for i=#rows,1,-1 do
+      contents:insert(pandoc.Div({pandoc.Plain({pandoc.Span(row_content(rows[i]),pandoc.Attr('',{'git-tree-content'}))})},pandoc.Attr('',{'git-tree-entry'},{style='--git-row-height:'..fmt(row_height)..'px;','data-commit'=rows[i].id})))
+    end
+  else
+    for _,row in ipairs(rows) do
+      contents:insert(pandoc.Div({pandoc.Plain({pandoc.Span(row_content(row),pandoc.Attr('',{'git-tree-content'}))})},pandoc.Attr('',{'git-tree-entry'},{style='--git-row-height:'..fmt(row_height)..'px;','data-commit'=row.id})))
+    end
+  end
+
+  local layout=pandoc.Div({
+    pandoc.RawBlock('html',svg),
+    pandoc.Div(contents,pandoc.Attr('',{'git-tree-content-rows'}))
+  },pandoc.Attr('',{'git-tree-layout'},{style='--git-graph-height:'..fmt(height)..'px;'}))
+  return pandoc.List({layout})
 end
 
 local function setting(el,meta,key,aliases)
@@ -199,6 +305,8 @@ local function transform(el,meta)
   if not has_class(el,'git-tree') then return nil end
   add_class(el,'semantic-git-tree')
 
+  local direction=normal_direction(setting(el,meta,'direction',{'orientation'}))
+  el.attributes['data-git-direction']=direction
   local styles={
     {'--semantic-git-line',setting(el,meta,'line-color',{'edge-color'})},
     {'--git-line-width',setting(el,meta,'line-width',{'edge-width'})},
@@ -214,7 +322,7 @@ local function transform(el,meta)
       if is_html() then
         local rows={}
         collect(block,0,rows)
-        el.content[i]=pandoc.Div(render_rows(rows,el,meta),pandoc.Attr('',{'git-tree-rows'}))
+        el.content[i]=pandoc.Div(render_rows(rows,el,meta,direction),pandoc.Attr('',{'git-tree-rows'}))
       else
         if block.t=='OrderedList' then block=pandoc.BulletList(block.content); el.content[i]=block end
         walk_semantic(block,0)
