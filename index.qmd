@@ -75,7 +75,7 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.6.5" type="accent" appearance="solid" >}}
+{{< badge "v0.6.6" type="accent" appearance="solid" >}}
 {{< badge "Custom"
   bg="#111827" fg="#f9fafb" border="#60a5fa"
   border-width="2px" radius="0.35rem" size="md"
@@ -85,17 +85,21 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.6.5" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.6.6" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 
-A forma AST-native continua disponível quando o label precisa conter Markdown inline:
+### Forma AST-native
+
+A forma AST-native também usa apenas `badge`:
 
 ```markdown
-[AST-native]{.semantic-badge key="stable" appearance="outline" size="md"}
+[AST-native]{.badge key="stable" appearance="outline" size="md"}
 ```
 
-**Output:** [AST-native]{.semantic-badge key="stable" appearance="outline" size="md"}
+**Output:** [AST-native]{.badge key="stable" appearance="outline" size="md"}
 
 ## Steps — numerado
+
+Todos os exemplos de `steps` usam quatro etapas.
 
 ```markdown
 :::steps
@@ -106,6 +110,10 @@ Use `quarto add lsbjordao/quarto-semantic-components`.
 ## Ative o filtro
 
 Inclua `semantic-components` em `filters`.
+
+## Configure os componentes
+
+Defina defaults no `_quarto.yml` se desejar.
 
 ## Escreva normalmente
 
@@ -123,6 +131,10 @@ Use `quarto add lsbjordao/quarto-semantic-components`.
 ## Ative o filtro
 
 Inclua `semantic-components` em `filters`.
+
+## Configure os componentes
+
+Defina defaults no `_quarto.yml` se desejar.
 
 ## Escreva normalmente
 
@@ -145,6 +157,10 @@ Baixe os dados.
 
 Valide os registros.
 
+## Transformar
+
+Prepare os dados para publicação.
+
 ## Publicar
 
 Publique o resultado.
@@ -161,6 +177,10 @@ Baixe os dados.
 ## Validar
 
 Valide os registros.
+
+## Transformar
+
+Prepare os dados para publicação.
 
 ## Publicar
 
@@ -184,6 +204,10 @@ Baixe os registros novos.
 
 Reconcilie coletas e identificações.
 
+## Revisar {dot-color="#8b5cf6"}
+
+Revise a base processada.
+
 ## Publicar {dot-color="#16a34a"}
 
 Atualize a base curada.
@@ -200,6 +224,10 @@ Baixe os registros novos.
 ## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}
 
 Reconcilie coletas e identificações.
+
+## Revisar {dot-color="#8b5cf6"}
+
+Revise a base processada.
 
 ## Publicar {dot-color="#16a34a"}
 
@@ -223,6 +251,10 @@ Continua vazada.
 
 Bolinha azul preenchida.
 
+## Em revisão {dot-color="#f59e0b" dot-fill="#f59e0b"}
+
+Bolinha laranja preenchida.
+
 ## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
 
 Bolinha verde preenchida.
@@ -240,6 +272,10 @@ Continua vazada.
 
 Bolinha azul preenchida.
 
+## Em revisão {dot-color="#f59e0b" dot-fill="#f59e0b"}
+
+Bolinha laranja preenchida.
+
 ## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
 
 Bolinha verde preenchida.
@@ -252,6 +288,7 @@ Bolinha verde preenchida.
 1. Primeiro item
 2. Segundo item, com **Markdown** normal
 3. Terceiro item
+4. Quarto item
 :::
 ```
 
@@ -261,6 +298,7 @@ Bolinha verde preenchida.
 1. Primeiro item
 2. Segundo item, com **Markdown** normal
 3. Terceiro item
+4. Quarto item
 :::
 
 ## Git tree
@@ -283,7 +321,7 @@ A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branc
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.5
+- `main` release v0.6.6
 :::
 ```
 
@@ -304,7 +342,7 @@ A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branc
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.5
+- `main` release v0.6.6
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -387,7 +425,7 @@ O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`
 
 ## File tree — texto normal ou inline code
 
-O `file-tree` agora preserva a escolha do autor. Um nome sem crases fica como texto normal; um nome entre crases recebe exatamente a semântica/estilo de inline code do Quarto. A mesma regra vale para links.
+O `file-tree` preserva a escolha do autor. Um nome sem crases fica como texto normal; um nome entre crases recebe a semântica/estilo de inline code. A mesma regra vale para links.
 
 ```markdown
 :::file-tree
@@ -409,14 +447,14 @@ O `file-tree` agora preserva a escolha do autor. Um nome sem crases fica como te
 
 ## File tree — tooltip de informação
 
-`tooltip=` ou `info=` adiciona um pequeno ícone de informação em HTML. O tooltip é opcional e pode ser usado tanto em texto normal quanto em inline code ou links.
+`tooltip=` ou `info=` adiciona um pequeno ícone de informação em HTML.
 
 ```markdown
 :::file-tree
 - [analysis.R]{tooltip="Script principal de análise em R"}
 - [`pipeline.py`]{tooltip="Pipeline de ingestão e validação"}
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components){tooltip="Abrir o repositório"}
-- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){tooltip="Ver a implementação do componente"}
+- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){info="Ver a implementação do componente"}
 :::
 ```
 
@@ -426,7 +464,7 @@ O `file-tree` agora preserva a escolha do autor. Um nome sem crases fica como te
 - [analysis.R]{tooltip="Script principal de análise em R"}
 - [`pipeline.py`]{tooltip="Pipeline de ingestão e validação"}
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components){tooltip="Abrir o repositório"}
-- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){tooltip="Ver a implementação do componente"}
+- [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua){info="Ver a implementação do componente"}
 :::
 
 ## File tree — providers e ícones customizados
