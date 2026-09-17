@@ -42,6 +42,7 @@ extensions:
 
   file-tree:
     icons: devicon
+    expanded: true
 
   git-tree:
     line-color: "#9aa0a6"
@@ -75,7 +76,7 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.6.6" type="accent" appearance="solid" >}}
+{{< badge "v0.6.7" type="accent" appearance="solid" >}}
 {{< badge "Custom"
   bg="#111827" fg="#f9fafb" border="#60a5fa"
   border-width="2px" radius="0.35rem" size="md"
@@ -85,7 +86,7 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.6.6" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.6.7" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 
 ### Forma AST-native
 
@@ -321,7 +322,7 @@ A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branc
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.6
+- `main` release v0.6.7
 :::
 ```
 
@@ -342,12 +343,12 @@ A sintaxe é uma lista aninhada; no HTML, a extensão desenha lanes, nós, branc
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.6
+- `main` release v0.6.7
 :::
 
 ## File tree — aninhamento profundo e ícones
 
-O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`, `_quarto.yml` e `quarto.yml`, a extensão usa o símbolo circular oficial do Quarto.
+O `_quarto.yml` da galeria define **Devicon como provider padrão** e mantém as pastas abertas inicialmente. Para `.qmd`, `_quarto.yml` e `quarto.yml`, a extensão usa o símbolo circular oficial do Quarto.
 
 ```markdown
 :::file-tree
@@ -422,6 +423,46 @@ O `_quarto.yml` da galeria define **Devicon como provider padrão**. Para `.qmd`
   - README.md documentação
   - _quarto.yml configuração Quarto
 :::
+
+## File tree — pastas expansíveis e colapsáveis
+
+Em HTML, toda pasta que contém filhos pode ser aberta e fechada. O default do projeto é `expanded: true`, mas ele pode ser alterado no `_quarto.yml`, no bloco inteiro ou por diretório. Clique no chevron ou no nome da pasta; links dentro da pasta continuam navegando normalmente.
+
+```markdown
+::: {.file-tree expanded="false"}
+- [+src]{expanded="true"}
+  - +components
+    - Button.ts
+    - Card.ts
+  - app.ts
+  - styles.css
+- [+docs]{open="false"}
+  - index.qmd
+  - api.qmd
+- [+data]{collapsed="true"}
+  - raw.csv
+  - processed.parquet
+:::
+```
+
+**Output:**
+
+::: {.file-tree expanded="false"}
+- [+src]{expanded="true"}
+  - +components
+    - Button.ts
+    - Card.ts
+  - app.ts
+  - styles.css
+- [+docs]{open="false"}
+  - index.qmd
+  - api.qmd
+- [+data]{collapsed="true"}
+  - raw.csv
+  - processed.parquet
+:::
+
+Em PDF e DOCX, a hierarquia permanece sempre visível; a interação é exclusiva do HTML.
 
 ## File tree — texto normal ou inline code
 
@@ -529,6 +570,6 @@ O `file-tree` preserva a escolha do autor. Um nome sem crases fica como texto no
 
 As ideias de **Steps** e **File Tree** foram inspiradas em componentes de documentação do [Vocs](https://vocs.dev/), mas a implementação desta extensão é própria e orientada ao AST do Pandoc.
 
-- **HTML**: apresentação completa, ícones, badges, tooltips e Git tree em SVG;
+- **HTML**: apresentação completa, ícones, badges, tooltips, árvores colapsáveis e Git tree em SVG;
 - **PDF**: conteúdo estrutural e links são preservados;
 - **DOCX**: listas, links e texto permanecem editáveis.
