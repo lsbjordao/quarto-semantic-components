@@ -1,7 +1,8 @@
 :root {
   --semantic-line-width:1.5px; --semantic-step-marker-size:1.85rem; --semantic-step-gap:1.05rem;
   --semantic-muted-opacity:.58; --semantic-soft-opacity:.18; --semantic-icon-size:1.15rem;
-  --semantic-git-line:color-mix(in srgb,currentColor 34%,transparent);
   --semantic-git-node-bg:var(--bs-body-bg,var(--quarto-body-bg,Canvas));
+  --semantic-git-line:#9aa0a6;
+  --semantic-git-line:color-mix(in srgb,currentColor 34%,var(--semantic-git-node-bg));
   --semantic-step-dot-color:currentColor; --semantic-step-line-color:currentColor;
 }
