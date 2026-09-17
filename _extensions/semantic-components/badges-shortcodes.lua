@@ -2,11 +2,9 @@
 -- Uses `semantic-badge` rather than `badge` so it can coexist with
 -- mcanouil/quarto-badge without shortcode-name collisions.
 
-local function text(value)
-  if value == nil then return nil end
-  if type(value) == 'string' then return value end
-  return pandoc.utils.stringify(value)
-end
+local config = require('./config')
+
+local function text(value) return config.text(value) end
 
 local variants = { neutral=true, info=true, success=true, warning=true, danger=true, accent=true }
 local sizes = { xs=true, sm=true, md=true, lg=true }
@@ -29,15 +27,32 @@ end
 
 return {
   ['semantic-badge'] = function(args, kwargs, meta)
-    local label = text(args[1]) or text(kwargs['text']) or ''
-    local variant = token(text(kwargs['type']) or text(kwargs['variant']), 'neutral', variants)
-    local size = token(text(kwargs['size']), 'sm', sizes)
-    local shape = token(text(kwargs['shape']), 'pill', shapes)
-    local appearance = token(text(kwargs['appearance']), 'soft', appearances)
-    local icon = text(kwargs['icon'])
-    local icon_position = (text(kwargs['icon-position']) or 'start'):lower()
-    local href = text(kwargs['href']) or text(kwargs['link'])
-    local title = text(kwargs['title']) or ''
+    local first = text(args[1])
+    local explicit_key = text(kwargs['key'])
+    local preset_key = explicit_key or first
+    local preset = config.preset(meta, 'badge', preset_key)
+
+    local function value(key, aliases)
+      return config.resolve(meta, 'badge', kwargs, preset, key, aliases)
+    end
+
+    local label
+    if text(kwargs['text']) then
+      label = text(kwargs['text'])
+    elseif explicit_key and first then
+      label = first
+    else
+      label = config.value(preset, 'label', {'text'}) or first or preset_key or ''
+    end
+
+    local variant = token(value('type', {'variant'}), 'neutral', variants)
+    local size = token(value('size'), 'sm', sizes)
+    local shape = token(value('shape'), 'pill', shapes)
+    local appearance = token(value('appearance'), 'soft', appearances)
+    local icon = value('icon')
+    local icon_position = (value('icon-position') or 'start'):lower()
+    local href = value('href', {'link'})
+    local title = value('title') or ''
 
     local classes = pandoc.List({
       'semantic-badge', 'semantic-badge-' .. variant,
@@ -45,26 +60,30 @@ return {
       'semantic-badge-shape-' .. shape,
       'semantic-badge-' .. appearance
     })
-    if truthy(text(kwargs['uppercase'])) then classes:insert('semantic-badge-uppercase') end
-    if text(kwargs['font']) == 'mono' then classes:insert('semantic-badge-mono') end
+
+    local extra_classes = value('class', {'classes'})
+    for _, class in ipairs(config.classes(extra_classes)) do classes:insert(class) end
+    if truthy(value('uppercase')) then classes:insert('semantic-badge-uppercase') end
+    if value('font') == 'mono' then classes:insert('semantic-badge-mono') end
 
     local style = {}
-    css_var(style, '--semantic-badge-fg', text(kwargs['fg']) or text(kwargs['foreground']))
-    css_var(style, '--semantic-badge-bg', text(kwargs['bg']) or text(kwargs['background']))
-    css_var(style, '--semantic-badge-border', text(kwargs['border']))
-    css_var(style, '--semantic-badge-radius', text(kwargs['radius']))
-    css_var(style, '--semantic-badge-weight', text(kwargs['weight']))
-    css_var(style, '--semantic-badge-padding', text(kwargs['padding']))
-    css_var(style, '--semantic-badge-font-size', text(kwargs['font-size']))
-    css_var(style, '--semantic-badge-border-width', text(kwargs['border-width']))
-    css_var(style, '--semantic-badge-letter-spacing', text(kwargs['letter-spacing']))
-    css_var(style, '--semantic-badge-shadow', text(kwargs['shadow']))
+    css_var(style, '--semantic-badge-fg', value('fg', {'foreground', 'text-colour', 'text-color'}))
+    css_var(style, '--semantic-badge-bg', value('bg', {'background', 'colour', 'color'}))
+    css_var(style, '--semantic-badge-border', value('border'))
+    css_var(style, '--semantic-badge-radius', value('radius'))
+    css_var(style, '--semantic-badge-weight', value('weight'))
+    css_var(style, '--semantic-badge-padding', value('padding'))
+    css_var(style, '--semantic-badge-font-size', value('font-size'))
+    css_var(style, '--semantic-badge-border-width', value('border-width'))
+    css_var(style, '--semantic-badge-letter-spacing', value('letter-spacing'))
+    css_var(style, '--semantic-badge-shadow', value('shadow'))
 
     local attrs = {
       ['data-badge-variant'] = variant,
       ['data-badge-size'] = size,
       ['data-badge-appearance'] = appearance
     }
+    if preset_key and preset then attrs['data-badge-key'] = preset_key end
     if #style > 0 then attrs['style'] = table.concat(style, ';') .. ';' end
     if title ~= '' then attrs['title'] = title end
     if not (FORMAT and FORMAT:match('html')) then attrs['custom-style'] = 'Semantic Badge' end
