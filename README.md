@@ -5,7 +5,7 @@ Extensão Quarto/Pandoc com componentes semânticos reutilizáveis para HTML, PD
 ## Componentes
 
 - `steps`: sequência numerada inspirada no Vocs;
-- `steps type="dots"`: steps com bolinhas, defaults por bloco e cores por etapa;
+- `steps type="dots"`: steps com bolinhas configuráveis por bloco e por etapa;
 - `circle-list`: lista ordenada com números circulados;
 - `git-tree`: histórico Git com branches aninhados e conectores CSS compactos, sem ASCII art;
 - `file-tree`: árvore de arquivos com aninhamento profundo, links e providers de ícones;
@@ -30,7 +30,7 @@ O projeto [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) de
 
 ```markdown
 {{< semantic-badge "Estável" type="success" icon="✓" >}}
-{{< semantic-badge "v0.4.1" type="accent" appearance="solid" size="md" >}}
+{{< semantic-badge "v0.4.2" type="accent" appearance="solid" size="md" >}}
 {{< semantic-badge "Custom" bg="#111827" fg="#fff" border="#60a5fa" border-width="2px" radius="0.35rem" padding="0.2em 0.7em" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 ```
 
@@ -54,10 +54,15 @@ Conteúdo.
 :::
 ```
 
-### Bolinhas: cor default
+### Bolinhas: defaults do bloco
 
 ```markdown
-::: {.steps type="dots" dot-color="#6366f1" line-color="#a5b4fc"}
+::: {.steps type="dots"
+  dot-color="#6366f1"
+  dot-size="0.8rem"
+  line-color="#a5b4fc"
+  line-width="2px"}
+
 ## Extrair
 Conteúdo.
 
@@ -69,26 +74,36 @@ Conteúdo.
 :::
 ```
 
-`dot-color` controla a cor default das bolinhas; `line-color` controla a cor default dos conectores.
+Parâmetros:
 
-### Bolinhas: cor individual por etapa
+- `dot-color`: cor default das bolinhas;
+- `dot-size`: diâmetro default das bolinhas;
+- `line-color`: cor default dos conectores;
+- `line-width`: espessura default dos conectores.
 
-Atributos no próprio heading sobrescrevem o default somente naquela etapa:
+### Bolinhas: override por etapa
+
+Atributos no próprio heading sobrescrevem apenas aquela etapa:
 
 ```markdown
-::: {.steps type="dots" dot-color="#8c959f" line-color="#d0d7de"}
-## Extrair {dot-color="#2563eb"}
+::: {.steps type="dots"
+  dot-color="#8c959f"
+  dot-size="0.72rem"
+  line-color="#d0d7de"
+  line-width="1.5px"}
+
+## Extrair {dot-color="#2563eb" dot-size="0.65rem"}
 Conteúdo.
 
-## Deduplicar {dot-color="#f59e0b" line-color="#f59e0b"}
+## Deduplicar {dot-color="#f59e0b" dot-size="1.1rem" line-color="#f59e0b" line-width="3px"}
 Conteúdo.
 
-## Publicar {dot-color="#2da44e"}
+## Publicar {dot-color="#2da44e" dot-size="0.85rem" line-width="2px"}
 Conteúdo.
 :::
 ```
 
-Assim é possível combinar um tema padrão para todo o componente com exceções em cada bolinha. `line-color` também pode ser sobrescrito individualmente.
+Assim é possível combinar um tema padrão para todo o componente com exceções visuais em cada etapa. Os aliases `marker-color`, `marker-size`, `connector-color` e `connector-width` também são aceitos.
 
 ## Circle list
 
@@ -114,7 +129,7 @@ Branches são listas aninhadas. O grafo HTML é desenhado por CSS com linhas, cu
     - `docs/icons` adiciona exemplos
   - `feature/icons` adiciona links
 - `main` merge feature/icons
-- `main` release v0.4.1
+- `main` release v0.4.2
 :::
 ```
 
@@ -183,7 +198,7 @@ Links Markdown são preservados e o destino é escolhido pelo autor:
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, conectores, cores por etapa e badges ricos;
+- **HTML**: apresentação completa, ícones, conectores, cores/tamanhos por etapa e badges ricos;
 - **PDF**: conteúdo estrutural e links são preservados; decoração HTML degrada com segurança;
 - **DOCX**: listas, links e texto permanecem editáveis.
 
