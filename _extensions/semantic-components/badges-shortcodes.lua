@@ -1,6 +1,7 @@
--- Inline semantic components for Quarto.
--- Uses `semantic-badge` rather than `badge` so it can coexist with
--- mcanouil/quarto-badge without shortcode-name collisions.
+-- Inline badge shortcode for Quarto Semantic Components.
+-- Public API intentionally uses `badge`. This conflicts with other extensions that
+-- register the same shortcode (for example mcanouil/quarto-badge), so authors must
+-- choose which badge extension owns `{{< badge ... >}}` in a project.
 
 local config = require('./config')
 
@@ -26,7 +27,7 @@ local function truthy(value)
 end
 
 return {
-  ['semantic-badge'] = function(args, kwargs, meta)
+  ['badge'] = function(args, kwargs, meta)
     local first = text(args[1])
     local explicit_key = text(kwargs['key'])
     local preset_key = explicit_key or first
