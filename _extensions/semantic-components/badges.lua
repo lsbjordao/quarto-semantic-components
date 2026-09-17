@@ -10,6 +10,7 @@ local function append_unique(classes,value) for _,c in ipairs(classes) do if c==
 
 local function transform(el,meta)
   if not has_class(el,'semantic-badge') then return nil end
+  if attr(el,'data-semantic-badge-resolved')=='true' then return el end
 
   local content_key=pandoc.utils.stringify(el.content)
   local preset_key=attr(el,'key') or content_key
