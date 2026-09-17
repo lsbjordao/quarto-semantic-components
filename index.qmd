@@ -51,6 +51,26 @@ extensions:
     node-size: "0.68rem"
     lane-gap: "0.82rem"
     row-height: "36px"
+    content-gap: "0.55rem"
+
+  timeline:
+    line-color: "#9aa0a6"
+    line-width: "2px"
+    marker-size: "0.78rem"
+    marker-color: "#64748b"
+    marker-fill: transparent
+
+  pipeline:
+    direction: LR
+    line-color: "#9aa0a6"
+    line-width: "2px"
+    gap: "1.25rem"
+
+  details:
+    open: false
+
+  changelog:
+    compact: false
 ```
 
 A precedência é **defaults do projeto → preset → componente → item individual**.
@@ -78,12 +98,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.7.0" type="accent" appearance="solid" >}}
+{{< badge "v0.8.0" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.7.0" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.8.0" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -262,7 +282,7 @@ Bolinha verde preenchida.
 
 ## Git tree — DAG de commits
 
-O gráfico representa commits e relações parent → child. Branches saem de nós; merges terminam em nós.
+O gráfico representa commits e relações parent → child. Branches saem de nós; merges terminam em nós; tag e descrição acompanham a lane do commit.
 
 ### Sintaxe simples — direção TB
 
@@ -284,7 +304,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.7.0
+- `main` release v0.8.0
 :::
 ```
 
@@ -307,12 +327,10 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.7.0
+- `main` release v0.8.0
 :::
 
 ### Mesmo DAG — direção BT
-
-`BT` apenas inverte a direção de leitura; as relações entre commits permanecem as mesmas.
 
 ```markdown
 ::: {.git-tree direction="BT"}
@@ -338,8 +356,6 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
 
 ### DAG explícito — ids, parents, tag e HEAD
 
-Quando a indentação não é suficiente, declare a história explicitamente. `parents=` prevalece sobre a inferência automática.
-
 ```markdown
 :::git-tree
 - `main`{#c1} initial commit
@@ -349,7 +365,7 @@ Quando a indentação não é suficiente, declare a história explicitamente. `p
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.7.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.8.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -363,7 +379,7 @@ Quando a indentação não é suficiente, declare a história explicitamente. `p
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.7.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.8.0" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -462,7 +478,7 @@ Quando a indentação não é suficiente, declare a história explicitamente. `p
   - processed.parquet
 :::
 
-## File tree — texto normal, inline code, links e tooltip
+## File tree — texto, code, links, tooltip e ícones
 
 ```markdown
 :::file-tree
@@ -472,6 +488,8 @@ Quando a indentação não é suficiente, declare a história explicitamente. `p
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
 - [analysis.R]{tooltip="Script principal de análise em R"}
 - [`pipeline.py`]{info="Pipeline de ingestão e validação"}
+- `species.csv`{icon="leaf"}
+- `golden.parquet`{icon="★"}
 :::
 ```
 
@@ -484,52 +502,192 @@ Quando a indentação não é suficiente, declare a história explicitamente. `p
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
 - [analysis.R]{tooltip="Script principal de análise em R"}
 - [`pipeline.py`]{info="Pipeline de ingestão e validação"}
-:::
-
-## File tree — providers e ícones customizados
-
-```markdown
-::: {.file-tree icons="devicon"}
-- analysis.R
-- pipeline.py
-- report.qmd
-- app.js
-- types.ts
-:::
-
-:::file-tree
-- `analysis.R`{icon="devicon:r"}
-- pipeline.py
 - `species.csv`{icon="leaf"}
 - `golden.parquet`{icon="★"}
-- `deduplicate.py`{icon="🧬"}
+:::
+
+## Timeline
+
+Uma `timeline` representa acontecimentos, fases e marcos cronológicos.
+
+```markdown
+:::timeline
+## Protótipo {date="2024" status="done" color="#16a34a"}
+Primeira implementação do componente.
+
+## Beta {date="2025" status="active" color="#2563eb"}
+Validação e refinamento visual.
+
+## Release candidate {date="2026-06" status="warning" color="#f59e0b"}
+Congelamento da API para testes finais.
+
+## Release {date="2026-09" status="success" color="#16a34a"}
+Versão estável publicada.
 :::
 ```
 
-**Devicon/default:**
+**Output:**
 
-::: {.file-tree icons="devicon"}
-- analysis.R
-- pipeline.py
-- report.qmd
-- app.js
-- types.ts
+:::timeline
+## Protótipo {date="2024" status="done" color="#16a34a"}
+Primeira implementação do componente.
+
+## Beta {date="2025" status="active" color="#2563eb"}
+Validação e refinamento visual.
+
+## Release candidate {date="2026-06" status="warning" color="#f59e0b"}
+Congelamento da API para testes finais.
+
+## Release {date="2026-09" status="success" color="#16a34a"}
+Versão estável publicada.
 :::
 
-**Customizados:**
+## Pipeline
 
-:::file-tree
-- `analysis.R`{icon="devicon:r"}
-- pipeline.py
-- `species.csv`{icon="leaf"}
-- `golden.parquet`{icon="★"}
-- `deduplicate.py`{icon="🧬"}
+O `pipeline` representa fluxo de processamento. O default da galeria é LR.
+
+### Direção LR
+
+```markdown
+::: {.pipeline direction="LR"}
+- [Coleta]{icon="◉" status="done"}
+- [Validação]{icon="✓" status="done"}
+- [Deduplicação]{icon="◇" status="active"}
+- [Gold layer]{icon="★" status="warning"}
+- [Publicação]{icon="↗" status="todo"}
+:::
+```
+
+**Output:**
+
+::: {.pipeline direction="LR"}
+- [Coleta]{icon="◉" status="done"}
+- [Validação]{icon="✓" status="done"}
+- [Deduplicação]{icon="◇" status="active"}
+- [Gold layer]{icon="★" status="warning"}
+- [Publicação]{icon="↗" status="todo"}
+:::
+
+### Direção TB
+
+```markdown
+::: {.pipeline direction="TB"}
+- [Extrair]{status="done"}
+- [Transformar]{status="done"}
+- [Validar]{status="active"}
+- [Publicar]{status="todo"}
+:::
+```
+
+**Output:**
+
+::: {.pipeline direction="TB"}
+- [Extrair]{status="done"}
+- [Transformar]{status="done"}
+- [Validar]{status="active"}
+- [Publicar]{status="todo"}
+:::
+
+## Details
+
+Em HTML, o conteúdo pode ser expandido e colapsado. Em PDF/DOCX, permanece sempre visível.
+
+```markdown
+::: {.details summary="Como funciona internamente?" open="false"}
+O conteúdo pode conter **Markdown**, listas e código.
+
+- item um
+- item dois
+
+`details` usa o elemento nativo do HTML.
+:::
+```
+
+**Output:**
+
+::: {.details summary="Como funciona internamente?" open="false"}
+O conteúdo pode conter **Markdown**, listas e código.
+
+- item um
+- item dois
+
+`details` usa o elemento nativo do HTML.
+:::
+
+### Variante visual
+
+```markdown
+::: {.details summary="Atenção" variant="warning" open="true"}
+Esta variante usa uma borda de destaque, mas preserva a mesma semântica.
+:::
+```
+
+**Output:**
+
+::: {.details summary="Atenção" variant="warning" open="true"}
+Esta variante usa uma borda de destaque, mas preserva a mesma semântica.
+:::
+
+## Changelog
+
+O componente organiza releases e grupos de mudanças.
+
+```markdown
+:::changelog
+## 0.8.0 {date="2026-09-17" status="released"}
+
+### Added
+- `timeline`
+- `pipeline`
+- `details`
+- `changelog`
+
+### Changed
+- Git tree com conteúdo alinhado à lane.
+
+### Fixed
+- Ajustes de layout e defaults.
+
+## 0.7.1 {date="2026-09-17"}
+
+### Changed
+- Novo `content-gap` no `git-tree`.
+
+### Fixed
+- Alinhamento das tags e descrições.
+:::
+```
+
+**Output:**
+
+:::changelog
+## 0.8.0 {date="2026-09-17" status="released"}
+
+### Added
+- `timeline`
+- `pipeline`
+- `details`
+- `changelog`
+
+### Changed
+- Git tree com conteúdo alinhado à lane.
+
+### Fixed
+- Ajustes de layout e defaults.
+
+## 0.7.1 {date="2026-09-17"}
+
+### Changed
+- Novo `content-gap` no `git-tree`.
+
+### Fixed
+- Alinhamento das tags e descrições.
 :::
 
 ## Inspiração e formatos
 
 As ideias de **Steps** e **File Tree** foram inspiradas em componentes do [Vocs](https://vocs.dev/), mas a implementação é própria e orientada ao AST do Pandoc.
 
-- **HTML**: apresentação completa, badges, file tree interativo, tooltips e Git DAG em SVG;
+- **HTML**: apresentação completa, badges, file tree interativo, tooltips, Git DAG em SVG, timeline, pipeline, details e changelog;
 - **PDF**: conteúdo estrutural e links são preservados;
-- **DOCX**: listas, links e texto permanecem editáveis.
+- **DOCX**: listas, headings, links e texto permanecem editáveis.
