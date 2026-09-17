@@ -31,7 +31,7 @@ extensions:
   steps:
     dot-color: "#8c959f"
     dot-size: "0.72rem"
-    line-color: "#d0d7de"
+    line-color: "#9aa0a6"
     line-width: "1.5px"
 
   file-tree:
@@ -52,7 +52,7 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 
 ### Presets definidos no projeto
 
-```markdown
+```{.markdown shortcodes=false}
 {{< badge stable >}}
 {{< badge experimental >}}
 {{< badge "Release estável" key="stable" >}}
@@ -62,11 +62,11 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 
 ### Personalização livre
 
-```markdown
+```{.markdown shortcodes=false}
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" >}}
-{{< badge "v0.6.1" type="accent" appearance="solid" >}}
+{{< badge "v0.6.3" type="accent" appearance="solid" >}}
 
 {{< badge "Custom"
   bg="#111827" fg="#f9fafb" border="#60a5fa"
@@ -75,7 +75,7 @@ A precedência é **defaults do projeto → preset → componente → item indiv
   shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 ```
 
-**Output:** {{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" >}} {{< badge "v0.6.1" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+**Output:** {{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" >}} {{< badge "v0.6.3" type="accent" appearance="solid" >}} {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 
 A forma AST-native continua usando uma classe interna prefixada, para não colidir com `.badge` do Bootstrap:
 
@@ -163,7 +163,7 @@ Publique o resultado.
 ::: {.steps type="dots"
   dot-color="#8c959f"
   dot-size="0.78rem"
-  line-color="#d0d7de"
+  line-color="#9aa0a6"
   line-width="1.5px"}
 
 ## Extrair {dot-color="#2563eb"}
@@ -182,7 +182,7 @@ Atualize a base curada.
 
 **Output:**
 
-::: {.steps type="dots" dot-color="#8c959f" dot-size="0.78rem" line-color="#d0d7de" line-width="1.5px"}
+::: {.steps type="dots" dot-color="#8c959f" dot-size="0.78rem" line-color="#9aa0a6" line-width="1.5px"}
 ## Extrair {dot-color="#2563eb"}
 
 Baixe os registros novos.
@@ -204,7 +204,7 @@ Atualize a base curada.
 ::: {.steps type="dots"
   dot-color="#64748b"
   dot-size="0.82rem"
-  line-color="#cbd5e1"
+  line-color="#94a3b8"
   line-width="2px"}
 
 ## Pendente
@@ -223,7 +223,7 @@ Bolinha verde preenchida.
 
 **Output:**
 
-::: {.steps type="dots" dot-color="#64748b" dot-size="0.82rem" line-color="#cbd5e1" line-width="2px"}
+::: {.steps type="dots" dot-color="#64748b" dot-size="0.82rem" line-color="#94a3b8" line-width="2px"}
 ## Pendente
 
 Continua vazada.
@@ -275,7 +275,7 @@ A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG p
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.1
+- `main` release v0.6.3
 :::
 ```
 
@@ -296,7 +296,7 @@ A sintaxe continua sendo uma lista aninhada, mas o HTML agora usa um grafo SVG p
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.6.1
+- `main` release v0.6.3
 :::
 
 ## File tree — aninhamento profundo e ícones
