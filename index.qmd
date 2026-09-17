@@ -3,25 +3,73 @@ title: "Quarto Semantic Components — exemplos"
 format:
   html:
     toc: true
+execute:
+  echo: true
 filters:
   - semantic-components
 ---
 
-Esta página demonstra os componentes da extensão **Quarto Semantic Components**.
+Esta página demonstra os componentes da extensão **Quarto Semantic Components**. Em cada seção, o código-fonte aparece **antes** do resultado renderizado.
 
 ## Badges inline
 
-Badges são shortcodes inline e podem aparecer no meio de uma frase: {{< badge "Beta" >}}, {{< badge "Estável" type="success" icon="✓" >}}, {{< badge "Experimental" type="warning" >}}, {{< badge "Deprecated" type="danger" >}} e {{< badge "v0.2.0" type="accent" >}}.
+A extensão usa o nome `semantic-badge`, de propósito, para poder coexistir com a extensão [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge). A proposta aqui é diferente: badges livres por instância, com aparência, forma, tamanho, cores, ícone e link customizáveis.
+
+### Variantes semânticas
 
 ```markdown
-{{< badge "Beta" >}}
-{{< badge "Estável" type="success" icon="✓" >}}
-{{< badge "Experimental" type="warning" >}}
+{{< semantic-badge "Beta" >}}
+{{< semantic-badge "Estável" type="success" icon="✓" >}}
+{{< semantic-badge "Experimental" type="warning" >}}
+{{< semantic-badge "Deprecated" type="danger" >}}
+{{< semantic-badge "v0.4.0" type="accent" appearance="solid" >}}
 ```
+
+**Output:** {{< semantic-badge "Beta" >}} {{< semantic-badge "Estável" type="success" icon="✓" >}} {{< semantic-badge "Experimental" type="warning" >}} {{< semantic-badge "Deprecated" type="danger" >}} {{< semantic-badge "v0.4.0" type="accent" appearance="solid" >}}
+
+### Personalização livre
+
+```markdown
+{{< semantic-badge "Custom" \
+  bg="#111827" fg="#f9fafb" border="#60a5fa" \
+  border-width="2px" radius="0.35rem" size="md" \
+  padding="0.22em 0.75em" weight="750" \
+  letter-spacing="0.03em" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+
+{{< semantic-badge "Source" type="info" icon="↗" icon-position="end" \
+  href="https://github.com/lsbjordao/quarto-semantic-components" \
+  title="Abrir o repositório" >}}
+```
+
+**Output:** {{< semantic-badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" letter-spacing="0.03em" shadow="0 2px 8px rgb(0 0 0 / .16)" >}} {{< semantic-badge "Source" type="info" icon="↗" icon-position="end" href="https://github.com/lsbjordao/quarto-semantic-components" title="Abrir o repositório" >}}
+
+Também é possível usar a sintaxe Pandoc, sem shortcode:
+
+```markdown
+[AST-native]{.semantic-badge variant="success" appearance="outline" size="md"}
+```
+
+**Output:** [AST-native]{.semantic-badge variant="success" appearance="outline" size="md"}
 
 ## Steps — numerado
 
-A sintaxe é próxima do Vocs: cada heading inicia uma etapa.
+```markdown
+:::steps
+### Instale a extensão
+
+Use `quarto add lsbjordao/quarto-semantic-components`.
+
+### Ative o filtro
+
+Inclua `semantic-components` em `filters`.
+
+### Escreva normalmente
+
+Cada heading inicia uma etapa.
+:::
+```
+
+**Output:**
 
 :::steps
 ### Instale a extensão
@@ -30,16 +78,34 @@ Use `quarto add lsbjordao/quarto-semantic-components`.
 
 ### Ative o filtro
 
-Inclua `semantic-components` em `filters` no YAML do documento ou projeto.
+Inclua `semantic-components` em `filters`.
 
 ### Escreva normalmente
 
-O conteúdo de cada etapa continua sendo Markdown comum.
+Cada heading inicia uma etapa.
 :::
 
 ## Steps — bolinhas
 
-Use `type="dots"` quando a sequência for importante, mas a numeração não.
+### Cor padrão
+
+```markdown
+::: {.steps type="dots"}
+### Baixe os dados
+
+Faça a ingestão das fontes necessárias.
+
+### Valide
+
+Execute as verificações de consistência.
+
+### Publique
+
+Gere o produto final.
+:::
+```
+
+**Output:**
 
 ::: {.steps type="dots"}
 ### Baixe os dados
@@ -55,7 +121,53 @@ Execute as verificações de consistência.
 Gere o produto final.
 :::
 
+### Cor customizada da bolinha
+
+Use `dot-color` para o marcador e, opcionalmente, `line-color` para o conector.
+
+```markdown
+::: {.steps type="dots" dot-color="#2da44e" line-color="#8c959f"}
+### Extrair
+
+Baixe os registros novos.
+
+### Deduplicar
+
+Reconcilie coletas e identificações.
+
+### Publicar
+
+Atualize a base curada.
+:::
+```
+
+**Output:**
+
+::: {.steps type="dots" dot-color="#2da44e" line-color="#8c959f"}
+### Extrair
+
+Baixe os registros novos.
+
+### Deduplicar
+
+Reconcilie coletas e identificações.
+
+### Publicar
+
+Atualize a base curada.
+:::
+
 ## Lista ordenada circulada
+
+```markdown
+:::circle-list
+1. Primeiro item
+2. Segundo item, com **Markdown** normal
+3. Terceiro item
+:::
+```
+
+**Output:**
 
 :::circle-list
 1. Primeiro item
@@ -65,73 +177,237 @@ Gere o produto final.
 
 ## Git tree
 
-`git-tree` representa uma linha de versionamento com ramificações reais por meio de listas aninhadas.
+`git-tree` usa listas aninhadas para representar branches. As linhas são desenhadas em CSS com curvas e nós circulares; não há caracteres ASCII formando o grafo.
+
+```markdown
+:::git-tree
+- `main` initial commit
+- `main` cria a arquitetura base
+  - `feature/icons` abre o branch de ícones
+  - `feature/icons` adiciona Devicon
+    - `docs/icons` documenta os providers
+    - `docs/icons` adiciona exemplos
+  - `feature/icons` adiciona links em arquivos
+- `main` merge feature/icons
+- `main` inicia componentes inline
+  - `feature/badges` cria semantic-badge
+  - `feature/badges` adiciona customização visual
+    - `test/badges` cobre variantes
+    - `test/badges` cobre links
+- `main` merge feature/badges
+- `main` release v0.4.0
+:::
+```
+
+**Output:**
 
 :::git-tree
 - `main` initial commit
-- `main` cria a base dos componentes
-  - `feature/icons` abre a ramificação de ícones
-  - `feature/icons` adiciona autodetecção por linguagem
-    - `docs/icons` documenta os novos ícones
-    - `docs/icons` adiciona exemplos de customização
-  - `feature/icons` adiciona ícones customizados
+- `main` cria a arquitetura base
+  - `feature/icons` abre o branch de ícones
+  - `feature/icons` adiciona Devicon
+    - `docs/icons` documenta os providers
+    - `docs/icons` adiciona exemplos
+  - `feature/icons` adiciona links em arquivos
 - `main` merge feature/icons
-- `main` adiciona badges inline
-  - `feature/git-tree` implementa ramificações visuais
-  - `feature/git-tree` adiciona conectores de merge
-- `main` merge feature/git-tree
-- `main` release v0.2.0
+- `main` inicia componentes inline
+  - `feature/badges` cria semantic-badge
+  - `feature/badges` adiciona customização visual
+    - `test/badges` cobre variantes
+    - `test/badges` cobre links
+- `main` merge feature/badges
+- `main` release v0.4.0
 :::
 
-A antiga sintaxe `steps type="git"` continua aceita por compatibilidade, mas `git-tree` é o componente recomendado para históricos com branches.
+A sintaxe antiga `steps type="git"` continua disponível apenas por compatibilidade.
 
-## File tree — ícones automáticos
+## File tree — Devicon e aninhamento profundo
 
-O `file-tree` reconhece extensões e nomes comuns automaticamente.
+**Devicon é o provider padrão.** Para extensões reconhecidas, são usados os logotipos reais das linguagens/ferramentas — por exemplo R, Python, JavaScript e TypeScript — em vez de glifos genéricos.
 
-:::file-tree
-- README.md documentação principal
-- _quarto.yml configuração do projeto
-- +src código-fonte
-  - analysis.R análise em R
-  - pipeline.py pipeline Python
-  - app.js JavaScript
-  - types.ts TypeScript
-  - index.html HTML
-  - styles.css CSS
-  - query.sql SQL
-  - filter.lua Lua
-  - main.rs Rust
-  - worker.go Go
-  - report.qmd Quarto
-  - README.md Markdown
-- +data dados
-  - occurrences.csv tabela de ocorrências
-  - warehouse.parquet dados colunares
-  - cache.sqlite banco local
-- package.json metadados Node
-- Dockerfile container
+```markdown
+::: {.file-tree icons="devicon"}
+- +project
+  - +src
+    - +pipelines
+      - +python
+        - pipeline.py ingestão
+        - validate.py validação
+      - +r
+        - analysis.R análise estatística
+        - report.Rmd relatório
+      - +web
+        - +src
+          - app.ts aplicação
+          - chart.js gráficos
+          - styles.css estilos
+          - index.html página
+    - +database
+      - migrations.sql migrações
+      - cache.sqlite cache local
+  - +data
+    - +raw
+      - occurrences.csv dados brutos
+    - +processed
+      - +gold
+        - occurrences.parquet base curada
+  - README.md documentação
+  - _quarto.yml configuração Quarto
+:::
+```
+
+**Output:**
+
+::: {.file-tree icons="devicon"}
+- +project
+  - +src
+    - +pipelines
+      - +python
+        - pipeline.py ingestão
+        - validate.py validação
+      - +r
+        - analysis.R análise estatística
+        - report.Rmd relatório
+      - +web
+        - +src
+          - app.ts aplicação
+          - chart.js gráficos
+          - styles.css estilos
+          - index.html página
+    - +database
+      - migrations.sql migrações
+      - cache.sqlite cache local
+  - +data
+    - +raw
+      - occurrences.csv dados brutos
+    - +processed
+      - +gold
+        - occurrences.parquet base curada
+  - README.md documentação
+  - _quarto.yml configuração Quarto
 :::
 
-## File tree — ícones customizados
+## File tree — arquivos como links
 
-Para escolher um ícone explicitamente, coloque o nome do arquivo entre crases e use o atributo `icon`.
+Qualquer item pode levar ao código-fonte. O usuário escolhe o destino usando um link Markdown normal; comentários e autodetecção do ícone continuam funcionando.
 
-Ícones nomeados incluídos: `file`, `folder`, `code`, `terminal`, `database`, `data`, `image`, `config`, `docs`, `package`, `test`, `lock`, `git`, `notebook`, `leaf`, `star` e `rocket`.
+```markdown
+:::file-tree
+- +_extensions
+  - +semantic-components
+    - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) steps
+    - [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua) file tree
+    - [`git-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/git-tree.lua) git tree
+    - [`badges.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/badges.lua) badges
+- [`index.qmd`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/index.qmd) galeria
+:::
+```
 
-Também é possível usar um caractere/emoji ou o caminho para uma imagem local (`.svg`, `.png`, `.jpg`, `.webp` ou `.gif`).
+**Output:**
 
 :::file-tree
+- +_extensions
+  - +semantic-components
+    - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) steps
+    - [`file-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/file-tree.lua) file tree
+    - [`git-tree.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/git-tree.lua) git tree
+    - [`badges.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/badges.lua) badges
+- [`index.qmd`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/index.qmd) galeria
+:::
+
+## File tree — escolhendo a biblioteca de ícones
+
+```markdown
+::: {.file-tree icons="devicon"}
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+
+::: {.file-tree icons="simple-icons"}
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+
+::: {.file-tree icons="builtin"}
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+
+::: {.file-tree icons="none"}
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+```
+
+**Devicon:**
+
+::: {.file-tree icons="devicon"}
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+
+**Simple Icons:**
+
+::: {.file-tree icons="simple-icons"}
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+
+**Builtin:**
+
+::: {.file-tree icons="builtin"}
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+
+**Sem ícones:**
+
+::: {.file-tree icons="none"}
+- analysis.R
+- pipeline.py
+- app.js
+- types.ts
+:::
+
+## File tree — ícone customizado por arquivo
+
+```markdown
+:::file-tree
+- `analysis.R`{icon="devicon:r"} R
+- `pipeline.py`{icon="devicon:python"} Python
 - `species.csv`{icon="leaf"} dados de espécies
-- `golden.parquet`{icon="★"} base curada
-- `warehouse.db`{icon="database"} banco consolidado
-- `deploy.sh`{icon="rocket"} publicação
-- +scripts utilitários
-  - `deduplicate.py`{icon="🧬"} deduplicação taxonômica
+- `golden.parquet`{icon="★"} base ouro
+- `deduplicate.py`{icon="🧬"} deduplicação
+- `special.dat`{icon="assets/special.svg"} imagem local
+:::
+```
+
+**Output:**
+
+:::file-tree
+- `analysis.R`{icon="devicon:r"} R
+- `pipeline.py`{icon="devicon:python"} Python
+- `species.csv`{icon="leaf"} dados de espécies
+- `golden.parquet`{icon="★"} base ouro
+- `deduplicate.py`{icon="🧬"} deduplicação
 :::
 
-Para uma imagem local, use por exemplo `` `special.dat`{icon="assets/special.svg"} ``.
+Providers disponíveis: `devicon` (padrão), `simple-icons`, `builtin` e `none`.
 
 ## Compatibilidade de formatos
 
-Os componentes são construídos sobre nós da AST do Pandoc. No HTML, o CSS fornece a apresentação completa. Em PDF e DOCX, `steps`, `circle-list`, `git-tree` e `file-tree` continuam como estruturas de documento legíveis; badges continuam como conteúdo inline. Elementos puramente visuais, como conectores e ícones automáticos por CSS, degradam de forma segura.
+Os componentes mantêm estrutura semântica no AST do Pandoc. HTML recebe a apresentação rica; em PDF e DOCX, listas, links e conteúdo textual permanecem legíveis e editáveis. Ícones externos e conectores gráficos são decoração HTML e degradam sem comprometer o conteúdo.
