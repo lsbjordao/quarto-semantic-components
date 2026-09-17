@@ -12,7 +12,7 @@ Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.de
 - `steps type="dots"`: steps com bolinhas vazadas por padrão e ampla personalização;
 - `circle-list`: lista ordenada com números circulados;
 - `git-tree`: histórico Git com lanes, branches e merges em SVG no HTML;
-- `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips e providers de ícones;
+- `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips, ícones e pastas expansíveis/colapsáveis em HTML;
 - `badge`: badge inline com presets de projeto e personalização por instância.
 
 ## Instalação
@@ -67,6 +67,7 @@ extensions:
 
   file-tree:
     icons: devicon
+    expanded: true
 
   git-tree:
     line-color: "#9aa0a6"
@@ -222,6 +223,7 @@ Defaults disponíveis no `_quarto.yml`: `line-color`, `line-width`, `node-size`,
 extensions:
   file-tree:
     icons: devicon
+    expanded: true
 ```
 
 ```markdown
@@ -242,6 +244,50 @@ extensions:
 Providers disponíveis: `devicon`, `simple-icons`, `builtin` e `none`.
 
 Para `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o símbolo oficial do Quarto servido pelo próprio site.
+
+### Pastas expansíveis e colapsáveis no HTML
+
+Pastas com filhos são interativas em HTML. Elas ficam abertas por padrão para preservar o comportamento tradicional do componente. Clique no chevron ou no nome da pasta para abrir/fechar; o controle também é acessível por teclado através do botão do chevron.
+
+O estado padrão do projeto pode ser definido no `_quarto.yml`:
+
+```yaml
+extensions:
+  file-tree:
+    expanded: false
+```
+
+Também é possível definir o estado de uma árvore inteira:
+
+```markdown
+::: {.file-tree expanded="false"}
+- +src
+  - app.ts
+  - styles.css
+- +docs
+  - index.qmd
+:::
+```
+
+Ou sobrescrever diretórios individualmente usando atributos Pandoc:
+
+```markdown
+:::file-tree
+- [+src]{expanded="false"}
+  - +components
+    - Button.ts
+    - Card.ts
+  - app.ts
+- [+docs]{open="true"}
+  - index.qmd
+- [+data]{collapsed="true"}
+  - raw.csv
+:::
+```
+
+Aliases aceitos: `expanded`/`open` e `collapsed`. Em PDF e DOCX a árvore continua sempre estruturalmente expandida e legível; a interação existe apenas em HTML.
+
+Se uma pasta também for um link, clicar no link continua navegando. O chevron e o restante da linha controlam a expansão.
 
 ### Texto normal ou inline code
 
@@ -279,7 +325,7 @@ A extensão preserva a sintaxe escolhida pelo autor:
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, badges, tooltips, conectores e Git tree em SVG;
+- **HTML**: apresentação completa, ícones, badges, tooltips, árvores colapsáveis, conectores e Git tree em SVG;
 - **PDF**: conteúdo estrutural e links são preservados; decoração HTML degrada com segurança;
 - **DOCX**: listas, links e texto permanecem editáveis.
 
