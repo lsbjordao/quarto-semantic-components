@@ -14,38 +14,40 @@
   text-align:left;
 }
 .semantic-git-tree .git-tree-layout{
-  display:grid;
-  grid-template-columns:max-content max-content;
-  align-items:start;
-  justify-content:start;
-  column-gap:var(--git-content-gap);
+  position:relative;
   width:max-content;
+  min-width:max-content;
+  min-height:var(--git-graph-height);
 }
 .semantic-git-tree .git-tree-graph{
-  grid-column:1;
-  grid-row:1;
+  position:absolute;
+  inset:0 auto auto 0;
   display:block;
   overflow:visible;
-  align-self:start;
-  justify-self:start;
+  pointer-events:none;
+  z-index:0;
 }
 .semantic-git-tree .git-tree-content-rows{
-  grid-column:2;
-  grid-row:1;
+  position:relative;
+  z-index:1;
   display:flex;
   flex-direction:column;
   align-items:flex-start;
   justify-content:flex-start;
+  width:max-content;
+  min-width:max-content;
 }
 .semantic-git-tree .git-tree-entry{
   display:flex;
   align-items:center;
   justify-content:flex-start;
   width:max-content;
+  min-width:max-content;
   height:var(--git-row-height);
   min-height:var(--git-row-height);
   margin:0;
-  padding:0;
+  padding:0 0 0 var(--git-entry-offset);
+  box-sizing:content-box;
   text-align:left;
 }
 .semantic-git-tree .git-tree-entry>p{margin:0}
