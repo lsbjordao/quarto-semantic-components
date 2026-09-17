@@ -24,15 +24,9 @@ local function truthy(value)
   return value == 'true' or value == '1' or value == 'yes'
 end
 
--- Quarto shortcode arguments are Pandoc inline values. For badge labels we use
--- the same robust strategy as quarto-badge: stringify the argument first, then
--- build a fresh inline sequence. Rich inline Markdown remains available through
--- the AST-native `[label]{.semantic-badge}` form.
 local function argument_text(value)
   if value == nil then return nil end
-  if type(value) == 'string' then
-    return value ~= '' and value or nil
-  end
+  if type(value) == 'string' then return value ~= '' and value or nil end
   local ok, result = pcall(pandoc.utils.stringify, value)
   if ok and result and result ~= '' then return result end
   local fallback = config.text(value)
@@ -62,8 +56,8 @@ return {
       return config.resolve(meta, 'badge', kwargs, preset, key, aliases)
     end
 
-    local label
     local explicit_text = argument_text(kwargs['text'])
+    local label
     if explicit_text then
       label = explicit_text
     elseif explicit_key and first then
@@ -82,16 +76,16 @@ return {
     local title = value('title') or ''
 
     local classes = pandoc.List({
-      'semantic-badge', 'semantic-badge-' .. variant,
-      'semantic-badge-size-' .. size,
-      'semantic-badge-shape-' .. shape,
-      'semantic-badge-' .. appearance
+      'qsc-badge', 'qsc-badge-' .. variant,
+      'qsc-badge-size-' .. size,
+      'qsc-badge-shape-' .. shape,
+      'qsc-badge-' .. appearance
     })
 
     local extra_classes = value('class', {'classes'})
     for _, class in ipairs(config.classes(extra_classes)) do classes:insert(class) end
-    if truthy(value('uppercase')) then classes:insert('semantic-badge-uppercase') end
-    if value('font') == 'mono' then classes:insert('semantic-badge-mono') end
+    if truthy(value('uppercase')) then classes:insert('qsc-badge-uppercase') end
+    if value('font') == 'mono' then classes:insert('qsc-badge-mono') end
 
     local style = {}
     css_var(style, '--semantic-badge-fg', value('fg', {'foreground', 'text-colour', 'text-color'}))
@@ -109,15 +103,15 @@ return {
       ['data-badge-variant'] = variant,
       ['data-badge-size'] = size,
       ['data-badge-appearance'] = appearance,
-      ['data-semantic-badge-resolved'] = 'true'
+      ['data-qsc-badge-resolved'] = 'true'
     }
     if preset_key and preset then attrs['data-badge-key'] = preset_key end
     if #style > 0 then attrs['style'] = table.concat(style, ';') .. ';' end
     if title ~= '' then attrs['title'] = title end
-    if not (FORMAT and FORMAT:match('html')) then attrs['custom-style'] = 'Semantic Badge' end
+    if not (FORMAT and FORMAT:match('html')) then attrs['custom-style'] = 'Badge' end
 
     local inlines = pandoc.List()
-    local icon_span = icon and icon ~= '' and pandoc.Span({ pandoc.Str(icon) }, pandoc.Attr('', { 'semantic-badge-icon' })) or nil
+    local icon_span = icon and icon ~= '' and pandoc.Span({ pandoc.Str(icon) }, pandoc.Attr('', { 'qsc-badge-icon' })) or nil
     if icon_span and icon_position ~= 'end' then
       inlines:insert(icon_span)
       inlines:insert(pandoc.Space())
