@@ -1,0 +1,35 @@
+project:
+  type: default
+
+# Quarto Semantic Components project defaults.
+# These values are inherited by every .qmd in the project.
+extensions:
+  badge:
+    - key: stable
+      label: Estável
+      colour: springgreen
+      fg: "#102a18"
+      appearance: solid
+    - key: experimental
+      label: Experimental
+      class: bg-info
+      appearance: solid
+    - key: deprecated
+      label: Deprecated
+      type: danger
+      appearance: outline
+
+  steps:
+    dot-color: "#8c959f"
+    dot-size: "0.72rem"
+    line-color: "#d0d7de"
+    line-width: "1.5px"
+
+  file-tree:
+    icons: devicon
+
+  git-tree:
+    line-color: "#9aa0a6"
+    line-width: "2px"
+    node-size: "0.68rem"
+    lane-gap: "0.82rem"
