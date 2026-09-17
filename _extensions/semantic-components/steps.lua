@@ -1,4 +1,5 @@
 -- Steps and circled lists.
+local config=require('./config')
 local function has_class(el, name)
   for _, class in ipairs(el.classes or {}) do if class == name then return true end end
   return false
@@ -9,7 +10,7 @@ local function is_html() return FORMAT and FORMAT:match('html') ~= nil end
 
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
-    name = 'quarto-semantic-components', version = '0.4.2',
+    name = 'quarto-semantic-components', version = '0.5.0',
     stylesheets = {
       'css/base.css', 'css/steps.css', 'css/file-tree.css',
       'css/git-tree.css', 'css/badges.css'
@@ -17,8 +18,12 @@ if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   })
 end
 
-local function mode(el)
-  local value = attr(el, 'type') or attr(el, 'mode') or attr(el, 'style')
+local function setting(el, meta, key, aliases)
+  return attr(el,key) or config.default(meta,'steps',key,aliases)
+end
+
+local function mode(el,meta)
+  local value = setting(el,meta,'type',{'mode','style'})
   if value == 'dots' or value == 'dot' or value == 'bullet' or value == 'bullets' then return 'dots' end
   if value == 'git' or value == 'history' or value == 'timeline' then return 'git' end
   if has_class(el, 'steps-dots') or has_class(el, 'dots') then return 'dots' end
@@ -129,14 +134,14 @@ local function ensure_dot_markers(blocks)
   end
 end
 
-local function transform_steps(el)
-  local list_mode = mode(el)
+local function transform_steps(el,meta)
+  local list_mode = mode(el,meta)
   add_class(el, 'semantic-steps'); add_class(el, 'semantic-steps-' .. list_mode)
   if list_mode == 'dots' then
-    local dot_color = attr(el, 'dot-color') or attr(el, 'marker-color')
-    local dot_size = attr(el, 'dot-size') or attr(el, 'marker-size')
-    local line_color = attr(el, 'line-color') or attr(el, 'connector-color')
-    local line_width = attr(el, 'line-width') or attr(el, 'connector-width')
+    local dot_color = setting(el,meta,'dot-color',{'marker-color'})
+    local dot_size = setting(el,meta,'dot-size',{'marker-size'})
+    local line_color = setting(el,meta,'line-color',{'connector-color'})
+    local line_width = setting(el,meta,'line-width',{'connector-width'})
     if dot_color and dot_color ~= '' then append_style(el, '--semantic-step-dot-color:' .. dot_color) end
     if dot_size and dot_size ~= '' then append_style(el, '--semantic-step-dot-size:' .. dot_size) end
     if line_color and line_color ~= '' then append_style(el, '--semantic-step-line-color:' .. line_color) end
@@ -148,9 +153,13 @@ local function transform_steps(el)
   return el
 end
 
-function Div(el)
+local function transform_div(el,meta)
   if has_class(el, 'steps') or has_class(el, 'steps-numbered') or has_class(el, 'steps-dots') or has_class(el, 'steps-git') then
-    return transform_steps(el)
+    return transform_steps(el,meta)
   end
   if has_class(el, 'circle-list') then add_class(el, 'semantic-circle-list'); return el end
+end
+
+function Pandoc(doc)
+  return doc:walk({Div=function(el) return transform_div(el,doc.meta) end})
 end
