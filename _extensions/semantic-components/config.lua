@@ -5,7 +5,8 @@
 -- extensions:
 --   badge:
 --     - key: stable
---       colour: springgreen
+--       type: success
+--       appearance: solid
 --
 -- semantic-components:
 --   steps:
@@ -20,7 +21,7 @@
 local M = {}
 
 local component_aliases = {
-  badge = { 'badge', 'badges', 'semantic-badge' },
+  badge = { 'badge', 'badges' },
   steps = { 'steps' },
   ['file-tree'] = { 'file-tree', 'file_tree', 'filetree' },
   ['git-tree'] = { 'git-tree', 'git_tree', 'gittree' },
@@ -77,6 +78,13 @@ local function candidate(map, key, aliases_)
   return nil
 end
 
+local function usable(value)
+  if value == nil then return nil end
+  local rendered = M.text(value)
+  if rendered == nil or rendered == '' then return nil end
+  return rendered
+end
+
 -- Resolve a component default. `defaults:` is preferred, but compact maps
 -- (e.g. extensions.steps.dot-size) are accepted too.
 function M.default(meta, name, key, aliases_)
@@ -84,11 +92,13 @@ function M.default(meta, name, key, aliases_)
     if type(source) == 'table' then
       if type(source.defaults) == 'table' then
         local value = candidate(source.defaults, key, aliases_)
-        if value ~= nil then return M.text(value) end
+        local rendered = usable(value)
+        if rendered ~= nil then return rendered end
       end
       local value = candidate(source, key, aliases_)
-      if value ~= nil and key ~= 'key' and key ~= 'presets' and key ~= 'defaults' then
-        return M.text(value)
+      local rendered = usable(value)
+      if rendered ~= nil and key ~= 'key' and key ~= 'presets' and key ~= 'defaults' then
+        return rendered
       end
     end
   end
@@ -121,15 +131,16 @@ function M.preset(meta, name, key)
 end
 
 function M.value(map, key, aliases_)
-  local value = candidate(map, key, aliases_)
-  return value ~= nil and M.text(value) or nil
+  return usable(candidate(map, key, aliases_))
 end
 
+-- Explicit values win over presets, presets over project defaults. Empty
+-- shortcode kwargs are ignored so they do not accidentally mask preset fields.
 function M.resolve(meta, component, explicit, preset, key, aliases_)
-  local value = candidate(explicit, key, aliases_)
-  if value ~= nil then return M.text(value) end
-  value = candidate(preset, key, aliases_)
-  if value ~= nil then return M.text(value) end
+  local value = usable(candidate(explicit, key, aliases_))
+  if value ~= nil then return value end
+  value = usable(candidate(preset, key, aliases_))
+  if value ~= nil then return value end
   return M.default(meta, component, key, aliases_)
 end
 
