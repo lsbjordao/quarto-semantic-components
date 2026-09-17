@@ -1,4 +1,5 @@
 -- File tree with links and selectable icon providers.
+local config=require('./config')
 local function has_class(el, name)
   for _, class in ipairs(el.classes or {}) do if class == name then return true end end
   return false
@@ -145,9 +146,11 @@ local function walk(list, default_lib)
   end
 end
 
-function Div(el)
+local function transform(el,meta)
   if not has_class(el,'file-tree') then return nil end
-  add_class(el,'semantic-file-tree'); local default_lib=library(attr(el,'icons') or attr(el,'icon-library'))
+  add_class(el,'semantic-file-tree')
+  local configured=config.default(meta,'file-tree','icons',{'icon-library'})
+  local default_lib=library(attr(el,'icons') or attr(el,'icon-library') or configured)
   el.attributes['data-icon-library']=default_lib
   for i,block in ipairs(el.content) do
     if block.t=='BulletList' or block.t=='OrderedList' then
@@ -156,4 +159,8 @@ function Div(el)
     end
   end
   return el
+end
+
+function Pandoc(doc)
+  return doc:walk({Div=function(el) return transform(el,doc.meta) end})
 end
