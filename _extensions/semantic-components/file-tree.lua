@@ -1,4 +1,4 @@
--- File tree with links and selectable icon providers.
+-- File tree with links, selectable icon providers, optional inline-code labels and tooltips.
 local config=require('./config')
 local function has_class(el, name)
   for _, class in ipairs(el.classes or {}) do if class == name then return true end end
@@ -77,21 +77,53 @@ local function image_icon(value)
   return lower:match('%.svg$') or lower:match('%.png$') or lower:match('%.jpe?g$') or lower:match('%.webp$') or lower:match('%.gif$')
 end
 
+local function apply_attrs(source, row)
+  row.icon = attr(source,'icon') or row.icon
+  row.icon_library = attr(source,'icon-library') or attr(source,'icons') or row.icon_library
+  row.tooltip = attr(source,'tooltip') or attr(source,'info') or row.tooltip
+end
+
+local function parse_label(content, row)
+  row.name = stringify(content)
+  if #content == 1 and content[1].t == 'Code' then
+    row.code = true
+    row.name = content[1].text
+  elseif #content == 1 and content[1].t == 'Strong' then
+    row.highlight = true
+    row.name = stringify(content[1].content)
+  end
+end
+
 local function parse(inlines)
   if #inlines == 0 then return nil end
-  local first, row = inlines[1], {comment=tail(inlines)}
+  local first, row = inlines[1], {comment=tail(inlines), code=false}
+
   if first.t == 'Link' then
-    row.name = stringify(first.content); row.href = first.target; row.title = first.title
-    row.icon = attr(first,'icon'); row.icon_library = attr(first,'icon-library') or attr(first,'icons')
+    parse_label(first.content, row)
+    row.href = first.target
+    row.title = first.title
+    apply_attrs(first, row)
   elseif first.t == 'Code' then
-    row.name = first.text; row.icon = attr(first,'icon'); row.icon_library = attr(first,'icon-library') or attr(first,'icons')
-    row.href = attr(first,'href') or attr(first,'link'); row.title = attr(first,'title')
-  elseif first.t == 'Strong' then row.name = stringify(first.content); row.highlight = true
+    row.name = first.text
+    row.code = true
+    row.href = attr(first,'href') or attr(first,'link')
+    row.title = attr(first,'title')
+    apply_attrs(first, row)
+  elseif first.t == 'Span' then
+    parse_label(first.content, row)
+    row.href = attr(first,'href') or attr(first,'link')
+    row.title = attr(first,'title')
+    apply_attrs(first, row)
+  elseif first.t == 'Strong' then
+    row.name = stringify(first.content)
+    row.highlight = true
   else
     local raw = stringify(inlines):gsub('^%s+',''):gsub('%s+$','')
-    row.name, row.comment_text = raw:match('^(%S+)%s+(.+)$'); row.name = row.name or raw
+    row.name, row.comment_text = raw:match('^(%S+)%s+(.+)$')
+    row.name = row.name or raw
     row.comment = row.comment_text and pandoc.List({pandoc.Str(row.comment_text)}) or pandoc.List()
   end
+
   if row.name and row.name:sub(1,1) == '+' then row.folder = true; row.name = row.name:sub(2) end
   return row
 end
@@ -116,6 +148,20 @@ local function custom_icon(value)
   return pandoc.Span({pandoc.Str(value)},pandoc.Attr('',{'file-tree-custom-icon'}))
 end
 
+local function tooltip_icon(text)
+  if not is_html() or not text or text == '' then return nil end
+  return pandoc.Span(
+    {pandoc.Str('i')},
+    pandoc.Attr('', {'file-tree-info'}, {title=text, ['aria-label']=text, tabindex='0'})
+  )
+end
+
+local function make_label(row, folder)
+  if row.code then return pandoc.Code(row.name) end
+  if folder or row.highlight then return pandoc.Strong({pandoc.Str(row.name)}) end
+  return pandoc.Str(row.name)
+end
+
 local function make_row(row, folder, default_lib)
   local lib = library(row.icon_library or default_lib); local requested
   requested, lib = provider_icon(row.icon, lib)
@@ -128,13 +174,25 @@ local function make_row(row, folder, default_lib)
   end
   local classes = pandoc.List({'file-tree-row', folder and 'file-tree-folder' or 'file-tree-file'})
   if row.highlight then classes:insert('file-tree-highlighted') end
+  if row.code then classes:insert('file-tree-code-label') end
   if icon then classes:insert('file-tree-has-inline-icon') end
   if builtin_name then classes:insert('file-icon-'..builtin_name) end
   if row.href then classes:insert('file-tree-linked') end
-  local out = pandoc.List(); if icon then out:insert(icon); out:insert(pandoc.Space()) end
-  local label = folder and pandoc.Strong({pandoc.Str(row.name)}) or pandoc.Code(row.name)
+  if row.tooltip then classes:insert('file-tree-has-tooltip') end
+
+  local out = pandoc.List()
+  if icon then out:insert(icon); out:insert(pandoc.Space()) end
+
+  local label = make_label(row, folder)
   out:insert(row.href and pandoc.Link({label},row.href,row.title or '') or label)
-  if row.comment and #row.comment > 0 then out:insert(pandoc.Space()); out:insert(pandoc.Span(row.comment,pandoc.Attr('',{'file-tree-comment'}))) end
+
+  local info = tooltip_icon(row.tooltip)
+  if info then out:insert(pandoc.Space()); out:insert(info) end
+
+  if row.comment and #row.comment > 0 then
+    out:insert(pandoc.Space())
+    out:insert(pandoc.Span(row.comment,pandoc.Attr('',{'file-tree-comment'})))
+  end
   return pandoc.Plain({pandoc.Span(out,pandoc.Attr('',classes))})
 end
 
@@ -145,9 +203,15 @@ local function walk(list, default_lib)
       if block.t == 'BulletList' or block.t == 'OrderedList' then nested = block
       elseif not row_block and (block.t == 'Plain' or block.t == 'Para') then row_index,row_block=i,block end
     end
-    if row_block then local row=parse(row_block.content); if row and row.name~='' then item[row_index]=make_row(row,row.folder or nested~=nil,default_lib) end end
+    if row_block then
+      local row=parse(row_block.content)
+      if row and row.name~='' then item[row_index]=make_row(row,row.folder or nested~=nil,default_lib) end
+    end
     if nested then
-      if nested.t == 'OrderedList' then nested=pandoc.BulletList(nested.content); for i,b in ipairs(item) do if b.t=='OrderedList' then item[i]=nested break end end end
+      if nested.t == 'OrderedList' then
+        nested=pandoc.BulletList(nested.content)
+        for i,b in ipairs(item) do if b.t=='OrderedList' then item[i]=nested break end end
+      end
       walk(nested,default_lib)
     end
   end
