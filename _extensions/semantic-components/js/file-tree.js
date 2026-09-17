@@ -1,4 +1,6 @@
 (() => {
+  let nextTreeId = 0;
+
   const directChildList = (li) =>
     Array.from(li.children).find((child) => child.tagName === "UL") || null;
 
@@ -43,10 +45,15 @@
       row.dataset.fileTreeReady = "true";
       row.classList.add("file-tree-folder-interactive");
 
+      if (!list.id) {
+        nextTreeId += 1;
+        list.id = `qsc-file-tree-children-${nextTreeId}`;
+      }
+
       const button = document.createElement("button");
       button.type = "button";
       button.className = "file-tree-toggle-button";
-      button.setAttribute("aria-controls", "");
+      button.setAttribute("aria-controls", list.id);
       row.insertBefore(button, row.firstChild);
 
       const expanded = row.dataset.fileTreeExpanded !== "false";
