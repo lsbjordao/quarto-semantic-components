@@ -9,7 +9,7 @@ Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.de
 ## Componentes
 
 - `steps`: sequência numerada inspirada no padrão de documentação do Vocs;
-- `steps type="dots"`: bolinhas com cor, tamanho, cor da linha e espessura configuráveis globalmente e por etapa;
+- `steps type="dots"`: bolinhas vazadas por padrão, com cor, preenchimento, tamanho, espessura de borda, cor da linha e espessura configuráveis globalmente e por etapa;
 - `circle-list`: lista ordenada com números circulados;
 - `git-tree`: histórico Git com lanes e merges renderizados em SVG no HTML, sem ASCII art;
 - `file-tree`: árvore de arquivos com aninhamento profundo, links e providers de ícones;
@@ -130,7 +130,9 @@ Conteúdo.
 :::
 ```
 
-### Bolinhas com defaults do projeto
+### Bolinhas vazadas por padrão
+
+Em `type="dots"`, as bolinhas são **sem preenchimento** por padrão. `dot-color` controla a cor do contorno. O preenchimento só aparece se `dot-fill` for definido explicitamente.
 
 ```markdown
 ::: {.steps type="dots"}
@@ -145,7 +147,7 @@ Conteúdo.
 :::
 ```
 
-### Override no bloco e por etapa
+### Cores diferentes por etapa
 
 ```markdown
 ::: {.steps type="dots"
@@ -154,18 +156,37 @@ Conteúdo.
   line-color="#d0d7de"
   line-width="1.5px"}
 
-## Extrair {dot-color="#2563eb" dot-size="0.62rem"}
+## Extrair {dot-color="#2563eb"}
 Conteúdo.
 
-## Deduplicar {dot-color="#f59e0b" dot-size="1.1rem" line-width="3px"}
+## Deduplicar {dot-color="#f59e0b" dot-size="1rem"}
 Conteúdo.
 
-## Publicar {dot-color="#2da44e" dot-size="0.85rem"}
+## Publicar {dot-color="#16a34a"}
 Conteúdo.
 :::
 ```
 
-Aliases disponíveis: `marker-color`, `marker-size`, `connector-color` e `connector-width`.
+### Preenchimento opcional
+
+`dot-fill` pode ser configurado no bloco ou em uma etapa individual. Também é possível controlar separadamente a espessura do contorno com `dot-border-width`.
+
+```markdown
+::: {.steps type="dots" dot-color="#64748b"}
+## Pendente
+Conteúdo.
+
+## Em execução {dot-color="#2563eb" dot-fill="#2563eb"}
+Conteúdo.
+
+## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
+Conteúdo.
+:::
+```
+
+Defaults e overrides disponíveis: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color` e `line-width`.
+
+Aliases disponíveis: `marker-color`, `marker-fill`, `marker-size`, `marker-border-width`, `connector-color` e `connector-width`.
 
 ## Circle list
 
