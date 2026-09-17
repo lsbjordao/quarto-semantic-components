@@ -14,7 +14,7 @@ local function tail(inlines)
   return out
 end
 
-local QUARTO_ICON = 'https://quarto.org/quarto.png'
+local QUARTO_ICON = 'https://quarto.org/favicon.png'
 
 local exact = {
   ['dockerfile']='docker', ['package.json']='nodejs', ['package-lock.json']='lock',
@@ -98,9 +98,8 @@ end
 
 local function library_icon(name, lib)
   if not is_html() or lib == 'none' then return nil end
-  -- Devicon does not currently ship a Quarto glyph. Quarto's own documentation
-  -- identifies https://quarto.org/quarto.png as the Quarto icon, so the default
-  -- provider uses that official asset for .qmd and Quarto config files.
+  -- Devicon does not currently ship a Quarto glyph. For .qmd and Quarto
+  -- configuration files, use the official Quarto favicon/mark.
   if lib == 'devicon' and name == 'quarto' then
     return pandoc.RawInline('html','<img class="file-tree-library-icon file-tree-quarto-icon" src="'..QUARTO_ICON..'" alt="" aria-hidden="true" />')
   end
