@@ -82,7 +82,6 @@ local function collect(list,depth,rows)
   end
 end
 
--- Semantic fallback for PDF/DOCX and other non-HTML outputs.
 local function make_semantic_row(row,depth)
   local classes=pandoc.List({'git-tree-row','git-tree-depth-'..tostring(depth or 0)})
   local out=pandoc.List({pandoc.Span({pandoc.Code(row.ref)},pandoc.Attr('',{'git-tree-ref'}))})
@@ -160,10 +159,6 @@ local function infer_parents(rows)
     if row.depth>max_depth then max_depth=row.depth end
   end
 
-  -- First pass: infer a valid commit DAG from nested-list depth. A child branch
-  -- starts at the immediately preceding commit. Returning to a shallower lane
-  -- creates a merge commit whose parents are the previous tip of the target lane
-  -- plus the tips of every lane being closed.
   for i,row in ipairs(rows) do
     local d=row.depth
     local parents={}
@@ -184,8 +179,6 @@ local function infer_parents(rows)
     active[d]=i
   end
 
-  -- Second pass: explicit parent(s) override inference. This makes arbitrary DAGs
-  -- and merge commits representable without abandoning the compact list syntax.
   for _,row in ipairs(rows) do
     if row.parents_spec and row.parents_spec~='' then
       local spec=tostring(row.parents_spec)
@@ -226,8 +219,6 @@ local function graph_svg(rows,max_depth,lane,node_size,row_height,direction)
   end
   local parts={}
 
-  -- Edges first, so commit nodes sit cleanly on top of all joins. Every edge is
-  -- commit-to-commit: branches originate at nodes and merges terminate at nodes.
   for i,row in ipairs(rows) do
     for _,parent_index in ipairs(row.parents or {}) do
       local parent=rows[parent_index]
@@ -282,11 +273,13 @@ local function render_rows(rows,el,meta,direction)
   local contents=pandoc.List()
   if direction=='BT' then
     for i=#rows,1,-1 do
-      contents:insert(pandoc.Div({pandoc.Plain({pandoc.Span(row_content(rows[i]),pandoc.Attr('',{'git-tree-content'}))})},pandoc.Attr('',{'git-tree-entry'},{style='--git-row-height:'..fmt(row_height)..'px;','data-commit'=rows[i].id})))
+      local attrs={style='--git-row-height:'..fmt(row_height)..'px;',['data-commit']=rows[i].id}
+      contents:insert(pandoc.Div({pandoc.Plain({pandoc.Span(row_content(rows[i]),pandoc.Attr('',{'git-tree-content'}))})},pandoc.Attr('',{'git-tree-entry'},attrs)))
     end
   else
     for _,row in ipairs(rows) do
-      contents:insert(pandoc.Div({pandoc.Plain({pandoc.Span(row_content(row),pandoc.Attr('',{'git-tree-content'}))})},pandoc.Attr('',{'git-tree-entry'},{style='--git-row-height:'..fmt(row_height)..'px;','data-commit'=row.id})))
+      local attrs={style='--git-row-height:'..fmt(row_height)..'px;',['data-commit']=row.id}
+      contents:insert(pandoc.Div({pandoc.Plain({pandoc.Span(row_content(row),pandoc.Attr('',{'git-tree-content'}))})},pandoc.Attr('',{'git-tree-entry'},attrs)))
     end
   end
 
