@@ -207,12 +207,16 @@ local function edge_path(x1,y1,x2,y2)
   return '<path class="git-tree-edge" d="M '..fmt(x1)..' '..fmt(y1)..' C '..fmt(x1)..' '..fmt(c1y)..', '..fmt(x2)..' '..fmt(c2y)..', '..fmt(x2)..' '..fmt(y2)..'" />'
 end
 
-local function graph_svg(rows,max_depth,lane,node_size,row_height,direction)
+local function graph_geometry(node_size,lane)
   local r=node_size/2
   local pad=r+3
+  return r,pad,function(depth) return pad+depth*lane end
+end
+
+local function graph_svg(rows,max_depth,lane,node_size,row_height,direction)
+  local r,pad,node_x=graph_geometry(node_size,lane)
   local width=pad*2+max_depth*lane
   local height=math.max(row_height,#rows*row_height)
-  local function x(row) return pad+row.depth*lane end
   local function y(index)
     if direction=='BT' then return (#rows-index+0.5)*row_height end
     return (index-0.5)*row_height
@@ -222,12 +226,12 @@ local function graph_svg(rows,max_depth,lane,node_size,row_height,direction)
   for i,row in ipairs(rows) do
     for _,parent_index in ipairs(row.parents or {}) do
       local parent=rows[parent_index]
-      if parent then parts[#parts+1]=edge_path(x(parent),y(parent_index),x(row),y(i)) end
+      if parent then parts[#parts+1]=edge_path(node_x(parent.depth),y(parent_index),node_x(row.depth),y(i)) end
     end
   end
 
   for i,row in ipairs(rows) do
-    parts[#parts+1]='<circle class="git-tree-node" data-commit="'..row.id..'" cx="'..fmt(x(row))..'" cy="'..fmt(y(i))..'" r="'..fmt(r)..'" />'
+    parts[#parts+1]='<circle class="git-tree-node" data-commit="'..row.id..'" cx="'..fmt(node_x(row.depth))..'" cy="'..fmt(y(i))..'" r="'..fmt(r)..'" />'
   end
 
   return '<svg class="git-tree-graph" viewBox="0 0 '..fmt(width)..' '..fmt(height)..'" width="'..fmt(width)..'" height="'..fmt(height)..'" aria-hidden="true">'..table.concat(parts)..'</svg>',height,width
@@ -265,28 +269,41 @@ local function render_rows(rows,el,meta,direction)
   local lane_value=attr(el,'lane-gap') or config.default(meta,'git-tree','lane-gap')
   local node_value=attr(el,'node-size') or config.default(meta,'git-tree','node-size')
   local row_height_value=attr(el,'row-height') or config.default(meta,'git-tree','row-height')
+  local content_gap_value=attr(el,'content-gap') or config.default(meta,'git-tree','content-gap')
   local lane=number_length(lane_value,13)
   local node_size=number_length(node_value,11)
   local row_height=number_length(row_height_value,36)
+  local content_gap=number_length(content_gap_value,9)
+  local _,pad,node_x=graph_geometry(node_size,lane)
   local svg,height=graph_svg(rows,max_depth,lane,node_size,row_height,direction)
+
+  local function entry(row)
+    -- Start the label/message immediately after this commit's node, rather than
+    -- after the deepest lane in the graph. This preserves the visual hierarchy:
+    -- branch labels and descriptions form a staircase that follows the DAG lanes.
+    local offset=node_x(row.depth)+(node_size/2)+content_gap
+    local attrs={
+      style='--git-row-height:'..fmt(row_height)..'px;--git-entry-offset:'..fmt(offset)..'px;--git-depth:'..tostring(row.depth)..';',
+      ['data-commit']=row.id,
+      ['data-depth']=tostring(row.depth)
+    }
+    return pandoc.Div(
+      {pandoc.Plain({pandoc.Span(row_content(row),pandoc.Attr('',{'git-tree-content'}))})},
+      pandoc.Attr('',{'git-tree-entry','git-tree-depth-'..tostring(row.depth)},attrs)
+    )
+  end
 
   local contents=pandoc.List()
   if direction=='BT' then
-    for i=#rows,1,-1 do
-      local attrs={style='--git-row-height:'..fmt(row_height)..'px;',['data-commit']=rows[i].id}
-      contents:insert(pandoc.Div({pandoc.Plain({pandoc.Span(row_content(rows[i]),pandoc.Attr('',{'git-tree-content'}))})},pandoc.Attr('',{'git-tree-entry'},attrs)))
-    end
+    for i=#rows,1,-1 do contents:insert(entry(rows[i])) end
   else
-    for _,row in ipairs(rows) do
-      local attrs={style='--git-row-height:'..fmt(row_height)..'px;',['data-commit']=row.id}
-      contents:insert(pandoc.Div({pandoc.Plain({pandoc.Span(row_content(row),pandoc.Attr('',{'git-tree-content'}))})},pandoc.Attr('',{'git-tree-entry'},attrs)))
-    end
+    for _,row in ipairs(rows) do contents:insert(entry(row)) end
   end
 
   local layout=pandoc.Div({
     pandoc.RawBlock('html',svg),
     pandoc.Div(contents,pandoc.Attr('',{'git-tree-content-rows'}))
-  },pandoc.Attr('',{'git-tree-layout'},{style='--git-graph-height:'..fmt(height)..'px;'}))
+  },pandoc.Attr('',{'git-tree-layout'},{style='--git-graph-height:'..fmt(height)..'px;--git-graph-width:'..fmt((pad*2)+max_depth*lane)..'px;'}))
   return pandoc.List({layout})
 end
 
@@ -306,6 +323,7 @@ local function transform(el,meta)
     {'--git-node-size',setting(el,meta,'node-size')},
     {'--git-lane-gap',setting(el,meta,'lane-gap')},
     {'--git-row-indent',setting(el,meta,'row-indent')},
+    {'--git-content-gap',setting(el,meta,'content-gap')},
     {'--semantic-git-node-bg',setting(el,meta,'node-bg',{'node-background'})}
   }
   for _,pair in ipairs(styles) do if pair[2] and pair[2]~='' then append_style(el,pair[1]..':'..pair[2]) end end
