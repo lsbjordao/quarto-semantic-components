@@ -7,17 +7,19 @@ extensions:
   badge:
     - key: stable
       label: Estável
-      colour: springgreen
-      fg: "#102a18"
+      type: success
       appearance: solid
+      icon: "✓"
     - key: experimental
       label: Experimental
-      class: bg-info
-      appearance: solid
+      type: info
+      appearance: outline
+      icon: "⚗"
     - key: deprecated
       label: Deprecated
       type: danger
-      appearance: outline
+      appearance: soft
+      icon: "!"
 
   steps:
     dot-color: "#8c959f"
