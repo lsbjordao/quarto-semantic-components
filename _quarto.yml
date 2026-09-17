@@ -22,7 +22,7 @@ extensions:
   steps:
     dot-color: "#8c959f"
     dot-size: "0.72rem"
-    line-color: "#d0d7de"
+    line-color: "#9aa0a6"
     line-width: "1.5px"
 
   file-tree:
