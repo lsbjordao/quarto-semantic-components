@@ -1,0 +1,12 @@
+.semantic-details{border:1px solid color-mix(in srgb,currentColor 18%,transparent);border-radius:.65rem;background:color-mix(in srgb,currentColor 2%,transparent);overflow:hidden;margin:.8rem 0}
+.semantic-details>summary{cursor:pointer;list-style:none;font-weight:650;padding:.72rem .9rem;display:flex;align-items:center;gap:.55rem;user-select:none}
+.semantic-details>summary::-webkit-details-marker{display:none}
+.semantic-details>summary::before{content:"›";display:inline-flex;align-items:center;justify-content:center;width:1rem;height:1rem;transition:transform .16s ease;transform-origin:center;font-size:1.2em;line-height:1}
+.semantic-details[open]>summary::before{transform:rotate(90deg)}
+.semantic-details>summary:hover{background:color-mix(in srgb,currentColor 4%,transparent)}
+.semantic-details>summary:focus-visible{outline:2px solid currentColor;outline-offset:-2px}
+.semantic-details-body{padding:.1rem .9rem .85rem}
+.semantic-details-body>:last-child{margin-bottom:0}
+.semantic-details-note{border-left:3px solid #2563eb}
+.semantic-details-warning{border-left:3px solid #d97706}
+.semantic-details-danger{border-left:3px solid #dc2626}
