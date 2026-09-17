@@ -13,7 +13,11 @@ Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.de
 - `circle-list`: lista ordenada com números circulados;
 - `git-tree`: grafo de commits Git (DAG) com branches, merges, tags, `HEAD` e direções TB/BT;
 - `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips, ícones e pastas colapsáveis em HTML;
-- `badge`: badge inline com presets de projeto e personalização por instância.
+- `badge`: badge inline com presets de projeto e personalização por instância;
+- `timeline`: sequência cronológica com datas, estados e marcadores;
+- `pipeline`: fluxo de processamento em LR/TB/BT com estágios e estados;
+- `details`: conteúdo expansível em HTML e sempre visível em PDF/DOCX;
+- `changelog`: releases e grupos Added/Changed/Fixed/Removed/Deprecated/Security.
 
 ## Instalação
 
@@ -71,6 +75,25 @@ extensions:
     lane-gap: "0.82rem"
     row-height: "36px"
     content-gap: "0.55rem"
+
+  timeline:
+    line-color: "#9aa0a6"
+    line-width: "2px"
+    marker-size: "0.78rem"
+    marker-color: "#64748b"
+    marker-fill: transparent
+
+  pipeline:
+    direction: LR
+    line-color: "#9aa0a6"
+    line-width: "2px"
+    gap: "1.25rem"
+
+  details:
+    open: false
+
+  changelog:
+    compact: false
 ```
 
 Também são aceitos os namespaces `semantic-components:` e `extensions.semantic-components`.
@@ -182,12 +205,10 @@ O Git é modelado como um **DAG de commits**. No `git-tree`:
 - cada aresta conecta um commit pai a um commit filho;
 - uma bifurcação sempre começa em um commit;
 - um merge sempre termina em um commit;
-- o texto entre crases representa a lane/branch mostrada ao lado daquele commit;
+- a tag/branch e a descrição começam logo após o nó correspondente, formando uma escadinha coerente com a lane;
 - `tag=` e `head=true` podem anexar referências adicionais ao commit.
 
 ### Sintaxe simples
-
-A sintaxe por listas aninhadas continua sendo a forma mais curta:
 
 ```markdown
 :::git-tree
@@ -208,24 +229,11 @@ A extensão infere os parents da seguinte forma:
 - mesma profundidade → próximo commit da mesma lane;
 - aumento de profundidade → branch criado a partir do commit imediatamente anterior;
 - retorno a uma profundidade menor → o próximo commit da lane pai é tratado como merge commit;
-- retorno de vários níveis de uma vez → o commit recebe múltiplos parents (merge tipo octopus).
+- retorno de vários níveis de uma vez → o commit recebe múltiplos parents.
 
-### Alinhamento hierárquico do conteúdo
-
-No HTML, a lane gráfica e o conteúdo do commit compartilham a mesma hierarquia horizontal. A tag/branch e a descrição começam logo depois do nó correspondente, em vez de todas as linhas textuais começarem depois da lane mais profunda. Isso produz uma “escadinha” visual coerente com os níveis dos branches.
-
-`lane-gap` controla a distância entre lanes e `content-gap` controla apenas o espaço entre a bolinha do commit e sua tag/descrição:
-
-```yaml
-extensions:
-  git-tree:
-    lane-gap: "0.82rem"
-    content-gap: "0.55rem"
-```
+`lane-gap` controla a distância entre lanes e `content-gap` controla o espaço entre o nó e a tag/descrição.
 
 ### Direção TB ou BT
-
-O mesmo DAG pode ser exibido em qualquer das duas direções verticais:
 
 ```markdown
 ::: {.git-tree direction="TB"}
@@ -233,7 +241,7 @@ O mesmo DAG pode ser exibido em qualquer das duas direções verticais:
 :::
 ```
 
-`TB` (`top → bottom`) mostra o commit mais antigo no topo e é o default. `BT` (`bottom → top`) mantém o mesmo DAG, mas mostra os commits mais recentes no topo:
+`TB` (`top → bottom`) mostra o commit mais antigo no topo. `BT` (`bottom → top`) mantém o mesmo DAG, invertendo apenas a leitura vertical:
 
 ```markdown
 ::: {.git-tree direction="BT"}
@@ -241,19 +249,7 @@ O mesmo DAG pode ser exibido em qualquer das duas direções verticais:
 :::
 ```
 
-Também é possível definir uma vez no `_quarto.yml`:
-
-```yaml
-extensions:
-  git-tree:
-    direction: BT
-```
-
-`orientation=` é aceito como alias de `direction=`.
-
 ### DAG explícito: ids e parents
-
-Para histórias que não podem ser inferidas apenas pela indentação, atribua ids aos commits e declare os parents explicitamente:
 
 ```markdown
 :::git-tree
@@ -264,23 +260,11 @@ Para histórias que não podem ser inferidas apenas pela indentação, atribua i
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.7.1" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.8.0" head="true"} merge feature/badges
 :::
 ```
 
-`parents=` prevalece sobre a inferência automática. Use uma lista separada por vírgulas para merge commits. `parents="none"` cria explicitamente um root commit.
-
-### Referências adicionais
-
-```markdown
-- `main`{#release tag="v1.0.0" head="true"} release
-```
-
-No HTML, `HEAD` e tags aparecem como labels adicionais. A lane continua sendo determinada pela profundidade da lista; os parents determinam as arestas do DAG.
-
-Defaults disponíveis para `git-tree`: `direction`, `line-color`, `line-width`, `node-size`, `lane-gap`, `row-height`, `content-gap` e `node-bg`.
-
-Em PDF/DOCX, a estrutura continua como uma lista semântica legível.
+`parents=` prevalece sobre a inferência automática. `parents="none"` cria explicitamente um root commit.
 
 ## File tree
 
@@ -307,15 +291,11 @@ Para `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o símbolo ofi
 
 ### Pastas expansíveis em HTML
 
-Pastas com filhos podem ser expandidas/colapsadas em HTML. O default é aberto:
-
 ```yaml
 extensions:
   file-tree:
     expanded: true
 ```
-
-Pode ser sobrescrito no bloco ou por pasta:
 
 ```markdown
 ::: {.file-tree expanded="false"}
@@ -329,7 +309,7 @@ Pode ser sobrescrito no bloco ou por pasta:
 
 Aliases: `expanded`, `open` e `collapsed`.
 
-### Texto normal ou inline code
+### Texto normal, links e tooltip
 
 ```markdown
 :::file-tree
@@ -337,33 +317,115 @@ Aliases: `expanded`, `open` e `collapsed`.
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-:::
-```
-
-### Tooltip opcional
-
-```markdown
-:::file-tree
 - [analysis.R]{tooltip="Script principal de análise em R"}
-- [`pipeline.py`]{info="Pipeline de ingestão e validação"}
 :::
 ```
 
-### Ícones customizados
+## Timeline
+
+`timeline` é orientado a eventos cronológicos, releases, fases e marcos. O primeiro nível de heading dentro do bloco define os itens.
 
 ```markdown
-- `pipeline.py`{icon="devicon:python"}
-- `analysis.R`{icon="simple-icons:r"}
-- `species.csv`{icon="leaf"}
-- `golden.parquet`{icon="★"}
-- `special.dat`{icon="assets/special.svg"}
+:::timeline
+## Protótipo {date="2024" status="done" color="#16a34a"}
+Primeira implementação do componente.
+
+## Beta {date="2025" status="active" color="#2563eb"}
+Validação e refinamento visual.
+
+## Release {date="2026" status="success" color="#16a34a"}
+Versão estável.
+:::
 ```
+
+Defaults configuráveis: `line-color`, `line-width`, `marker-size`, `marker-color` e `marker-fill`. Cada item pode sobrescrever `date`, `status`, `color`, `marker-fill` e `marker-size`.
+
+Em PDF/DOCX, os headings e o conteúdo original permanecem legíveis.
+
+## Pipeline
+
+`pipeline` representa fluxo de processamento e não apenas instruções sequenciais. Em HTML pode ser horizontal (`LR`) ou vertical (`TB`/`BT`).
+
+```markdown
+::: {.pipeline direction="LR"}
+- [Coleta]{icon="◉" status="done"}
+- [Validação]{icon="✓" status="done"}
+- [Deduplicação]{icon="◇" status="active"}
+- [Gold layer]{icon="★" status="warning"}
+- [Publicação]{icon="↗" status="todo"}
+:::
+```
+
+Também pode ser vertical:
+
+```markdown
+::: {.pipeline direction="TB"}
+- [Extrair]{status="done"}
+- [Transformar]{status="active"}
+- [Validar]{status="warning"}
+- [Publicar]{status="todo"}
+:::
+```
+
+Defaults: `direction`, `line-color`, `line-width` e `gap`. Estados reconhecidos visualmente incluem `done`/`success`, `active`/`running`/`info`, `warning`, `blocked`/`danger` e `todo`.
+
+Em PDF/DOCX, a lista original é preservada.
+
+## Details
+
+Em HTML, `details` usa o elemento nativo `<details>`; em PDF/DOCX o conteúdo fica sempre visível.
+
+```markdown
+::: {.details summary="Como funciona internamente?" open="false"}
+O conteúdo pode conter **Markdown**, listas, código e outros componentes.
+:::
+```
+
+Pode definir defaults no projeto:
+
+```yaml
+extensions:
+  details:
+    open: false
+    variant: default
+```
+
+Variantes visuais disponíveis: `default`, `note`, `warning` e `danger`.
+
+## Changelog
+
+`changelog` estrutura releases e grupos de mudanças em um formato próximo a Keep a Changelog.
+
+```markdown
+:::changelog
+## 0.8.0 {date="2026-09-17" status="released"}
+
+### Added
+- `timeline`
+- `pipeline`
+- `details`
+- `changelog`
+
+### Changed
+- Git tree com conteúdo alinhado à lane.
+
+### Fixed
+- Ajustes de layout e defaults.
+
+## 0.7.1 {date="2026-09-17"}
+
+### Changed
+- `content-gap` no `git-tree`.
+:::
+```
+
+Os grupos `Added`, `Changed`, `Fixed`, `Removed`, `Deprecated` e `Security` recebem marcadores próprios no HTML. `compact: true` reduz o espaçamento entre releases.
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, badges, tooltips, file tree interativo e Git DAG em SVG;
-- **PDF**: conteúdo estrutural e links são preservados; decoração HTML degrada com segurança;
-- **DOCX**: listas, links e texto permanecem editáveis.
+- **HTML**: apresentação completa, ícones, badges, tooltips, file tree interativo, Git DAG em SVG, timeline, pipeline, details nativo e changelog estilizado;
+- **PDF**: conteúdo estrutural e links são preservados; componentes interativos degradam com segurança;
+- **DOCX**: listas, headings, links e texto permanecem editáveis.
 
 ## Exemplos
 
