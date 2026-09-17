@@ -13,37 +13,34 @@ Esta página demonstra os componentes da extensão **Quarto Semantic Components*
 
 ## Badges inline
 
-A extensão usa o nome `semantic-badge`, de propósito, para poder coexistir com a extensão [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge). A proposta aqui é diferente: badges livres por instância, com aparência, forma, tamanho, cores, ícone e link customizáveis.
-
-### Variantes semânticas
+A extensão usa `semantic-badge`, de propósito, para coexistir com [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge). Aqui o foco é personalização livre por instância.
 
 ```markdown
 {{< semantic-badge "Beta" >}}
 {{< semantic-badge "Estável" type="success" icon="✓" >}}
 {{< semantic-badge "Experimental" type="warning" >}}
-{{< semantic-badge "Deprecated" type="danger" >}}
-{{< semantic-badge "v0.4.0" type="accent" appearance="solid" >}}
+{{< semantic-badge "v0.4.1" type="accent" appearance="solid" >}}
 ```
 
-**Output:** {{< semantic-badge "Beta" >}} {{< semantic-badge "Estável" type="success" icon="✓" >}} {{< semantic-badge "Experimental" type="warning" >}} {{< semantic-badge "Deprecated" type="danger" >}} {{< semantic-badge "v0.4.0" type="accent" appearance="solid" >}}
+**Output:** {{< semantic-badge "Beta" >}} {{< semantic-badge "Estável" type="success" icon="✓" >}} {{< semantic-badge "Experimental" type="warning" >}} {{< semantic-badge "v0.4.1" type="accent" appearance="solid" >}}
 
 ### Personalização livre
 
 ```markdown
-{{< semantic-badge "Custom" \
-  bg="#111827" fg="#f9fafb" border="#60a5fa" \
-  border-width="2px" radius="0.35rem" size="md" \
-  padding="0.22em 0.75em" weight="750" \
-  letter-spacing="0.03em" shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
+{{< semantic-badge "Custom"
+  bg="#111827" fg="#f9fafb" border="#60a5fa"
+  border-width="2px" radius="0.35rem" size="md"
+  padding="0.22em 0.75em" weight="750"
+  shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 
-{{< semantic-badge "Source" type="info" icon="↗" icon-position="end" \
-  href="https://github.com/lsbjordao/quarto-semantic-components" \
+{{< semantic-badge "Source" type="info" icon="↗" icon-position="end"
+  href="https://github.com/lsbjordao/quarto-semantic-components"
   title="Abrir o repositório" >}}
 ```
 
-**Output:** {{< semantic-badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" letter-spacing="0.03em" shadow="0 2px 8px rgb(0 0 0 / .16)" >}} {{< semantic-badge "Source" type="info" icon="↗" icon-position="end" href="https://github.com/lsbjordao/quarto-semantic-components" title="Abrir o repositório" >}}
+**Output:** {{< semantic-badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" padding="0.22em 0.75em" weight="750" shadow="0 2px 8px rgb(0 0 0 / .16)" >}} {{< semantic-badge "Source" type="info" icon="↗" icon-position="end" href="https://github.com/lsbjordao/quarto-semantic-components" title="Abrir o repositório" >}}
 
-Também é possível usar a sintaxe Pandoc, sem shortcode:
+Também é possível usar a sintaxe Pandoc diretamente:
 
 ```markdown
 [AST-native]{.semantic-badge variant="success" appearance="outline" size="md"}
@@ -53,17 +50,19 @@ Também é possível usar a sintaxe Pandoc, sem shortcode:
 
 ## Steps — numerado
 
+Os exemplos usam `##` como nível padrão das etapas. O filtro, porém, usa o **primeiro nível de heading encontrado**, portanto outros níveis continuam funcionando.
+
 ```markdown
 :::steps
-### Instale a extensão
+## Instale a extensão
 
 Use `quarto add lsbjordao/quarto-semantic-components`.
 
-### Ative o filtro
+## Ative o filtro
 
 Inclua `semantic-components` em `filters`.
 
-### Escreva normalmente
+## Escreva normalmente
 
 Cada heading inicia uma etapa.
 :::
@@ -72,70 +71,36 @@ Cada heading inicia uma etapa.
 **Output:**
 
 :::steps
-### Instale a extensão
+## Instale a extensão
 
 Use `quarto add lsbjordao/quarto-semantic-components`.
 
-### Ative o filtro
+## Ative o filtro
 
 Inclua `semantic-components` em `filters`.
 
-### Escreva normalmente
+## Escreva normalmente
 
 Cada heading inicia uma etapa.
 :::
 
 ## Steps — bolinhas
 
-### Cor padrão
+### Cor default para todas
+
+`dot-color` define a cor padrão das bolinhas e `line-color` define a cor padrão dos conectores.
 
 ```markdown
-::: {.steps type="dots"}
-### Baixe os dados
-
-Faça a ingestão das fontes necessárias.
-
-### Valide
-
-Execute as verificações de consistência.
-
-### Publique
-
-Gere o produto final.
-:::
-```
-
-**Output:**
-
-::: {.steps type="dots"}
-### Baixe os dados
-
-Faça a ingestão das fontes necessárias.
-
-### Valide
-
-Execute as verificações de consistência.
-
-### Publique
-
-Gere o produto final.
-:::
-
-### Cor customizada da bolinha
-
-Use `dot-color` para o marcador e, opcionalmente, `line-color` para o conector.
-
-```markdown
-::: {.steps type="dots" dot-color="#2da44e" line-color="#8c959f"}
-### Extrair
+::: {.steps type="dots" dot-color="#6366f1" line-color="#a5b4fc"}
+## Extrair
 
 Baixe os registros novos.
 
-### Deduplicar
+## Deduplicar
 
 Reconcilie coletas e identificações.
 
-### Publicar
+## Publicar
 
 Atualize a base curada.
 :::
@@ -143,16 +108,52 @@ Atualize a base curada.
 
 **Output:**
 
-::: {.steps type="dots" dot-color="#2da44e" line-color="#8c959f"}
-### Extrair
+::: {.steps type="dots" dot-color="#6366f1" line-color="#a5b4fc"}
+## Extrair
 
 Baixe os registros novos.
 
-### Deduplicar
+## Deduplicar
 
 Reconcilie coletas e identificações.
 
-### Publicar
+## Publicar
+
+Atualize a base curada.
+:::
+
+### Uma cor para cada bolinha
+
+O bloco pode fornecer o default e cada `##` pode sobrescrever `dot-color`. `line-color` também pode ser sobrescrito por etapa.
+
+```markdown
+::: {.steps type="dots" dot-color="#8c959f" line-color="#d0d7de"}
+## Extrair {dot-color="#2563eb"}
+
+Baixe os registros novos.
+
+## Deduplicar {dot-color="#f59e0b" line-color="#f59e0b"}
+
+Reconcilie coletas e identificações.
+
+## Publicar {dot-color="#2da44e"}
+
+Atualize a base curada.
+:::
+```
+
+**Output:**
+
+::: {.steps type="dots" dot-color="#8c959f" line-color="#d0d7de"}
+## Extrair {dot-color="#2563eb"}
+
+Baixe os registros novos.
+
+## Deduplicar {dot-color="#f59e0b" line-color="#f59e0b"}
+
+Reconcilie coletas e identificações.
+
+## Publicar {dot-color="#2da44e"}
 
 Atualize a base curada.
 :::
@@ -177,7 +178,7 @@ Atualize a base curada.
 
 ## Git tree
 
-`git-tree` usa listas aninhadas para representar branches. As linhas são desenhadas em CSS com curvas e nós circulares; não há caracteres ASCII formando o grafo.
+`git-tree` usa listas aninhadas para representar branches. O grafo é desenhado por CSS: nós, linhas e curvas; não usa caracteres ASCII. As lanes são compactas para que branches e commits fiquem visualmente próximos, como em um visualizador Git.
 
 ```markdown
 :::git-tree
@@ -195,7 +196,7 @@ Atualize a base curada.
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.4.0
+- `main` release v0.4.1
 :::
 ```
 
@@ -216,14 +217,14 @@ Atualize a base curada.
     - `test/badges` cobre variantes
     - `test/badges` cobre links
 - `main` merge feature/badges
-- `main` release v0.4.0
+- `main` release v0.4.1
 :::
 
-A sintaxe antiga `steps type="git"` continua disponível apenas por compatibilidade.
+A sintaxe antiga `steps type="git"` permanece apenas por compatibilidade.
 
 ## File tree — Devicon e aninhamento profundo
 
-**Devicon é o provider padrão.** Para extensões reconhecidas, são usados os logotipos reais das linguagens/ferramentas — por exemplo R, Python, JavaScript e TypeScript — em vez de glifos genéricos.
+**Devicon é o provider padrão.** R, Python, JavaScript, TypeScript e outras linguagens usam seus ícones reais.
 
 ```markdown
 ::: {.file-tree icons="devicon"}
@@ -238,17 +239,24 @@ A sintaxe antiga `steps type="git"` continua disponível apenas por compatibilid
         - report.Rmd relatório
       - +web
         - +src
+          - +components
+            - chart.ts componente de gráfico
+            - table.ts componente de tabela
           - app.ts aplicação
           - chart.js gráficos
           - styles.css estilos
           - index.html página
     - +database
-      - migrations.sql migrações
+      - +migrations
+        - schema.sql esquema
+        - indexes.sql índices
       - cache.sqlite cache local
   - +data
     - +raw
       - occurrences.csv dados brutos
     - +processed
+      - +silver
+        - normalized.parquet dados normalizados
       - +gold
         - occurrences.parquet base curada
   - README.md documentação
@@ -270,17 +278,24 @@ A sintaxe antiga `steps type="git"` continua disponível apenas por compatibilid
         - report.Rmd relatório
       - +web
         - +src
+          - +components
+            - chart.ts componente de gráfico
+            - table.ts componente de tabela
           - app.ts aplicação
           - chart.js gráficos
           - styles.css estilos
           - index.html página
     - +database
-      - migrations.sql migrações
+      - +migrations
+        - schema.sql esquema
+        - indexes.sql índices
       - cache.sqlite cache local
   - +data
     - +raw
       - occurrences.csv dados brutos
     - +processed
+      - +silver
+        - normalized.parquet dados normalizados
       - +gold
         - occurrences.parquet base curada
   - README.md documentação
@@ -289,7 +304,7 @@ A sintaxe antiga `steps type="git"` continua disponível apenas por compatibilid
 
 ## File tree — arquivos como links
 
-Qualquer item pode levar ao código-fonte. O usuário escolhe o destino usando um link Markdown normal; comentários e autodetecção do ícone continuam funcionando.
+O próprio nome do arquivo pode ser um link Markdown para GitHub, documentação ou qualquer URL escolhida pelo autor.
 
 ```markdown
 :::file-tree
@@ -392,7 +407,6 @@ Qualquer item pode levar ao código-fonte. O usuário escolhe o destino usando u
 - `species.csv`{icon="leaf"} dados de espécies
 - `golden.parquet`{icon="★"} base ouro
 - `deduplicate.py`{icon="🧬"} deduplicação
-- `special.dat`{icon="assets/special.svg"} imagem local
 :::
 ```
 
