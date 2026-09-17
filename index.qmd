@@ -1,35 +1,45 @@
 ---
-title: "Semantic Blocks — exemplo"
+title: "Quarto Semantic Components — exemplos"
 format:
   html:
     toc: true
 filters:
-  - semantic-blocks
+  - semantic-components
 ---
 
-Esta página demonstra todos os componentes da extensão.
+Esta página demonstra os componentes da extensão **Quarto Semantic Components**.
+
+## Badges inline
+
+Badges são shortcodes inline e podem aparecer no meio de uma frase: {{< badge "Beta" >}}, {{< badge "Estável" type="success" icon="✓" >}}, {{< badge "Experimental" type="warning" >}}, {{< badge "Deprecated" type="danger" >}} e {{< badge "v0.2.0" type="accent" >}}.
+
+```markdown
+{{< badge "Beta" >}}
+{{< badge "Estável" type="success" icon="✓" >}}
+{{< badge "Experimental" type="warning" >}}
+```
 
 ## Steps — numerado
 
-A sintaxe é deliberadamente próxima do Vocs: `:::steps` funciona como um fenced div do Pandoc/Quarto.
+A sintaxe é próxima do Vocs: cada heading inicia uma etapa.
 
 :::steps
 ### Instale a extensão
 
-Copie a pasta `_extensions/semantic-blocks` para o projeto ou instale o pacote da forma usual do Quarto.
+Use `quarto add lsbjordao/quarto-semantic-components`.
 
 ### Ative o filtro
 
-Inclua `semantic-blocks` em `filters` no YAML do documento ou do projeto.
+Inclua `semantic-components` em `filters` no YAML do documento ou projeto.
 
 ### Escreva normalmente
 
-Cada título dentro de `steps` inicia uma nova etapa. O conteúdo da etapa continua sendo Markdown comum.
+O conteúdo de cada etapa continua sendo Markdown comum.
 :::
 
 ## Steps — bolinhas
 
-Use `type="dots"` para trocar os números por nós circulares preenchidos.
+Use `type="dots"` quando a sequência for importante, mas a numeração não.
 
 ::: {.steps type="dots"}
 ### Baixe os dados
@@ -45,27 +55,7 @@ Execute as verificações de consistência.
 Gere o produto final.
 :::
 
-## Steps — estilo histórico Git
-
-`type="git"` usa uma linha vertical com nós semelhantes a commits.
-
-::: {.steps type="git"}
-### feat: cria estrutura inicial
-
-Primeiro estado funcional do projeto.
-
-### refactor: reorganiza módulos
-
-A arquitetura é simplificada sem alterar o resultado esperado.
-
-### release: publica versão 1.0
-
-Versão estável entregue.
-:::
-
 ## Lista ordenada circulada
-
-Este componente incorpora a ideia da classe `.circle-list`.
 
 :::circle-list
 1. Primeiro item
@@ -73,36 +63,75 @@ Este componente incorpora a ideia da classe `.circle-list`.
 3. Terceiro item
 :::
 
-## File tree
+## Git tree
 
-A sintaxe segue a ideia do Vocs: listas aninhadas e `+` antes do nome para declarar explicitamente uma pasta. Uma pasta também é inferida quando o item possui filhos.
+`git-tree` representa uma linha de versionamento com ramificações reais por meio de listas aninhadas.
+
+:::git-tree
+- `main` initial commit
+- `main` cria a base dos componentes
+  - `feature/icons` abre a ramificação de ícones
+  - `feature/icons` adiciona autodetecção por linguagem
+    - `docs/icons` documenta os novos ícones
+    - `docs/icons` adiciona exemplos de customização
+  - `feature/icons` adiciona ícones customizados
+- `main` merge feature/icons
+- `main` adiciona badges inline
+  - `feature/git-tree` implementa ramificações visuais
+  - `feature/git-tree` adiciona conectores de merge
+- `main` merge feature/git-tree
+- `main` release v0.2.0
+:::
+
+A antiga sintaxe `steps type="git"` continua aceita por compatibilidade, mas `git-tree` é o componente recomendado para históricos com branches.
+
+## File tree — ícones automáticos
+
+O `file-tree` reconhece extensões e nomes comuns automaticamente.
 
 :::file-tree
 - README.md documentação principal
-- quarto.yml configuração do projeto
+- _quarto.yml configuração do projeto
 - +src código-fonte
-  - **main.ts** ponto de entrada destacado
-  - utils.ts utilitários
-  - +components componentes reutilizáveis
-    - Button.ts
-    - Card.ts
-- +public arquivos estáticos
-  - logo.svg
-  - robots.txt
+  - analysis.R análise em R
+  - pipeline.py pipeline Python
+  - app.js JavaScript
+  - types.ts TypeScript
+  - index.html HTML
+  - styles.css CSS
+  - query.sql SQL
+  - filter.lua Lua
+  - main.rs Rust
+  - worker.go Go
+  - report.qmd Quarto
+  - README.md Markdown
+- +data dados
+  - occurrences.csv tabela de ocorrências
+  - warehouse.parquet dados colunares
+  - cache.sqlite banco local
+- package.json metadados Node
+- Dockerfile container
 :::
 
-## File tree mínimo
+## File tree — ícones customizados
 
-Não é obrigatório escrever `+` quando a hierarquia já deixa claro que o item é uma pasta.
+Para escolher um ícone explicitamente, coloque o nome do arquivo entre crases e use o atributo `icon`.
+
+Ícones nomeados incluídos: `file`, `folder`, `code`, `terminal`, `database`, `data`, `image`, `config`, `docs`, `package`, `test`, `lock`, `git`, `notebook`, `leaf`, `star` e `rocket`.
+
+Também é possível usar um caractere/emoji ou o caminho para uma imagem local (`.svg`, `.png`, `.jpg`, `.webp` ou `.gif`).
 
 :::file-tree
-- project
-  - index.qmd
-  - styles.css
-  - assets
-    - logo.svg
+- `species.csv`{icon="leaf"} dados de espécies
+- `golden.parquet`{icon="★"} base curada
+- `warehouse.db`{icon="database"} banco consolidado
+- `deploy.sh`{icon="rocket"} publicação
+- +scripts utilitários
+  - `deduplicate.py`{icon="🧬"} deduplicação taxonômica
 :::
 
-## Compatibilidade com outros formatos
+Para uma imagem local, use por exemplo `` `special.dat`{icon="assets/special.svg"} ``.
 
-Os componentes são construídos sobre nós nativos da AST do Pandoc. No HTML, o CSS fornece o tratamento visual completo. Em DOCX e PDF, `steps` continua sendo uma lista ordenada ou não ordenada, `circle-list` continua sendo uma lista ordenada e `file-tree` continua sendo uma lista hierárquica legível.
+## Compatibilidade de formatos
+
+Os componentes são construídos sobre nós da AST do Pandoc. No HTML, o CSS fornece a apresentação completa. Em PDF e DOCX, `steps`, `circle-list`, `git-tree` e `file-tree` continuam como estruturas de documento legíveis; badges continuam como conteúdo inline. Elementos puramente visuais, como conectores e ícones automáticos por CSS, degradam de forma segura.
