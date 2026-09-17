@@ -105,51 +105,57 @@ local function line(x1,y1,x2,y2)
 end
 
 local function curve(x1,y1,x2,y2)
-  local dy=math.max(5,(y2-y1)*0.55)
-  return '<path class="git-tree-edge" d="M '..fmt(x1)..' '..fmt(y1)..' C '..fmt(x1)..' '..fmt(y1+dy)..', '..fmt(x2)..' '..fmt(y2-dy)..', '..fmt(x2)..' '..fmt(y2)..'" />'
+  local span=math.max(4,math.abs(y2-y1)*0.55)
+  return '<path class="git-tree-edge" d="M '..fmt(x1)..' '..fmt(y1)..' C '..fmt(x1)..' '..fmt(y1+span)..', '..fmt(x2)..' '..fmt(y2-span)..', '..fmt(x2)..' '..fmt(y2)..'" />'
 end
 
+-- Each commit occupies one fixed-height row. The commit node sits at the row
+-- centre; edges enter from y=0 and leave through y=height. This keeps the graph
+-- horizontally aligned with the branch badge/message and makes rows connect
+-- continuously without detached hooks.
 local function graph_svg(depth,prev_depth,next_depth,max_depth,lane,node_size)
   local r=node_size/2
   local pad=r+2
-  local node_y=math.max(10,r+4)
-  local merge_step=math.max(7,r+3)
-  local height=30
-  if next_depth and next_depth<depth then
-    height=math.max(height,node_y+(depth-next_depth)*merge_step+8)
-  end
+  local height=32
+  local node_y=height/2
   local width=pad*2+max_depth*lane
   local function x(d) return pad+d*lane end
   local parts={}
 
-  -- Persistent ancestor lanes above the current commit.
-  for level=0,depth-1 do parts[#parts+1]=line(x(level),0,x(level),node_y) end
+  -- Ancestor lanes remain active while visiting nested branches.
+  for level=0,depth-1 do
+    local bottom=height
+    if next_depth and next_depth<depth and level>next_depth then
+      local steps=depth-next_depth
+      local index=depth-level
+      bottom=node_y+(height-node_y)*(index/steps)
+    end
+    parts[#parts+1]=line(x(level),0,x(level),bottom)
+  end
+
+  -- Incoming edge of the current lane.
   if prev_depth~=nil then parts[#parts+1]=line(x(depth),0,x(depth),node_y) end
 
   if next_depth==nil then
-    -- No outgoing edge from the final visible commit.
+    -- Final commit: no outgoing edge.
   elseif next_depth==depth then
-    for level=0,depth do parts[#parts+1]=line(x(level),node_y,x(level),height) end
+    parts[#parts+1]=line(x(depth),node_y,x(depth),height)
   elseif next_depth>depth then
-    -- Parent lanes continue while a child branch peels off to the right.
-    for level=0,depth do parts[#parts+1]=line(x(level),node_y,x(level),height) end
-    local cx,cy=x(depth),node_y
-    for level=depth+1,next_depth do
-      local ny=height-(next_depth-level)*merge_step
-      parts[#parts+1]=curve(cx,cy,x(level),ny)
-      cx,cy=x(level),ny
-    end
+    -- Open a child branch. The parent lane continues straight down while the
+    -- child peels off from the current commit into the next row.
+    parts[#parts+1]=line(x(depth),node_y,x(depth),height)
+    local target_x=x(next_depth)
+    parts[#parts+1]=curve(x(depth),node_y,target_x,height)
   else
-    -- Nested branches merge one lane at a time. This avoids detached hooks
-    -- when several nested levels finish before the same parent commit.
-    for level=0,next_depth do parts[#parts+1]=line(x(level),node_y,x(level),height) end
+    -- Close one or more nested lanes. Merge sequentially inside the lower half
+    -- of the row so depth 2 -> 0 reads visually as 2 -> 1 -> 0.
+    local steps=depth-next_depth
     local cx,cy=x(depth),node_y
-    for level=depth,next_depth+1,-1 do
-      local nx=x(level-1)
-      local ny=node_y+(depth-level+1)*merge_step
-      if level-1>next_depth then parts[#parts+1]=line(nx,0,nx,ny) end
-      parts[#parts+1]=curve(cx,cy,nx,ny)
-      cx,cy=nx,ny
+    for step=1,steps do
+      local target_depth=depth-step
+      local ny=node_y+(height-node_y)*(step/steps)
+      parts[#parts+1]=curve(cx,cy,x(target_depth),ny)
+      cx,cy=x(target_depth),ny
     end
   end
 
