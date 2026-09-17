@@ -2,14 +2,18 @@
 
 Extensão Quarto/Pandoc com componentes semânticos reutilizáveis para HTML, PDF e DOCX. A estrutura principal permanece no AST do Pandoc; o HTML acrescenta apresentação rica, enquanto formatos não HTML preservam listas, links e conteúdo textual.
 
+## Inspiração
+
+Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.dev/), em especial dos componentes de Markdown como **Steps** e **File Tree**. A implementação aqui é própria e adaptada ao ecossistema Quarto/Pandoc, com foco adicional em renderização multiplataforma, metadata de projeto e degradação para PDF/DOCX.
+
 ## Componentes
 
-- `steps`: sequência numerada inspirada no Vocs;
+- `steps`: sequência numerada inspirada no padrão de documentação do Vocs;
 - `steps type="dots"`: bolinhas com cor, tamanho, cor da linha e espessura configuráveis globalmente e por etapa;
 - `circle-list`: lista ordenada com números circulados;
-- `git-tree`: histórico Git com branches aninhados e conectores CSS, sem ASCII art;
+- `git-tree`: histórico Git com lanes e merges renderizados em SVG no HTML, sem ASCII art;
 - `file-tree`: árvore de arquivos com aninhamento profundo, links e providers de ícones;
-- `semantic-badge`: badge inline altamente customizável e compatível com presets de projeto.
+- `badge`: badge inline altamente customizável e compatível com presets de projeto.
 
 ## Instalação
 
@@ -26,19 +30,19 @@ filters:
 
 ## Defaults no `_quarto.yml`
 
-A partir da versão **0.5.0**, os componentes podem receber defaults e presets no metadata compartilhado do projeto. A precedência é:
+Os componentes podem receber defaults e presets no metadata compartilhado do projeto. A precedência é:
 
 ```text
 _quarto.yml / _metadata.yml
+        ↓
+preset do componente
         ↓
 atributos do componente
         ↓
 atributos do item individual
 ```
 
-Isto permite definir um design system uma vez e sobrescrever apenas exceções.
-
-### Sintaxe compacta `extensions:`
+Exemplo:
 
 ```yaml
 extensions:
@@ -70,78 +74,39 @@ extensions:
     lane-gap: "0.82rem"
 ```
 
-O repositório inclui um `_quarto.yml` funcional usando exatamente esse padrão.
-
-### Namespace explícito
-
-Em projetos que já usam `extensions:` para outras convenções, a mesma configuração pode ser colocada em `semantic-components:`:
-
-```yaml
-semantic-components:
-  badge:
-    defaults:
-      shape: pill
-      size: sm
-    presets:
-      - key: stable
-        colour: springgreen
-
-  steps:
-    dot-size: "0.8rem"
-    line-width: "2px"
-```
-
-Também é aceito `extensions.semantic-components`.
+Também são aceitos os namespaces `semantic-components:` e `extensions.semantic-components`.
 
 ## Badges
 
-O projeto [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) trabalha com badges configurados por chave/valor. Esta extensão usa o nome **`semantic-badge`** para coexistir com ele e acrescenta personalização livre por instância.
-
-### Presets do projeto
-
-Com este `_quarto.yml`:
-
-```yaml
-extensions:
-  badge:
-    - key: stable
-      label: Estável
-      colour: springgreen
-      fg: "#102a18"
-      appearance: solid
-
-    - key: experimental
-      class: bg-info
-      appearance: solid
-```
-
-basta escrever:
+O shortcode público é **`badge`**:
 
 ```markdown
-{{< semantic-badge stable >}}
-{{< semantic-badge experimental >}}
+{{< badge "Beta" >}}
+{{< badge "Estável" type="success" icon="✓" >}}
+{{< badge stable >}}
+{{< badge "Release estável" key="stable" >}}
 ```
 
-Também é possível usar a aparência do preset com outro texto:
+### Compatibilidade com `mcanouil/quarto-badge`
+
+O projeto [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) também registra um shortcode chamado `badge`. Por isso, um projeto deve **escolher qual extensão será responsável por `{{< badge ... >}}`**; não é recomendado carregar as duas extensões de badge simultaneamente.
+
+A proposta deste projeto é oferecer personalização livre por instância, além de presets de projeto:
 
 ```markdown
-{{< semantic-badge "Release estável" key="stable" >}}
-```
-
-`colour`/`color` é um alias conveniente para `bg`. Valores explícitos no shortcode sempre vencem o preset e os defaults.
-
-### Personalização por instância
-
-```markdown
-{{< semantic-badge "Estável" type="success" icon="✓" >}}
-{{< semantic-badge "Custom"
-  bg="#111827" fg="#fff"
-  border="#60a5fa" border-width="2px"
-  radius="0.35rem" padding="0.2em 0.7em"
+{{< badge "Custom"
+  bg="#111827"
+  fg="#fff"
+  border="#60a5fa"
+  border-width="2px"
+  radius="0.35rem"
+  padding="0.2em 0.7em"
   shadow="0 2px 8px rgb(0 0 0 / .16)" >}}
 ```
 
 Opções incluem `type`/`variant`, `size`, `shape`, `appearance`, `icon`, `icon-position`, `href`, `title`, `fg`, `bg`, `colour`/`color`, `border`, `border-width`, `radius`, `padding`, `weight`, `font-size`, `letter-spacing`, `shadow`, `uppercase`, `font="mono"` e `class`/`classes`.
+
+Internamente as classes CSS continuam prefixadas como `.semantic-badge` para não colidir com a classe `.badge` do Bootstrap/Quarto.
 
 Também existe a forma AST-native:
 
@@ -166,8 +131,6 @@ Conteúdo.
 ```
 
 ### Bolinhas com defaults do projeto
-
-Se `_quarto.yml` já contém os defaults, o documento pode ser simples:
 
 ```markdown
 ::: {.steps type="dots"}
@@ -216,7 +179,7 @@ Aliases disponíveis: `marker-color`, `marker-size`, `connector-color` e `connec
 
 ## Git tree
 
-Branches são listas aninhadas. O grafo HTML é desenhado por CSS com linhas, curvas e nós circulares, sem caracteres ASCII.
+Branches são escritos como listas aninhadas. No HTML, a extensão lineariza o histórico e desenha **lanes, nós, branch-outs e merges em SVG**, o que evita os ganchos e sobreposições produzidos por pseudo-elementos CSS em árvores muito aninhadas.
 
 ```markdown
 :::git-tree
@@ -231,7 +194,9 @@ Branches são listas aninhadas. O grafo HTML é desenhado por CSS com linhas, cu
 :::
 ```
 
-Defaults disponíveis no `_quarto.yml`: `line-color`, `line-width`, `node-size`, `lane-gap`, `row-indent` e `node-bg`. Os mesmos atributos podem ser usados diretamente em `::: {.git-tree ...}` para sobrescrever o projeto.
+Em PDF/DOCX a estrutura continua sendo uma lista semântica legível.
+
+Defaults disponíveis no `_quarto.yml`: `line-color`, `line-width`, `node-size`, `lane-gap`, `row-indent` e `node-bg`.
 
 ## File tree
 
@@ -254,26 +219,23 @@ Depois:
     - +pipelines
       - +python
         - pipeline.py
-        - validate.py
       - +r
         - analysis.R
-        - report.Rmd
-      - +web
-        - +src
-          - +components
-            - chart.ts
-            - table.ts
-          - app.ts
-  - +data
-    - +processed
-      - +gold
-        - occurrences.parquet
+  - +docs
+    - report.qmd
+  - _quarto.yml
 :::
 ```
 
 Providers disponíveis: `devicon`, `simple-icons`, `builtin` e `none`.
 
-Um item pode sobrescrever o provider ou ícone:
+### Ícone oficial do Quarto
+
+Devicon não fornece atualmente um glifo próprio do Quarto. Para arquivos `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o **ícone oficial servido pelo próprio Quarto** em `https://quarto.org/quarto.png`. A documentação oficial do Quarto também referencia esse recurso como “Quarto icon”.
+
+Se `icons="simple-icons"` for escolhido explicitamente, o provider Simple Icons continua sendo respeitado.
+
+### Ícones customizados
 
 ```markdown
 - `pipeline.py`{icon="devicon:python"}
@@ -297,13 +259,13 @@ Um item pode sobrescrever o provider ou ícone:
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, conectores e badges ricos;
+- **HTML**: apresentação completa, ícones, conectores, SVG do Git tree e badges ricos;
 - **PDF**: conteúdo estrutural e links são preservados; decoração HTML degrada com segurança;
 - **DOCX**: listas, links e texto permanecem editáveis.
 
 ## Exemplos
 
-`index.qmd` contém a galeria de componentes e o `_quarto.yml` da raiz demonstra defaults de projeto.
+`index.qmd` contém a galeria de componentes e o `_quarto.yml` da raiz demonstra defaults de projeto. Cada exemplo mostra primeiro o código gerador e depois o output.
 
 ```bash
 quarto preview index.qmd
