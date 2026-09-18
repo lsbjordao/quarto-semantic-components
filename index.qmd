@@ -53,24 +53,12 @@ extensions:
     row-height: "36px"
     content-gap: "0.55rem"
 
-  timeline:
-    line-color: "#9aa0a6"
-    line-width: "2px"
-    marker-size: "0.78rem"
-    marker-color: "#64748b"
-    marker-fill: transparent
+  aside:
+    variant: default
 
-  pipeline:
-    direction: LR
-    line-color: "#9aa0a6"
-    line-width: "2px"
-    gap: "1.25rem"
-
-  details:
-    open: false
-
-  changelog:
-    compact: false
+  article:
+    radius: "0.75rem"
+    padding: "1rem 1.1rem"
 ```
 
 A precedência é **defaults do projeto → preset → componente → item individual**.
@@ -98,12 +86,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.8.0" type="accent" appearance="solid" >}}
+{{< badge "v0.9.0" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.8.0" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.9.0" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -304,7 +292,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.8.0
+- `main` release v0.9.0
 :::
 ```
 
@@ -327,7 +315,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.8.0
+- `main` release v0.9.0
 :::
 
 ### Mesmo DAG — direção BT
@@ -365,7 +353,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.8.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.9.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -379,7 +367,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.8.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.9.0" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -506,188 +494,170 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
 - `golden.parquet`{icon="★"}
 :::
 
-## Timeline
+## Timeline usando Steps — bolinhas
 
-Uma `timeline` representa acontecimentos, fases e marcos cronológicos.
+Não existe um componente `timeline` separado. O mesmo padrão visual é produzido com `steps type="dots"`, mantendo a API menor e mais reutilizável.
 
 ```markdown
-:::timeline
-## Protótipo {date="2024" status="done" color="#16a34a"}
+::: {.steps type="dots"
+  line-color="#9aa0a6"
+  line-width="2px"
+  dot-size="0.78rem"}
+
+## 2024 — Protótipo {dot-color="#16a34a"}
 Primeira implementação do componente.
 
-## Beta {date="2025" status="active" color="#2563eb"}
+## 2025 — Beta {dot-color="#2563eb"}
 Validação e refinamento visual.
 
-## Release candidate {date="2026-06" status="warning" color="#f59e0b"}
+## 2026-06 — Release candidate {dot-color="#f59e0b"}
 Congelamento da API para testes finais.
 
-## Release {date="2026-09" status="success" color="#16a34a"}
+## 2026-09 — Release {dot-color="#16a34a"}
 Versão estável publicada.
+
 :::
 ```
 
 **Output:**
 
-:::timeline
-## Protótipo {date="2024" status="done" color="#16a34a"}
+::: {.steps type="dots" line-color="#9aa0a6" line-width="2px" dot-size="0.78rem"}
+
+## 2024 — Protótipo {dot-color="#16a34a"}
 Primeira implementação do componente.
 
-## Beta {date="2025" status="active" color="#2563eb"}
+## 2025 — Beta {dot-color="#2563eb"}
 Validação e refinamento visual.
 
-## Release candidate {date="2026-06" status="warning" color="#f59e0b"}
+## 2026-06 — Release candidate {dot-color="#f59e0b"}
 Congelamento da API para testes finais.
 
-## Release {date="2026-09" status="success" color="#16a34a"}
+## 2026-09 — Release {dot-color="#16a34a"}
 Versão estável publicada.
+
 :::
 
-## Pipeline
+## Aside
 
-O `pipeline` representa fluxo de processamento. O default da galeria é LR.
+`aside` é um bloco semântico genérico. No HTML ele vira um elemento real `<aside>`; em PDF/DOCX permanece como bloco estrutural.
 
-### Direção LR
+### Variante note
 
 ```markdown
-::: {.pipeline direction="LR"}
-- [Coleta]{icon="◉" status="done"}
-- [Validação]{icon="✓" status="done"}
-- [Deduplicação]{icon="◇" status="active"}
-- [Gold layer]{icon="★" status="warning"}
-- [Publicação]{icon="↗" status="todo"}
+::: {.aside variant="note" title="Nota"}
+Este conteúdo é complementar ao fluxo principal do documento.
+
+Ele pode conter **Markdown**, listas e código.
 :::
 ```
 
 **Output:**
 
-::: {.pipeline direction="LR"}
-- [Coleta]{icon="◉" status="done"}
-- [Validação]{icon="✓" status="done"}
-- [Deduplicação]{icon="◇" status="active"}
-- [Gold layer]{icon="★" status="warning"}
-- [Publicação]{icon="↗" status="todo"}
+::: {.aside variant="note" title="Nota"}
+Este conteúdo é complementar ao fluxo principal do documento.
+
+Ele pode conter **Markdown**, listas e código.
 :::
 
-### Direção TB
+### Variante warning
 
 ```markdown
-::: {.pipeline direction="TB"}
-- [Extrair]{status="done"}
-- [Transformar]{status="done"}
-- [Validar]{status="active"}
-- [Publicar]{status="todo"}
+::: {.aside variant="warning" title="Atenção"}
+Use o `variant` para mudar o destaque sem alterar a semântica do bloco.
 :::
 ```
 
 **Output:**
 
-::: {.pipeline direction="TB"}
-- [Extrair]{status="done"}
-- [Transformar]{status="done"}
-- [Validar]{status="active"}
-- [Publicar]{status="todo"}
+::: {.aside variant="warning" title="Atenção"}
+Use o `variant` para mudar o destaque sem alterar a semântica do bloco.
 :::
 
-## Details
+## Article
 
-Em HTML, o conteúdo pode ser expandido e colapsado. Em PDF/DOCX, permanece sempre visível.
+`article` é um contêiner autocontido e agnóstico. O HTML usa um elemento real `<article>` com borda arredondada. O changelog abaixo é apenas um exemplo de uso.
+
+### Exemplo — changelog dentro de um article
 
 ```markdown
-::: {.details summary="Como funciona internamente?" open="false"}
-O conteúdo pode conter **Markdown**, listas e código.
+:::article
 
-- item um
-- item dois
-
-`details` usa o elemento nativo do HTML.
-:::
-```
-
-**Output:**
-
-::: {.details summary="Como funciona internamente?" open="false"}
-O conteúdo pode conter **Markdown**, listas e código.
-
-- item um
-- item dois
-
-`details` usa o elemento nativo do HTML.
-:::
-
-### Variante visual
-
-```markdown
-::: {.details summary="Atenção" variant="warning" open="true"}
-Esta variante usa uma borda de destaque, mas preserva a mesma semântica.
-:::
-```
-
-**Output:**
-
-::: {.details summary="Atenção" variant="warning" open="true"}
-Esta variante usa uma borda de destaque, mas preserva a mesma semântica.
-:::
-
-## Changelog
-
-O componente organiza releases e grupos de mudanças.
-
-```markdown
-:::changelog
-## 0.8.0 {date="2026-09-17" status="released"}
+## 0.9.0 — 2026-09-17
 
 ### Added
+- `aside`
+- `article`
+
+### Changed
+- Timeline demonstrada com `steps type="dots"`.
+- O `git-tree` usa um DAG de commits.
+- O `file-tree` permite pastas expansíveis.
+
+### Removed
 - `timeline`
 - `pipeline`
 - `details`
 - `changelog`
 
-### Changed
-- Git tree com conteúdo alinhado à lane.
-
-### Fixed
-- Ajustes de layout e defaults.
-
-## 0.7.1 {date="2026-09-17"}
+## 0.7.1 — 2026-09-17
 
 ### Changed
 - Novo `content-gap` no `git-tree`.
+- Tags e descrições acompanham a lane do commit.
 
-### Fixed
-- Alinhamento das tags e descrições.
 :::
 ```
 
 **Output:**
 
-:::changelog
-## 0.8.0 {date="2026-09-17" status="released"}
+:::article
+
+## 0.9.0 — 2026-09-17
 
 ### Added
+- `aside`
+- `article`
+
+### Changed
+- Timeline demonstrada com `steps type="dots"`.
+- O `git-tree` usa um DAG de commits.
+- O `file-tree` permite pastas expansíveis.
+
+### Removed
 - `timeline`
 - `pipeline`
 - `details`
 - `changelog`
 
-### Changed
-- Git tree com conteúdo alinhado à lane.
-
-### Fixed
-- Ajustes de layout e defaults.
-
-## 0.7.1 {date="2026-09-17"}
+## 0.7.1 — 2026-09-17
 
 ### Changed
 - Novo `content-gap` no `git-tree`.
+- Tags e descrições acompanham a lane do commit.
 
-### Fixed
-- Alinhamento das tags e descrições.
 :::
+
+### Article customizado
+
+```markdown
+::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6"}
+## Nota técnica
+Um `article` também pode representar qualquer unidade independente de conteúdo.
+:::
+```
+
+**Output:**
+
+::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6"}
+## Nota técnica
+Um `article` também pode representar qualquer unidade independente de conteúdo.
+:::
+
 
 ## Inspiração e formatos
 
 As ideias de **Steps** e **File Tree** foram inspiradas em componentes do [Vocs](https://vocs.dev/), mas a implementação é própria e orientada ao AST do Pandoc.
 
-- **HTML**: apresentação completa, badges, file tree interativo, tooltips, Git DAG em SVG, timeline, pipeline, details e changelog;
+- **HTML**: apresentação completa, badges, file tree interativo, tooltips, Git DAG em SVG e elementos semânticos `aside`/`article`;
 - **PDF**: conteúdo estrutural e links são preservados;
 - **DOCX**: listas, headings, links e texto permanecem editáveis.
