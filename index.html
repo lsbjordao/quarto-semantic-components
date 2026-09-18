@@ -307,6 +307,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#circled-ordered-list" id="toc-circled-ordered-list" class="nav-link" data-scroll-target="#circled-ordered-list">Circled Ordered List</a>
   <ul class="collapse">
   <li><a href="#basic-list" id="toc-basic-list" class="nav-link" data-scroll-target="#basic-list">Basic list</a></li>
+  <li><a href="#custom-colors" id="toc-custom-colors" class="nav-link" data-scroll-target="#custom-colors">Custom colors</a></li>
+  <li><a href="#light-and-dark-theme-colors" id="toc-light-and-dark-theme-colors" class="nav-link" data-scroll-target="#light-and-dark-theme-colors">Light and dark theme colors</a></li>
   <li><a href="#a-compact-procedure" id="toc-a-compact-procedure" class="nav-link" data-scroll-target="#a-compact-procedure">A compact procedure</a></li>
   </ul></li>
   <li><a href="#git-tree" id="toc-git-tree" class="nav-link" data-scroll-target="#git-tree">Git tree</a>
@@ -586,22 +588,26 @@ automatic theme default</code></pre>
 <td><code>road-color</code>, <code>point-color</code>, <code>surface-color</code></td>
 </tr>
 <tr class="odd">
+<td><code>circle-list</code></td>
+<td><code>border-color</code>, <code>text-color</code>, <code>background-color</code></td>
+</tr>
+<tr class="even">
 <td><code>tree</code></td>
 <td><code>line-color</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>git-tree</code></td>
 <td><code>line-color</code>, <code>node-bg</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>article</code></td>
 <td><code>border-color</code>, <code>background</code>, <code>accent-color</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>badge</code></td>
 <td><code>fg</code>, <code>bg</code>, <code>border</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>progress</code> / <code>meter</code></td>
 <td><code>color</code>, <code>track-color</code></td>
 </tr>
@@ -624,7 +630,7 @@ automatic theme default</code></pre>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>{{&lt; badge deprecated &gt;}}</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Stable release" key="stable" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-size="sm" data-badge-appearance="solid" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-key="stable"><span class="qsc-badge-icon">✓</span> Stable</span> <span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-badge-size="sm" data-badge-appearance="outline" data-badge-variant="info" data-qsc-badge-resolved="true" data-badge-key="experimental"><span class="qsc-badge-icon">⚗</span> Experimental</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-size="sm" data-badge-appearance="soft" data-badge-variant="danger" data-qsc-badge-resolved="true" data-badge-key="deprecated"><span class="qsc-badge-icon">!</span> Deprecated</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-size="sm" data-badge-appearance="solid" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-key="stable"><span class="qsc-badge-icon">✓</span> Stable release</span></p>
+<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-key="stable" data-qsc-badge-resolved="true" data-badge-variant="success" data-badge-size="sm" data-badge-appearance="solid"><span class="qsc-badge-icon">✓</span> Stable</span> <span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-badge-key="experimental" data-qsc-badge-resolved="true" data-badge-variant="info" data-badge-size="sm" data-badge-appearance="outline"><span class="qsc-badge-icon">⚗</span> Experimental</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-key="deprecated" data-qsc-badge-resolved="true" data-badge-variant="danger" data-badge-size="sm" data-badge-appearance="soft"><span class="qsc-badge-icon">!</span> Deprecated</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-key="stable" data-qsc-badge-resolved="true" data-badge-variant="success" data-badge-size="sm" data-badge-appearance="solid"><span class="qsc-badge-icon">✓</span> Stable release</span></p>
 </section>
 <section id="variants-and-appearances" class="level2">
 <h2 class="anchored" data-anchor-id="variants-and-appearances">Variants and appearances</h2>
@@ -635,7 +641,7 @@ automatic theme default</code></pre>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Blocked" type="danger" appearance="soft" &gt;}}</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Featured" type="accent" appearance="solid" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="soft" data-badge-variant="info">Info</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="solid" data-badge-variant="success">Ready</span> <span class="qsc-badge qsc-badge-warning qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="outline" data-badge-variant="warning">Review</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="soft" data-badge-variant="danger">Blocked</span> <span class="qsc-badge qsc-badge-accent qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="solid" data-badge-variant="accent">Featured</span></p>
+<p><span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-variant="info" data-badge-appearance="soft">Info</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-variant="success" data-badge-appearance="solid">Ready</span> <span class="qsc-badge qsc-badge-warning qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-variant="warning" data-badge-appearance="outline">Review</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-variant="danger" data-badge-appearance="soft">Blocked</span> <span class="qsc-badge qsc-badge-accent qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-variant="accent" data-badge-appearance="solid">Featured</span></p>
 </section>
 <section id="sizes-and-shapes" class="level2">
 <h2 class="anchored" data-anchor-id="sizes-and-shapes">Sizes and shapes</h2>
@@ -644,7 +650,7 @@ automatic theme default</code></pre>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Medium" size="md" shape="rounded" &gt;}}</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Large" size="lg" shape="square" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-xs qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="xs" data-badge-appearance="soft" data-badge-variant="neutral">XS</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="soft" data-badge-variant="neutral">Small</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-md qsc-badge-shape-rounded qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="md" data-badge-appearance="soft" data-badge-variant="neutral">Medium</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-lg qsc-badge-shape-square qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="lg" data-badge-appearance="soft" data-badge-variant="neutral">Large</span></p>
+<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-xs qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="xs" data-badge-variant="neutral" data-badge-appearance="soft">XS</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-variant="neutral" data-badge-appearance="soft">Small</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-md qsc-badge-shape-rounded qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="md" data-badge-variant="neutral" data-badge-appearance="soft">Medium</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-lg qsc-badge-shape-square qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="lg" data-badge-variant="neutral" data-badge-appearance="soft">Large</span></p>
 </section>
 <section id="icons-links-and-custom-styling" class="level2">
 <h2 class="anchored" data-anchor-id="icons-links-and-custom-styling">Icons, links, and custom styling</h2>
@@ -652,7 +658,7 @@ automatic theme default</code></pre>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "External docs" type="info" icon="↗" icon-position="end" href="https://quarto.org" &gt;}}</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="soft" data-badge-variant="success"><span class="qsc-badge-icon">✓</span> Stable</span> <a href="https://quarto.org"><span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="soft" data-badge-variant="info">External docs <span class="qsc-badge-icon">↗</span></span></a> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-md qsc-badge-shape-pill qsc-badge-soft" data-badge-size="md" data-badge-appearance="soft" data-badge-variant="neutral" data-qsc-badge-resolved="true" style="--semantic-badge-fg:#f9fafb;--semantic-badge-bg:#111827;--semantic-badge-border:#60a5fa;--semantic-badge-radius:0.35rem;--semantic-badge-border-width:2px;">Custom</span></p>
+<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-variant="success" data-badge-appearance="soft"><span class="qsc-badge-icon">✓</span> Stable</span> <a href="https://quarto.org"><span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-variant="info" data-badge-appearance="soft">External docs <span class="qsc-badge-icon">↗</span></span></a> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-md qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" style="--semantic-badge-fg:#f9fafb;--semantic-badge-bg:#111827;--semantic-badge-border:#60a5fa;--semantic-badge-radius:0.35rem;--semantic-badge-border-width:2px;" data-badge-variant="neutral" data-badge-size="md" data-badge-appearance="soft">Custom</span></p>
 </section>
 <section id="theme-specific-badge-colors" class="level2">
 <h2 class="anchored" data-anchor-id="theme-specific-badge-colors">Theme-specific badge colors</h2>
@@ -660,7 +666,7 @@ automatic theme default</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  fg-light="#1f2937" bg-light="#e5e7eb" border-light="#9ca3af"</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  fg-dark="#f9fafb" bg-dark="#374151" border-dark="#6b7280" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-size="sm" data-badge-appearance="soft" data-badge-variant="neutral" data-qsc-badge-resolved="true" style="--semantic-badge-fg-light:#1f2937;--semantic-badge-fg-dark:#f9fafb;--semantic-badge-bg-light:#e5e7eb;--semantic-badge-bg-dark:#374151;--semantic-badge-border-light:#9ca3af;--semantic-badge-border-dark:#6b7280;">Adaptive</span></p>
+<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" style="--semantic-badge-fg-light:#1f2937;--semantic-badge-fg-dark:#f9fafb;--semantic-badge-bg-light:#e5e7eb;--semantic-badge-bg-dark:#374151;--semantic-badge-border-light:#9ca3af;--semantic-badge-border-dark:#6b7280;" data-badge-variant="neutral" data-badge-size="sm" data-badge-appearance="soft">Adaptive</span></p>
 </section>
 <section id="ast-native-form" class="level2">
 <h2 class="anchored" data-anchor-id="ast-native-form">AST-native form</h2>
@@ -1659,15 +1665,63 @@ automatic theme default</code></pre>
 </ol>
 </div>
 </section>
+<section id="custom-colors" class="level2">
+<h2 class="anchored" data-anchor-id="custom-colors">Custom colors</h2>
+<p>The circle <strong>border</strong>, the <strong>number/text</strong>, and the <strong>background</strong> can be colored independently. An unsuffixed value applies to both light and dark themes.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>::: {.circle-list</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  border-color="#7c3aed"</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  text-color="#ffffff"</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  background-color="#7c3aed"}</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Research</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Prototype</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Validate</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Release</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Output:</strong></p>
+<div class="circle-list semantic-circle-list" data-border-color="#7c3aed" data-text-color="#ffffff" data-background-color="#7c3aed" style="--circle-list-border-color-base:#7c3aed;--circle-list-text-color-base:#ffffff;--circle-list-background-color-base:#7c3aed;">
+<ol type="1">
+<li>Research</li>
+<li>Prototype</li>
+<li>Validate</li>
+<li>Release</li>
+</ol>
+</div>
+</section>
+<section id="light-and-dark-theme-colors" class="level2">
+<h2 class="anchored" data-anchor-id="light-and-dark-theme-colors">Light and dark theme colors</h2>
+<p>Use the <code>-light</code> and <code>-dark</code> variants when the circle needs different contrast in each color mode.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>::: {.circle-list</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  border-color-light="#2563eb"</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  border-color-dark="#60a5fa"</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  text-color-light="#1e3a8a"</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  text-color-dark="#f8fafc"</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  background-color-light="#dbeafe"</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  background-color-dark="#1e3a8a"}</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Install</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Configure</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Compose</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Publish</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Output:</strong></p>
+<div class="circle-list semantic-circle-list" data-border-color-light="#2563eb" data-border-color-dark="#60a5fa" data-text-color-light="#1e3a8a" data-text-color-dark="#f8fafc" data-background-color-light="#dbeafe" data-background-color-dark="#1e3a8a" style="--circle-list-border-color-light:#2563eb;--circle-list-border-color-dark:#60a5fa;--circle-list-text-color-light:#1e3a8a;--circle-list-text-color-dark:#f8fafc;--circle-list-background-color-light:#dbeafe;--circle-list-background-color-dark:#1e3a8a;">
+<ol type="1">
+<li>Install</li>
+<li>Configure</li>
+<li>Compose</li>
+<li>Publish</li>
+</ol>
+</div>
+<p>The canonical color properties are <code>border-color</code>, <code>text-color</code>, and <code>background-color</code>; each accepts the extension-wide base / <code>-light</code> / <code>-dark</code> convention.</p>
+</section>
 <section id="a-compact-procedure" class="level2">
 <h2 class="anchored" data-anchor-id="a-compact-procedure">A compact procedure</h2>
 <p>Because the content remains ordinary Markdown, links, code, emphasis, and other inline content can be used normally.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>:::circle-list</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create <span class="in">`_quarto.yml`</span> in the project root.</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Add <span class="in">`semantic-components`</span> to the **filters** list.</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run <span class="co">[</span><span class="ot">`quarto preview`</span><span class="co">](https://quarto.org/docs/get-started/hello/vscode.html)</span>.</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Render the final document with <span class="in">`quarto render`</span>.</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>:::circle-list</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create <span class="in">`_quarto.yml`</span> in the project root.</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Add <span class="in">`semantic-components`</span> to the **filters** list.</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run <span class="co">[</span><span class="ot">`quarto preview`</span><span class="co">](https://quarto.org/docs/get-started/hello/vscode.html)</span>.</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Render the final document with <span class="in">`quarto render`</span>.</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="circle-list semantic-circle-list">
 <ol type="1">
@@ -1684,80 +1738,80 @@ automatic theme default</code></pre>
 <p><code>git-tree</code> represents a Git history as a commit DAG rather than as a generic tree. A dot is a commit, an edge is a parent → child relationship, a branch split starts at a commit, and a merge ends at a commit.</p>
 <section id="simple-syntax-tb-direction" class="level2">
 <h2 class="anchored" data-anchor-id="simple-syntax-tb-direction">Simple syntax — TB direction</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>::: {.git-tree direction="TB"}</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> initial commit</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> creates the base architecture</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> opens the icons branch</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> adds Devicon</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`docs/icons`</span> documents providers</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`docs/icons`</span> adds examples</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> merge docs/icons</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> adds file links</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/icons</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> starts inline components</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> creates badge</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> adds visual customization</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> covers variants</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> covers links</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> merge test/badges</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/badges</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> release v0.1.0</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>::: {.git-tree direction="TB"}</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> initial commit</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> creates the base architecture</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> opens the icons branch</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> adds Devicon</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`docs/icons`</span> documents providers</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`docs/icons`</span> adds examples</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> merge docs/icons</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> adds file links</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/icons</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> starts inline components</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> creates badge</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> adds visual customization</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> covers variants</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> covers links</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> merge test/badges</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/badges</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> release v0.1.0</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="git-tree semantic-git-tree" data-direction="TB" data-git-direction="TB" style="--git-line-width:2px;--git-node-size:0.68rem;--git-lane-gap:0.82rem;--git-content-gap:0.55rem;">
 <div class="git-tree-rows">
 <div class="git-tree-layout" style="--git-graph-height:612px;--git-graph-width:43.12px;">
 <svg class="git-tree-graph" viewbox="0 0 43.12 612" width="43.12" height="612" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 8.44 54 C 8.44 67.68, 21.56 76.32, 21.56 90"></path><line class="git-tree-edge" x1="21.56" y1="90" x2="21.56" y2="126"></line><path class="git-tree-edge" d="M 21.56 126 C 21.56 139.68, 34.68 148.32, 34.68 162"></path><line class="git-tree-edge" x1="34.68" y1="162" x2="34.68" y2="198"></line><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="234"></line><path class="git-tree-edge" d="M 34.68 198 C 34.68 211.68, 21.56 220.32, 21.56 234"></path><line class="git-tree-edge" x1="21.56" y1="234" x2="21.56" y2="270"></line><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="306"></line><path class="git-tree-edge" d="M 21.56 270 C 21.56 283.68, 8.44 292.32, 8.44 306"></path><line class="git-tree-edge" x1="8.44" y1="306" x2="8.44" y2="342"></line><path class="git-tree-edge" d="M 8.44 342 C 8.44 355.68, 21.56 364.32, 21.56 378"></path><line class="git-tree-edge" x1="21.56" y1="378" x2="21.56" y2="414"></line><path class="git-tree-edge" d="M 21.56 414 C 21.56 427.68, 34.68 436.32, 34.68 450"></path><line class="git-tree-edge" x1="34.68" y1="450" x2="34.68" y2="486"></line><line class="git-tree-edge" x1="21.56" y1="414" x2="21.56" y2="522"></line><path class="git-tree-edge" d="M 34.68 486 C 34.68 499.68, 21.56 508.32, 21.56 522"></path><line class="git-tree-edge" x1="8.44" y1="342" x2="8.44" y2="558"></line><path class="git-tree-edge" d="M 21.56 522 C 21.56 535.68, 8.44 544.32, 8.44 558"></path><line class="git-tree-edge" x1="8.44" y1="558" x2="8.44" y2="594"></line><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="34.68" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="34.68" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c7" cx="21.56" cy="234" r="5.44"></circle><circle class="git-tree-node" data-commit="c8" cx="21.56" cy="270" r="5.44"></circle><circle class="git-tree-node" data-commit="c9" cx="8.44" cy="306" r="5.44"></circle><circle class="git-tree-node" data-commit="c10" cx="8.44" cy="342" r="5.44"></circle><circle class="git-tree-node" data-commit="c11" cx="21.56" cy="378" r="5.44"></circle><circle class="git-tree-node" data-commit="c12" cx="21.56" cy="414" r="5.44"></circle><circle class="git-tree-node" data-commit="c13" cx="34.68" cy="450" r="5.44"></circle><circle class="git-tree-node" data-commit="c14" cx="34.68" cy="486" r="5.44"></circle><circle class="git-tree-node" data-commit="c15" cx="21.56" cy="522" r="5.44"></circle><circle class="git-tree-node" data-commit="c16" cx="8.44" cy="558" r="5.44"></circle><circle class="git-tree-node" data-commit="c17" cx="8.44" cy="594" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c1" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c2" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">creates the base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c3" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">opens the icons branch</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c4" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">adds Devicon</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" data-commit="c5" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c5">
 <span class="git-tree-content"><span class="git-tree-ref"><code>docs/icons</code></span> <span class="git-tree-message">documents providers</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" data-commit="c6" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c6">
 <span class="git-tree-content"><span class="git-tree-ref"><code>docs/icons</code></span> <span class="git-tree-message">adds examples</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c7" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c7">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">merge docs/icons</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c8" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c8">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">adds file links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c9" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c9">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/icons</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c10" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c10">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">starts inline components</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c11" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c11">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">creates badge</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c12" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c12">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">adds visual customization</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" data-commit="c13" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c13">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers variants</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" data-commit="c14" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c14">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c15" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c15">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">merge test/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c16" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c16">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c17" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c17">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">release v0.1.0</span></span>
 </div>
 </div>
@@ -1767,36 +1821,36 @@ automatic theme default</code></pre>
 </section>
 <section id="same-topology-bt-direction" class="level2">
 <h2 class="anchored" data-anchor-id="same-topology-bt-direction">Same topology — BT direction</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>::: {.git-tree direction="BT"}</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> initial commit</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> base architecture</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/api`</span> creates API</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/api`</span> implements endpoints</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/api</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> release</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>::: {.git-tree direction="BT"}</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> initial commit</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> base architecture</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/api`</span> creates API</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/api`</span> implements endpoints</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/api</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> release</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="git-tree semantic-git-tree" data-direction="BT" data-git-direction="BT" style="--git-line-width:2px;--git-node-size:0.68rem;--git-lane-gap:0.82rem;--git-content-gap:0.55rem;">
 <div class="git-tree-rows">
 <div class="git-tree-layout" style="--git-graph-height:216px;--git-graph-width:30px;">
 <svg class="git-tree-graph" viewbox="0 0 30 216" width="30" height="216" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="198" x2="8.44" y2="162"></line><path class="git-tree-edge" d="M 8.44 162 C 8.44 148.32, 21.56 139.68, 21.56 126"></path><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="90"></line><line class="git-tree-edge" x1="8.44" y1="162" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 21.56 90 C 21.56 76.32, 8.44 67.68, 8.44 54"></path><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="18"></line><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="8.44" cy="18" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c6" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c6">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">release</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c5" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c5">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/api</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c4" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/api</code></span> <span class="git-tree-message">implements endpoints</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c3" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/api</code></span> <span class="git-tree-message">creates API</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c2" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c1" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
 </div>
@@ -1807,44 +1861,44 @@ automatic theme default</code></pre>
 <section id="a-branch-created-from-another-branch" class="level2">
 <h2 class="anchored" data-anchor-id="a-branch-created-from-another-branch">A branch created from another branch</h2>
 <p>Nested branches are valid Git histories. Here <code>test/badges</code> starts from a commit on <code>feature/badges</code>, then merges back before <code>feature/badges</code> itself merges into <code>main</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>:::git-tree</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> project skeleton</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> creates badge renderer</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> adds presets</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> adds variant tests</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> adds link tests</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> merge test/badges</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> documents badge API</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/badges</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>:::git-tree</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> project skeleton</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> creates badge renderer</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> adds presets</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> adds variant tests</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> adds link tests</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> merge test/badges</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> documents badge API</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/badges</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="git-tree semantic-git-tree" data-git-direction="TB" style="--git-line-width:2px;--git-node-size:0.68rem;--git-lane-gap:0.82rem;--git-content-gap:0.55rem;">
 <div class="git-tree-rows">
 <div class="git-tree-layout" style="--git-graph-height:288px;--git-graph-width:43.12px;">
 <svg class="git-tree-graph" viewbox="0 0 43.12 288" width="43.12" height="288" aria-hidden="true"><path class="git-tree-edge" d="M 8.44 18 C 8.44 31.68, 21.56 40.32, 21.56 54"></path><line class="git-tree-edge" x1="21.56" y1="54" x2="21.56" y2="90"></line><path class="git-tree-edge" d="M 21.56 90 C 21.56 103.68, 34.68 112.32, 34.68 126"></path><line class="git-tree-edge" x1="34.68" y1="126" x2="34.68" y2="162"></line><line class="git-tree-edge" x1="21.56" y1="90" x2="21.56" y2="198"></line><path class="git-tree-edge" d="M 34.68 162 C 34.68 175.68, 21.56 184.32, 21.56 198"></path><line class="git-tree-edge" x1="21.56" y1="198" x2="21.56" y2="234"></line><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="270"></line><path class="git-tree-edge" d="M 21.56 234 C 21.56 247.68, 8.44 256.32, 8.44 270"></path><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="21.56" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="34.68" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="34.68" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="21.56" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c7" cx="21.56" cy="234" r="5.44"></circle><circle class="git-tree-node" data-commit="c8" cx="8.44" cy="270" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c1" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">project skeleton</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c2" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c2">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">creates badge renderer</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c3" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">adds presets</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" data-commit="c4" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c4">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">adds variant tests</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" data-commit="c5" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c5">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">adds link tests</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c6" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c6">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">merge test/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c7" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c7">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">documents badge API</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c8" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c8">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/badges</span></span>
 </div>
 </div>
@@ -1854,32 +1908,32 @@ automatic theme default</code></pre>
 </section>
 <section id="theme-specific-graph-colors" class="level2">
 <h2 class="anchored" data-anchor-id="theme-specific-graph-colors">Theme-specific graph colors</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>::: {.git-tree</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  line-color-light="#6b7280"</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  line-color-dark="#adb5bd"</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  node-bg-light="#ffffff"</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  node-bg-dark="#212529"}</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> initial commit</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/theme`</span> adds color-mode support</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/theme`</span> documents overrides</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/theme</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>::: {.git-tree</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  line-color-light="#6b7280"</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  line-color-dark="#adb5bd"</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  node-bg-light="#ffffff"</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  node-bg-dark="#212529"}</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> initial commit</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/theme`</span> adds color-mode support</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/theme`</span> documents overrides</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/theme</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="git-tree semantic-git-tree" data-line-color-light="#6b7280" data-line-color-dark="#adb5bd" data-node-bg-light="#ffffff" data-node-bg-dark="#212529" style="--semantic-git-line-light:#6b7280;--semantic-git-node-bg-light:#ffffff;--semantic-git-line-dark:#adb5bd;--semantic-git-node-bg-dark:#212529;--git-line-width:2px;--git-node-size:0.68rem;--git-lane-gap:0.82rem;--git-content-gap:0.55rem;" data-git-direction="TB">
 <div class="git-tree-rows">
 <div class="git-tree-layout" style="--git-graph-height:144px;--git-graph-width:30px;">
 <svg class="git-tree-graph" viewbox="0 0 30 144" width="30" height="144" aria-hidden="true"><path class="git-tree-edge" d="M 8.44 18 C 8.44 31.68, 21.56 40.32, 21.56 54"></path><line class="git-tree-edge" x1="21.56" y1="54" x2="21.56" y2="90"></line><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="126"></line><path class="git-tree-edge" d="M 21.56 90 C 21.56 103.68, 8.44 112.32, 8.44 126"></path><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="21.56" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="8.44" cy="126" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c1" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c2" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c2">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/theme</code></span> <span class="git-tree-message">adds color-mode support</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c3" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/theme</code></span> <span class="git-tree-message">documents overrides</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c4" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c4">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/theme</span></span>
 </div>
 </div>
@@ -1890,44 +1944,44 @@ automatic theme default</code></pre>
 <section id="explicit-dag-ids-parents-tag-and-head" class="level2">
 <h2 class="anchored" data-anchor-id="explicit-dag-ids-parents-tag-and-head">Explicit DAG — ids, parents, tag, and HEAD</h2>
 <p>Use explicit relationships for histories where indentation alone is not enough. <code>parents=</code> takes precedence over automatic inference.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>:::git-tree</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c1} initial commit</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c2 parent="c1"} base architecture</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c3 parent="c2"} creates badge</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c4 parent="c3"} visual customization</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span>{#c5 parent="c4"} covers variants</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span>{#c6 parent="c5"} covers links</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c7 parents="c4,c6"} merge test/badges</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c8 parents="c2,c7" tag="v0.1.0" head="true"} merge feature/badges</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>:::git-tree</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c1} initial commit</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c2 parent="c1"} base architecture</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c3 parent="c2"} creates badge</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c4 parent="c3"} visual customization</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span>{#c5 parent="c4"} covers variants</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span>{#c6 parent="c5"} covers links</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c7 parents="c4,c6"} merge test/badges</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c8 parents="c2,c7" tag="v0.1.0" head="true"} merge feature/badges</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="git-tree semantic-git-tree" data-git-direction="TB" style="--git-line-width:2px;--git-node-size:0.68rem;--git-lane-gap:0.82rem;--git-content-gap:0.55rem;">
 <div class="git-tree-rows">
 <div class="git-tree-layout" style="--git-graph-height:288px;--git-graph-width:43.12px;">
 <svg class="git-tree-graph" viewbox="0 0 43.12 288" width="43.12" height="288" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 8.44 54 C 8.44 67.68, 21.56 76.32, 21.56 90"></path><line class="git-tree-edge" x1="21.56" y1="90" x2="21.56" y2="126"></line><path class="git-tree-edge" d="M 21.56 126 C 21.56 139.68, 34.68 148.32, 34.68 162"></path><line class="git-tree-edge" x1="34.68" y1="162" x2="34.68" y2="198"></line><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="234"></line><path class="git-tree-edge" d="M 34.68 198 C 34.68 211.68, 21.56 220.32, 21.56 234"></path><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="270"></line><path class="git-tree-edge" d="M 21.56 234 C 21.56 247.68, 8.44 256.32, 8.44 270"></path><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="34.68" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="34.68" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c7" cx="21.56" cy="234" r="5.44"></circle><circle class="git-tree-node" data-commit="c8" cx="8.44" cy="270" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c1" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c2" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c3" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">creates badge</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c4" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">visual customization</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" data-commit="c5" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c5">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers variants</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" data-commit="c6" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c6">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" data-commit="c7" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c7">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">merge test/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" data-commit="c8" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c8">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-head">HEAD</span> <span class="git-tree-tag">v0.1.0</span> <span class="git-tree-message">merge feature/badges</span></span>
 </div>
 </div>
@@ -1941,23 +1995,23 @@ automatic theme default</code></pre>
 <p><code>tree</code> is a neutral hierarchy component. Unlike <code>file-tree</code>, it does not assume that nodes are files or folders; unlike <code>git-tree</code>, it does not model commits or parent relationships. It simply renders nested Markdown lists as a readable hierarchy.</p>
 <section id="taxonomic-hierarchy" class="level2">
 <h2 class="anchored" data-anchor-id="taxonomic-hierarchy">Taxonomic hierarchy</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>:::tree</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plantae</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Fabaceae</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Mimosa</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Mimosa pudica</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Mimosa caesalpiniifolia</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Acacia</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Asteraceae</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>:::tree</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plantae</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Fabaceae</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Mimosa</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Mimosa pudica</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Mimosa caesalpiniifolia</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Acacia</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Asteraceae</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="tree semantic-tree" style="--tree-indent:1.5rem;" data-tree-expanded="true">
 <ul>
-<li><span class="tree-row tree-branch" data-tree-label="Plantae" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Plantae" aria-expanded="true"></button> Plantae</span>
+<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-label="Plantae" aria-expanded="true" data-tree-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Plantae" aria-expanded="true"></button> Plantae</span>
 <ul>
-<li><span class="tree-row tree-branch" data-tree-label="Fabaceae" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Fabaceae" aria-expanded="true"></button> Fabaceae</span>
+<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-label="Fabaceae" aria-expanded="true" data-tree-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Fabaceae" aria-expanded="true"></button> Fabaceae</span>
 <ul>
-<li><span class="tree-row tree-branch" data-tree-label="Mimosa" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Mimosa" aria-expanded="true"></button> Mimosa</span>
+<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-label="Mimosa" aria-expanded="true" data-tree-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Mimosa" aria-expanded="true"></button> Mimosa</span>
 <ul>
 <li><span class="tree-row tree-leaf">Mimosa pudica</span></li>
 <li><span class="tree-row tree-leaf">Mimosa caesalpiniifolia</span></li>
@@ -1972,25 +2026,25 @@ automatic theme default</code></pre>
 <section id="expand-collapse-info-and-indentation" class="level2">
 <h2 class="anchored" data-anchor-id="expand-collapse-info-and-indentation">Expand, collapse, info, and indentation</h2>
 <p>Any item with children becomes a branch in HTML. The whole tree can define a default state, and individual branches can override it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>::: {.tree expanded="false" indent="1.8rem"}</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Life</span><span class="co">]</span>{expanded="true" info="Top-level classification"}</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Eukaryota</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Plantae</span><span class="co">]</span>{expanded="true"}</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Fabaceae</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Mimosa</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Acacia</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Asteraceae</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Animalia</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>::: {.tree expanded="false" indent="1.8rem"}</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Life</span><span class="co">]</span>{expanded="true" info="Top-level classification"}</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Eukaryota</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Plantae</span><span class="co">]</span>{expanded="true"}</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Fabaceae</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Mimosa</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>Acacia</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Asteraceae</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Animalia</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="tree semantic-tree" data-expanded="false" data-indent="1.8rem" style="--tree-indent:1.8rem;" data-tree-expanded="false">
 <ul>
-<li><span class="tree-row tree-branch" data-tree-label="Life" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Life" aria-expanded="true"></button> <span data-expanded="true" data-info="Top-level classification">Life</span> <span class="tree-info" title="Top-level classification" aria-label="Top-level classification" tabindex="0">i</span></span>
+<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-label="Life" aria-expanded="true" data-tree-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Life" aria-expanded="true"></button> <span data-expanded="true" data-info="Top-level classification">Life</span> <span class="tree-info" title="Top-level classification" aria-label="Top-level classification" tabindex="0">i</span></span>
 <ul>
 <li><span class="tree-row tree-leaf">Eukaryota</span></li>
-<li><span class="tree-row tree-branch" data-tree-label="Plantae" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Plantae" aria-expanded="true"></button> <span data-expanded="true">Plantae</span></span>
+<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-label="Plantae" aria-expanded="true" data-tree-expanded="true"><button class="tree-toggle" type="button" aria-label="Collapse Plantae" aria-expanded="true"></button> <span data-expanded="true">Plantae</span></span>
 <ul>
-<li><span class="tree-row tree-branch" data-tree-label="Fabaceae" data-tree-toggle="true" data-tree-expanded="false" aria-expanded="false"><button class="tree-toggle" type="button" aria-label="Expand Fabaceae" aria-expanded="false"></button> Fabaceae</span>
+<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-label="Fabaceae" aria-expanded="false" data-tree-expanded="false"><button class="tree-toggle" type="button" aria-label="Expand Fabaceae" aria-expanded="false"></button> Fabaceae</span>
 <ul>
 <li><span class="tree-row tree-leaf">Mimosa</span></li>
 <li><span class="tree-row tree-leaf">Acacia</span></li>
@@ -2009,57 +2063,57 @@ automatic theme default</code></pre>
 <p><code>file-tree</code> describes a project or directory hierarchy using an ordinary nested list. File names are automatically mapped to useful icons, while links, inline code, comments, info hints, custom icons, and collapsible folders remain optional.</p>
 <section id="deep-project-structure" class="level2">
 <h2 class="anchored" data-anchor-id="deep-project-structure">Deep project structure</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+project</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+src</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>+pipelines</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+python</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>pipeline.py ingestion</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>validate.py validation</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+r</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>analysis.R statistical analysis</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>report.Rmd report</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+web</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>+src</span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="ss">          - </span>+components</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="ss">            - </span>chart.ts</span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="ss">            - </span>table.ts</span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="ss">          - </span>app.ts</span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>+database</span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+migrations</span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>schema.sql</span>
-<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+docs</span>
-<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>report.qmd</span>
-<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+data</span>
-<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>+processed</span>
-<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>occurrences.parquet</span>
-<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>README.md</span>
-<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>_quarto.yml</span>
-<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+project</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+src</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>+pipelines</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+python</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>pipeline.py ingestion</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>validate.py validation</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+r</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>analysis.R statistical analysis</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>report.Rmd report</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+web</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>+src</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="ss">          - </span>+components</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="ss">            - </span>chart.ts</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="ss">            - </span>table.ts</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="ss">          - </span>app.ts</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>+database</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+migrations</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>schema.sql</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+docs</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>report.qmd</span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+data</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>+processed</span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>occurrences.parquet</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>README.md</span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>_quarto.yml</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="project" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>project</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="project" aria-expanded="true" data-file-tree-toggle="true"><strong>project</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="src" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="pipelines" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>pipelines</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="pipelines" aria-expanded="true" data-file-tree-toggle="true"><strong>pipelines</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="python" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>python</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="python" aria-expanded="true" data-file-tree-toggle="true"><strong>python</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> pipeline.py <span class="file-tree-comment">ingestion</span></span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> validate.py <span class="file-tree-comment">validation</span></span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="r" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>r</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="r" aria-expanded="true" data-file-tree-toggle="true"><strong>r</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> analysis.R <span class="file-tree-comment">statistical analysis</span></span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> report.Rmd <span class="file-tree-comment">report</span></span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="web" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>web</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="web" aria-expanded="true" data-file-tree-toggle="true"><strong>web</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="src" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="components" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="components" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> chart.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> table.ts</span></li>
@@ -2068,21 +2122,21 @@ automatic theme default</code></pre>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="database" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>database</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="database" aria-expanded="true" data-file-tree-toggle="true"><strong>database</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="migrations" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>migrations</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="migrations" aria-expanded="true" data-file-tree-toggle="true"><strong>migrations</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-database">schema.sql</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="docs" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>docs</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="docs" aria-expanded="true" data-file-tree-toggle="true"><strong>docs</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> report.qmd</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="data" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>data</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="data" aria-expanded="true" data-file-tree-toggle="true"><strong>data</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="processed" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>processed</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="processed" aria-expanded="true" data-file-tree-toggle="true"><strong>processed</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-data">occurrences.parquet</span></li>
 </ul></li>
@@ -2097,12 +2151,12 @@ automatic theme default</code></pre>
 <section id="plain-text-versus-inline-code" class="level2">
 <h2 class="anchored" data-anchor-id="plain-text-versus-inline-code">Plain text versus inline code</h2>
 <p>The author controls whether a file name looks like code. A plain filename remains plain text; backticks explicitly request inline-code styling.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>analysis.R plain filename</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`analysis.R`</span> inline-code filename</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">app.ts</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components)</span> regular link</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`steps.lua`</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua)</span> linked inline-code filename</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>analysis.R plain filename</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`analysis.R`</span> inline-code filename</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">app.ts</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components)</span> regular link</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`steps.lua`</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua)</span> linked inline-code filename</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
@@ -2116,11 +2170,11 @@ automatic theme default</code></pre>
 <section id="info-hints" class="level2">
 <h2 class="anchored" data-anchor-id="info-hints">Info hints</h2>
 <p><code>info=</code> adds a small, keyboard-focusable information marker. In HTML, its text is exposed through <code>title</code> and <code>aria-label</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">analysis.R</span><span class="co">]</span>{info="Main R analysis script"}</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`pipeline.py`</span><span class="co">]</span>{info="Ingestion and validation pipeline"}</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">schema.sql</span><span class="co">]</span>{info="Relational schema used by the application"}</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">analysis.R</span><span class="co">]</span>{info="Main R analysis script"}</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`pipeline.py`</span><span class="co">]</span>{info="Ingestion and validation pipeline"}</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">schema.sql</span><span class="co">]</span>{info="Relational schema used by the application"}</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
@@ -2132,12 +2186,12 @@ automatic theme default</code></pre>
 </section>
 <section id="custom-icons-and-providers" class="level2">
 <h2 class="anchored" data-anchor-id="custom-icons-and-providers">Custom icons and providers</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`pipeline.py`</span>{icon="devicon:python"}</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`species.csv`</span>{icon="leaf"}</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`golden.parquet`</span>{icon="★"}</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`deploy.sh`</span>{icon="rocket"}</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`pipeline.py`</span>{icon="devicon:python"}</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`species.csv`</span>{icon="leaf"}</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`golden.parquet`</span>{icon="★"}</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`deploy.sh`</span>{icon="rocket"}</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
@@ -2151,47 +2205,47 @@ automatic theme default</code></pre>
 <section id="horizontal-indentation" class="level2">
 <h2 class="anchored" data-anchor-id="horizontal-indentation">Horizontal indentation</h2>
 <p><code>indent</code> controls the horizontal distance added at every nested level.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>::: {.file-tree indent="1rem"}</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+src</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+components</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Button.ts</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Card.ts</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>app.ts</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+database</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>schema.sql</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>::: {.file-tree indent="1rem"}</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+src</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+components</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Button.ts</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Card.ts</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>app.ts</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+database</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>schema.sql</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" data-indent="1rem" style="--file-tree-indent:1rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="src" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="components" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="components" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Button.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Card.ts</span></li>
 </ul></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> app.ts</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="database" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>database</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="database" aria-expanded="true" data-file-tree-toggle="true"><strong>database</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-database">schema.sql</span></li>
 </ul></li>
 </ul>
 </div>
 <p>Compare with a wider hierarchy:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>::: {.file-tree indent="2.4rem"}</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+src</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+components</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Button.ts</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Card.ts</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>app.ts</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>::: {.file-tree indent="2.4rem"}</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+src</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+components</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Button.ts</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Card.ts</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>app.ts</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" data-indent="2.4rem" style="--file-tree-indent:2.4rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="src" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="components" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="components" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Button.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Card.ts</span></li>
@@ -2204,37 +2258,37 @@ automatic theme default</code></pre>
 <section id="expand-and-collapse-folders" class="level2">
 <h2 class="anchored" data-anchor-id="expand-and-collapse-folders">Expand and collapse folders</h2>
 <p>Folders with children are interactive in HTML. The tree can define a default state, while individual folders can override it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>::: {.file-tree expanded="false"}</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">+src</span><span class="co">]</span>{expanded="true"}</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+components</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Button.ts</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Card.ts</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>app.ts</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">+docs</span><span class="co">]</span>{open="false"}</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>index.qmd</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>api.qmd</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">+data</span><span class="co">]</span>{collapsed="true"}</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>raw.csv</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>processed.parquet</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>::: {.file-tree expanded="false"}</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">+src</span><span class="co">]</span>{expanded="true"}</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+components</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Button.ts</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Card.ts</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>app.ts</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">+docs</span><span class="co">]</span>{open="false"}</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>index.qmd</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>api.qmd</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">+data</span><span class="co">]</span>{collapsed="true"}</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>raw.csv</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>processed.parquet</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" data-expanded="false" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="false">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="src" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="components" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="false" data-file-tree-name="components" aria-expanded="false" data-file-tree-toggle="true"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Button.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Card.ts</span></li>
 </ul></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> app.ts</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="docs" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true"><strong>docs</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="false" data-file-tree-name="docs" aria-expanded="false" data-file-tree-toggle="true"><strong>docs</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> index.qmd</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> api.qmd</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="data" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true"><strong>data</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="false" data-file-tree-name="data" aria-expanded="false" data-file-tree-toggle="true"><strong>data</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-data">raw.csv</span></li>
 <li><span class="file-tree-row file-tree-file file-icon-data">processed.parquet</span></li>
@@ -2249,16 +2303,16 @@ automatic theme default</code></pre>
 <p>The outer HTML element is always a real <code>&lt;article&gt;</code>.</p>
 <section id="generic-article" class="level2">
 <h2 class="anchored" data-anchor-id="generic-article">Generic article</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>:::article</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Technical note</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>This is the default <span class="in">`article`</span>, with no accent and no collapse.</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>The content can contain ordinary **Markdown**, lists, links, and code.</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>:::article</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Technical note</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>This is the default <span class="in">`article`</span>, with no accent and no collapse.</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>The content can contain ordinary **Markdown**, lists, links, and code.</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;">
 <div class="semantic-article-content">
-<div id="technical-note" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" role="heading" aria-level="2">
+<div id="technical-note" class="semantic-article-heading semantic-article-heading-2" aria-level="2" role="heading" data-heading-level="2">
 Technical note
 </div>
 <p>This is the default <code>article</code>, with no accent and no collapse.</p>
@@ -2269,14 +2323,14 @@ Technical note
 <section id="left-accent" class="level2">
 <h2 class="anchored" data-anchor-id="left-accent">Left accent</h2>
 <p><code>accent="left"</code> turns the left border into an accent. <code>accent-color</code> accepts any CSS color or semantic names aligned with Quarto callout colors: <code>note</code>, <code>info</code>, <code>warning</code>, <code>danger</code>, <code>caution</code>, <code>success</code>, <code>tip</code>, and <code>important</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="warning"}</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Attention</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>This article uses the warning accent color.</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="warning"}</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Attention</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>This article uses the warning accent color.</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-accent-left" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;--article-accent-color:var(--quarto-callout-color-warning,var(--bs-warning,#ffc107));">
 <div class="semantic-article-content">
-<div id="attention" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" role="heading" aria-level="2">
+<div id="attention" class="semantic-article-heading semantic-article-heading-2" aria-level="2" role="heading" data-heading-level="2">
 Attention
 </div>
 <p>This article uses the warning accent color.</p>
@@ -2285,21 +2339,21 @@ Attention
 </section>
 <section id="theme-specific-article-colors" class="level2">
 <h2 class="anchored" data-anchor-id="theme-specific-article-colors">Theme-specific article colors</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>::: {.article</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  accent="left"</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  accent-color-light="#7c3aed"</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  accent-color-dark="#c4b5fd"</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  border-color-light="#d1d5db"</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  border-color-dark="#4b5563"</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  background-light="#fafafa"</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  background-dark="#1f2937"}</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Adaptive article</span></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>The border, background, and accent are tuned independently for each theme.</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>::: {.article</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  accent="left"</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  accent-color-light="#7c3aed"</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  accent-color-dark="#c4b5fd"</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  border-color-light="#d1d5db"</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  border-color-dark="#4b5563"</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  background-light="#fafafa"</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  background-dark="#1f2937"}</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Adaptive article</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>The border, background, and accent are tuned independently for each theme.</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-accent-left" style="--article-border-color-light:#d1d5db;--article-background-light:#fafafa;--article-accent-color-light:#7c3aed;--article-border-color-dark:#4b5563;--article-background-dark:#1f2937;--article-accent-color-dark:#c4b5fd;--article-radius:0.75rem;--article-padding:1rem 1.1rem;">
 <div class="semantic-article-content">
-<div id="adaptive-article" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" role="heading" aria-level="2">
+<div id="adaptive-article" class="semantic-article-heading semantic-article-heading-2" aria-level="2" role="heading" data-heading-level="2">
 Adaptive article
 </div>
 <p>The border, background, and accent are tuned independently for each theme.</p>
@@ -2308,19 +2362,19 @@ Adaptive article
 </section>
 <section id="semantic-accent-presets" class="level2">
 <h2 class="anchored" data-anchor-id="semantic-accent-presets">Semantic accent presets</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="note"}</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Note</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>Useful contextual information.</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="success"}</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Success</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>The operation completed successfully.</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="note"}</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Note</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>Useful contextual information.</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="success"}</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Success</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>The operation completed successfully.</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-accent-left" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;--article-accent-color:var(--quarto-callout-color-note,var(--bs-info,#0dcaf0));">
 <div class="semantic-article-content">
-<div id="note" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" role="heading" aria-level="2">
+<div id="note" class="semantic-article-heading semantic-article-heading-2" aria-level="2" role="heading" data-heading-level="2">
 Note
 </div>
 <p>Useful contextual information.</p>
@@ -2328,7 +2382,7 @@ Note
 </article>
 <article class="semantic-article article-accent-left" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;--article-accent-color:var(--quarto-callout-color-tip,var(--bs-success,#198754));">
 <div class="semantic-article-content">
-<div id="success" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" role="heading" aria-level="2">
+<div id="success" class="semantic-article-heading semantic-article-heading-2" aria-level="2" role="heading" data-heading-level="2">
 Success
 </div>
 <p>The operation completed successfully.</p>
@@ -2338,14 +2392,14 @@ Success
 <section id="collapsed-by-default" class="level2">
 <h2 class="anchored" data-anchor-id="collapsed-by-default">Collapsed by default</h2>
 <p>A collapsible article uses native HTML <code>&lt;details&gt;</code> inside the <code>&lt;article&gt;</code> wrapper. No JavaScript is required, and the content remains fully visible in PDF/DOCX.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>::: {.article collapsible="true" summary="Technical details" expanded="false"}</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>The content starts collapsed in HTML.</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>normal Markdown</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>lists</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>code</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>other components</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>::: {.article collapsible="true" summary="Technical details" expanded="false"}</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>The content starts collapsed in HTML.</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>normal Markdown</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>lists</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>code</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>other components</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-collapsible" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;">
 <details class="semantic-article-details">
@@ -2364,9 +2418,9 @@ Success
 </section>
 <section id="expanded-by-default-with-an-accent" class="level2">
 <h2 class="anchored" data-anchor-id="expanded-by-default-with-an-accent">Expanded by default with an accent</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="note" collapsible="true" summary="Methodology" expanded="true"}</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>This example starts expanded and combines the accent with native collapse/expand behavior.</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="note" collapsible="true" summary="Methodology" expanded="true"}</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>This example starts expanded and combines the accent with native collapse/expand behavior.</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-accent-left article-collapsible" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;--article-accent-color:var(--quarto-callout-color-note,var(--bs-info,#0dcaf0));">
 <details class="semantic-article-details" open="">
@@ -2380,31 +2434,31 @@ Success
 <section id="changelog-pattern" class="level2">
 <h2 class="anchored" data-anchor-id="changelog-pattern">Changelog pattern</h2>
 <p>A changelog does not require a dedicated component. It is simply one possible use of <code>article</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>:::article</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## 0.1.0 — 2026-09-18</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">### Added</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generic <span class="in">`tree`</span> and semantic <span class="in">`properties`</span>.</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Native <span class="in">`progress`</span> and <span class="in">`meter`</span> indicators.</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inline <span class="in">`kbd`</span> and <span class="in">`abbr`</span> primitives.</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### Changed</span></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Theme-aware colors continue to support unsuffixed, <span class="in">`-light`</span>, and <span class="in">`-dark`</span> values.</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>:::article</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## 0.1.0 — 2026-09-18</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">### Added</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generic <span class="in">`tree`</span> and semantic <span class="in">`properties`</span>.</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Native <span class="in">`progress`</span> and <span class="in">`meter`</span> indicators.</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inline <span class="in">`kbd`</span> and <span class="in">`abbr`</span> primitives.</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### Changed</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Theme-aware colors continue to support unsuffixed, <span class="in">`-light`</span>, and <span class="in">`-dark`</span> values.</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;">
 <div class="semantic-article-content">
-<div id="section" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" role="heading" aria-level="2">
+<div id="section" class="semantic-article-heading semantic-article-heading-2" aria-level="2" role="heading" data-heading-level="2">
 0.1.0 — 2026-09-18
 </div>
-<div id="added" class="semantic-article-heading semantic-article-heading-3" data-heading-level="3" role="heading" aria-level="3">
+<div id="added" class="semantic-article-heading semantic-article-heading-3" aria-level="3" role="heading" data-heading-level="3">
 Added
 </div>
 <ul>
 <li>Theme-specific color overrides with <code>-light</code> and <code>-dark</code> suffixes.</li>
 <li>Theme-aware examples for steps, badges, Git trees, and articles.</li>
 </ul>
-<div id="changed" class="semantic-article-heading semantic-article-heading-3" data-heading-level="3" role="heading" aria-level="3">
+<div id="changed" class="semantic-article-heading semantic-article-heading-3" aria-level="3" role="heading" data-heading-level="3">
 Changed
 </div>
 <ul>
@@ -2419,19 +2473,19 @@ Changed
 <p><code>properties</code> enhances an ordinary Pandoc definition list. The underlying structure remains semantic in PDF and DOCX, while HTML presents it as a responsive key/value grid.</p>
 <section id="basic-metadata" class="level2">
 <h2 class="anchored" data-anchor-id="basic-metadata">Basic metadata</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>:::properties</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>Project</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>: Quarto Semantic Components</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>Version</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>: 0.1.0</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>Language</span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>: Lua</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>License</span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>: MIT</span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>:::properties</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>Project</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>: Quarto Semantic Components</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>Version</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>: 0.1.0</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>Language</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>: Lua</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>License</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>: MIT</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="properties semantic-properties" style="--properties-term-width:9rem;">
 <dl>
@@ -2457,19 +2511,19 @@ MIT
 <section id="rich-values" class="level2">
 <h2 class="anchored" data-anchor-id="rich-values">Rich values</h2>
 <p>Definition values can contain ordinary Markdown.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>::: {.properties term-width="10rem"}</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>Repository</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>: <span class="co">[</span><span class="ot">lsbjordao/quarto-semantic-components</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components)</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>Formats</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>: **HTML**, PDF, and DOCX</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>Status</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>: <span class="co">[</span><span class="ot">Stable</span><span class="co">]</span>{.badge type="success" appearance="solid" size="xs"}</span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>Entry point</span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>: <span class="in">`_extensions/semantic-components/`</span></span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>::: {.properties term-width="10rem"}</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>Repository</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>: <span class="co">[</span><span class="ot">lsbjordao/quarto-semantic-components</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components)</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>Formats</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>: **HTML**, PDF, and DOCX</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>Status</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>: <span class="co">[</span><span class="ot">Stable</span><span class="co">]</span>{.badge type="success" appearance="solid" size="xs"}</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>Entry point</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>: <span class="in">`_extensions/semantic-components/`</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="properties semantic-properties" data-term-width="10rem" style="--properties-term-width:10rem;">
 <dl>
@@ -2497,23 +2551,23 @@ MIT
 <section id="progress" class="level1">
 <h1>Progress</h1>
 <p><code>progress</code> uses the native HTML <code>&lt;progress&gt;</code> element. It is appropriate for completion or advancement toward a goal.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>{{&lt; progress value="72" label="Build" &gt;}}</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>{{&lt; progress value="43" max="60" label="Processed records" value-label="43 / 60" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>{{&lt; progress value="72" label="Build" &gt;}}</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>{{&lt; progress value="43" max="60" label="Processed records" value-label="43 / 60" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <p><span class="qsc-progress" style=""><span class="qsc-indicator-label">Build</span><progress aria-label="Build" value="72" max="100">72%</progress><span class="qsc-indicator-value">72%</span></span></p>
 <p><span class="qsc-progress" style=""><span class="qsc-indicator-label">Processed records</span><progress aria-label="Processed records" value="43" max="60">43 / 60</progress><span class="qsc-indicator-value">43 / 60</span></span></p>
 <p>Theme-specific colors follow the same fallback rule used elsewhere:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>{{&lt; progress value="84" label="Coverage"</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  color-light="#2563eb" color-dark="#60a5fa"</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  track-color-light="#e5e7eb" track-color-dark="#374151" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>{{&lt; progress value="84" label="Coverage"</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  color-light="#2563eb" color-dark="#60a5fa"</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  track-color-light="#e5e7eb" track-color-dark="#374151" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <p><span class="qsc-progress" style="--qsc-indicator-color-light:#2563eb;--qsc-indicator-color-dark:#60a5fa;--qsc-indicator-track-light:#e5e7eb;--qsc-indicator-track-dark:#374151;"><span class="qsc-indicator-label">Coverage</span><progress aria-label="Coverage" value="84" max="100">84%</progress><span class="qsc-indicator-value">84%</span></span></p>
 </section>
 <section id="meter" class="level1">
 <h1>Meter</h1>
 <p><code>meter</code> uses the native HTML <code>&lt;meter&gt;</code> element. Unlike progress, it represents a scalar measurement within a known range rather than task completion.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>{{&lt; meter value="82" min="0" max="100" label="Test coverage" value-label="82%" &gt;}}</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>{{&lt; meter value="7.2" min="0" max="10" low="4" high="8" optimum="9" label="Quality score" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>{{&lt; meter value="82" min="0" max="100" label="Test coverage" value-label="82%" &gt;}}</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>{{&lt; meter value="7.2" min="0" max="10" low="4" high="8" optimum="9" label="Quality score" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <p><span class="qsc-meter" style=""><span class="qsc-indicator-label">Test coverage</span><meter aria-label="Test coverage" value="82" min="0" max="100">82%</meter><span class="qsc-indicator-value">82%</span></span></p>
 <p><span class="qsc-meter" style=""><span class="qsc-indicator-label">Quality score</span><meter aria-label="Quality score" value="7.2" min="0" max="10" low="4" high="8" optimum="9">7.2 / 10</meter><span class="qsc-indicator-value">7.2 / 10</span></span></p>
@@ -2522,9 +2576,9 @@ MIT
 <section id="keyboard-input" class="level1">
 <h1>Keyboard input</h1>
 <p><code>kbd</code> renders keyboard input with the native HTML <code>&lt;kbd&gt;</code> element. A <code>+</code>-separated shortcut is automatically split into individual keys.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Press {{&lt; kbd "Ctrl+Shift+P" &gt;}} to open the command palette.</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>Use {{&lt; kbd "Ctrl+C" &gt;}} and {{&lt; kbd "Ctrl+V" &gt;}} to copy and paste.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>Press {{&lt; kbd "Ctrl+Shift+P" &gt;}} to open the command palette.</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>Use {{&lt; kbd "Ctrl+C" &gt;}} and {{&lt; kbd "Ctrl+V" &gt;}} to copy and paste.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <p>Press <span class="qsc-kbd-group"><kbd>Ctrl</kbd><span class="qsc-kbd-separator">+</span><kbd>Shift</kbd><span class="qsc-kbd-separator">+</span><kbd>P</kbd></span> to open the command palette.</p>
 <p>Use <span class="qsc-kbd-group"><kbd>Ctrl</kbd><span class="qsc-kbd-separator">+</span><kbd>C</kbd></span> and <span class="qsc-kbd-group"><kbd>Ctrl</kbd><span class="qsc-kbd-separator">+</span><kbd>V</kbd></span> to copy and paste.</p>
@@ -2532,9 +2586,9 @@ MIT
 <section id="abbreviations" class="level1">
 <h1>Abbreviations</h1>
 <p><code>abbr</code> emits the native HTML <code>&lt;abbr&gt;</code> element with its expansion in <code>title</code>. In non-HTML formats it degrades to the abbreviation followed by its full form.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>A {{&lt; abbr KBA "Key Biodiversity Area" &gt;}} identifies a site of global importance for biodiversity.</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>The extension is built on the {{&lt; abbr AST "Abstract Syntax Tree" &gt;}} produced by Pandoc.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>A {{&lt; abbr KBA "Key Biodiversity Area" &gt;}} identifies a site of global importance for biodiversity.</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>The extension is built on the {{&lt; abbr AST "Abstract Syntax Tree" &gt;}} produced by Pandoc.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <p>A <abbr class="qsc-abbr" title="Key Biodiversity Area">KBA</abbr> identifies a site of global importance for biodiversity.</p>
 <p>The extension is built on the <abbr class="qsc-abbr" title="Abstract Syntax Tree">AST</abbr> produced by Pandoc.</p>
@@ -2544,38 +2598,38 @@ MIT
 <p>The primitives are intentionally composable. A component can contain normal Markdown and, where the document structure permits it, other semantic components.</p>
 <section id="release-package-example" class="level2">
 <h2 class="anchored" data-anchor-id="release-package-example">Release package example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>:::: {.article accent="left" accent-color="success"}</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Release package [v0.1.0]{.badge type="success" appearance="solid" size="xs"}</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>The release contains the extension source, documentation, and examples.</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+semantic-components</span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>theme-colors.lua</span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>steps.lua</span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>roadmap.lua</span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>tree.lua</span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>file-tree.lua</span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>git-tree.lua</span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>properties.lua</span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>article.lua</span>
-<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>primitives.lua</span>
-<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>badges.lua</span>
-<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>semantic-shortcodes.lua</span>
-<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>README.md</span>
-<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>index.qmd</span>
-<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>:::: {.article accent="left" accent-color="success"}</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Release package [v0.1.0]{.badge type="success" appearance="solid" size="xs"}</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>The release contains the extension source, documentation, and examples.</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+semantic-components</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>theme-colors.lua</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>steps.lua</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>roadmap.lua</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>tree.lua</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>file-tree.lua</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>git-tree.lua</span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>properties.lua</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>article.lua</span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>primitives.lua</span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>badges.lua</span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>semantic-shortcodes.lua</span>
+<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>README.md</span>
+<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>index.qmd</span>
+<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-accent-left" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;--article-accent-color:var(--quarto-callout-color-tip,var(--bs-success,#198754));">
 <div class="semantic-article-content">
-<div id="release-package-v0.1.0" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" role="heading" aria-level="2">
+<div id="release-package-v0.1.0" class="semantic-article-heading semantic-article-heading-2" aria-level="2" role="heading" data-heading-level="2">
 Release package <span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" type="success" data-appearance="solid" size="xs" data-qsc-badge-resolved="true">v0.1.0</span>
 </div>
 <p>The release contains the extension source, documentation, and examples.</p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="semantic-components" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>semantic-components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" data-file-tree-name="semantic-components" aria-expanded="true" data-file-tree-toggle="true"><strong>semantic-components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-lua-plain colored" aria-hidden="true"></i> theme-colors.lua</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-lua-plain colored" aria-hidden="true"></i> steps.lua</span></li>
