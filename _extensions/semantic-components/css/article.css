@@ -16,12 +16,16 @@
   background:var(--article-background);
   box-shadow:var(--article-shadow);
 }
-.semantic-article>:first-child{margin-top:0}
-.semantic-article>:last-child{margin-bottom:0}
-.semantic-article>h1:first-child,
-.semantic-article>h2:first-child,
-.semantic-article>h3:first-child,
-.semantic-article>h4:first-child{margin-top:0}
+.semantic-article-content>:first-child{margin-top:0}
+.semantic-article-content>:last-child{margin-bottom:0}
+.semantic-article-content>h1:first-child,
+.semantic-article-content>h2:first-child,
+.semantic-article-content>h3:first-child,
+.semantic-article-content>h4:first-child,
+.semantic-article-content>section:first-child>h1:first-child,
+.semantic-article-content>section:first-child>h2:first-child,
+.semantic-article-content>section:first-child>h3:first-child,
+.semantic-article-content>section:first-child>h4:first-child{margin-top:0}
 
 .semantic-article.article-accent-left::before{
   content:"";
@@ -71,6 +75,10 @@
 .semantic-article-details[open]>.semantic-article-summary::before{transform:rotate(90deg)}
 .semantic-article-summary:hover{background:color-mix(in srgb,currentColor 4%,transparent)}
 .semantic-article-summary:focus-visible{outline:2px solid currentColor;outline-offset:-2px}
-.semantic-article-body{padding:0 var(--article-padding) var(--article-padding)}
+.semantic-article-body{padding:var(--article-padding);padding-top:0}
 .semantic-article-body>:first-child{margin-top:0}
 .semantic-article-body>:last-child{margin-bottom:0}
+.semantic-article-body>section:first-child>h1:first-child,
+.semantic-article-body>section:first-child>h2:first-child,
+.semantic-article-body>section:first-child>h3:first-child,
+.semantic-article-body>section:first-child>h4:first-child{margin-top:0}
