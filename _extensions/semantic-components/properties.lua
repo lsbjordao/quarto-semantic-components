@@ -19,7 +19,7 @@ end
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-properties',
-    version='0.12.0',
+    version='0.1.0',
     stylesheets={'css/properties.css'}
   })
 end
