@@ -47,12 +47,21 @@ local function heading_attr(header, primary, alias)
   return header.attributes[primary] or (alias and header.attributes[alias]) or nil
 end
 
+local function surface_fill(value)
+  if not value or value=='' then return value end
+  local normalized=tostring(value):lower()
+  if normalized=='transparent' or normalized=='none' then
+    return 'var(--semantic-step-surface)'
+  end
+  return value
+end
+
 local function step_title(header, list_mode)
   local title = pandoc.Span(header.content, pandoc.Attr(header.identifier or '', {'semantic-step-title'}))
   if list_mode ~= 'dots' or not is_html() then return pandoc.Plain({title}) end
 
   local dot_color = heading_attr(header, 'dot-color', 'marker-color')
-  local dot_fill = heading_attr(header, 'dot-fill', 'marker-fill')
+  local dot_fill = surface_fill(heading_attr(header, 'dot-fill', 'marker-fill'))
   local dot_size = heading_attr(header, 'dot-size', 'marker-size')
   local dot_border_width = heading_attr(header, 'dot-border-width', 'marker-border-width')
   local line_color = heading_attr(header, 'line-color', 'connector-color')
@@ -143,7 +152,7 @@ local function transform_steps(el,meta)
   add_class(el, 'semantic-steps'); add_class(el, 'semantic-steps-' .. list_mode)
   if list_mode == 'dots' then
     local dot_color = setting(el,meta,'dot-color',{'marker-color'})
-    local dot_fill = setting(el,meta,'dot-fill',{'marker-fill'})
+    local dot_fill = surface_fill(setting(el,meta,'dot-fill',{'marker-fill'}))
     local dot_size = setting(el,meta,'dot-size',{'marker-size'})
     local dot_border_width = setting(el,meta,'dot-border-width',{'marker-border-width'})
     local line_color = setting(el,meta,'line-color',{'connector-color'})
