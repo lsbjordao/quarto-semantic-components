@@ -6,7 +6,7 @@ project:
 extensions:
   badge:
     - key: stable
-      label: Estável
+      label: Stable
       type: success
       appearance: solid
       icon: "✓"
