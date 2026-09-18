@@ -12,11 +12,59 @@ filters:
   - semantic-components
 ---
 
-This page demonstrates the **Quarto Semantic Components** extension. In each section, the source code appears **before** the rendered output.
+**Quarto Semantic Components** is a small collection of reusable Markdown/Pandoc primitives for technical documentation. The components are designed to stay close to ordinary Markdown, become richer in HTML, and remain readable when rendered to PDF or DOCX.
+
+This page is both a gallery and a usage guide. Every example follows the same pattern: **source first, rendered output second**.
+
+# At a glance
+
+| Component | Best suited for | HTML enhancement |
+|---|---|---|
+| `badge` | Inline status, versions, labels | Variants, sizes, shapes, links, custom styling |
+| `steps` | Procedures and sequential explanations | Continuous numbered or dot connectors |
+| `circle-list` | Compact ordered lists | Circled numbers |
+| `git-tree` | Git histories, branches and merges | SVG commit DAG |
+| `file-tree` | Project layouts and repository structure | Icons, info hints, expandable folders |
+| `article` | Self-contained blocks of content | Rounded container, accent, collapse/expand |
+
+The extension intentionally avoids components that Quarto already handles well. For example, a timeline can be expressed with `steps type="dots"`, and general diagrams can use Mermaid.
+
+# Quick start
+
+Install the extension:
+
+```bash
+quarto add lsbjordao/quarto-semantic-components
+```
+
+Enable it in a document or project:
+
+```yaml
+filters:
+  - semantic-components
+```
+
+Then use any component directly in Markdown:
+
+```markdown
+:::steps
+## Install
+Install the extension.
+
+## Configure
+Set project defaults if needed.
+
+## Write
+Use ordinary Markdown inside components.
+
+## Render
+Render to HTML, PDF, or DOCX.
+:::
+```
 
 # Project defaults in `_quarto.yml`
 
-This repository uses shared defaults:
+Component defaults can be centralized at the project level. This repository uses the following configuration:
 
 ```yaml
 extensions:
@@ -63,13 +111,23 @@ extensions:
     accent: none
 ```
 
-Precedence is **project defaults → preset → component → individual item**.
+For properties that support presets, the effective value follows this precedence:
+
+```text
+project defaults → preset → component attributes → item attributes
+```
+
+This makes it possible to establish a project-wide visual language while still overriding individual components when necessary.
 
 # Badges
 
-> The public shortcode is `badge`. Since [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) uses the same name, the project must choose which badge extension to use.
+Badges are compact inline labels for status, versions, categories, environments, or any other short metadata. The public shortcode is `badge`.
 
-## Presets defined in the project
+> The [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) extension also defines a `badge` shortcode. A project should choose which extension owns that shortcode.
+
+## Project presets
+
+Presets keep repeated labels consistent across a project.
 
 ```{.markdown shortcodes=false}
 {{< badge stable >}}
@@ -82,46 +140,88 @@ Precedence is **project defaults → preset → component → individual item**.
 
 {{< badge stable >}} {{< badge experimental >}} {{< badge deprecated >}} {{< badge "Stable release" key="stable" >}}
 
-## Free customization
+## Variants and appearances
+
+`type` controls the semantic variant and `appearance` controls how strongly it is rendered.
 
 ```{.markdown shortcodes=false}
-{{< badge "Beta" >}}
+{{< badge "Info" type="info" appearance="soft" >}}
+{{< badge "Ready" type="success" appearance="solid" >}}
+{{< badge "Review" type="warning" appearance="outline" >}}
+{{< badge "Blocked" type="danger" appearance="soft" >}}
+{{< badge "Featured" type="accent" appearance="solid" >}}
+```
+
+**Output:**
+
+{{< badge "Info" type="info" appearance="soft" >}}
+{{< badge "Ready" type="success" appearance="solid" >}}
+{{< badge "Review" type="warning" appearance="outline" >}}
+{{< badge "Blocked" type="danger" appearance="soft" >}}
+{{< badge "Featured" type="accent" appearance="solid" >}}
+
+## Sizes and shapes
+
+```{.markdown shortcodes=false}
+{{< badge "XS" size="xs" shape="pill" >}}
+{{< badge "Small" size="sm" shape="pill" >}}
+{{< badge "Medium" size="md" shape="rounded" >}}
+{{< badge "Large" size="lg" shape="square" >}}
+```
+
+**Output:**
+
+{{< badge "XS" size="xs" shape="pill" >}}
+{{< badge "Small" size="sm" shape="pill" >}}
+{{< badge "Medium" size="md" shape="rounded" >}}
+{{< badge "Large" size="lg" shape="square" >}}
+
+## Icons, links, and custom styling
+
+```{.markdown shortcodes=false}
 {{< badge "Stable" type="success" icon="✓" >}}
-{{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.10.9" type="accent" appearance="solid" >}}
+{{< badge "External docs" type="info" icon="↗" icon-position="end" href="https://quarto.org" >}}
+{{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Stable" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.9" type="accent" appearance="solid" >}}
+{{< badge "Stable" type="success" icon="✓" >}}
+{{< badge "External docs" type="info" icon="↗" icon-position="end" href="https://quarto.org" >}}
+{{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" >}}
 
-## Forma AST-native
+## AST-native form
+
+Use the AST-native form when the label itself should contain inline Markdown.
 
 ```markdown
-[AST-native]{.badge key="stable" appearance="outline" size="md"}
+[**Stable**]{.badge type="success" appearance="outline" size="md"}
+[`v0.10.9`]{.badge type="accent" font="mono"}
 ```
 
-**Output:** [AST-native]{.badge key="stable" appearance="outline" size="md"}
+**Output:** [**Stable**]{.badge type="success" appearance="outline" size="md"} [`v0.10.9`]{.badge type="accent" font="mono"}
 
-# Steps 
+# Steps
 
-## Numbered
+`steps` turns headings into a structured sequence. The same source remains meaningful without the HTML styling, which makes it suitable for tutorials, protocols, workflows, and teaching material.
 
-All `steps` examples use four steps. In numbered mode, the edge is also continuous between circle centers and stays behind the markers; the inside follows the theme surface.
+## Numbered steps
+
+The numbered mode uses a continuous connector behind the numbered markers. The marker interior follows the current surface, so the line does not show through the circle.
 
 ```markdown
 :::steps
 ## Install the extension
-Use `quarto add lsbjordao/quarto-semantic-components`.
+Run `quarto add lsbjordao/quarto-semantic-components`.
 
 ## Enable the filter
 Add `semantic-components` to `filters`.
 
-## Configure the components
-Set defaults in `_quarto.yml` if desired.
+## Configure the project
+Set defaults in `_quarto.yml` when useful.
 
 ## Write normally
-Each heading starts a step.
+Each heading starts a new step.
 :::
 ```
 
@@ -129,81 +229,95 @@ Each heading starts a step.
 
 :::steps
 ## Install the extension
-Use `quarto add lsbjordao/quarto-semantic-components`.
+Run `quarto add lsbjordao/quarto-semantic-components`.
 
 ## Enable the filter
 Add `semantic-components` to `filters`.
 
-## Configure the components
-Set defaults in `_quarto.yml` if desired.
+## Configure the project
+Set defaults in `_quarto.yml` when useful.
 
 ## Write normally
-Each heading starts a step.
+Each heading starts a new step.
 :::
 
-## Dots
+## Numbered steps on a custom surface
 
-Dots look hollow by default: the center uses the theme surface color, hiding the continuous edge that passes behind them. `dot-color` controls the outline and `dot-fill` enables explicit fill.
-
-### Project default
+`surface-color` is useful when the component sits on a background that differs from the document body.
 
 ```markdown
-::: {.steps type="dots"}
-## Extract
-Download the data.
-
-## Validate
-Validate the records.
-
-## Transform
-Prepare the data.
-
-## Publish
-Publish the result.
-:::
-```
-
-**Output:**
-
-::: {.steps type="dots"}
-## Extract
-Download the data.
-
-## Validate
-Validate the records.
-
-## Transform
-Prepare the data.
-
-## Publish
-Publish the result.
-:::
-
-## Custom background
-
-If the steps sit on a surface different from the document background, use `surface-color` so the dot centers match that background:
-
-```markdown
-::: {.steps type="dots"
-  surface-color="#f3f4f6"
-  line-color="#9aa0a6"}
-
+::: {.steps surface-color="#f3f4f6" line-color="#6b7280" line-width="2px"}
 ## Prepare
-First step.
+Create the working directory.
 
-## Process
-Second step.
+## Import
+Load the source data.
 
-## Review
-Third step.
+## Validate
+Check required fields.
 
-## Publish
-Fourth step.
-
+## Export
+Write the validated result.
 :::
 ```
 
-## Dot color and size
+**Output:**
+
+::: {.steps surface-color="#f3f4f6" line-color="#6b7280" line-width="2px"}
+## Prepare
+Create the working directory.
+
+## Import
+Load the source data.
+
+## Validate
+Check required fields.
+
+## Export
+Write the validated result.
+:::
+
+## Dot steps
+
+Dot steps are useful when the sequence should feel lighter than a numbered procedure. The connector remains continuous behind the dots, while the marker center masks the line.
+
+### Default dots
+
+```markdown
+::: {.steps type="dots"}
+## Extract
+Download the data.
+
+## Validate
+Validate the records.
+
+## Transform
+Prepare the data.
+
+## Publish
+Publish the result.
+:::
+```
+
+**Output:**
+
+::: {.steps type="dots"}
+## Extract
+Download the data.
+
+## Validate
+Validate the records.
+
+## Transform
+Prepare the data.
+
+## Publish
+Publish the result.
+:::
+
+### Per-step color and size
+
+Block attributes define defaults; heading attributes override individual nodes.
 
 ```markdown
 ::: {.steps type="dots"
@@ -242,21 +356,21 @@ Review the processed dataset.
 Update the curated dataset.
 :::
 
-## Optional fill
+### Filled and hollow states
 
 ```markdown
 ::: {.steps type="dots" line-width="2px"}
 ## Pending
-Remains hollow.
+The default node remains hollow.
 
 ## In progress {dot-color="#2563eb" dot-fill="#2563eb"}
-Filled blue dot.
+The active stage is filled.
 
 ## Under review {dot-color="#f59e0b" dot-fill="#f59e0b"}
-Filled orange dot.
+A second state uses another color.
 
 ## Completed {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
-Filled green dot.
+The final stage is complete.
 :::
 ```
 
@@ -264,21 +378,21 @@ Filled green dot.
 
 ::: {.steps type="dots" line-width="2px"}
 ## Pending
-Remains hollow.
+The default node remains hollow.
 
 ## In progress {dot-color="#2563eb" dot-fill="#2563eb"}
-Filled blue dot.
+The active stage is filled.
 
 ## Under review {dot-color="#f59e0b" dot-fill="#f59e0b"}
-Filled orange dot.
+A second state uses another color.
 
 ## Completed {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
-Filled green dot.
+The final stage is complete.
 :::
 
-## Example — timeline with Steps dots
+### Timeline pattern
 
-There is no separate `timeline` component. The same visual pattern is produced with `steps type="dots"`, keeping the API smaller and more reusable.
+A timeline does not need a dedicated component. Dates can be represented with inline badges while `steps type="dots"` provides the vertical timeline geometry.
 
 ```markdown
 ::: {.steps type="dots"
@@ -297,14 +411,12 @@ API freeze for final testing.
 
 ## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
 Stable version released.
-
 :::
 ```
 
 **Output:**
 
 ::: {.steps type="dots" line-color="#9aa0a6" line-width="2px" dot-size="0.78rem"}
-
 ## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype {dot-color="#16a34a"}
 First implementation of the component.
 
@@ -316,11 +428,13 @@ API freeze for final testing.
 
 ## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
 Stable version released.
-
 :::
 
-
 # Circled Ordered List
+
+`circle-list` is intentionally small: it keeps ordinary ordered-list semantics and changes only the visual treatment of the number marker.
+
+## Basic list
 
 ```markdown
 :::circle-list
@@ -338,14 +452,40 @@ Stable version released.
 2. Second item, with normal **Markdown**
 3. Third item
 4. Fourth item
+:::
+
+## A compact procedure
+
+Because the content remains ordinary Markdown, links, code, emphasis, and other inline content can be used normally.
+
+```markdown
+:::circle-list
+1. Create `_quarto.yml` in the project root.
+2. Add `semantic-components` to the **filters** list.
+3. Run [`quarto preview`](https://quarto.org/docs/get-started/hello/vscode.html).
+4. Render the final document with `quarto render`.
+:::
+```
+
+**Output:**
+
+:::circle-list
+1. Create `_quarto.yml` in the project root.
+2. Add `semantic-components` to the **filters** list.
+3. Run [`quarto preview`](https://quarto.org/docs/get-started/hello/vscode.html).
+4. Render the final document with `quarto render`.
 :::
 
 # Git tree
 
-The graph represents commits and parent → child relationships. Branches split from nodes; merges end at nodes; the tag and description follow the commit lane.
+`git-tree` represents a Git history as a commit DAG rather than as a generic tree. A dot is a commit, an edge is a parent → child relationship, a branch split starts at a commit, and a merge ends at a commit.
+
+The simple nested-list syntax is convenient for documentation. When the topology cannot be inferred safely from indentation, explicit commit IDs and parent relationships can be provided.
 
 ## Simple syntax — TB direction
 
+`TB` reads from the oldest commit at the top toward the newest commit at the bottom.
+
 ```markdown
 ::: {.git-tree direction="TB"}
 - `main` initial commit
@@ -390,14 +530,16 @@ The graph represents commits and parent → child relationships. Branches split 
 - `main` release v0.10.9
 :::
 
-## Same DAG — BT direction
+## Same topology — BT direction
+
+`BT` keeps the same DAG but reverses the vertical reading direction.
 
 ```markdown
 ::: {.git-tree direction="BT"}
 - `main` initial commit
 - `main` base architecture
   - `feature/api` creates API
-  - `feature/api` implementa endpoints
+  - `feature/api` implements endpoints
 - `main` merge feature/api
 - `main` release
 :::
@@ -409,12 +551,44 @@ The graph represents commits and parent → child relationships. Branches split 
 - `main` initial commit
 - `main` base architecture
   - `feature/api` creates API
-  - `feature/api` implementa endpoints
+  - `feature/api` implements endpoints
 - `main` merge feature/api
 - `main` release
+:::
+
+## A branch created from another branch
+
+Nested branches are valid Git histories. In this example, `test/badges` starts from a commit on `feature/badges`, then merges back into that branch before `feature/badges` itself merges into `main`.
+
+```markdown
+:::git-tree
+- `main` project skeleton
+  - `feature/badges` creates badge renderer
+  - `feature/badges` adds presets
+    - `test/badges` adds variant tests
+    - `test/badges` adds link tests
+  - `feature/badges` merge test/badges
+  - `feature/badges` documents badge API
+- `main` merge feature/badges
+:::
+```
+
+**Output:**
+
+:::git-tree
+- `main` project skeleton
+  - `feature/badges` creates badge renderer
+  - `feature/badges` adds presets
+    - `test/badges` adds variant tests
+    - `test/badges` adds link tests
+  - `feature/badges` merge test/badges
+  - `feature/badges` documents badge API
+- `main` merge feature/badges
 :::
 
 ## Explicit DAG — ids, parents, tag, and HEAD
+
+Use explicit relationships for histories where indentation alone is not enough. `parents=` takes precedence over automatic inference.
 
 ```markdown
 :::git-tree
@@ -444,6 +618,10 @@ The graph represents commits and parent → child relationships. Branches split 
 
 # File tree
 
+`file-tree` describes a project or directory hierarchy using an ordinary nested list. File names are automatically mapped to useful icons, while links, inline code, comments, info hints, custom icons, and collapsible folders remain optional.
+
+## Deep project structure
+
 ```markdown
 :::file-tree
 - +project
@@ -502,11 +680,77 @@ The graph represents commits and parent → child relationships. Branches split 
       - occurrences.parquet
   - README.md
   - _quarto.yml
+:::
+
+`schema.sql` receives the classic database-cylinder icon automatically, while common programming languages and formats are detected from the file name or extension.
+
+## Plain text versus inline code
+
+The author controls whether a file name looks like code. A plain filename remains plain text; backticks explicitly request inline-code styling.
+
+```markdown
+:::file-tree
+- analysis.R plain filename
+- `analysis.R` inline-code filename
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
+- [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) linked inline-code filename
+:::
+```
+
+**Output:**
+
+:::file-tree
+- analysis.R plain filename
+- `analysis.R` inline-code filename
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
+- [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) linked inline-code filename
+:::
+
+## Info hints
+
+`info=` adds a small, keyboard-focusable information marker. In HTML, its text is exposed through `title` and `aria-label`.
+
+```markdown
+:::file-tree
+- [analysis.R]{info="Main R analysis script"}
+- [`pipeline.py`]{info="Ingestion and validation pipeline"}
+- [schema.sql]{info="Relational schema used by the application"}
+:::
+```
+
+**Output:**
+
+:::file-tree
+- [analysis.R]{info="Main R analysis script"}
+- [`pipeline.py`]{info="Ingestion and validation pipeline"}
+- [schema.sql]{info="Relational schema used by the application"}
+:::
+
+## Custom icons and providers
+
+Automatic detection can be overridden for individual files. Provider prefixes such as `devicon:python` can also be used explicitly.
+
+```markdown
+:::file-tree
+- `pipeline.py`{icon="devicon:python"}
+- `species.csv`{icon="leaf"}
+- `golden.parquet`{icon="★"}
+- `deploy.sh`{icon="rocket"}
+:::
+```
+
+**Output:**
+
+:::file-tree
+- `pipeline.py`{icon="devicon:python"}
+- `species.csv`{icon="leaf"}
+- `golden.parquet`{icon="★"}
+- `deploy.sh`{icon="rocket"}
 :::
 
 ## Horizontal indentation
 
-The per-level indentation can be changed with `indent`. This gallery defaults to `1.8rem`.
+`indent` controls the horizontal distance added at every nested level. Compact trees can use a smaller value; sparse trees can use a larger one.
 
 ```markdown
 ::: {.file-tree indent="1rem"}
@@ -532,10 +776,32 @@ The per-level indentation can be changed with `indent`. This gallery defaults to
   - schema.sql
 :::
 
-Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more visually.
+Compare with a wider hierarchy:
+
+```markdown
+::: {.file-tree indent="2.4rem"}
+- +src
+  - +components
+    - Button.ts
+    - Card.ts
+  - app.ts
+:::
+```
+
+**Output:**
+
+::: {.file-tree indent="2.4rem"}
+- +src
+  - +components
+    - Button.ts
+    - Card.ts
+  - app.ts
+:::
 
 ## Expand and collapse folders
 
+Folders with children are interactive in HTML. The tree can define a default state, while individual folders can override it.
+
 ```markdown
 ::: {.file-tree expanded="false"}
 - [+src]{expanded="true"}
@@ -566,46 +832,24 @@ Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more v
 - [+data]{collapsed="true"}
   - raw.csv
   - processed.parquet
-:::
-
-## Text, code, links, info, and icons
-
-```markdown
-:::file-tree
-- analysis.R plain text
-- `pipeline.py` inline code
-- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
-- [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-- [analysis.R]{info="Main R analysis script"}
-- [`pipeline.py`]{info="Ingestion and validation pipeline"}
-- `species.csv`{icon="leaf"}
-- `golden.parquet`{icon="★"}
-:::
-```
-
-**Output:**
-
-:::file-tree
-- analysis.R plain text
-- `pipeline.py` inline code
-- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
-- [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-- [analysis.R]{info="Main R analysis script"}
-- [`pipeline.py`]{info="Ingestion and validation pipeline"}
-- `species.csv`{icon="leaf"}
-- `golden.parquet`{icon="★"}
 :::
 
 # Article
 
-`article` is the generic primitive for self-contained content. The outer HTML element is always `<article>`.
+`article` is the generic block for self-contained content. It deliberately does not encode a specific use case: the same primitive can represent a note, release entry, specification, summary, changelog entry, or collapsible explanation.
 
-## Generic — rounded border only
+The outer HTML element is always a real `<article>`.
+
+## Generic article
+
+The default presentation is simply a subtle rounded border.
 
 ```markdown
 :::article
 ## Technical note
 This is the default `article`, with no accent and no collapse.
+
+The content can contain ordinary **Markdown**, lists, links, and code.
 :::
 ```
 
@@ -614,14 +858,18 @@ This is the default `article`, with no accent and no collapse.
 :::article
 ## Technical note
 This is the default `article`, with no accent and no collapse.
+
+The content can contain ordinary **Markdown**, lists, links, and code.
 :::
 
-## Left accent with rounded ends
+## Left accent
+
+`accent="left"` turns the left border into an accent. `accent-color` accepts any CSS color or semantic names aligned with Quarto callout colors: `note`, `info`, `warning`, `danger`, `caution`, `success`, `tip`, and `important`.
 
 ```markdown
 ::: {.article accent="left" accent-color="warning"}
 ## Attention
-The side accent is optional. The component remains an `article`.
+This article uses the warning accent color.
 :::
 ```
 
@@ -629,12 +877,54 @@ The side accent is optional. The component remains an `article`.
 
 ::: {.article accent="left" accent-color="warning"}
 ## Attention
-The side accent is optional. The component remains an `article`.
+This article uses the warning accent color.
 :::
 
-Use `accent-color="warning"`, `note`, `danger`, `success`, `important`, or any CSS color such as `#8b5cf6`. `accent-width` controls the thickness.
+## Semantic accent presets
+
+```markdown
+::: {.article accent="left" accent-color="note"}
+## Note
+Useful contextual information.
+:::
+
+::: {.article accent="left" accent-color="success"}
+## Success
+The operation completed successfully.
+:::
+```
+
+**Output:**
+
+::: {.article accent="left" accent-color="note"}
+## Note
+Useful contextual information.
+:::
+
+::: {.article accent="left" accent-color="success"}
+## Success
+The operation completed successfully.
+:::
+
+## Arbitrary accent color
+
+```markdown
+::: {.article accent="left" accent-color="#8b5cf6" accent-width="6px"}
+## Custom accent
+Any CSS color can be used when a semantic preset is not appropriate.
+:::
+```
+
+**Output:**
+
+::: {.article accent="left" accent-color="#8b5cf6" accent-width="6px"}
+## Custom accent
+Any CSS color can be used when a semantic preset is not appropriate.
+:::
 
 ## Collapsed by default
+
+A collapsible article uses native HTML `<details>` inside the `<article>` wrapper. No JavaScript is required, and the content remains fully visible in PDF/DOCX.
 
 ```markdown
 ::: {.article
@@ -642,13 +932,12 @@ Use `accent-color="warning"`, `note`, `danger`, `success`, `important`, or any C
   summary="Technical details"
   expanded="false"}
 
-The content is inside a native `details`, while the outer element remains `article`.
+The content starts collapsed in HTML.
 
 - normal Markdown
-- listas
+- lists
 - code
 - other components
-
 :::
 ```
 
@@ -656,16 +945,15 @@ The content is inside a native `details`, while the outer element remains `artic
 
 ::: {.article collapsible="true" summary="Technical details" expanded="false"}
 
-The content is inside a native `details`, while the outer element remains `article`.
+The content starts collapsed in HTML.
 
 - normal Markdown
-- listas
+- lists
 - code
 - other components
-
 :::
 
-## Expanded + accent
+## Expanded by default with an accent
 
 ```markdown
 ::: {.article
@@ -675,8 +963,7 @@ The content is inside a native `details`, while the outer element remains `artic
   summary="Methodology"
   expanded="true"}
 
-This example starts expanded and combines accent with collapse.
-
+This example starts expanded and combines the accent with native collapse/expand behavior.
 :::
 ```
 
@@ -684,96 +971,123 @@ This example starts expanded and combines accent with collapse.
 
 ::: {.article accent="left" accent-color="note" collapsible="true" summary="Methodology" expanded="true"}
 
-This example starts expanded and combines accent with collapse.
-
+This example starts expanded and combines the accent with native collapse/expand behavior.
 :::
 
-## Example — changelog inside an article
+## Changelog pattern
+
+A changelog does not require a dedicated component. It is simply one possible use of `article`.
 
 ```markdown
 :::article
-
 ## 0.10.9 — 2026-09-17
 
 ### Added
-- Optional left accent in `article`.
-- Collapse/expand nativo.
+- English documentation and examples.
+- Additional gallery examples.
 
 ### Changed
-- Timeline demonstrated with `steps type="dots"`.
-- Generic blocks converged on `article`.
+- Improved explanations for each semantic primitive.
 
-### Removed
-- `timeline`
-- `pipeline`
-- `details`
-- `changelog`
-- `aside`
-
-## 0.7.1 — 2026-09-17
-
-### Changed
-- New `content-gap` in `git-tree`.
-- Tags and descriptions follow the commit lane.
-
+### Fixed
+- Remaining mixed-language text in examples.
 :::
 ```
 
 **Output:**
 
 :::article
-
 ## 0.10.9 — 2026-09-17
 
 ### Added
-- Optional left accent in `article`.
-- Collapse/expand nativo.
+- English documentation and examples.
+- Additional gallery examples.
 
 ### Changed
-- Timeline demonstrated with `steps type="dots"`.
-- Generic blocks converged on `article`.
+- Improved explanations for each semantic primitive.
 
-### Removed
-- `timeline`
-- `pipeline`
-- `details`
-- `changelog`
-- `aside`
-
-## 0.7.1 — 2026-09-17
-
-### Changed
-- New `content-gap` in `git-tree`.
-- Tags and descriptions follow the commit lane.
-
+### Fixed
+- Remaining mixed-language text in examples.
 :::
 
-## Custom article
+## Custom container styling
 
 ```markdown
 ::: {.article
   radius="1.2rem"
   padding="1.25rem"
   border-color="#8b5cf6"
-  background="transparent"}
+  background="transparent"
+  shadow="0 8px 24px rgb(0 0 0 / .08)"}
 
 ## Self-contained content
-An `article` can also represent posts, releases, summaries, or specifications.
+An `article` can represent a release note, specification, summary, or any other independent unit of content.
 :::
 ```
 
 **Output:**
 
-::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6" background="transparent"}
+::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6" background="transparent" shadow="0 8px 24px rgb(0 0 0 / .08)"}
 ## Self-contained content
-An `article` can also represent posts, releases, summaries, or specifications.
+An `article` can represent a release note, specification, summary, or any other independent unit of content.
 :::
 
+# Combining components
 
-# Inspiration and formats
+The primitives are intentionally composable. A component can contain normal Markdown and, where the document structure permits it, other semantic components.
 
-The **Steps** and **File Tree** ideas were inspired by [Vocs](https://vocs.dev/) components, but the implementation is original and Pandoc-AST-oriented.
+## Release package example
 
-- **HTML**: full presentation, badges, interactive file tree, info, Git DAG in SVG, and the semantic `article` element;
-- **PDF**: structural content and links are preserved;
-- **DOCX**: lists, headings, links, and text remain editable.
+This example combines an `article`, an inline `badge`, and a nested `file-tree`.
+
+```markdown
+:::: {.article accent="left" accent-color="success"}
+## Release package [v0.10.9]{.badge type="success" appearance="solid" size="xs"}
+
+The release contains the extension source, documentation, and examples.
+
+:::file-tree
+- +semantic-components
+  - steps.lua
+  - file-tree.lua
+  - git-tree.lua
+  - article.lua
+  - badges.lua
+- README.md
+- index.qmd
+:::
+::::
+```
+
+**Output:**
+
+:::: {.article accent="left" accent-color="success"}
+## Release package [v0.10.9]{.badge type="success" appearance="solid" size="xs"}
+
+The release contains the extension source, documentation, and examples.
+
+:::file-tree
+- +semantic-components
+  - steps.lua
+  - file-tree.lua
+  - git-tree.lua
+  - article.lua
+  - badges.lua
+- README.md
+- index.qmd
+:::
+::::
+
+# Output formats
+
+The components are designed around Pandoc structure rather than HTML-only widgets.
+
+| Format | Behavior |
+|---|---|
+| **HTML** | Full styling, badges, SVG Git DAG, expandable file tree, info hints, and native article collapse/expand |
+| **PDF** | Structural content and links are preserved; interactive behavior degrades to readable static content |
+| **DOCX** | Lists, headings, links, and text remain editable |
+
+# Inspiration
+
+The **Steps** and **File Tree** ideas were inspired by components from [Vocs](https://vocs.dev/). The implementation here is original and built around the Pandoc AST, project-level configuration, and cross-format rendering.
