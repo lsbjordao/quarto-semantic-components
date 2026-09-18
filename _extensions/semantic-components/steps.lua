@@ -25,7 +25,7 @@ end
 local function mode(el,meta)
   local value = setting(el,meta,'type',{'mode','style'})
   if value == 'dots' or value == 'dot' or value == 'bullet' or value == 'bullets' then return 'dots' end
-  if value == 'git' or value == 'history' or value == 'timeline' then return 'git' end
+  if value == 'git' or value == 'history' then return 'git' end
   if has_class(el, 'steps-dots') or has_class(el, 'dots') then return 'dots' end
   if has_class(el, 'steps-git') or has_class(el, 'git') then return 'git' end
   return 'numbered'
