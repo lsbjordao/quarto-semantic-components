@@ -176,16 +176,16 @@ Não há um componente `timeline` separado. Uma timeline vertical é um caso nat
 ```markdown
 ::: {.steps type="dots" line-color="#9aa0a6" line-width="2px"}
 
-## 2024 — Protótipo {dot-color="#16a34a"}
+## [2024]{.badge type="success" appearance="outline" size="xs"} Protótipo {dot-color="#16a34a"}
 Primeira implementação do componente.
 
-## 2025 — Beta {dot-color="#2563eb"}
+## [2025]{.badge type="info" appearance="outline" size="xs"} Beta {dot-color="#2563eb"}
 Validação e refinamento visual.
 
-## 2026-06 — Release candidate {dot-color="#f59e0b"}
+## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate {dot-color="#f59e0b"}
 Congelamento da API para testes finais.
 
-## 2026-09 — Release {dot-color="#16a34a"}
+## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
 Versão estável publicada.
 
 :::
@@ -270,7 +270,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.1" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.2" head="true"} merge feature/badges
 :::
 ```
 
@@ -333,7 +333,7 @@ Aliases: `expanded`, `open` e `collapsed`.
 
 ## Article
 
-`article` é o bloco genérico para uma unidade de conteúdo autocontida. Em HTML, a extensão emite um elemento real `<article>`. O comportamento padrão é apenas uma borda discreta e arredondada:
+`article` é o bloco genérico para uma unidade de conteúdo autocontida. Em HTML, a extensão emite um elemento real `<article>`. Headings Markdown internos são preservados visualmente e semanticamente com `role="heading"`/`aria-level`, sem gerar `<section>` que escape da caixa. O comportamento padrão é apenas uma borda discreta e arredondada:
 
 ```markdown
 :::article
@@ -398,7 +398,7 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 ```markdown
 :::article
 
-## 0.10.1 — 2026-09-17
+## 0.10.2 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
