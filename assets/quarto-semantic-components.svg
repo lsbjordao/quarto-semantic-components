@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Quarto Semantic Components logo</title>
+  <desc id="desc">A stylized Q surrounding a document with steps and a semantic hierarchy.</desc>
+  <defs>
+    <linearGradient id="ring" x1="80" y1="60" x2="430" y2="445" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset=".42" stop-color="#0ea5e9"/>
+      <stop offset=".68" stop-color="#14b8a6"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="tail" x1="305" y1="335" x2="470" y2="475" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="page" x1="155" y1="115" x2="348" y2="382" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f172a" flood-opacity=".16"/>
+    </filter>
+  </defs>
+
+  <!-- Q ring -->
+  <circle cx="250" cy="244" r="176" fill="none" stroke="url(#ring)" stroke-width="64" stroke-linecap="round"/>
+  <path d="M351 349 L449 447" fill="none" stroke="url(#tail)" stroke-width="64" stroke-linecap="round"/>
+
+  <!-- Document -->
+  <path d="M153 126c0-19 15-34 34-34h143l60 60v202c0 19-15 34-34 34H187c-19 0-34-15-34-34V126Z"
+        fill="url(#page)" filter="url(#shadow)"/>
+  <path d="M330 92v43c0 17 14 31 31 31h29" fill="#dbeafe"/>
+  <path d="M330 92l60 60h-29c-17 0-31-14-31-31V92Z" fill="#bfdbfe"/>
+
+  <!-- Steps -->
+  <path d="M202 166v118" stroke="#60a5fa" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="202" cy="166" r="18" fill="#2563eb"/>
+  <circle cx="202" cy="225" r="18" fill="#14b8a6"/>
+  <circle cx="202" cy="284" r="18" fill="#7c3aed"/>
+  <rect x="238" y="154" width="92" height="20" rx="10" fill="#93c5fd"/>
+  <rect x="238" y="213" width="123" height="20" rx="10" fill="#5eead4"/>
+  <rect x="238" y="272" width="112" height="20" rx="10" fill="#c4b5fd"/>
+
+  <!-- Hierarchy -->
+  <rect x="245" y="315" width="86" height="27" rx="13.5" fill="#f59e0b"/>
+  <path d="M288 342v18M222 360h132M222 360v18M288 360v18M354 360v18"
+        fill="none" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="190" y="378" width="64" height="27" rx="10" fill="#2563eb"/>
+  <rect x="256" y="378" width="64" height="27" rx="10" fill="#14b8a6"/>
+  <rect x="322" y="378" width="64" height="27" rx="10" fill="#7c3aed"/>
+</svg>
