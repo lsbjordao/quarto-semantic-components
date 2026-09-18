@@ -60,6 +60,7 @@ local function transform_circle_list(el,meta)
   if not (has_class(el,'circle-list') or has_class(el,'semantic-circle-list')) then return nil end
 
   add_class(el,'semantic-circle-list')
+  if not is_html() then return el end
 
   local border,border_light,border_dark=themed_setting(el,meta,'border-color',{
     'circle-border-color','marker-border-color'
