@@ -27,10 +27,17 @@ extensions:
     dot-size: "0.72rem"
     line-width: "1.5px"
 
+  tree:
+    expanded: true
+    indent: "1.5rem"
+
   file-tree:
     icons: devicon
     expanded: true
     indent: "1.8rem"
+
+  properties:
+    term-width: "9rem"
 
   git-tree:
     direction: TB
