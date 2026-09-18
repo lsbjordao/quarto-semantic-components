@@ -1,0 +1,30 @@
+.semantic-properties{
+  --properties-gap:.55rem 1.25rem;
+  --properties-term-width:minmax(8rem,max-content);
+  margin:1rem 0;
+}
+.semantic-properties dl{
+  display:grid;
+  grid-template-columns:var(--properties-term-width) minmax(0,1fr);
+  gap:var(--properties-gap);
+  margin:0;
+}
+.semantic-properties dt{
+  grid-column:1;
+  margin:0;
+  font-weight:650;
+  color:color-mix(in srgb,currentColor 78%,transparent);
+}
+.semantic-properties dd{
+  grid-column:2;
+  margin:0;
+  min-width:0;
+}
+.semantic-properties dd>p:first-child{margin-top:0}
+.semantic-properties dd>p:last-child{margin-bottom:0}
+.semantic-properties.properties-compact dl{--properties-gap:.2rem 1rem}
+@media (max-width:600px){
+  .semantic-properties dl{grid-template-columns:1fr;gap:.1rem}
+  .semantic-properties dt,.semantic-properties dd{grid-column:1}
+  .semantic-properties dd{margin-bottom:.65rem}
+}

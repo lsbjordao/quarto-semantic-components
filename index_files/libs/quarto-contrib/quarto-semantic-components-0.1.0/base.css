@@ -1,0 +1,60 @@
+:root {
+  --semantic-line-width:1.5px; --semantic-step-marker-size:1.85rem; --semantic-step-gap:1.05rem;
+  --semantic-muted-opacity:.58; --semantic-soft-opacity:.18; --semantic-icon-size:1.15rem;
+  --semantic-git-node-bg:var(--bs-body-bg,var(--quarto-body-bg,Canvas));
+  --semantic-git-line:#9aa0a6;
+  --semantic-git-line:color-mix(in srgb,currentColor 34%,var(--semantic-git-node-bg));
+  --semantic-step-dot-color:currentColor; --semantic-step-line-color:currentColor;
+  --semantic-step-surface:var(--bs-body-bg,var(--quarto-body-bg,Canvas));
+}
+
+/* Theme-specific colors always override the unsuffixed value. If no theme
+   override is supplied, the regular component color remains the fallback. */
+body.quarto-light .semantic-git-tree .git-tree-edge,
+[data-bs-theme="light"] .semantic-git-tree .git-tree-edge{
+  stroke:var(--semantic-git-line-light,var(--semantic-git-line));
+}
+body.quarto-dark .semantic-git-tree .git-tree-edge,
+[data-bs-theme="dark"] .semantic-git-tree .git-tree-edge{
+  stroke:var(--semantic-git-line-dark,var(--semantic-git-line));
+}
+body.quarto-light .semantic-git-tree .git-tree-node,
+[data-bs-theme="light"] .semantic-git-tree .git-tree-node{
+  fill:var(--semantic-git-node-bg-light,var(--semantic-git-node-bg));
+}
+body.quarto-dark .semantic-git-tree .git-tree-node,
+[data-bs-theme="dark"] .semantic-git-tree .git-tree-node{
+  fill:var(--semantic-git-node-bg-dark,var(--semantic-git-node-bg));
+}
+
+body.quarto-light .semantic-article,
+[data-bs-theme="light"] .semantic-article{
+  border-color:var(--article-border-color-light,var(--article-border-color));
+  background:var(--article-background-light,var(--article-background));
+}
+body.quarto-dark .semantic-article,
+[data-bs-theme="dark"] .semantic-article{
+  border-color:var(--article-border-color-dark,var(--article-border-color));
+  background:var(--article-background-dark,var(--article-background));
+}
+body.quarto-light .semantic-article.article-accent-left,
+[data-bs-theme="light"] .semantic-article.article-accent-left{
+  border-left-color:var(--article-accent-color-light,var(--article-accent-color));
+}
+body.quarto-dark .semantic-article.article-accent-left,
+[data-bs-theme="dark"] .semantic-article.article-accent-left{
+  border-left-color:var(--article-accent-color-dark,var(--article-accent-color));
+}
+
+body.quarto-light .qsc-badge,
+[data-bs-theme="light"] .qsc-badge{
+  color:var(--semantic-badge-fg-light,var(--semantic-badge-fg));
+  background:var(--semantic-badge-bg-light,var(--semantic-badge-bg));
+  border-color:var(--semantic-badge-border-light,var(--semantic-badge-border));
+}
+body.quarto-dark .qsc-badge,
+[data-bs-theme="dark"] .qsc-badge{
+  color:var(--semantic-badge-fg-dark,var(--semantic-badge-fg));
+  background:var(--semantic-badge-bg-dark,var(--semantic-badge-bg));
+  border-color:var(--semantic-badge-border-dark,var(--semantic-badge-border));
+}

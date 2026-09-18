@@ -1,0 +1,34 @@
+.qsc-progress,.qsc-meter{
+  --qsc-indicator-color:var(--qsc-indicator-color-base,var(--bs-primary,currentColor));
+  --qsc-indicator-track:var(--qsc-indicator-track-base,color-mix(in srgb,currentColor 12%,transparent));
+  display:inline-grid;grid-template-columns:auto minmax(8rem,14rem) auto;align-items:center;gap:.55rem;
+  vertical-align:middle;max-width:100%
+}
+body.quarto-light .qsc-progress,body.quarto-light .qsc-meter,
+[data-bs-theme="light"] .qsc-progress,[data-bs-theme="light"] .qsc-meter{
+  --qsc-indicator-color:var(--qsc-indicator-color-light,var(--qsc-indicator-color-base,var(--bs-primary,currentColor)));
+  --qsc-indicator-track:var(--qsc-indicator-track-light,var(--qsc-indicator-track-base,color-mix(in srgb,currentColor 12%,transparent)))
+}
+body.quarto-dark .qsc-progress,body.quarto-dark .qsc-meter,
+[data-bs-theme="dark"] .qsc-progress,[data-bs-theme="dark"] .qsc-meter{
+  --qsc-indicator-color:var(--qsc-indicator-color-dark,var(--qsc-indicator-color-base,var(--bs-primary,currentColor)));
+  --qsc-indicator-track:var(--qsc-indicator-track-dark,var(--qsc-indicator-track-base,color-mix(in srgb,currentColor 12%,transparent)))
+}
+.qsc-progress progress,.qsc-meter meter{width:100%;height:.72rem;accent-color:var(--qsc-indicator-color);background:var(--qsc-indicator-track);border:0;border-radius:999px;overflow:hidden}
+.qsc-progress progress::-webkit-progress-bar{background:var(--qsc-indicator-track);border-radius:999px}
+.qsc-progress progress::-webkit-progress-value{background:var(--qsc-indicator-color);border-radius:999px}
+.qsc-progress progress::-moz-progress-bar{background:var(--qsc-indicator-color);border-radius:999px}
+.qsc-meter meter::-webkit-meter-bar{background:var(--qsc-indicator-track);border:0;border-radius:999px}
+.qsc-meter meter::-webkit-meter-optimum-value,.qsc-meter meter::-webkit-meter-suboptimum-value,.qsc-meter meter::-webkit-meter-even-less-good-value{background:var(--qsc-indicator-color);border-radius:999px}
+.qsc-meter meter::-moz-meter-bar{background:var(--qsc-indicator-color)}
+.qsc-indicator-label{font-weight:650}
+.qsc-indicator-value{font-variant-numeric:tabular-nums;color:color-mix(in srgb,currentColor 72%,transparent);white-space:nowrap}
+.qsc-kbd-group{display:inline-flex;align-items:center;gap:.28em;vertical-align:baseline}
+.qsc-kbd-group kbd{
+  display:inline-block;padding:.08em .42em;border:1px solid color-mix(in srgb,currentColor 28%,transparent);
+  border-bottom-width:2px;border-radius:.32em;background:color-mix(in srgb,currentColor 6%,transparent);
+  color:inherit;font:600 .82em/1.45 var(--bs-font-monospace,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace);
+  box-shadow:0 1px 0 color-mix(in srgb,currentColor 12%,transparent)
+}
+.qsc-kbd-separator{opacity:.65}
+.qsc-abbr{text-decoration:underline dotted;text-underline-offset:.16em;cursor:help}
