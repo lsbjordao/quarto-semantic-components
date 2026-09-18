@@ -66,6 +66,17 @@ body.quarto-dark .semantic-roadmap .semantic-roadmap-item,[data-bs-theme="dark"]
   padding:.8rem .9rem;
   box-shadow:0 .35rem 1rem color-mix(in srgb,currentColor 5%,transparent);
 }
+.semantic-roadmap .roadmap-status-label{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
 .semantic-roadmap .roadmap-card>:first-child{margin-top:0}
 .semantic-roadmap .roadmap-card>:last-child{margin-bottom:0}
 .semantic-roadmap .roadmap-title,
