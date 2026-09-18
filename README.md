@@ -1,22 +1,22 @@
 # Quarto Semantic Components
 
-Extensão Quarto/Pandoc com componentes semânticos reutilizáveis para **HTML, PDF e DOCX**. A estrutura principal permanece no AST do Pandoc; o HTML acrescenta apresentação rica, enquanto formatos não HTML preservam listas, links e conteúdo textual.
+Quarto/Pandoc extension with reusable semantic components for **HTML, PDF, and DOCX**. The core structure stays in the Pandoc AST; HTML adds richer presentation, while non-HTML formats preserve lists, links, and textual content.
 
-## Inspiração
+## Inspiration
 
-Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.dev/), em especial dos componentes de Markdown como **Steps** e **File Tree**. A implementação aqui é própria e adaptada ao ecossistema Quarto/Pandoc, com foco adicional em renderização multiplataforma, metadata de projeto e degradação segura para PDF/DOCX.
+Some ergonomics and syntax ideas came from the [Vocs](https://vocs.dev/) framework, especially Markdown components such as **Steps** and **File Tree**. The implementation here is original and adapted to the Quarto/Pandoc ecosystem, with additional focus on cross-format rendering, project metadata, and safe degradation to PDF/DOCX.
 
 ## Componentes
 
-- `steps`: sequência numerada;
-- `steps type="dots"`: steps com bolinhas vazadas por padrão e ampla personalização;
-- `circle-list`: lista ordenada com números circulados;
-- `git-tree`: grafo de commits Git (DAG) com branches, merges, tags, `HEAD` e direções TB/BT;
-- `file-tree`: árvore de arquivos com aninhamento profundo, links, info, ícones e pastas colapsáveis em HTML;
-- `badge`: badge inline com presets de projeto e personalização por instância;
-- `article`: contêiner semântico baseado no elemento HTML `<article>`, com borda, accent lateral opcional e collapse/expand em HTML.
+- `steps`: numbered sequence;
+- `steps type="dots"`: steps with hollow dots by default and extensive customization;
+- `circle-list`: ordered list with circled numbers;
+- `git-tree`: Git commit graph (DAG) with branches, merges, tags, `HEAD`, and TB/BT directions;
+- `file-tree`: file tree with deep nesting, links, info, icons, and collapsible folders in HTML;
+- `badge`: inline badge with project presets and per-instance customization;
+- `article`: semantic container based on the HTML `<article>` element, with border, optional side accent, and collapse/expand in HTML.
 
-## Instalação
+## Installation
 
 ```bash
 quarto add lsbjordao/quarto-semantic-components
@@ -31,25 +31,25 @@ filters:
 
 ## Defaults no `_quarto.yml`
 
-A precedência é:
+Precedence is:
 
 ```text
 _quarto.yml / _metadata.yml
         ↓
-preset do componente
+component preset
         ↓
-atributos do componente
+component attributes
         ↓
-atributos do item individual
+individual item attributes
 ```
 
-Exemplo:
+Example:
 
 ```yaml
 extensions:
   badge:
     - key: stable
-      label: Estável
+      label: Stable
       type: success
       appearance: solid
       icon: "✓"
@@ -80,74 +80,74 @@ extensions:
     accent: none
 ```
 
-Também são aceitos os namespaces `semantic-components:` e `extensions.semantic-components`.
+The `semantic-components:` and `extensions.semantic-components` namespaces are also accepted.
 
 ## Badges
 
-O shortcode público é apenas **`badge`**:
+The only public shortcode is **`badge`**:
 
 ```markdown
 {{< badge "Beta" >}}
-{{< badge "Estável" type="success" icon="✓" >}}
+{{< badge "Stable" type="success" icon="✓" >}}
 {{< badge stable >}}
-{{< badge "Release estável" key="stable" >}}
+{{< badge "Stable release" key="stable" >}}
 ```
 
-A forma AST-native usa a mesma palavra:
+The AST-native form uses the same word:
 
 ```markdown
 [AST-native]{.badge key="stable" appearance="outline" size="md"}
 ```
 
-A classe pública `.badge` é convertida internamente pela extensão para uma classe privada, evitando depender do estilo `.badge` do Bootstrap.
+The public `.badge` class is converted internally by the extension to a private class, avoiding dependence on Bootstrap's `.badge` styling.
 
-### Compatibilidade com `mcanouil/quarto-badge`
+### Compatibility with `mcanouil/quarto-badge`
 
-O projeto [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) também registra um shortcode chamado `badge`. Portanto, um projeto deve **escolher qual extensão será responsável por `{{< badge ... >}}`**; não é recomendado carregar as duas extensões de badge simultaneamente.
+The [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) project also registers a shortcode named `badge`. A project should therefore **choose which extension is responsible for `{{< badge ... >}}`**; loading both badge extensions at the same time is not recommended.
 
 ## Steps
 
-Os exemplos usam `##` como padrão. O filtro considera o primeiro nível de heading encontrado dentro do componente, então outros níveis continuam válidos.
+Examples use `##` by default. The filter detects the first heading level found inside the component, so other heading levels remain valid.
 
-### Numerado
+### Numbered
 
-No modo numerado, a aresta também é contínua de centro a centro e passa por trás dos círculos. O interior de cada marcador usa a superfície do tema para ocultar a linha. `line-color`, `line-width` e `surface-color` funcionam tanto em steps numerados quanto em dots.
+In numbered mode, the edge is also continuous from center to center and passes behind the circles. The inside of each marker uses the theme surface to hide the line. `line-color`, `line-width`, and `surface-color` work for both numbered and dot steps.
 
 ```markdown
 :::steps
 ## Primeiro passo
-Conteúdo.
+Content.
 
 ## Segundo passo
-Conteúdo.
+Content.
 
 ## Terceiro passo
-Conteúdo.
+Content.
 
 ## Quarto passo
-Conteúdo.
+Content.
 :::
 ```
 
-### Bolinhas vazadas por padrão
+### Hollow dots by default
 
 ```markdown
 ::: {.steps type="dots"}
-## Extrair
-Conteúdo.
+## Extract
+Content.
 
-## Validar
-Conteúdo.
+## Validate
+Content.
 
-## Transformar
-Conteúdo.
+## Transform
+Content.
 
-## Publicar
-Conteúdo.
+## Publish
+Content.
 :::
 ```
 
-`dot-color` controla o contorno. Sem `dot-fill`, o centro do nó usa a cor de superfície do tema para mascarar a aresta contínua; `dot-fill` aplica um preenchimento explícito.
+`dot-color` controls the outline. Without `dot-fill`, the node center uses the theme surface color to mask the continuous edge; `dot-fill` applies an explicit fill.
 
 ```markdown
 ::: {.steps type="dots"
@@ -156,97 +156,97 @@ Conteúdo.
   line-color="#9aa0a6"
   line-width="1.5px"}
 
-## Extrair {dot-color="#2563eb"}
-Conteúdo.
+## Extract {dot-color="#2563eb"}
+Content.
 
-## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}
-Conteúdo.
+## Deduplicate {dot-color="#f59e0b" dot-size="0.95rem"}
+Content.
 
-## Revisar {dot-color="#8b5cf6"}
-Conteúdo.
+## Review {dot-color="#8b5cf6"}
+Content.
 
-## Publicar {dot-color="#16a34a"}
-Conteúdo.
+## Publish {dot-color="#16a34a"}
+Content.
 :::
 ```
 
-Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color`, `line-width` e `surface-color`. Nos steps com dots, a aresta é contínua de centro a centro dos nós e passa por trás das bolinhas; o centro usa a superfície do tema para ocultar a linha. Em fundos customizados, use `surface-color=`. `dot-fill="transparent"` e `dot-fill="none"` também são interpretados como a superfície, evitando que a aresta apareça dentro do nó.
+Defaults and overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color`, `line-width`, and `surface-color`. In dot steps, the edge is continuous from node center to node center and passes behind the dots; the center uses the theme surface to hide the line. For custom backgrounds, use `surface-color=`. `dot-fill="transparent"` and `dot-fill="none"` are also interpreted as the surface, preventing the edge from showing through the node.
 
-### Exemplo de timeline com `steps type="dots"`
+### Timeline example with `steps type="dots"`
 
-Não há um componente `timeline` separado. Uma timeline vertical é um caso natural de uso dos próprios steps com bolinhas:
+There is no separate `timeline` component. A vertical timeline is a natural use case for dot steps:
 
 ```markdown
 ::: {.steps type="dots" line-color="#9aa0a6" line-width="2px"}
 
-## [2024]{.badge type="success" appearance="outline" size="xs"} Protótipo {dot-color="#16a34a"}
-Primeira implementação do componente.
+## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype {dot-color="#16a34a"}
+First implementation of the component.
 
 ## [2025]{.badge type="info" appearance="outline" size="xs"} Beta {dot-color="#2563eb"}
-Validação e refinamento visual.
+Validation and visual refinement.
 
 ## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate {dot-color="#f59e0b"}
-Congelamento da API para testes finais.
+API freeze for final testing.
 
 ## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
-Versão estável publicada.
+Stable version released.
 
 :::
 ```
 
-Isso mantém `steps` como primitive reutilizável em vez de criar outro componente com a mesma geometria.
+This keeps `steps` as a reusable primitive instead of creating another component with the same geometry.
 
-Para fluxos e diagramas mais gerais, a extensão não cria um `pipeline` próprio: o Quarto já oferece integração com Mermaid e outras ferramentas de diagramas.
+For more general flows and diagrams, the extension does not create its own `pipeline`: Quarto already provides integration with Mermaid and other diagramming tools.
 
 
 ## Circle list
 
 ```markdown
 :::circle-list
-1. Item um
-2. Item dois
-3. Item três
-4. Item quatro
+1. Item one
+2. Item two
+3. Item three
+4. Item four
 :::
 ```
 
-## Git tree: um grafo de commits, não apenas uma árvore visual
+## Git tree: a commit graph, not just a visual tree
 
-O Git é modelado como um **DAG de commits**. No `git-tree`:
+Git is modeled as a **commit DAG**. In `git-tree`:
 
-- cada bolinha representa um commit;
-- cada aresta conecta um commit pai a um commit filho;
-- uma bifurcação sempre começa em um commit;
-- um merge sempre termina em um commit;
-- a tag/branch e a descrição começam logo após o nó correspondente, formando uma escadinha coerente com a lane;
-- `tag=` e `head=true` podem anexar referências adicionais ao commit.
+- each dot represents a commit;
+- each edge connects a parent commit to a child commit;
+- a branch split always starts at a commit;
+- a merge always ends at a commit;
+- the tag/branch and description start immediately after the corresponding node, forming a staircase aligned with the lane hierarchy;
+- `tag=` and `head=true` can attach additional references to the commit.
 
-### Sintaxe simples
+### Simple syntax
 
 ```markdown
 :::git-tree
 - `main` initial commit
-- `main` arquitetura base
+- `main` base architecture
   - `feature/icons` cria branch
-  - `feature/icons` adiciona Devicon
+  - `feature/icons` adds Devicon
     - `docs/icons` documenta providers
-    - `docs/icons` adiciona exemplos
+    - `docs/icons` adds examples
   - `feature/icons` merge docs/icons
   - `feature/icons` adiciona links
 - `main` merge feature/icons
 :::
 ```
 
-A extensão infere os parents da seguinte forma:
+The extension infers parents as follows:
 
-- mesma profundidade → próximo commit da mesma lane;
-- aumento de profundidade → branch criado a partir do commit imediatamente anterior;
-- retorno a uma profundidade menor → o próximo commit da lane pai é tratado como merge commit;
-- retorno de vários níveis de uma vez → o commit recebe múltiplos parents.
+- same depth → next commit on the same lane;
+- increased depth → branch created from the immediately preceding commit;
+- return to a shallower depth → the next commit on the parent lane is treated as a merge commit;
+- return across multiple levels at once → the commit receives multiple parents.
 
-`lane-gap` controla a distância entre lanes e `content-gap` controla o espaço entre o nó e a tag/descrição.
+`lane-gap` controls the distance between lanes, and `content-gap` controls the space between the node and the tag/description.
 
-### Direção TB ou BT
+### TB or BT direction
 
 ```markdown
 ::: {.git-tree direction="TB"}
@@ -254,7 +254,7 @@ A extensão infere os parents da seguinte forma:
 :::
 ```
 
-`TB` (`top → bottom`) mostra o commit mais antigo no topo. `BT` (`bottom → top`) mantém o mesmo DAG, invertendo apenas a leitura vertical:
+`TB` (`top → bottom`) shows the oldest commit at the top. `BT` (`bottom → top`) keeps the same DAG and only reverses vertical reading:
 
 ```markdown
 ::: {.git-tree direction="BT"}
@@ -262,26 +262,26 @@ A extensão infere os parents da seguinte forma:
 :::
 ```
 
-### DAG explícito: ids e parents
+### Explicit DAG: ids and parents
 
 ```markdown
 :::git-tree
 - `main`{#c1} initial commit
-- `main`{#c2 parent="c1"} arquitetura base
-  - `feature/badges`{#c3 parent="c2"} cria badge
-  - `feature/badges`{#c4 parent="c3"} customização visual
-    - `test/badges`{#c5 parent="c4"} cobre variantes
-    - `test/badges`{#c6 parent="c5"} cobre links
+- `main`{#c2 parent="c1"} base architecture
+  - `feature/badges`{#c3 parent="c2"} creates badge
+  - `feature/badges`{#c4 parent="c3"} visual customization
+    - `test/badges`{#c5 parent="c4"} covers variants
+    - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.8" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.9" head="true"} merge feature/badges
 :::
 ```
 
-`parents=` prevalece sobre a inferência automática. `parents="none"` cria explicitamente um root commit.
+`parents=` takes precedence over automatic inference. `parents="none"` explicitly creates a root commit.
 
 ## File tree
 
-### Aninhamento profundo e ícones automáticos
+### Deep nesting and automatic icons
 
 ```markdown
 :::file-tree
@@ -298,13 +298,13 @@ A extensão infere os parents da seguinte forma:
 :::
 ```
 
-Providers disponíveis: `devicon`, `simple-icons`, `builtin` e `none`.
+Available providers: `devicon`, `simple-icons`, `builtin`, and `none`.
 
-`schema.sql` recebe automaticamente o ícone clássico de banco de dados (cilindro) no fallback builtin.
+`schema.sql` automatically receives the classic database cylinder icon in the builtin fallback.
 
-### Recuo horizontal por nível
+### Horizontal indentation per level
 
-`indent` controla a distância horizontal acrescentada a cada nível aninhado:
+`indent` controls the horizontal distance added at each nested level:
 
 ```markdown
 ::: {.file-tree indent="1rem"}
@@ -317,7 +317,7 @@ Providers disponíveis: `devicon`, `simple-icons`, `builtin` e `none`.
 :::
 ```
 
-Também pode ser definido no projeto:
+It can also be defined at the project level:
 
 ```yaml
 extensions:
@@ -327,9 +327,9 @@ extensions:
 
 Aliases aceitos: `level-indent`, `indent-size` e `child-indent`.
 
-Para `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o símbolo oficial do Quarto servido pelo próprio site.
+For `.qmd`, `_quarto.yml`, and `quarto.yml`, the default provider uses Quarto's official symbol served from the Quarto website.
 
-### Pastas expansíveis em HTML
+### Expandable folders in HTML
 
 ```yaml
 extensions:
@@ -347,9 +347,9 @@ extensions:
 :::
 ```
 
-Aliases: `expanded`, `open` e `collapsed`.
+Aliases: `expanded`, `open`, and `collapsed`.
 
-### Texto normal, links e info
+### Plain text, links, and info
 
 ```markdown
 :::file-tree
@@ -357,56 +357,56 @@ Aliases: `expanded`, `open` e `collapsed`.
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-- [analysis.R]{info="Script principal de análise em R"}
+- [analysis.R]{info="Main R analysis script"}
 :::
 ```
 
 ## Article
 
-`article` é o bloco genérico para uma unidade de conteúdo autocontida. Em HTML, a extensão emite um elemento real `<article>`. Headings Markdown internos são preservados visualmente e semanticamente com `role="heading"`/`aria-level`, sem gerar `<section>` que escape da caixa. O comportamento padrão é apenas uma borda discreta e arredondada:
+`article` is the generic block for a self-contained unit of content. In HTML, the extension emits a real `<article>` element. Internal Markdown headings are preserved visually and semantically with `role="heading"`/`aria-level`, without generating `<section>` elements that escape the box. The default behavior is simply a subtle rounded border:
 
 ```markdown
 :::article
-## Nota técnica
-Conteúdo autocontido com **Markdown** normal.
+## Technical note
+Self-contained content com **Markdown** normal.
 :::
 ```
 
-### Accent esquerdo opcional
+### Optional left accent
 
-O artigo genérico não tem barra lateral. Para acrescentar uma barra esquerda com pontas arredondadas, use `accent="left"`:
+The generic article has no side accent. To add a left accent with rounded ends, use `accent="left"`:
 
 ```markdown
 ::: {.article accent="left" accent-color="warning"}
-## Atenção
-A barra lateral é apenas uma apresentação opcional do mesmo `article`.
+## Attention
+The side accent is only an optional presentation of the same `article`.
 :::
 ```
 
-`accent-color=` aceita qualquer cor CSS ou um nome semântico predefinido. Presets: `note`/`info`, `warning`, `danger`/`caution`, `success`/`tip` e `important`. Esses nomes usam as variáveis de cor dos callouts do Quarto, com fallback para Bootstrap.
+`accent-color=` accepts any CSS color or a predefined semantic name. Presets: `note`/`info`, `warning`, `danger`/`caution`, `success`/`tip`, and `important`. These names use Quarto callout color variables, with Bootstrap as a fallback.
 
-Parâmetros do accent: `accent`, `accent-color` e `accent-width`. `left-border="true"` é alias para `accent="left"`.
+Accent parameters: `accent`, `accent-color`, and `accent-width`. `left-border="true"` is an alias for `accent="left"`.
 
-### Collapse e expand
+### Collapse and expand
 
-O mesmo `article` pode ser colapsável no HTML:
+The same `article` can be collapsible in HTML:
 
 ```markdown
 ::: {.article
   collapsible="true"
-  summary="Detalhes técnicos"
+  summary="Technical details"
   expanded="false"}
 
-Conteúdo inicialmente recolhido.
+Content initially collapsed.
 
 :::
 ```
 
-Internamente o HTML continua tendo `<article>` como elemento externo e usa um `<details>` nativo dentro dele. Por isso o controle funciona sem JavaScript e permanece acessível por teclado.
+Internally, HTML keeps `<article>` as the outer element and uses a native `<details>` inside it. This makes the control work without JavaScript and keeps it keyboard-accessible.
 
-`expanded=`, `expand=` e `open=` são equivalentes. `collapsed=` usa a lógica inversa. Se qualquer um desses estados for informado, `collapsible` é inferido automaticamente. Em PDF/DOCX, o conteúdo é sempre renderizado por completo.
+`expanded=`, `expand=`, and `open=` are equivalent. `collapsed=` uses the inverse logic. If any of these states is provided, `collapsible` is inferred automatically. In PDF/DOCX, the content is always rendered in full.
 
-Accent e collapse podem ser combinados:
+Accent and collapse can be combined:
 
 ```markdown
 ::: {.article
@@ -416,22 +416,22 @@ Accent e collapse podem ser combinados:
   summary="Metodologia"
   expanded="true"}
 
-Conteúdo da metodologia.
+Methodology content.
 
 :::
 ```
 
-### Exemplo: changelog
+### Example: changelog
 
-Um changelog não precisa de um componente próprio; é apenas um possível conteúdo de um `article`:
+A changelog does not need its own component; it is simply one possible use of an `article`:
 
 ```markdown
 :::article
 
-## 0.10.8 — 2026-09-17
+## 0.10.9 — 2026-09-17
 
 ### Added
-- Accent esquerdo opcional em `article`.
+- Optional left accent in `article`.
 - Collapse/expand nativo.
 
 ### Changed
@@ -443,18 +443,18 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 :::
 ```
 
-Além das opções acima, `article` aceita `border-color`, `radius`, `padding`, `background` e `shadow`.
+In addition to the options above, `article` accepts `border-color`, `radius`, `padding`, `background`, and `shadow`.
 
 
-## Formatos
+## Formats
 
-- **HTML**: apresentação completa, ícones, badges, info, file tree interativo, Git DAG em SVG e o elemento semântico `<article>`;
-- **PDF**: conteúdo estrutural e links são preservados; componentes interativos degradam com segurança;
-- **DOCX**: listas, headings, links e texto permanecem editáveis.
+- **HTML**: full presentation, icons, badges, info, interactive file tree, Git DAG in SVG, and the semantic `<article>` element;
+- **PDF**: structural content and links are preserved; interactive components degrade safely;
+- **DOCX**: lists, headings, links, and text remain editable.
 
-## Exemplos
+## Examples
 
-`index.qmd` contém a galeria completa e o `_quarto.yml` da raiz demonstra defaults de projeto.
+`index.qmd` contains the complete gallery, and the root `_quarto.yml` demonstrates project defaults.
 
 ```bash
 quarto preview index.qmd
