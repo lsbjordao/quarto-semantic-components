@@ -570,12 +570,12 @@ Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more v
 
 ```markdown
 :::file-tree
-- analysis.R texto normal
+- analysis.R plain text
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
 - [analysis.R]{info="Main R analysis script"}
-- [`pipeline.py`]{info="Pipeline de ingestion e validation"}
+- [`pipeline.py`]{info="Ingestion and validation pipeline"}
 - `species.csv`{icon="leaf"}
 - `golden.parquet`{icon="★"}
 :::
@@ -584,12 +584,12 @@ Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more v
 **Output:**
 
 :::file-tree
-- analysis.R texto normal
+- analysis.R plain text
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
 - [analysis.R]{info="Main R analysis script"}
-- [`pipeline.py`]{info="Pipeline de ingestion e validation"}
+- [`pipeline.py`]{info="Ingestion and validation pipeline"}
 - `species.csv`{icon="leaf"}
 - `golden.parquet`{icon="★"}
 :::
@@ -642,10 +642,10 @@ Use `accent-color="warning"`, `note`, `danger`, `success`, `important`, or any C
 
 The content is inside a native `details`, while the outer element remains `article`.
 
-- Markdown normal
+- normal Markdown
 - listas
 - code
-- outros componentes
+- other components
 
 :::
 ```
@@ -656,10 +656,10 @@ The content is inside a native `details`, while the outer element remains `artic
 
 The content is inside a native `details`, while the outer element remains `article`.
 
-- Markdown normal
+- normal Markdown
 - listas
 - code
-- outros componentes
+- other components
 
 :::
 
