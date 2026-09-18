@@ -757,7 +757,7 @@ Any item with children becomes a branch in HTML. The whole tree can define a def
 
 ::: {.tree expanded="false" indent="1.8rem"}
 - [Life]{expanded="true" info="Top-level classification"}
-  - +Eukaryota
+  - Eukaryota
   - [Plantae]{expanded="true"}
     - Fabaceae
       - Mimosa
