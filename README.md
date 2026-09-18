@@ -1,5 +1,11 @@
 # Quarto Semantic Components
 
+<p align="center">
+  <img src="assets/quarto-semantic-components.svg" alt="Quarto Semantic Components logo" width="220">
+</p>
+
+<p align="center"><strong>Version 0.1.0</strong></p>
+
 Quarto/Pandoc extension with reusable semantic components for **HTML, PDF, and DOCX**. The core structure stays in the Pandoc AST; HTML adds richer presentation, while non-HTML formats preserve lists, links, and textual content.
 
 ## Inspiration
@@ -361,7 +367,7 @@ Theme-specific graph colors are supported:
     - `test/badges`{#c5 parent="c4"} covers variants
     - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.12.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.1.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -474,7 +480,7 @@ Project
 : Quarto Semantic Components
 
 Version
-: 0.12.0
+: 0.1.0
 
 Language
 : Lua
