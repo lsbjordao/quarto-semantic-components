@@ -50,6 +50,8 @@ extensions:
     curve: "0.6"
     markers: dot
     road-dash: "10px 8px"
+    # Documentation-only example: the extension default remains transparent.
+    milestone-color: "#d4a017"
 
   tree:
     expanded: true
