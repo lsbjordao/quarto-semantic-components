@@ -18,14 +18,21 @@
 }
 .semantic-article-content>:first-child{margin-top:0}
 .semantic-article-content>:last-child{margin-bottom:0}
-.semantic-article-content>h1:first-child,
-.semantic-article-content>h2:first-child,
-.semantic-article-content>h3:first-child,
-.semantic-article-content>h4:first-child,
-.semantic-article-content>section:first-child>h1:first-child,
-.semantic-article-content>section:first-child>h2:first-child,
-.semantic-article-content>section:first-child>h3:first-child,
-.semantic-article-content>section:first-child>h4:first-child{margin-top:0}
+.semantic-article-heading{
+  margin:1.15rem 0 .55rem;
+  padding:0 0 .3rem;
+  border-bottom:1px solid color-mix(in srgb,currentColor 16%,transparent);
+  font-weight:700;
+  line-height:1.25;
+}
+.semantic-article-heading:first-child{margin-top:0}
+.semantic-article-heading-1{font-size:2rem}
+.semantic-article-heading-2{font-size:1.5rem}
+.semantic-article-heading-3{font-size:1.25rem}
+.semantic-article-heading-4{font-size:1.1rem}
+.semantic-article-heading-5{font-size:1rem}
+.semantic-article-heading-6{font-size:.95rem}
+.semantic-article-heading>p{margin:0}
 
 .semantic-article.article-accent-left::before{
   content:"";
@@ -35,8 +42,10 @@
   top:var(--article-accent-inset);
   bottom:var(--article-accent-inset);
   width:var(--article-accent-width);
+  min-height:1.25rem;
   border-radius:999px;
   background:var(--article-accent-color);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--article-accent-color) 15%,transparent);
   pointer-events:none;
 }
 .semantic-article.article-variant-note,
@@ -78,7 +87,4 @@
 .semantic-article-body{padding:var(--article-padding);padding-top:0}
 .semantic-article-body>:first-child{margin-top:0}
 .semantic-article-body>:last-child{margin-bottom:0}
-.semantic-article-body>section:first-child>h1:first-child,
-.semantic-article-body>section:first-child>h2:first-child,
-.semantic-article-body>section:first-child>h3:first-child,
-.semantic-article-body>section:first-child>h4:first-child{margin-top:0}
+.semantic-article-body>.semantic-article-heading:first-child{margin-top:0}
