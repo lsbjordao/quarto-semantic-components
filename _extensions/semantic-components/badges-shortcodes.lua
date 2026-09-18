@@ -89,8 +89,14 @@ return {
 
     local style = {}
     css_var(style, '--semantic-badge-fg', value('fg', {'foreground', 'text-colour', 'text-color'}))
+    css_var(style, '--semantic-badge-fg-light', value('fg-light', {'foreground-light', 'text-colour-light', 'text-color-light'}))
+    css_var(style, '--semantic-badge-fg-dark', value('fg-dark', {'foreground-dark', 'text-colour-dark', 'text-color-dark'}))
     css_var(style, '--semantic-badge-bg', value('bg', {'background', 'colour', 'color'}))
+    css_var(style, '--semantic-badge-bg-light', value('bg-light', {'background-light', 'colour-light', 'color-light'}))
+    css_var(style, '--semantic-badge-bg-dark', value('bg-dark', {'background-dark', 'colour-dark', 'color-dark'}))
     css_var(style, '--semantic-badge-border', value('border'))
+    css_var(style, '--semantic-badge-border-light', value('border-light'))
+    css_var(style, '--semantic-badge-border-dark', value('border-dark'))
     css_var(style, '--semantic-badge-radius', value('radius'))
     css_var(style, '--semantic-badge-weight', value('weight'))
     css_var(style, '--semantic-badge-padding', value('padding'))
