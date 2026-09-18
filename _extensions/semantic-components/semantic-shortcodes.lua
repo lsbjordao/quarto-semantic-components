@@ -15,6 +15,8 @@ local function esc(value)
   return tostring(value or ''):gsub('&','&amp;'):gsub('<','&lt;'):gsub('>','&gt;'):gsub('"','&quot;')
 end
 local function is_html() return FORMAT and FORMAT:match('html')~=nil end
+local function is_latex() return FORMAT and (FORMAT:match('latex') or FORMAT:match('pdf')) end
+local function is_docx() return FORMAT and FORMAT:match('docx')~=nil end
 local function truthy(value,default)
   if value==nil then return default end
   value=tostring(value):lower()
@@ -38,6 +40,7 @@ local function indicator_style(kwargs)
   return #style>0 and table.concat(style,';')..';' or ''
 end
 local function numeric(value,default) return tonumber(value) or default end
+local function clamp(value,min,max) return math.max(min,math.min(max,value)) end
 local function percent_label(value,max)
   local v,m=numeric(value,0),numeric(max,100)
   if m==0 then return tostring(value) end
@@ -45,15 +48,46 @@ local function percent_label(value,max)
   if math.abs(p-math.floor(p+0.5))<0.01 then return tostring(math.floor(p+0.5))..'%' end
   return string.format('%.1f%%',p)
 end
+local function latex_escape(value)
+  local s=tostring(value or '')
+  local map={
+    ['\\']='\\textbackslash{}',['{']='\\{',['}']='\\}',['#']='\\#',['$']='\\$',
+    ['%']='\\%',['&']='\\&',['_']='\\_',['^']='\\textasciicircum{}',['~']='\\textasciitilde{}'
+  }
+  return (s:gsub('[\\{}#$%%&_%^~]',map))
+end
+local function text_bar(fraction,cells)
+  cells=cells or 10
+  fraction=clamp(fraction,0,1)
+  local full=math.floor(fraction*cells+0.5)
+  return string.rep('■',full)..string.rep('□',cells-full)
+end
+local function docx_indicator(label,fraction,value_label)
+  local parts=pandoc.List()
+  if label~='' then
+    parts:insert(pandoc.Strong({pandoc.Str(label)}))
+    parts:insert(pandoc.Space())
+  end
+  parts:insert(pandoc.Span({pandoc.Str(text_bar(fraction,10))},pandoc.Attr('',{}, {['custom-style']='Indicator'})))
+  parts:insert(pandoc.Space())
+  parts:insert(pandoc.Str(value_label))
+  return parts
+end
 local function progress(args,kwargs)
   local value=kw(kwargs,'value',arg(args,1) or '0')
   local max=kw(kwargs,'max','100')
   local label=kw(kwargs,'label','')
   local show=truthy(kw(kwargs,'show-value'),true)
   local value_label=kw(kwargs,'value-label',percent_label(value,max))
+  local v,m=numeric(value,0),numeric(max,100)
+  local fraction=m~=0 and clamp(v/m,0,1) or 0
+  if is_latex() then
+    return pandoc.RawInline('latex','\\qscprogress{'..latex_escape(label)..'}{'..string.format('%.5f',fraction)..'}{'..latex_escape(show and value_label or '')..'}')
+  end
+  if is_docx() then return docx_indicator(label,fraction,show and value_label or '') end
   if not is_html() then
     local out={}
-    if label~='' then out[#out+1]=pandoc.Str(label..':') ; out[#out+1]=pandoc.Space() end
+    if label~='' then out[#out+1]=pandoc.Str(label..':'); out[#out+1]=pandoc.Space() end
     out[#out+1]=pandoc.Str(value_label)
     return out
   end
@@ -74,6 +108,12 @@ local function meter(args,kwargs)
   local label=kw(kwargs,'label','')
   local show=truthy(kw(kwargs,'show-value'),true)
   local value_label=kw(kwargs,'value-label',value..' / '..max)
+  local v,lo,hi=numeric(value,0),numeric(min,0),numeric(max,100)
+  local fraction=hi~=lo and clamp((v-lo)/(hi-lo),0,1) or 0
+  if is_latex() then
+    return pandoc.RawInline('latex','\\qscmeter{'..latex_escape(label)..'}{'..string.format('%.5f',fraction)..'}{'..latex_escape(show and value_label or '')..'}')
+  end
+  if is_docx() then return docx_indicator(label,fraction,show and value_label or '') end
   if not is_html() then
     local out={}
     if label~='' then out[#out+1]=pandoc.Str(label..':'); out[#out+1]=pandoc.Space() end
@@ -94,6 +134,8 @@ end
 local function kbd(args,kwargs)
   local keys=arg(args,1) or kw(kwargs,'keys','')
   local separator=kw(kwargs,'separator','+')
+  if is_latex() then return pandoc.RawInline('latex','\\qsckbd{'..latex_escape(keys)..'}') end
+  if is_docx() then return pandoc.Span({pandoc.Str(keys)},pandoc.Attr('',{}, {['custom-style']='Keyboard'})) end
   if not is_html() then return pandoc.Code(keys) end
   local parts={}
   for key in tostring(keys):gmatch('[^+]+') do
@@ -105,6 +147,7 @@ end
 local function abbr(args,kwargs)
   local label=arg(args,1) or kw(kwargs,'label','')
   local title=arg(args,2) or kw(kwargs,'title','')
+  if is_latex() then return pandoc.RawInline('latex','\\qscabbr{'..latex_escape(label)..'}{'..latex_escape(title)..'}') end
   if not is_html() then
     if title~='' then return {pandoc.Str(label),pandoc.Space(),pandoc.Str('('..title..')')} end
     return pandoc.Str(label)
