@@ -1,5 +1,5 @@
 ---
-title: "Quarto Semantic Components — exemplos"
+title: "Quarto Semantic Components — examples"
 format:
   html:
     toc: true
@@ -12,17 +12,17 @@ filters:
   - semantic-components
 ---
 
-Esta página demonstra os componentes da extensão **Quarto Semantic Components**. Em cada seção, o código-fonte aparece **antes** do resultado renderizado.
+This page demonstrates the **Quarto Semantic Components** extension. In each section, the source code appears **before** the rendered output.
 
-## Defaults de projeto no `_quarto.yml`
+## Project defaults in `_quarto.yml`
 
-Este próprio repositório usa defaults compartilhados:
+This repository uses shared defaults:
 
 ```yaml
 extensions:
   badge:
     - key: stable
-      label: Estável
+      label: Stable
       type: success
       appearance: solid
       icon: "✓"
@@ -63,37 +63,37 @@ extensions:
     accent: none
 ```
 
-A precedência é **defaults do projeto → preset → componente → item individual**.
+Precedence is **project defaults → preset → component → individual item**.
 
 ## Badges inline
 
-> O shortcode público é `badge`. Como [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) usa o mesmo nome, o projeto deve escolher qual extensão de badge deseja usar.
+> The public shortcode is `badge`. Since [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) uses the same name, the project must choose which badge extension to use.
 
-### Presets definidos no projeto
+### Presets defined in the project
 
 ```{.markdown shortcodes=false}
 {{< badge stable >}}
 {{< badge experimental >}}
 {{< badge deprecated >}}
-{{< badge "Release estável" key="stable" >}}
+{{< badge "Stable release" key="stable" >}}
 ```
 
 **Output:**
 
-{{< badge stable >}} {{< badge experimental >}} {{< badge deprecated >}} {{< badge "Release estável" key="stable" >}}
+{{< badge stable >}} {{< badge experimental >}} {{< badge deprecated >}} {{< badge "Stable release" key="stable" >}}
 
-### Personalização livre
+### Free customization
 
 ```{.markdown shortcodes=false}
 {{< badge "Beta" >}}
-{{< badge "Estável" type="success" icon="✓" >}}
+{{< badge "Stable" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.10.8" type="accent" appearance="solid" >}}
+{{< badge "v0.10.9" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.8" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Stable" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.9" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -105,103 +105,103 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 
 ## Steps — numerado
 
-Todos os exemplos de `steps` usam quatro etapas. No modo numerado, a aresta agora também é contínua entre os centros dos círculos e fica atrás dos marcadores; o interior acompanha a superfície do tema.
+All `steps` examples use four steps. In numbered mode, the edge is also continuous between circle centers and stays behind the markers; the inside follows the theme surface.
 
 ```markdown
 :::steps
-## Instale a extensão
+## Install the extension
 Use `quarto add lsbjordao/quarto-semantic-components`.
 
-## Ative o filtro
-Inclua `semantic-components` em `filters`.
+## Enable the filter
+Add `semantic-components` to `filters`.
 
-## Configure os componentes
-Defina defaults no `_quarto.yml` se desejar.
+## Configure the components
+Set defaults in `_quarto.yml` if desired.
 
-## Escreva normalmente
-Cada heading inicia uma etapa.
+## Write normally
+Each heading starts a step.
 :::
 ```
 
 **Output:**
 
 :::steps
-## Instale a extensão
+## Install the extension
 Use `quarto add lsbjordao/quarto-semantic-components`.
 
-## Ative o filtro
-Inclua `semantic-components` em `filters`.
+## Enable the filter
+Add `semantic-components` to `filters`.
 
-## Configure os componentes
-Defina defaults no `_quarto.yml` se desejar.
+## Configure the components
+Set defaults in `_quarto.yml` if desired.
 
-## Escreva normalmente
-Cada heading inicia uma etapa.
+## Write normally
+Each heading starts a step.
 :::
 
-## Steps — bolinhas
+## Steps — dots
 
-As bolinhas parecem vazadas por padrão: o centro usa a cor de superfície do tema, ocultando a aresta contínua que passa por trás. `dot-color` controla o contorno e `dot-fill` permite preenchimento explícito.
+Dots look hollow by default: the center uses the theme surface color, hiding the continuous edge that passes behind them. `dot-color` controls the outline and `dot-fill` enables explicit fill.
 
-### Default do projeto
+### Project default
 
 ```markdown
 ::: {.steps type="dots"}
-## Extrair
-Baixe os dados.
+## Extract
+Download the data.
 
-## Validar
-Valide os registros.
+## Validate
+Validate the records.
 
-## Transformar
-Prepare os dados.
+## Transform
+Prepare the data.
 
-## Publicar
-Publique o resultado.
+## Publish
+Publish the result.
 :::
 ```
 
 **Output:**
 
 ::: {.steps type="dots"}
-## Extrair
-Baixe os dados.
+## Extract
+Download the data.
 
-## Validar
-Valide os registros.
+## Validate
+Validate the records.
 
-## Transformar
-Prepare os dados.
+## Transform
+Prepare the data.
 
-## Publicar
-Publique o resultado.
+## Publish
+Publish the result.
 :::
 
-### Fundo customizado
+### Custom background
 
-Se os steps estiverem sobre uma superfície diferente do fundo do documento, use `surface-color` para o centro dos dots acompanhar esse fundo:
+If the steps sit on a surface different from the document background, use `surface-color` so the dot centers match that background:
 
 ```markdown
 ::: {.steps type="dots"
   surface-color="#f3f4f6"
   line-color="#9aa0a6"}
 
-## Preparar
-Primeira etapa.
+## Prepare
+First step.
 
-## Processar
-Segunda etapa.
+## Process
+Second step.
 
-## Revisar
-Terceira etapa.
+## Review
+Third step.
 
-## Publicar
-Quarta etapa.
+## Publish
+Fourth step.
 
 :::
 ```
 
-### Cor e tamanho por bolinha
+### Dot color and size
 
 ```markdown
 ::: {.steps type="dots"
@@ -210,73 +210,73 @@ Quarta etapa.
   line-color="#9aa0a6"
   line-width="1.5px"}
 
-## Extrair {dot-color="#2563eb"}
-Baixe os registros novos.
+## Extract {dot-color="#2563eb"}
+Download the new records.
 
-## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}
-Reconcilie coletas e identificações.
+## Deduplicate {dot-color="#f59e0b" dot-size="0.95rem"}
+Reconcile collections and identifications.
 
-## Revisar {dot-color="#8b5cf6"}
-Revise a base processada.
+## Review {dot-color="#8b5cf6"}
+Review the processed dataset.
 
-## Publicar {dot-color="#16a34a"}
-Atualize a base curada.
+## Publish {dot-color="#16a34a"}
+Update the curated dataset.
 :::
 ```
 
 **Output:**
 
 ::: {.steps type="dots" dot-color="#8c959f" dot-size="0.78rem" line-color="#9aa0a6" line-width="1.5px"}
-## Extrair {dot-color="#2563eb"}
-Baixe os registros novos.
+## Extract {dot-color="#2563eb"}
+Download the new records.
 
-## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}
-Reconcilie coletas e identificações.
+## Deduplicate {dot-color="#f59e0b" dot-size="0.95rem"}
+Reconcile collections and identifications.
 
-## Revisar {dot-color="#8b5cf6"}
-Revise a base processada.
+## Review {dot-color="#8b5cf6"}
+Review the processed dataset.
 
-## Publicar {dot-color="#16a34a"}
-Atualize a base curada.
+## Publish {dot-color="#16a34a"}
+Update the curated dataset.
 :::
 
-### Preenchimento opcional
+### Optional fill
 
 ```markdown
 ::: {.steps type="dots" line-width="2px"}
-## Pendente
-Continua vazada.
+## Pending
+Remains hollow.
 
-## Em execução {dot-color="#2563eb" dot-fill="#2563eb"}
-Bolinha azul preenchida.
+## In progress {dot-color="#2563eb" dot-fill="#2563eb"}
+Filled blue dot.
 
-## Em revisão {dot-color="#f59e0b" dot-fill="#f59e0b"}
-Bolinha laranja preenchida.
+## Under review {dot-color="#f59e0b" dot-fill="#f59e0b"}
+Filled orange dot.
 
-## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
-Bolinha verde preenchida.
+## Completed {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
+Filled green dot.
 :::
 ```
 
 **Output:**
 
 ::: {.steps type="dots" line-width="2px"}
-## Pendente
-Continua vazada.
+## Pending
+Remains hollow.
 
-## Em execução {dot-color="#2563eb" dot-fill="#2563eb"}
-Bolinha azul preenchida.
+## In progress {dot-color="#2563eb" dot-fill="#2563eb"}
+Filled blue dot.
 
-## Em revisão {dot-color="#f59e0b" dot-fill="#f59e0b"}
-Bolinha laranja preenchida.
+## Under review {dot-color="#f59e0b" dot-fill="#f59e0b"}
+Filled orange dot.
 
-## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
-Bolinha verde preenchida.
+## Completed {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
+Filled green dot.
 :::
 
-### Exemplo — timeline com Steps dots
+### Example — timeline with Steps dots
 
-Não existe um componente `timeline` separado. O mesmo padrão visual é produzido com `steps type="dots"`, mantendo a API menor e mais reutilizável.
+There is no separate `timeline` component. The same visual pattern is produced with `steps type="dots"`, keeping the API smaller and more reusable.
 
 ```markdown
 ::: {.steps type="dots"
@@ -284,17 +284,17 @@ Não existe um componente `timeline` separado. O mesmo padrão visual é produzi
   line-width="2px"
   dot-size="0.78rem"}
 
-## [2024]{.badge type="success" appearance="outline" size="xs"} Protótipo {dot-color="#16a34a"}
-Primeira implementação do componente.
+## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype {dot-color="#16a34a"}
+First implementation of the component.
 
 ## [2025]{.badge type="info" appearance="outline" size="xs"} Beta {dot-color="#2563eb"}
-Validação e refinamento visual.
+Validation and visual refinement.
 
 ## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate {dot-color="#f59e0b"}
-Congelamento da API para testes finais.
+API freeze for final testing.
 
 ## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
-Versão estável publicada.
+Stable version released.
 
 :::
 ```
@@ -303,17 +303,17 @@ Versão estável publicada.
 
 ::: {.steps type="dots" line-color="#9aa0a6" line-width="2px" dot-size="0.78rem"}
 
-## [2024]{.badge type="success" appearance="outline" size="xs"} Protótipo {dot-color="#16a34a"}
-Primeira implementação do componente.
+## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype {dot-color="#16a34a"}
+First implementation of the component.
 
 ## [2025]{.badge type="info" appearance="outline" size="xs"} Beta {dot-color="#2563eb"}
-Validação e refinamento visual.
+Validation and visual refinement.
 
 ## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate {dot-color="#f59e0b"}
-Congelamento da API para testes finais.
+API freeze for final testing.
 
 ## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
-Versão estável publicada.
+Stable version released.
 
 :::
 
@@ -322,47 +322,47 @@ Versão estável publicada.
 
 ```markdown
 :::circle-list
-1. Primeiro item
-2. Segundo item, com **Markdown** normal
-3. Terceiro item
-4. Quarto item
+1. First item
+2. Second item, with normal **Markdown**
+3. Third item
+4. Fourth item
 :::
 ```
 
 **Output:**
 
 :::circle-list
-1. Primeiro item
-2. Segundo item, com **Markdown** normal
-3. Terceiro item
-4. Quarto item
+1. First item
+2. Second item, with normal **Markdown**
+3. Third item
+4. Fourth item
 :::
 
 ## Git tree — DAG de commits
 
-O gráfico representa commits e relações parent → child. Branches saem de nós; merges terminam em nós; tag e descrição acompanham a lane do commit.
+The graph represents commits and parent → child relationships. Branches split from nodes; merges end at nodes; the tag and description follow the commit lane.
 
-### Sintaxe simples — direção TB
+### Simple syntax — TB direction
 
 ```markdown
 ::: {.git-tree direction="TB"}
 - `main` initial commit
-- `main` cria a arquitetura base
-  - `feature/icons` abre o branch de ícones
-  - `feature/icons` adiciona Devicon
-    - `docs/icons` documenta os providers
-    - `docs/icons` adiciona exemplos
+- `main` creates the base architecture
+  - `feature/icons` opens the icons branch
+  - `feature/icons` adds Devicon
+    - `docs/icons` documents providers
+    - `docs/icons` adds examples
   - `feature/icons` merge docs/icons
-  - `feature/icons` adiciona links em arquivos
+  - `feature/icons` adds file links
 - `main` merge feature/icons
-- `main` inicia componentes inline
-  - `feature/badges` cria badge
-  - `feature/badges` adiciona customização visual
-    - `test/badges` cobre variantes
-    - `test/badges` cobre links
+- `main` starts inline components
+  - `feature/badges` creates badge
+  - `feature/badges` adds visual customization
+    - `test/badges` covers variants
+    - `test/badges` covers links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.8
+- `main` release v0.10.9
 :::
 ```
 
@@ -370,31 +370,31 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
 
 ::: {.git-tree direction="TB"}
 - `main` initial commit
-- `main` cria a arquitetura base
-  - `feature/icons` abre o branch de ícones
-  - `feature/icons` adiciona Devicon
-    - `docs/icons` documenta os providers
-    - `docs/icons` adiciona exemplos
+- `main` creates the base architecture
+  - `feature/icons` opens the icons branch
+  - `feature/icons` adds Devicon
+    - `docs/icons` documents providers
+    - `docs/icons` adds examples
   - `feature/icons` merge docs/icons
-  - `feature/icons` adiciona links em arquivos
+  - `feature/icons` adds file links
 - `main` merge feature/icons
-- `main` inicia componentes inline
-  - `feature/badges` cria badge
-  - `feature/badges` adiciona customização visual
-    - `test/badges` cobre variantes
-    - `test/badges` cobre links
+- `main` starts inline components
+  - `feature/badges` creates badge
+  - `feature/badges` adds visual customization
+    - `test/badges` covers variants
+    - `test/badges` covers links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.8
+- `main` release v0.10.9
 :::
 
-### Mesmo DAG — direção BT
+### Same DAG — BT direction
 
 ```markdown
 ::: {.git-tree direction="BT"}
 - `main` initial commit
-- `main` arquitetura base
-  - `feature/api` cria API
+- `main` base architecture
+  - `feature/api` creates API
   - `feature/api` implementa endpoints
 - `main` merge feature/api
 - `main` release
@@ -405,25 +405,25 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
 
 ::: {.git-tree direction="BT"}
 - `main` initial commit
-- `main` arquitetura base
-  - `feature/api` cria API
+- `main` base architecture
+  - `feature/api` creates API
   - `feature/api` implementa endpoints
 - `main` merge feature/api
 - `main` release
 :::
 
-### DAG explícito — ids, parents, tag e HEAD
+### Explicit DAG — ids, parents, tag, and HEAD
 
 ```markdown
 :::git-tree
 - `main`{#c1} initial commit
-- `main`{#c2 parent="c1"} arquitetura base
-  - `feature/badges`{#c3 parent="c2"} cria badge
-  - `feature/badges`{#c4 parent="c3"} customização visual
-    - `test/badges`{#c5 parent="c4"} cobre variantes
-    - `test/badges`{#c6 parent="c5"} cobre links
+- `main`{#c2 parent="c1"} base architecture
+  - `feature/badges`{#c3 parent="c2"} creates badge
+  - `feature/badges`{#c4 parent="c3"} visual customization
+    - `test/badges`{#c5 parent="c4"} covers variants
+    - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.8" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.9" head="true"} merge feature/badges
 :::
 ```
 
@@ -431,16 +431,16 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
 
 :::git-tree
 - `main`{#c1} initial commit
-- `main`{#c2 parent="c1"} arquitetura base
-  - `feature/badges`{#c3 parent="c2"} cria badge
-  - `feature/badges`{#c4 parent="c3"} customização visual
-    - `test/badges`{#c5 parent="c4"} cobre variantes
-    - `test/badges`{#c6 parent="c5"} cobre links
+- `main`{#c2 parent="c1"} base architecture
+  - `feature/badges`{#c3 parent="c2"} creates badge
+  - `feature/badges`{#c4 parent="c3"} visual customization
+    - `test/badges`{#c5 parent="c4"} covers variants
+    - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.8" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.9" head="true"} merge feature/badges
 :::
 
-## File tree — aninhamento profundo e ícones
+## File tree — deep nesting and icons
 
 ```markdown
 :::file-tree
@@ -448,11 +448,11 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
   - +src
     - +pipelines
       - +python
-        - pipeline.py ingestão
-        - validate.py validação
+        - pipeline.py ingestion
+        - validate.py validation
       - +r
-        - analysis.R análise estatística
-        - report.Rmd relatório
+        - analysis.R statistical analysis
+        - report.Rmd report
       - +web
         - +src
           - +components
@@ -479,11 +479,11 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
   - +src
     - +pipelines
       - +python
-        - pipeline.py ingestão
-        - validate.py validação
+        - pipeline.py ingestion
+        - validate.py validation
       - +r
-        - analysis.R análise estatística
-        - report.Rmd relatório
+        - analysis.R statistical analysis
+        - report.Rmd report
       - +web
         - +src
           - +components
@@ -502,9 +502,9 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
   - _quarto.yml
 :::
 
-## File tree — indentação horizontal
+## File tree — horizontal indentation
 
-O recuo por nível pode ser alterado com `indent`. O default desta galeria é `1.8rem`.
+The per-level indentation can be changed with `indent`. This gallery defaults to `1.8rem`.
 
 ```markdown
 ::: {.file-tree indent="1rem"}
@@ -530,9 +530,9 @@ O recuo por nível pode ser alterado com `indent`. O default desta galeria é `1
   - schema.sql
 :::
 
-Use valores maiores, como `indent="2.4rem"`, para abrir mais visualmente os níveis.
+Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more visually.
 
-## File tree — expandir e colapsar pastas
+## File tree — expand and collapse folders
 
 ```markdown
 ::: {.file-tree expanded="false"}
@@ -566,7 +566,7 @@ Use valores maiores, como `indent="2.4rem"`, para abrir mais visualmente os nív
   - processed.parquet
 :::
 
-## File tree — texto, code, links, info e ícones
+## File tree — text, code, links, info, and icons
 
 ```markdown
 :::file-tree
@@ -574,8 +574,8 @@ Use valores maiores, como `indent="2.4rem"`, para abrir mais visualmente os nív
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-- [analysis.R]{info="Script principal de análise em R"}
-- [`pipeline.py`]{info="Pipeline de ingestão e validação"}
+- [analysis.R]{info="Main R analysis script"}
+- [`pipeline.py`]{info="Pipeline de ingestion e validation"}
 - `species.csv`{icon="leaf"}
 - `golden.parquet`{icon="★"}
 :::
@@ -588,63 +588,63 @@ Use valores maiores, como `indent="2.4rem"`, para abrir mais visualmente os nív
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-- [analysis.R]{info="Script principal de análise em R"}
-- [`pipeline.py`]{info="Pipeline de ingestão e validação"}
+- [analysis.R]{info="Main R analysis script"}
+- [`pipeline.py`]{info="Pipeline de ingestion e validation"}
 - `species.csv`{icon="leaf"}
 - `golden.parquet`{icon="★"}
 :::
 
 ## Article
 
-`article` é a primitive genérica para conteúdo autocontido. O HTML externo é sempre `<article>`.
+`article` is the generic primitive for self-contained content. The outer HTML element is always `<article>`.
 
-### Genérico — apenas borda arredondada
+### Generic — rounded border only
 
 ```markdown
 :::article
-## Nota técnica
-Este é o `article` padrão, sem accent e sem collapse.
+## Technical note
+This is the default `article`, with no accent and no collapse.
 :::
 ```
 
 **Output:**
 
 :::article
-## Nota técnica
-Este é o `article` padrão, sem accent e sem collapse.
+## Technical note
+This is the default `article`, with no accent and no collapse.
 :::
 
-### Accent esquerdo com pontas arredondadas
+### Left accent with rounded ends
 
 ```markdown
 ::: {.article accent="left" accent-color="warning"}
-## Atenção
-A barra lateral é opcional. O componente continua sendo um `article`.
+## Attention
+The side accent is optional. The component remains an `article`.
 :::
 ```
 
 **Output:**
 
 ::: {.article accent="left" accent-color="warning"}
-## Atenção
-A barra lateral é opcional. O componente continua sendo um `article`.
+## Attention
+The side accent is optional. The component remains an `article`.
 :::
 
-Use `accent-color="warning"`, `note`, `danger`, `success`, `important` ou qualquer cor CSS, como `#8b5cf6`. `accent-width` controla a espessura.
+Use `accent-color="warning"`, `note`, `danger`, `success`, `important`, or any CSS color such as `#8b5cf6`. `accent-width` controls the thickness.
 
-### Collapsed por padrão
+### Collapsed by default
 
 ```markdown
 ::: {.article
   collapsible="true"
-  summary="Detalhes técnicos"
+  summary="Technical details"
   expanded="false"}
 
-O conteúdo está dentro de um `details` nativo, mas o elemento externo continua sendo `article`.
+The content is inside a native `details`, while the outer element remains `article`.
 
 - Markdown normal
 - listas
-- código
+- code
 - outros componentes
 
 :::
@@ -652,13 +652,13 @@ O conteúdo está dentro de um `details` nativo, mas o elemento externo continua
 
 **Output:**
 
-::: {.article collapsible="true" summary="Detalhes técnicos" expanded="false"}
+::: {.article collapsible="true" summary="Technical details" expanded="false"}
 
-O conteúdo está dentro de um `details` nativo, mas o elemento externo continua sendo `article`.
+The content is inside a native `details`, while the outer element remains `article`.
 
 - Markdown normal
 - listas
-- código
+- code
 - outros componentes
 
 :::
@@ -673,7 +673,7 @@ O conteúdo está dentro de um `details` nativo, mas o elemento externo continua
   summary="Metodologia"
   expanded="true"}
 
-Este exemplo começa expandido e combina o accent com o collapse.
+This example starts expanded and combines accent with collapse.
 
 :::
 ```
@@ -682,24 +682,24 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 ::: {.article accent="left" accent-color="note" collapsible="true" summary="Metodologia" expanded="true"}
 
-Este exemplo começa expandido e combina o accent com o collapse.
+This example starts expanded and combines accent with collapse.
 
 :::
 
-### Exemplo — changelog dentro de um article
+### Example — changelog inside an article
 
 ```markdown
 :::article
 
-## 0.10.8 — 2026-09-17
+## 0.10.9 — 2026-09-17
 
 ### Added
-- Accent esquerdo opcional em `article`.
+- Optional left accent in `article`.
 - Collapse/expand nativo.
 
 ### Changed
 - Timeline demonstrada com `steps type="dots"`.
-- Blocos genéricos convergiram para `article`.
+- Generic blocks converged on `article`.
 
 ### Removed
 - `timeline`
@@ -711,8 +711,8 @@ Este exemplo começa expandido e combina o accent com o collapse.
 ## 0.7.1 — 2026-09-17
 
 ### Changed
-- Novo `content-gap` no `git-tree`.
-- Tags e descrições acompanham a lane do commit.
+- New `content-gap` in `git-tree`.
+- Tags and descriptions follow the commit lane.
 
 :::
 ```
@@ -721,15 +721,15 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 :::article
 
-## 0.10.8 — 2026-09-17
+## 0.10.9 — 2026-09-17
 
 ### Added
-- Accent esquerdo opcional em `article`.
+- Optional left accent in `article`.
 - Collapse/expand nativo.
 
 ### Changed
 - Timeline demonstrada com `steps type="dots"`.
-- Blocos genéricos convergiram para `article`.
+- Generic blocks converged on `article`.
 
 ### Removed
 - `timeline`
@@ -741,12 +741,12 @@ Este exemplo começa expandido e combina o accent com o collapse.
 ## 0.7.1 — 2026-09-17
 
 ### Changed
-- Novo `content-gap` no `git-tree`.
-- Tags e descrições acompanham a lane do commit.
+- New `content-gap` in `git-tree`.
+- Tags and descriptions follow the commit lane.
 
 :::
 
-### Article customizado
+### Custom article
 
 ```markdown
 ::: {.article
@@ -755,23 +755,23 @@ Este exemplo começa expandido e combina o accent com o collapse.
   border-color="#8b5cf6"
   background="transparent"}
 
-## Conteúdo autocontido
-Um `article` também pode representar posts, releases, resumos ou especificações.
+## Self-contained content
+An `article` can also represent posts, releases, summaries, or specifications.
 :::
 ```
 
 **Output:**
 
 ::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6" background="transparent"}
-## Conteúdo autocontido
-Um `article` também pode representar posts, releases, resumos ou especificações.
+## Self-contained content
+An `article` can also represent posts, releases, summaries, or specifications.
 :::
 
 
-## Inspiração e formatos
+## Inspiration and formats
 
-As ideias de **Steps** e **File Tree** foram inspiradas em componentes do [Vocs](https://vocs.dev/), mas a implementação é própria e orientada ao AST do Pandoc.
+The **Steps** and **File Tree** ideas were inspired by [Vocs](https://vocs.dev/) components, but the implementation is original and Pandoc-AST-oriented.
 
-- **HTML**: apresentação completa, badges, file tree interativo, info, Git DAG em SVG e o elemento semântico `article`;
-- **PDF**: conteúdo estrutural e links são preservados;
-- **DOCX**: listas, headings, links e texto permanecem editáveis.
+- **HTML**: full presentation, badges, interactive file tree, info, Git DAG in SVG, and the semantic `article` element;
+- **PDF**: structural content and links are preserved;
+- **DOCX**: lists, headings, links, and text remain editable.
