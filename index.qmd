@@ -62,7 +62,7 @@ Render to HTML, PDF, or DOCX.
 :::
 ```
 
-# Project defaults in `_quarto.yml`
+# Project defaults in _quarto.yml
 
 Component defaults can be centralized at the project level. This repository uses the following configuration:
 
