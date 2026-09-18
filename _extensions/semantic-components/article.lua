@@ -74,7 +74,7 @@ end
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-article',
-    version='0.10.5',
+    version='0.10.9',
     stylesheets={'css/article.css'}
   })
 end
@@ -104,7 +104,7 @@ local function collapse_settings(el,meta)
   if collapsed~=nil then expanded=not collapsed end
   if expanded==nil then expanded=true end
 
-  local summary=setting(el,meta,'summary',{'title','label'}) or 'Conteúdo'
+  local summary=setting(el,meta,'summary',{'title','label'}) or 'Content'
   return collapsible,expanded,summary
 end
 
