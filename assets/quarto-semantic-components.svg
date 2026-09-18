@@ -1,37 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">Quarto Semantic Components logo</title>
-  <desc id="desc">The Quarto quartered-circle icon behind a centered document containing semantic component symbols, with a short tail suggesting a Q.</desc>
+  <desc id="desc">The official Quarto quartered-circle icon behind a centered document containing semantic component symbols, with a short tail suggesting a Q.</desc>
   <defs>
-    <linearGradient id="quartoBlue" x1="110" y1="90" x2="400" y2="405" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#75AADB"/>
-      <stop offset="1" stop-color="#39729E"/>
-    </linearGradient>
-    <linearGradient id="paper" x1="175" y1="112" x2="345" y2="408" gradientUnits="userSpaceOnUse">
+    <linearGradient id="paper" x1="174" y1="108" x2="346" y2="414" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#F4F7FB"/>
+      <stop offset="1" stop-color="#F5F8FC"/>
     </linearGradient>
-    <linearGradient id="fold" x1="318" y1="112" x2="384" y2="180" gradientUnits="userSpaceOnUse">
+    <linearGradient id="fold" x1="318" y1="108" x2="384" y2="174" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#DCE8F6"/>
-      <stop offset="1" stop-color="#C7D8EA"/>
+      <stop offset="1" stop-color="#C8D7E8"/>
     </linearGradient>
     <filter id="shadow" x="-25%" y="-25%" width="150%" height="160%">
       <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#0F172A" flood-opacity=".22"/>
     </filter>
-    <clipPath id="quartoCircle">
-      <circle cx="256" cy="244" r="174"/>
-    </clipPath>
   </defs>
 
-  <!-- Quarto icon: the familiar quartered blue circle -->
-  <g opacity=".96">
-    <circle cx="256" cy="244" r="174" fill="url(#quartoBlue)"/>
-    <g clip-path="url(#quartoCircle)">
-      <rect x="248" y="66" width="16" height="356" fill="#FFFFFF" fill-opacity=".94"/>
-      <rect x="78" y="236" width="356" height="16" fill="#FFFFFF" fill-opacity=".94"/>
-    </g>
-    <!-- short tail only to suggest a Q without replacing the Quarto mark -->
-    <path d="M361 349L421 409" stroke="#39729E" stroke-width="28" stroke-linecap="round"/>
+  <!-- Official Quarto icon geometry, scaled from quarto-dev/quarto-web/quarto-icon.svg -->
+  <g transform="translate(76 64) scale(3)" fill="#74AADB" fill-rule="evenodd" clip-rule="evenodd">
+    <path d="M55.8,56.8V1C26.1,3.1,2.6,27.1,1,56.8H55.8z"/>
+    <path d="M63.2,56.8H119C117.4,26.8,93.2,2.6,63.2,1V56.8z"/>
+    <path d="M55.8,64.2H1.1c2.1,29.2,25.4,52.6,54.6,54.6V64.2z"/>
+    <path d="M63.2,64.2V119c29.7-1.6,53.7-25.1,55.7-54.7H63.2z"/>
   </g>
+
+  <!-- Small tail turns the background mark into a subtle Q -->
+  <path d="M363 351L421 409" stroke="#74AADB" stroke-width="26" stroke-linecap="round"/>
 
   <!-- Centered file -->
   <g filter="url(#shadow)">
@@ -40,7 +33,7 @@
     <path d="M318 108V146C318 160 330 172 344 172H382L318 108Z" fill="url(#fold)"/>
   </g>
 
-  <!-- Content cues kept inside the file -->
+  <!-- Semantic elements remain fully inside the file -->
   <rect x="190" y="176" width="128" height="15" rx="7.5" fill="#C8D3E1"/>
   <rect x="190" y="204" width="92" height="15" rx="7.5" fill="#DEE5EE"/>
 
