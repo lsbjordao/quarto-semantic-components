@@ -572,7 +572,7 @@ Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more v
 :::file-tree
 - analysis.R texto normal
 - `pipeline.py` inline code
-- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
 - [analysis.R]{info="Main R analysis script"}
 - [`pipeline.py`]{info="Pipeline de ingestion e validation"}
@@ -586,7 +586,7 @@ Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more v
 :::file-tree
 - analysis.R texto normal
 - `pipeline.py` inline code
-- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
 - [analysis.R]{info="Main R analysis script"}
 - [`pipeline.py`]{info="Pipeline de ingestion e validation"}
@@ -670,7 +670,7 @@ The content is inside a native `details`, while the outer element remains `artic
   accent="left"
   accent-color="note"
   collapsible="true"
-  summary="Metodologia"
+  summary="Methodology"
   expanded="true"}
 
 This example starts expanded and combines accent with collapse.
@@ -680,7 +680,7 @@ This example starts expanded and combines accent with collapse.
 
 **Output:**
 
-::: {.article accent="left" accent-color="note" collapsible="true" summary="Metodologia" expanded="true"}
+::: {.article accent="left" accent-color="note" collapsible="true" summary="Methodology" expanded="true"}
 
 This example starts expanded and combines accent with collapse.
 
@@ -698,7 +698,7 @@ This example starts expanded and combines accent with collapse.
 - Collapse/expand nativo.
 
 ### Changed
-- Timeline demonstrada com `steps type="dots"`.
+- Timeline demonstrated with `steps type="dots"`.
 - Generic blocks converged on `article`.
 
 ### Removed
@@ -728,7 +728,7 @@ This example starts expanded and combines accent with collapse.
 - Collapse/expand nativo.
 
 ### Changed
-- Timeline demonstrada com `steps type="dots"`.
+- Timeline demonstrated with `steps type="dots"`.
 - Generic blocks converged on `article`.
 
 ### Removed
