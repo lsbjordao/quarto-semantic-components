@@ -40,9 +40,8 @@ extensions:
     row-height: "36px"
     content-gap: "0.55rem"
 
-  aside:
-    variant: default
-
   article:
     radius: "0.75rem"
     padding: "1rem 1.1rem"
+    accent: none
+    expanded: true
