@@ -62,7 +62,7 @@ end
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-article',
-    version='0.10.2',
+    version='0.10.3',
     stylesheets={'css/article.css'}
   })
 end
@@ -121,8 +121,7 @@ local function transform(el,meta)
     {'--article-background',setting(el,meta,'background',{'bg'})},
     {'--article-shadow',setting(el,meta,'shadow')},
     {'--article-accent-color',setting(el,meta,'accent-color')},
-    {'--article-accent-width',setting(el,meta,'accent-width')},
-    {'--article-accent-inset',setting(el,meta,'accent-inset')}
+    {'--article-accent-width',setting(el,meta,'accent-width')}
   }
   for _,pair in ipairs(styles) do
     if pair[2] and pair[2]~='' then append_style(el,pair[1]..':'..pair[2]) end
