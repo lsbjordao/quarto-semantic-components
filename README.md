@@ -355,7 +355,7 @@ Aliases: `expanded`, `open`, and `collapsed`.
 :::file-tree
 - analysis.R texto normal
 - `pipeline.py` inline code
-- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
+- [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
 - [analysis.R]{info="Main R analysis script"}
 :::
@@ -368,7 +368,7 @@ Aliases: `expanded`, `open`, and `collapsed`.
 ```markdown
 :::article
 ## Technical note
-Self-contained content com **Markdown** normal.
+Self-contained content with normal **Markdown**.
 :::
 ```
 
@@ -413,7 +413,7 @@ Accent and collapse can be combined:
   accent="left"
   accent-color="note"
   collapsible="true"
-  summary="Metodologia"
+  summary="Methodology"
   expanded="true"}
 
 Methodology content.
@@ -435,7 +435,7 @@ A changelog does not need its own component; it is simply one possible use of an
 - Collapse/expand nativo.
 
 ### Changed
-- Todos os blocos genéricos convergiram para `article`.
+- All generic blocks converged on `article`.
 
 ### Removed
 - `aside`.
