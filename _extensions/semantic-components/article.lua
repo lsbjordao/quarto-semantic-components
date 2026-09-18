@@ -39,7 +39,7 @@ end
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-article',
-    version='0.10.0',
+    version='0.10.1',
     stylesheets={'css/article.css'}
   })
 end
@@ -119,11 +119,10 @@ local function transform(el,meta)
       local open_attr=expanded and ' open' or ''
       out:insert(pandoc.RawBlock('html','<details class="semantic-article-details"'..open_attr..'>'))
       out:insert(pandoc.RawBlock('html','<summary class="semantic-article-summary">'..esc(summary)..'</summary>'))
-      out:insert(pandoc.RawBlock('html','<div class="semantic-article-body">'))
-      for _,block in ipairs(el.content) do out:insert(block) end
-      out:insert(pandoc.RawBlock('html','</div></details>'))
+      out:insert(pandoc.Div(el.content,pandoc.Attr('',{'semantic-article-body'})))
+      out:insert(pandoc.RawBlock('html','</details>'))
     else
-      for _,block in ipairs(el.content) do out:insert(block) end
+      out:insert(pandoc.Div(el.content,pandoc.Attr('',{'semantic-article-content'})))
     end
 
     out:insert(pandoc.RawBlock('html','</article>'))
