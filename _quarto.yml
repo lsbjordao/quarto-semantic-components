@@ -7,6 +7,20 @@ project:
 
 lang: en
 
+# HTML remains configured in index.qmd. These format defaults are used when
+# the same source is rendered with `--to pdf` or `--to docx`.
+format:
+  pdf:
+    toc: true
+    pdf-engine: lualatex
+    include-in-header:
+      - _extensions/semantic-components/qsc-pdf.tex
+    geometry:
+      - margin=22mm
+  docx:
+    toc: true
+    reference-doc: assets/qsc-reference.docx
+
 # Quarto Semantic Components project defaults.
 # These values are inherited by every .qmd in the project.
 extensions:
