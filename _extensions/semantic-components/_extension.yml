@@ -6,6 +6,7 @@ contributes:
   filters:
     - theme-colors.lua
     - steps.lua
+    - roadmap.lua
     - tree.lua
     - file-tree.lua
     - git-tree.lua

@@ -45,6 +45,11 @@ extensions:
     dot-size: "0.72rem"
     line-width: "1.5px"
 
+  roadmap:
+    orientation: horizontal
+    curve: "0.6"
+    markers: dot
+
   tree:
     expanded: true
     indent: "1.5rem"
