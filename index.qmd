@@ -338,7 +338,7 @@ Stable version released.
 4. Fourth item
 :::
 
-## Git tree — DAG de commits
+## Git tree — commit DAG
 
 The graph represents commits and parent → child relationships. Branches split from nodes; merges end at nodes; the tag and description follow the commit lane.
 
