@@ -180,6 +180,7 @@ The theme-aware color API is available wherever a component exposes color custom
 |---|---|
 | `steps` | `surface-color`, `line-color`, `dot-color`, `dot-fill` |
 | `roadmap` | `road-color`, `point-color`, `surface-color` |
+| `circle-list` | `border-color`, `text-color`, `background-color` |
 | `tree` | `line-color` |
 | `git-tree` | `line-color`, `node-bg` |
 | `article` | `border-color`, `background`, `accent-color` |
@@ -1040,6 +1041,67 @@ In PDF and DOCX the SVG route intentionally degrades to a readable ordered list,
 3. Third item
 4. Fourth item
 :::
+
+## Custom colors
+
+The circle **border**, the **number/text**, and the **background** can be colored independently. An unsuffixed value applies to both light and dark themes.
+
+```markdown
+::: {.circle-list
+  border-color="#7c3aed"
+  text-color="#ffffff"
+  background-color="#7c3aed"}
+1. Research
+2. Prototype
+3. Validate
+4. Release
+:::
+```
+
+**Output:**
+
+::: {.circle-list border-color="#7c3aed" text-color="#ffffff" background-color="#7c3aed"}
+1. Research
+2. Prototype
+3. Validate
+4. Release
+:::
+
+## Light and dark theme colors
+
+Use the `-light` and `-dark` variants when the circle needs different contrast in each color mode.
+
+```markdown
+::: {.circle-list
+  border-color-light="#2563eb"
+  border-color-dark="#60a5fa"
+  text-color-light="#1e3a8a"
+  text-color-dark="#f8fafc"
+  background-color-light="#dbeafe"
+  background-color-dark="#1e3a8a"}
+1. Install
+2. Configure
+3. Compose
+4. Publish
+:::
+```
+
+**Output:**
+
+::: {.circle-list
+  border-color-light="#2563eb"
+  border-color-dark="#60a5fa"
+  text-color-light="#1e3a8a"
+  text-color-dark="#f8fafc"
+  background-color-light="#dbeafe"
+  background-color-dark="#1e3a8a"}
+1. Install
+2. Configure
+3. Compose
+4. Publish
+:::
+
+The canonical color properties are `border-color`, `text-color`, and `background-color`; each accepts the extension-wide base / `-light` / `-dark` convention.
 
 ## A compact procedure
 
