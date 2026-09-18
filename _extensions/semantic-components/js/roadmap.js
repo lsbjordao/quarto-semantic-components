@@ -59,7 +59,14 @@
   }
 
   function setHorizontalGeometry(root, items, curve) {
-    const amplitude = clamp(root.clientHeight * 0.12, 24, 54) * curve;
+    const maxCardHeight = items.reduce((max, item) => {
+      const card = item.querySelector(":scope > .roadmap-card");
+      return Math.max(max, card ? card.getBoundingClientRect().height : 0);
+    }, 0);
+    const amplitude = 54 * curve;
+    const requiredHeight = Math.max(320, maxCardHeight * 2 + amplitude * 2 + 88);
+    root.style.setProperty("--roadmap-horizontal-height", `${requiredHeight.toFixed(2)}px`);
+
     items.forEach((item, index) => {
       const wave = Math.sin(index * (Math.PI / 2) - Math.PI / 2) * amplitude;
       item.style.setProperty("--roadmap-wave-y", `${wave.toFixed(2)}px`);
@@ -68,6 +75,7 @@
   }
 
   function setVerticalGeometry(root, items, curve) {
+    root.style.removeProperty("--roadmap-horizontal-height");
     const amplitude = Math.min(18, Math.max(8, root.clientWidth * 0.03)) * curve;
     items.forEach((item, index) => {
       const wave = Math.sin(index * (Math.PI / 2) - Math.PI / 2) * amplitude;
