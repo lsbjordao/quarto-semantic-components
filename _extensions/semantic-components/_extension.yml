@@ -13,6 +13,7 @@ contributes:
     - article.lua
     - primitives.lua
     - badges.lua
+    - format-output.lua
   shortcodes:
     - badges-shortcodes.lua
     - semantic-shortcodes.lua
