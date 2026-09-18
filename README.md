@@ -118,13 +118,13 @@ In numbered mode, the edge is also continuous from center to center and passes b
 ## Primeiro passo
 Content.
 
-## Segundo passo
+## Second step
 Content.
 
-## Terceiro passo
+## Third step
 Content.
 
-## Quarto passo
+## Fourth step
 Content.
 :::
 ```
@@ -227,12 +227,12 @@ Git is modeled as a **commit DAG**. In `git-tree`:
 :::git-tree
 - `main` initial commit
 - `main` base architecture
-  - `feature/icons` cria branch
+  - `feature/icons` creates branch
   - `feature/icons` adds Devicon
-    - `docs/icons` documenta providers
+    - `docs/icons` documents providers
     - `docs/icons` adds examples
   - `feature/icons` merge docs/icons
-  - `feature/icons` adiciona links
+  - `feature/icons` adds links
 - `main` merge feature/icons
 :::
 ```
