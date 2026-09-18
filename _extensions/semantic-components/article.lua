@@ -36,10 +36,33 @@ local function append_unique(list,value)
   list[#list+1]=value
 end
 
+local function semantic_heading(header)
+  local attrs={
+    ['role']='heading',
+    ['aria-level']=tostring(header.level),
+    ['data-heading-level']=tostring(header.level)
+  }
+  for key,value in pairs(header.attributes or {}) do
+    attrs[key]=value
+  end
+  local classes={'semantic-article-heading','semantic-article-heading-'..tostring(header.level)}
+  for _,class in ipairs(header.classes or {}) do classes[#classes+1]=class end
+  return pandoc.Div(
+    {pandoc.Plain(header.content)},
+    pandoc.Attr(header.identifier or '',classes,attrs)
+  )
+end
+
+local function article_content(blocks)
+  local wrapper=pandoc.Div(blocks)
+  wrapper=wrapper:walk({Header=semantic_heading})
+  return wrapper.content
+end
+
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-article',
-    version='0.10.1',
+    version='0.10.2',
     stylesheets={'css/article.css'}
   })
 end
@@ -119,10 +142,10 @@ local function transform(el,meta)
       local open_attr=expanded and ' open' or ''
       out:insert(pandoc.RawBlock('html','<details class="semantic-article-details"'..open_attr..'>'))
       out:insert(pandoc.RawBlock('html','<summary class="semantic-article-summary">'..esc(summary)..'</summary>'))
-      out:insert(pandoc.Div(el.content,pandoc.Attr('',{'semantic-article-body'})))
+      out:insert(pandoc.Div(article_content(el.content),pandoc.Attr('',{'semantic-article-body'})))
       out:insert(pandoc.RawBlock('html','</details>'))
     else
-      out:insert(pandoc.Div(el.content,pandoc.Attr('',{'semantic-article-content'})))
+      out:insert(pandoc.Div(article_content(el.content),pandoc.Attr('',{'semantic-article-content'})))
     end
 
     out:insert(pandoc.RawBlock('html','</article>'))
