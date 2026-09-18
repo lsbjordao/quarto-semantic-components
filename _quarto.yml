@@ -1,6 +1,8 @@
 project:
   type: default
 
+lang: en
+
 # Quarto Semantic Components project defaults.
 # These values are inherited by every .qmd in the project.
 extensions:
