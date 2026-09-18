@@ -88,12 +88,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.10.4" type="accent" appearance="solid" >}}
+{{< badge "v0.10.5" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.4" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.5" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -338,7 +338,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.4
+- `main` release v0.10.5
 :::
 ```
 
@@ -361,7 +361,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.4
+- `main` release v0.10.5
 :::
 
 ### Mesmo DAG — direção BT
@@ -399,7 +399,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.4" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.5" head="true"} merge feature/badges
 :::
 ```
 
@@ -413,7 +413,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.4" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.5" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -593,7 +593,7 @@ Este é o `article` padrão, sem accent e sem collapse.
 ### Accent esquerdo com pontas arredondadas
 
 ```markdown
-::: {.article accent="left" variant="warning"}
+::: {.article accent="left" accent-color="warning"}
 ## Atenção
 A barra lateral é opcional. O componente continua sendo um `article`.
 :::
@@ -601,12 +601,12 @@ A barra lateral é opcional. O componente continua sendo um `article`.
 
 **Output:**
 
-::: {.article accent="left" variant="warning"}
+::: {.article accent="left" accent-color="warning"}
 ## Atenção
 A barra lateral é opcional. O componente continua sendo um `article`.
 :::
 
-Também é possível controlar diretamente `accent-color` e `accent-width`.
+Use `accent-color="warning"`, `note`, `danger`, `success`, `important` ou qualquer cor CSS, como `#8b5cf6`. `accent-width` controla a espessura.
 
 ### Collapsed por padrão
 
@@ -644,7 +644,7 @@ O conteúdo está dentro de um `details` nativo, mas o elemento externo continua
 ```markdown
 ::: {.article
   accent="left"
-  variant="note"
+  accent-color="note"
   collapsible="true"
   summary="Metodologia"
   expanded="true"}
@@ -656,7 +656,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 **Output:**
 
-::: {.article accent="left" variant="note" collapsible="true" summary="Metodologia" expanded="true"}
+::: {.article accent="left" accent-color="note" collapsible="true" summary="Metodologia" expanded="true"}
 
 Este exemplo começa expandido e combina o accent com o collapse.
 
@@ -667,7 +667,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 ```markdown
 :::article
 
-## 0.10.4 — 2026-09-17
+## 0.10.5 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
@@ -697,7 +697,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 :::article
 
-## 0.10.4 — 2026-09-17
+## 0.10.5 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
