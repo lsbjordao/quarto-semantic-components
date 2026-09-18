@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">Quarto Semantic Components logo</title>
-  <desc id="desc">The official Quarto quartered-circle icon behind a centered document containing semantic component symbols, with a short tail suggesting a Q.</desc>
+  <desc id="desc">The official Quarto quartered-circle icon behind a smaller centered document containing semantic component symbols, with a short tail suggesting a Q.</desc>
   <defs>
     <linearGradient id="paper" x1="174" y1="108" x2="346" y2="414" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FFFFFF"/>
@@ -26,29 +26,32 @@
   <!-- Small tail turns the background mark into a subtle Q -->
   <path d="M363 351L421 409" stroke="#74AADB" stroke-width="26" stroke-linecap="round"/>
 
-  <!-- Centered file -->
-  <g filter="url(#shadow)">
-    <path d="M184 108H318L382 172V376C382 397 365 414 344 414H184C163 414 146 397 146 376V146C146 125 163 108 184 108Z"
-          fill="url(#paper)" stroke="#D8E1EC" stroke-width="6" stroke-linejoin="round"/>
-    <path d="M318 108V146C318 160 330 172 344 172H382L318 108Z" fill="url(#fold)"/>
+  <!-- File and all internal semantic elements are scaled together so the Quarto icon remains visible -->
+  <g transform="translate(264 261) scale(.88) translate(-264 -261)">
+    <!-- Centered file -->
+    <g filter="url(#shadow)">
+      <path d="M184 108H318L382 172V376C382 397 365 414 344 414H184C163 414 146 397 146 376V146C146 125 163 108 184 108Z"
+            fill="url(#paper)" stroke="#D8E1EC" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M318 108V146C318 160 330 172 344 172H382L318 108Z" fill="url(#fold)"/>
+    </g>
+
+    <!-- Semantic elements remain fully inside the file -->
+    <rect x="190" y="176" width="128" height="15" rx="7.5" fill="#C8D3E1"/>
+    <rect x="190" y="204" width="92" height="15" rx="7.5" fill="#DEE5EE"/>
+
+    <path d="M208 258V330" stroke="#9DC5EA" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="208" cy="258" r="13" fill="#39729E"/>
+    <circle cx="208" cy="294" r="13" fill="#3FA7A3"/>
+    <circle cx="208" cy="330" r="13" fill="#7567C8"/>
+    <rect x="238" y="249" width="94" height="17" rx="8.5" fill="#BFD8EE"/>
+    <rect x="238" y="285" width="112" height="17" rx="8.5" fill="#BDE8E3"/>
+    <rect x="238" y="321" width="98" height="17" rx="8.5" fill="#D8D1F3"/>
+
+    <path d="M272 358V371M226 371H318M226 371V385M272 371V385M318 371V385"
+          fill="none" stroke="#D8A11F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="272,344 283,358 272,372 261,358" fill="#D8A11F"/>
+    <rect x="207" y="386" width="38" height="15" rx="7.5" fill="#39729E"/>
+    <rect x="253" y="386" width="38" height="15" rx="7.5" fill="#3FA7A3"/>
+    <rect x="299" y="386" width="38" height="15" rx="7.5" fill="#7567C8"/>
   </g>
-
-  <!-- Semantic elements remain fully inside the file -->
-  <rect x="190" y="176" width="128" height="15" rx="7.5" fill="#C8D3E1"/>
-  <rect x="190" y="204" width="92" height="15" rx="7.5" fill="#DEE5EE"/>
-
-  <path d="M208 258V330" stroke="#9DC5EA" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="208" cy="258" r="13" fill="#39729E"/>
-  <circle cx="208" cy="294" r="13" fill="#3FA7A3"/>
-  <circle cx="208" cy="330" r="13" fill="#7567C8"/>
-  <rect x="238" y="249" width="94" height="17" rx="8.5" fill="#BFD8EE"/>
-  <rect x="238" y="285" width="112" height="17" rx="8.5" fill="#BDE8E3"/>
-  <rect x="238" y="321" width="98" height="17" rx="8.5" fill="#D8D1F3"/>
-
-  <path d="M272 358V371M226 371H318M226 371V385M272 371V385M318 371V385"
-        fill="none" stroke="#D8A11F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <polygon points="272,344 283,358 272,372 261,358" fill="#D8A11F"/>
-  <rect x="207" y="386" width="38" height="15" rx="7.5" fill="#39729E"/>
-  <rect x="253" y="386" width="38" height="15" rx="7.5" fill="#3FA7A3"/>
-  <rect x="299" y="386" width="38" height="15" rx="7.5" fill="#7567C8"/>
 </svg>
