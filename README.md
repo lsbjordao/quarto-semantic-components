@@ -77,7 +77,6 @@ extensions:
     radius: "0.75rem"
     padding: "1rem 1.1rem"
     accent: none
-    expanded: true
 ```
 
 Também são aceitos os namespaces `semantic-components:` e `extensions.semantic-components`.
