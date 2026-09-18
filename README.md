@@ -63,6 +63,7 @@ extensions:
   file-tree:
     icons: devicon
     expanded: true
+    indent: "1.8rem"
 
   git-tree:
     direction: TB
@@ -270,7 +271,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.3" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.4" head="true"} merge feature/badges
 :::
 ```
 
@@ -296,6 +297,33 @@ A extensão infere os parents da seguinte forma:
 ```
 
 Providers disponíveis: `devicon`, `simple-icons`, `builtin` e `none`.
+
+`schema.sql` recebe automaticamente o ícone clássico de banco de dados (cilindro) no fallback builtin.
+
+### Recuo horizontal por nível
+
+`indent` controla a distância horizontal acrescentada a cada nível aninhado:
+
+```markdown
+::: {.file-tree indent="1rem"}
+- +src
+  - +components
+    - Button.ts
+  - app.ts
+- +database
+  - schema.sql
+:::
+```
+
+Também pode ser definido no projeto:
+
+```yaml
+extensions:
+  file-tree:
+    indent: "1.8rem"
+```
+
+Aliases aceitos: `level-indent`, `indent-size` e `child-indent`.
 
 Para `.qmd`, `_quarto.yml` e `quarto.yml`, o provider padrão usa o símbolo oficial do Quarto servido pelo próprio site.
 
@@ -398,7 +426,7 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 ```markdown
 :::article
 
-## 0.10.3 — 2026-09-17
+## 0.10.4 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
