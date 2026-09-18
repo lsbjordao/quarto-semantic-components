@@ -40,22 +40,9 @@ extensions:
     row-height: "36px"
     content-gap: "0.55rem"
 
-  timeline:
-    line-color: "#9aa0a6"
-    line-width: "2px"
-    marker-size: "0.78rem"
-    marker-color: "#64748b"
-    marker-fill: "transparent"
-
-  pipeline:
-    direction: LR
-    line-color: "#9aa0a6"
-    line-width: "2px"
-    gap: "1.25rem"
-
-  details:
-    open: false
+  aside:
     variant: default
 
-  changelog:
-    compact: false
+  article:
+    radius: "0.75rem"
+    padding: "1rem 1.1rem"
