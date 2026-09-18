@@ -10,7 +10,7 @@ local function is_html() return FORMAT and FORMAT:match('html') ~= nil end
 
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
-    name = 'quarto-semantic-components', version = '0.10.6',
+    name = 'quarto-semantic-components', version = '0.10.7',
     stylesheets = {
       'css/base.css', 'css/steps.css', 'css/file-tree.css',
       'css/git-tree.css', 'css/badges.css'
@@ -148,12 +148,14 @@ local function transform_steps(el,meta)
     local dot_border_width = setting(el,meta,'dot-border-width',{'marker-border-width'})
     local line_color = setting(el,meta,'line-color',{'connector-color'})
     local line_width = setting(el,meta,'line-width',{'connector-width'})
+    local surface_color = setting(el,meta,'surface-color',{'surface','dot-surface'})
     if dot_color and dot_color ~= '' then append_style(el, '--semantic-step-dot-color:' .. dot_color) end
     if dot_fill and dot_fill ~= '' then append_style(el, '--semantic-step-dot-fill:' .. dot_fill) end
     if dot_size and dot_size ~= '' then append_style(el, '--semantic-step-dot-size:' .. dot_size) end
     if dot_border_width and dot_border_width ~= '' then append_style(el, '--semantic-step-dot-border-width:' .. dot_border_width) end
     if line_color and line_color ~= '' then append_style(el, '--semantic-step-line-color:' .. line_color) end
     if line_width and line_width ~= '' then append_style(el, '--semantic-step-line-width:' .. line_width) end
+    if surface_color and surface_color ~= '' then append_style(el, '--semantic-step-surface:' .. surface_color) end
   end
   el.content = from_headings(el.content, list_mode) or normalize_list(el.content, list_mode)
   if list_mode == 'dots' then ensure_dot_markers(el.content) end
