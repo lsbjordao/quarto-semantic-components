@@ -51,7 +51,13 @@ body.quarto-dark .semantic-roadmap,[data-bs-theme="dark"] .semantic-roadmap{
   position:relative;
   z-index:1;
   min-width:0;
-  --roadmap-item-point-color:var(--roadmap-point-color);
+  --roadmap-item-point-color:var(--roadmap-item-point-color-base,var(--roadmap-point-color));
+}
+body.quarto-light .semantic-roadmap .semantic-roadmap-item,[data-bs-theme="light"] .semantic-roadmap .semantic-roadmap-item{
+  --roadmap-item-point-color:var(--roadmap-item-point-color-light,var(--roadmap-item-point-color-base,var(--roadmap-point-color)));
+}
+body.quarto-dark .semantic-roadmap .semantic-roadmap-item,[data-bs-theme="dark"] .semantic-roadmap .semantic-roadmap-item{
+  --roadmap-item-point-color:var(--roadmap-item-point-color-dark,var(--roadmap-item-point-color-base,var(--roadmap-point-color)));
 }
 .semantic-roadmap .roadmap-card{
   border:1px solid color-mix(in srgb,currentColor 14%,transparent);
@@ -122,7 +128,7 @@ body.quarto-dark .semantic-roadmap,[data-bs-theme="dark"] .semantic-roadmap{
   display:grid;
   grid-template-columns:repeat(var(--roadmap-count,1),minmax(0,1fr));
   gap:clamp(.65rem,1.4vw,1.25rem);
-  min-height:clamp(20rem,42vw,29rem);
+  min-height:var(--roadmap-horizontal-height,clamp(20rem,42vw,29rem));
   padding:1rem 0;
   align-items:stretch;
 }
