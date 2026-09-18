@@ -7,9 +7,20 @@ project:
 
 lang: en
 
-# HTML remains configured in index.qmd. These format defaults are used when
-# the same source is rendered with `--to pdf` or `--to docx`.
+# HTML presentation remains configured in index.qmd. Project-wide analytics is
+# injected here; PDF/DOCX keep their own format defaults below.
 format:
+  html:
+    include-in-header:
+      text: |
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z19J7RBW1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-2Z19J7RBW1');
+        </script>
   pdf:
     toc: true
     pdf-engine: lualatex
