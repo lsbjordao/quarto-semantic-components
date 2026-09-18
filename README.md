@@ -169,6 +169,33 @@ Conteúdo.
 
 Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color` e `line-width`.
 
+### Exemplo de timeline com `steps type="dots"`
+
+Não há um componente `timeline` separado. Uma timeline vertical é um caso natural de uso dos próprios steps com bolinhas:
+
+```markdown
+::: {.steps type="dots" line-color="#9aa0a6" line-width="2px"}
+
+## 2024 — Protótipo {dot-color="#16a34a"}
+Primeira implementação do componente.
+
+## 2025 — Beta {dot-color="#2563eb"}
+Validação e refinamento visual.
+
+## 2026-06 — Release candidate {dot-color="#f59e0b"}
+Congelamento da API para testes finais.
+
+## 2026-09 — Release {dot-color="#16a34a"}
+Versão estável publicada.
+
+:::
+```
+
+Isso mantém `steps` como primitive reutilizável em vez de criar outro componente com a mesma geometria.
+
+Para fluxos e diagramas mais gerais, a extensão não cria um `pipeline` próprio: o Quarto já oferece integração com Mermaid e outras ferramentas de diagramas.
+
+
 ## Circle list
 
 ```markdown
@@ -243,7 +270,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.1" head="true"} merge feature/badges
 :::
 ```
 
@@ -303,32 +330,6 @@ Aliases: `expanded`, `open` e `collapsed`.
 - [analysis.R]{tooltip="Script principal de análise em R"}
 :::
 ```
-
-## Timeline com `steps type="dots"`
-
-Não há um componente `timeline` separado. Uma timeline vertical é um caso natural de uso dos próprios steps com bolinhas:
-
-```markdown
-::: {.steps type="dots" line-color="#9aa0a6" line-width="2px"}
-
-## 2024 — Protótipo {dot-color="#16a34a"}
-Primeira implementação do componente.
-
-## 2025 — Beta {dot-color="#2563eb"}
-Validação e refinamento visual.
-
-## 2026-06 — Release candidate {dot-color="#f59e0b"}
-Congelamento da API para testes finais.
-
-## 2026-09 — Release {dot-color="#16a34a"}
-Versão estável publicada.
-
-:::
-```
-
-Isso mantém `steps` como primitive reutilizável em vez de criar outro componente com a mesma geometria.
-
-Para fluxos e diagramas mais gerais, a extensão não cria um `pipeline` próprio: o Quarto já oferece integração com Mermaid e outras ferramentas de diagramas.
 
 ## Article
 
@@ -397,7 +398,7 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 ```markdown
 :::article
 
-## 0.10.0 — 2026-09-17
+## 0.10.1 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
