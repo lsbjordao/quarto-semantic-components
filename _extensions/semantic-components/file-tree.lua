@@ -25,7 +25,7 @@ end
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-file-tree',
-    version='0.6.7',
+    version='0.10.4',
     scripts={'js/file-tree.js'}
   })
 end
@@ -36,7 +36,8 @@ local exact = {
   ['dockerfile']='docker', ['package.json']='nodejs', ['package-lock.json']='lock',
   ['cargo.toml']='rust', ['go.mod']='go', ['requirements.txt']='python',
   ['pyproject.toml']='python', ['renv.lock']='r', ['.gitignore']='git',
-  ['_quarto.yml']='quarto', ['quarto.yml']='quarto', ['readme.md']='markdown'
+  ['_quarto.yml']='quarto', ['quarto.yml']='quarto', ['readme.md']='markdown',
+  ['schema.sql']='database'
 }
 local ext = {
   r='r', rmd='r', py='python', js='javascript', jsx='javascript', ts='typescript', tsx='typescript',
@@ -256,6 +257,13 @@ local function transform(el,meta)
   add_class(el,'semantic-file-tree')
   local configured=config.default(meta,'file-tree','icons',{'icon-library'})
   local default_lib=library(attr(el,'icons') or attr(el,'icon-library') or configured)
+  local indent=attr(el,'indent') or attr(el,'level-indent') or attr(el,'indent-size')
+    or config.default(meta,'file-tree','indent',{'level-indent','indent-size','child-indent'})
+  if indent and indent~='' then
+    local style=attr(el,'style') or ''
+    if style~='' and style:sub(-1)~=';' then style=style..';' end
+    el.attributes.style=style..'--file-tree-indent:'..indent..';'
+  end
   local expanded_value=attr(el,'expanded') or attr(el,'open') or config.default(meta,'file-tree','expanded',{'open','folders-open'})
   local collapsed_value=attr(el,'collapsed') or config.default(meta,'file-tree','collapsed',{'folders-collapsed'})
   local default_expanded=truthy(expanded_value)
