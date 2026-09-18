@@ -12,7 +12,7 @@ filters:
   - semantic-components
 ---
 
-**Quarto Semantic Components** is a small collection of reusable Markdown/Pandoc primitives for technical documentation. The components are designed to stay close to ordinary Markdown, become richer in HTML, and remain readable when rendered to PDF or DOCX.
+**Quarto Semantic Components** is a small collection of reusable Markdown/Pandoc primitives for technical documentation. The components stay close to ordinary Markdown, become richer in HTML, and remain readable when rendered to PDF or DOCX.
 
 This page is both a gallery and a usage guide. Every example follows the same pattern: **source first, rendered output second**.
 
@@ -20,14 +20,14 @@ This page is both a gallery and a usage guide. Every example follows the same pa
 
 | Component | Best suited for | HTML enhancement |
 |---|---|---|
-| `badge` | Inline status, versions, labels | Variants, sizes, shapes, links, custom styling |
-| `steps` | Procedures and sequential explanations | Continuous numbered or dot connectors |
+| `badge` | Inline status, versions, labels | Variants, sizes, shapes, links, theme-aware colors |
+| `steps` | Procedures, workflows, timelines | Continuous numbered or dot connectors |
 | `circle-list` | Compact ordered lists | Circled numbers |
 | `git-tree` | Git histories, branches and merges | SVG commit DAG |
 | `file-tree` | Project layouts and repository structure | Icons, info hints, expandable folders |
 | `article` | Self-contained blocks of content | Rounded container, accent, collapse/expand |
 
-The extension intentionally avoids components that Quarto already handles well. For example, a timeline can be expressed with `steps type="dots"`, and general diagrams can use Mermaid.
+The extension intentionally avoids components that Quarto already handles well. A timeline can be expressed with `steps type="dots"`, while general diagrams can use Mermaid.
 
 # Quick start
 
@@ -62,9 +62,9 @@ Render to HTML, PDF, or DOCX.
 :::
 ```
 
-# Project defaults in _quarto.yml
+# Project defaults in `_quarto.yml`
 
-Component defaults can be centralized at the project level. This repository uses the following configuration:
+Component defaults can be centralized at the project level. This repository intentionally leaves most colors automatic so Quarto can choose values that work naturally in both light and dark themes.
 
 ```yaml
 extensions:
@@ -86,9 +86,7 @@ extensions:
       icon: "!"
 
   steps:
-    dot-color: "#8c959f"
     dot-size: "0.72rem"
-    line-color: "#9aa0a6"
     line-width: "1.5px"
 
   file-tree:
@@ -98,7 +96,6 @@ extensions:
 
   git-tree:
     direction: TB
-    line-color: "#9aa0a6"
     line-width: "2px"
     node-size: "0.68rem"
     lane-gap: "0.82rem"
@@ -117,7 +114,54 @@ For properties that support presets, the effective value follows this precedence
 project defaults → preset → component attributes → item attributes
 ```
 
-This makes it possible to establish a project-wide visual language while still overriding individual components when necessary.
+# Theme-aware colors
+
+Color options support a common light/dark convention. The unsuffixed option remains the fallback for **both** themes; `-light` and `-dark` override it only in the corresponding color mode.
+
+```text
+property-light / property-dark
+            ↓
+      property
+            ↓
+automatic theme default
+```
+
+For example:
+
+```markdown
+::: {.steps
+  line-color="#6b7280"
+  line-color-dark="#adb5bd"}
+...
+:::
+```
+
+Here `#6b7280` is used in both themes unless a more specific override exists. The dark theme uses `#adb5bd`; the light theme falls back to `line-color`.
+
+You can also specify both values explicitly:
+
+```markdown
+::: {.steps
+  surface-color-light="#f3f4f6"
+  surface-color-dark="#2b3035"
+  line-color-light="#6b7280"
+  line-color-dark="#adb5bd"}
+...
+:::
+```
+
+The theme-aware color API is available wherever a component exposes color customization:
+
+| Component | Theme-aware properties |
+|---|---|
+| `steps` | `surface-color`, `line-color`, `dot-color`, `dot-fill` |
+| `git-tree` | `line-color`, `node-bg` |
+| `article` | `border-color`, `background`, `accent-color` |
+| `badge` | `fg`, `bg`, `border` |
+
+Each property accepts the normal form plus `-light` and `-dark`, such as `accent-color`, `accent-color-light`, and `accent-color-dark`.
+
+If you do not provide a color, the component keeps its automatic theme-aware default.
 
 # Badges
 
@@ -190,16 +234,28 @@ Presets keep repeated labels consistent across a project.
 {{< badge "External docs" type="info" icon="↗" icon-position="end" href="https://quarto.org" >}}
 {{< badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" >}}
 
+## Theme-specific badge colors
+
+```{.markdown shortcodes=false}
+{{< badge "Adaptive"
+  fg-light="#1f2937" bg-light="#e5e7eb" border-light="#9ca3af"
+  fg-dark="#f9fafb" bg-dark="#374151" border-dark="#6b7280" >}}
+```
+
+**Output:**
+
+{{< badge "Adaptive" fg-light="#1f2937" bg-light="#e5e7eb" border-light="#9ca3af" fg-dark="#f9fafb" bg-dark="#374151" border-dark="#6b7280" >}}
+
 ## AST-native form
 
 Use the AST-native form when the label itself should contain inline Markdown.
 
 ```markdown
 [**Stable**]{.badge type="success" appearance="outline" size="md"}
-[`v0.10.9`]{.badge type="accent" font="mono"}
+[`v0.11.0`]{.badge type="accent" font="mono"}
 ```
 
-**Output:** [**Stable**]{.badge type="success" appearance="outline" size="md"} [`v0.10.9`]{.badge type="accent" font="mono"}
+**Output:** [**Stable**]{.badge type="success" appearance="outline" size="md"} [`v0.11.0`]{.badge type="accent" font="mono"}
 
 # Steps
 
@@ -243,10 +299,16 @@ Each heading starts a new step.
 
 ## Numbered steps on a custom surface
 
-`surface-color` is useful when the component sits on a background that differs from the document body.
+When you choose explicit colors, use theme-specific values if the light and dark themes need different contrast.
 
 ```markdown
-::: {.steps surface-color="#f3f4f6" line-color="#6b7280" line-width="2px"}
+::: {.steps
+  surface-color-light="#f3f4f6"
+  surface-color-dark="#2b3035"
+  line-color-light="#6b7280"
+  line-color-dark="#adb5bd"
+  line-width="2px"}
+
 ## Prepare
 Create the working directory.
 
@@ -263,7 +325,7 @@ Write the validated result.
 
 **Output:**
 
-::: {.steps surface-color="#f3f4f6" line-color="#6b7280" line-width="2px"}
+::: {.steps surface-color-light="#f3f4f6" surface-color-dark="#2b3035" line-color-light="#6b7280" line-color-dark="#adb5bd" line-width="2px"}
 ## Prepare
 Create the working directory.
 
@@ -282,6 +344,8 @@ Write the validated result.
 Dot steps are useful when the sequence should feel lighter than a numbered procedure. The connector remains continuous behind the dots, while the marker center masks the line.
 
 ### Default dots
+
+With no explicit colors, the component follows the current theme automatically.
 
 ```markdown
 ::: {.steps type="dots"}
@@ -317,42 +381,40 @@ Publish the result.
 
 ### Per-step color and size
 
-Block attributes define defaults; heading attributes override individual nodes.
+Block attributes define defaults; heading attributes override individual nodes. Theme suffixes can also be used on individual headings.
 
 ```markdown
 ::: {.steps type="dots"
-  dot-color="#8c959f"
   dot-size="0.78rem"
-  line-color="#9aa0a6"
   line-width="1.5px"}
 
-## Extract {dot-color="#2563eb"}
+## Extract {dot-color-light="#2563eb" dot-color-dark="#60a5fa"}
 Download the new records.
 
-## Deduplicate {dot-color="#f59e0b" dot-size="0.95rem"}
+## Deduplicate {dot-color-light="#d97706" dot-color-dark="#fbbf24" dot-size="0.95rem"}
 Reconcile collections and identifications.
 
-## Review {dot-color="#8b5cf6"}
+## Review {dot-color-light="#7c3aed" dot-color-dark="#c4b5fd"}
 Review the processed dataset.
 
-## Publish {dot-color="#16a34a"}
+## Publish {dot-color-light="#15803d" dot-color-dark="#4ade80"}
 Update the curated dataset.
 :::
 ```
 
 **Output:**
 
-::: {.steps type="dots" dot-color="#8c959f" dot-size="0.78rem" line-color="#9aa0a6" line-width="1.5px"}
-## Extract {dot-color="#2563eb"}
+::: {.steps type="dots" dot-size="0.78rem" line-width="1.5px"}
+## Extract {dot-color-light="#2563eb" dot-color-dark="#60a5fa"}
 Download the new records.
 
-## Deduplicate {dot-color="#f59e0b" dot-size="0.95rem"}
+## Deduplicate {dot-color-light="#d97706" dot-color-dark="#fbbf24" dot-size="0.95rem"}
 Reconcile collections and identifications.
 
-## Review {dot-color="#8b5cf6"}
+## Review {dot-color-light="#7c3aed" dot-color-dark="#c4b5fd"}
 Review the processed dataset.
 
-## Publish {dot-color="#16a34a"}
+## Publish {dot-color-light="#15803d" dot-color-dark="#4ade80"}
 Update the curated dataset.
 :::
 
@@ -364,12 +426,12 @@ Update the curated dataset.
 The default node remains hollow.
 
 ## In progress {dot-color="#2563eb" dot-fill="#2563eb"}
-The active stage is filled.
+A single unsuffixed color is intentionally reused in both themes.
 
-## Under review {dot-color="#f59e0b" dot-fill="#f59e0b"}
-A second state uses another color.
+## Under review {dot-color-light="#d97706" dot-fill-light="#d97706" dot-color-dark="#fbbf24" dot-fill-dark="#fbbf24"}
+This state uses separate light and dark colors.
 
-## Completed {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
+## Completed {dot-color-light="#15803d" dot-fill-light="#15803d" dot-color-dark="#4ade80" dot-fill-dark="#4ade80" dot-border-width="2px"}
 The final stage is complete.
 :::
 ```
@@ -381,12 +443,12 @@ The final stage is complete.
 The default node remains hollow.
 
 ## In progress {dot-color="#2563eb" dot-fill="#2563eb"}
-The active stage is filled.
+A single unsuffixed color is intentionally reused in both themes.
 
-## Under review {dot-color="#f59e0b" dot-fill="#f59e0b"}
-A second state uses another color.
+## Under review {dot-color-light="#d97706" dot-fill-light="#d97706" dot-color-dark="#fbbf24" dot-fill-dark="#fbbf24"}
+This state uses separate light and dark colors.
 
-## Completed {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}
+## Completed {dot-color-light="#15803d" dot-fill-light="#15803d" dot-color-dark="#4ade80" dot-fill-dark="#4ade80" dot-border-width="2px"}
 The final stage is complete.
 :::
 
@@ -395,11 +457,7 @@ The final stage is complete.
 A timeline does not need a dedicated component. Dates can be represented with inline badges while `steps type="dots"` provides the vertical timeline geometry.
 
 ```markdown
-::: {.steps type="dots"
-  line-color="#9aa0a6"
-  line-width="2px"
-  dot-size="0.78rem"}
-
+::: {.steps type="dots" line-width="2px" dot-size="0.78rem"}
 ## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype {dot-color="#16a34a"}
 First implementation of the component.
 
@@ -416,7 +474,7 @@ Stable version released.
 
 **Output:**
 
-::: {.steps type="dots" line-color="#9aa0a6" line-width="2px" dot-size="0.78rem"}
+::: {.steps type="dots" line-width="2px" dot-size="0.78rem"}
 ## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype {dot-color="#16a34a"}
 First implementation of the component.
 
@@ -432,7 +490,7 @@ Stable version released.
 
 # Circled Ordered List
 
-`circle-list` is intentionally small: it keeps ordinary ordered-list semantics and changes only the visual treatment of the number marker.
+`circle-list` keeps ordinary ordered-list semantics and changes only the visual treatment of the number marker.
 
 ## Basic list
 
@@ -480,11 +538,7 @@ Because the content remains ordinary Markdown, links, code, emphasis, and other 
 
 `git-tree` represents a Git history as a commit DAG rather than as a generic tree. A dot is a commit, an edge is a parent → child relationship, a branch split starts at a commit, and a merge ends at a commit.
 
-The simple nested-list syntax is convenient for documentation. When the topology cannot be inferred safely from indentation, explicit commit IDs and parent relationships can be provided.
-
 ## Simple syntax — TB direction
-
-`TB` reads from the oldest commit at the top toward the newest commit at the bottom.
 
 ```markdown
 ::: {.git-tree direction="TB"}
@@ -504,7 +558,7 @@ The simple nested-list syntax is convenient for documentation. When the topology
     - `test/badges` covers links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.9
+- `main` release v0.11.0
 :::
 ```
 
@@ -527,12 +581,10 @@ The simple nested-list syntax is convenient for documentation. When the topology
     - `test/badges` covers links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.9
+- `main` release v0.11.0
 :::
 
 ## Same topology — BT direction
-
-`BT` keeps the same DAG but reverses the vertical reading direction.
 
 ```markdown
 ::: {.git-tree direction="BT"}
@@ -558,7 +610,7 @@ The simple nested-list syntax is convenient for documentation. When the topology
 
 ## A branch created from another branch
 
-Nested branches are valid Git histories. In this example, `test/badges` starts from a commit on `feature/badges`, then merges back into that branch before `feature/badges` itself merges into `main`.
+Nested branches are valid Git histories. Here `test/badges` starts from a commit on `feature/badges`, then merges back before `feature/badges` itself merges into `main`.
 
 ```markdown
 :::git-tree
@@ -584,6 +636,30 @@ Nested branches are valid Git histories. In this example, `test/badges` starts f
   - `feature/badges` merge test/badges
   - `feature/badges` documents badge API
 - `main` merge feature/badges
+:::
+
+## Theme-specific graph colors
+
+```markdown
+::: {.git-tree
+  line-color-light="#6b7280"
+  line-color-dark="#adb5bd"
+  node-bg-light="#ffffff"
+  node-bg-dark="#212529"}
+- `main` initial commit
+  - `feature/theme` adds color-mode support
+  - `feature/theme` documents overrides
+- `main` merge feature/theme
+:::
+```
+
+**Output:**
+
+::: {.git-tree line-color-light="#6b7280" line-color-dark="#adb5bd" node-bg-light="#ffffff" node-bg-dark="#212529"}
+- `main` initial commit
+  - `feature/theme` adds color-mode support
+  - `feature/theme` documents overrides
+- `main` merge feature/theme
 :::
 
 ## Explicit DAG — ids, parents, tag, and HEAD
@@ -599,7 +675,7 @@ Use explicit relationships for histories where indentation alone is not enough. 
     - `test/badges`{#c5 parent="c4"} covers variants
     - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.9" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.11.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -613,7 +689,7 @@ Use explicit relationships for histories where indentation alone is not enough. 
     - `test/badges`{#c5 parent="c4"} covers variants
     - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.9" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.11.0" head="true"} merge feature/badges
 :::
 
 # File tree
@@ -728,8 +804,6 @@ The author controls whether a file name looks like code. A plain filename remain
 
 ## Custom icons and providers
 
-Automatic detection can be overridden for individual files. Provider prefixes such as `devicon:python` can also be used explicitly.
-
 ```markdown
 :::file-tree
 - `pipeline.py`{icon="devicon:python"}
@@ -750,7 +824,7 @@ Automatic detection can be overridden for individual files. Provider prefixes su
 
 ## Horizontal indentation
 
-`indent` controls the horizontal distance added at every nested level. Compact trees can use a smaller value; sparse trees can use a larger one.
+`indent` controls the horizontal distance added at every nested level.
 
 ```markdown
 ::: {.file-tree indent="1rem"}
@@ -842,8 +916,6 @@ The outer HTML element is always a real `<article>`.
 
 ## Generic article
 
-The default presentation is simply a subtle rounded border.
-
 ```markdown
 :::article
 ## Technical note
@@ -880,6 +952,29 @@ This article uses the warning accent color.
 This article uses the warning accent color.
 :::
 
+## Theme-specific article colors
+
+```markdown
+::: {.article
+  accent="left"
+  accent-color-light="#7c3aed"
+  accent-color-dark="#c4b5fd"
+  border-color-light="#d1d5db"
+  border-color-dark="#4b5563"
+  background-light="#fafafa"
+  background-dark="#1f2937"}
+## Adaptive article
+The border, background, and accent are tuned independently for each theme.
+:::
+```
+
+**Output:**
+
+::: {.article accent="left" accent-color-light="#7c3aed" accent-color-dark="#c4b5fd" border-color-light="#d1d5db" border-color-dark="#4b5563" background-light="#fafafa" background-dark="#1f2937"}
+## Adaptive article
+The border, background, and accent are tuned independently for each theme.
+:::
+
 ## Semantic accent presets
 
 ```markdown
@@ -906,32 +1001,12 @@ Useful contextual information.
 The operation completed successfully.
 :::
 
-## Arbitrary accent color
-
-```markdown
-::: {.article accent="left" accent-color="#8b5cf6" accent-width="6px"}
-## Custom accent
-Any CSS color can be used when a semantic preset is not appropriate.
-:::
-```
-
-**Output:**
-
-::: {.article accent="left" accent-color="#8b5cf6" accent-width="6px"}
-## Custom accent
-Any CSS color can be used when a semantic preset is not appropriate.
-:::
-
 ## Collapsed by default
 
 A collapsible article uses native HTML `<details>` inside the `<article>` wrapper. No JavaScript is required, and the content remains fully visible in PDF/DOCX.
 
 ```markdown
-::: {.article
-  collapsible="true"
-  summary="Technical details"
-  expanded="false"}
-
+::: {.article collapsible="true" summary="Technical details" expanded="false"}
 The content starts collapsed in HTML.
 
 - normal Markdown
@@ -944,7 +1019,6 @@ The content starts collapsed in HTML.
 **Output:**
 
 ::: {.article collapsible="true" summary="Technical details" expanded="false"}
-
 The content starts collapsed in HTML.
 
 - normal Markdown
@@ -956,13 +1030,7 @@ The content starts collapsed in HTML.
 ## Expanded by default with an accent
 
 ```markdown
-::: {.article
-  accent="left"
-  accent-color="note"
-  collapsible="true"
-  summary="Methodology"
-  expanded="true"}
-
+::: {.article accent="left" accent-color="note" collapsible="true" summary="Methodology" expanded="true"}
 This example starts expanded and combines the accent with native collapse/expand behavior.
 :::
 ```
@@ -970,7 +1038,6 @@ This example starts expanded and combines the accent with native collapse/expand
 **Output:**
 
 ::: {.article accent="left" accent-color="note" collapsible="true" summary="Methodology" expanded="true"}
-
 This example starts expanded and combines the accent with native collapse/expand behavior.
 :::
 
@@ -980,56 +1047,28 @@ A changelog does not require a dedicated component. It is simply one possible us
 
 ```markdown
 :::article
-## 0.10.9 — 2026-09-17
+## 0.11.0 — 2026-09-18
 
 ### Added
-- English documentation and examples.
-- Additional gallery examples.
+- Theme-specific color overrides with `-light` and `-dark` suffixes.
+- Theme-aware examples for steps, badges, Git trees, and articles.
 
 ### Changed
-- Improved explanations for each semantic primitive.
-
-### Fixed
-- Remaining mixed-language text in examples.
+- Automatic theme colors remain the default whenever no explicit color is supplied.
 :::
 ```
 
 **Output:**
 
 :::article
-## 0.10.9 — 2026-09-17
+## 0.11.0 — 2026-09-18
 
 ### Added
-- English documentation and examples.
-- Additional gallery examples.
+- Theme-specific color overrides with `-light` and `-dark` suffixes.
+- Theme-aware examples for steps, badges, Git trees, and articles.
 
 ### Changed
-- Improved explanations for each semantic primitive.
-
-### Fixed
-- Remaining mixed-language text in examples.
-:::
-
-## Custom container styling
-
-```markdown
-::: {.article
-  radius="1.2rem"
-  padding="1.25rem"
-  border-color="#8b5cf6"
-  background="transparent"
-  shadow="0 8px 24px rgb(0 0 0 / .08)"}
-
-## Self-contained content
-An `article` can represent a release note, specification, summary, or any other independent unit of content.
-:::
-```
-
-**Output:**
-
-::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6" background="transparent" shadow="0 8px 24px rgb(0 0 0 / .08)"}
-## Self-contained content
-An `article` can represent a release note, specification, summary, or any other independent unit of content.
+- Automatic theme colors remain the default whenever no explicit color is supplied.
 :::
 
 # Combining components
@@ -1038,16 +1077,15 @@ The primitives are intentionally composable. A component can contain normal Mark
 
 ## Release package example
 
-This example combines an `article`, an inline `badge`, and a nested `file-tree`.
-
 ```markdown
 :::: {.article accent="left" accent-color="success"}
-## Release package [v0.10.9]{.badge type="success" appearance="solid" size="xs"}
+## Release package [v0.11.0]{.badge type="success" appearance="solid" size="xs"}
 
 The release contains the extension source, documentation, and examples.
 
 :::file-tree
 - +semantic-components
+  - theme-colors.lua
   - steps.lua
   - file-tree.lua
   - git-tree.lua
@@ -1062,12 +1100,13 @@ The release contains the extension source, documentation, and examples.
 **Output:**
 
 :::: {.article accent="left" accent-color="success"}
-## Release package [v0.10.9]{.badge type="success" appearance="solid" size="xs"}
+## Release package [v0.11.0]{.badge type="success" appearance="solid" size="xs"}
 
 The release contains the extension source, documentation, and examples.
 
 :::file-tree
 - +semantic-components
+  - theme-colors.lua
   - steps.lua
   - file-tree.lua
   - git-tree.lua
@@ -1084,7 +1123,7 @@ The components are designed around Pandoc structure rather than HTML-only widget
 
 | Format | Behavior |
 |---|---|
-| **HTML** | Full styling, badges, SVG Git DAG, expandable file tree, info hints, and native article collapse/expand |
+| **HTML** | Full styling, light/dark color overrides, badges, SVG Git DAG, expandable file tree, info hints, and native article collapse/expand |
 | **PDF** | Structural content and links are preserved; interactive behavior degrades to readable static content |
 | **DOCX** | Lists, headings, links, and text remain editable |
 
