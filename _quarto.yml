@@ -30,6 +30,7 @@ extensions:
   file-tree:
     icons: devicon
     expanded: true
+    indent: "1.8rem"
 
   git-tree:
     direction: TB
