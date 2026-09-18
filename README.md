@@ -168,7 +168,7 @@ Conteúdo.
 :::
 ```
 
-Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color`, `line-width` e `surface-color`. Nos steps com dots, a aresta é contínua de centro a centro dos nós e passa por trás das bolinhas; o centro usa a superfície do tema para ocultar a linha. Em fundos customizados, use `surface-color=`.
+Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color`, `line-width` e `surface-color`. Nos steps com dots, a aresta é contínua de centro a centro dos nós e passa por trás das bolinhas; o centro usa a superfície do tema para ocultar a linha. Em fundos customizados, use `surface-color=`. `dot-fill="transparent"` e `dot-fill="none"` também são interpretados como a superfície, evitando que a aresta apareça dentro do nó.
 
 ### Exemplo de timeline com `steps type="dots"`
 
