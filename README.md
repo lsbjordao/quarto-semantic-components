@@ -14,10 +14,8 @@ Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.de
 - `git-tree`: grafo de commits Git (DAG) com branches, merges, tags, `HEAD` e direções TB/BT;
 - `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips, ícones e pastas colapsáveis em HTML;
 - `badge`: badge inline com presets de projeto e personalização por instância;
-- `timeline`: sequência cronológica com datas, estados e marcadores;
-- `pipeline`: fluxo de processamento em LR/TB/BT com estágios e estados;
-- `details`: conteúdo expansível em HTML e sempre visível em PDF/DOCX;
-- `changelog`: releases e grupos Added/Changed/Fixed/Removed/Deprecated/Security.
+- `aside`: bloco semântico lateral baseado no elemento HTML `<aside>`, com variantes visuais;
+- `article`: contêiner semântico baseado no elemento HTML `<article>`, neutro e reutilizável.
 
 ## Instalação
 
@@ -76,24 +74,12 @@ extensions:
     row-height: "36px"
     content-gap: "0.55rem"
 
-  timeline:
-    line-color: "#9aa0a6"
-    line-width: "2px"
-    marker-size: "0.78rem"
-    marker-color: "#64748b"
-    marker-fill: transparent
+  aside:
+    variant: default
 
-  pipeline:
-    direction: LR
-    line-color: "#9aa0a6"
-    line-width: "2px"
-    gap: "1.25rem"
-
-  details:
-    open: false
-
-  changelog:
-    compact: false
+  article:
+    radius: "0.75rem"
+    padding: "1rem 1.1rem"
 ```
 
 Também são aceitos os namespaces `semantic-components:` e `extensions.semantic-components`.
@@ -260,7 +246,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.8.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.9.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -321,109 +307,90 @@ Aliases: `expanded`, `open` e `collapsed`.
 :::
 ```
 
-## Timeline
+## Timeline com `steps type="dots"`
 
-`timeline` é orientado a eventos cronológicos, releases, fases e marcos. O primeiro nível de heading dentro do bloco define os itens.
+Não há um componente `timeline` separado. Uma timeline vertical é um caso natural de uso dos próprios steps com bolinhas:
 
 ```markdown
-:::timeline
-## Protótipo {date="2024" status="done" color="#16a34a"}
+::: {.steps type="dots" line-color="#9aa0a6" line-width="2px"}
+
+## 2024 — Protótipo {dot-color="#16a34a"}
 Primeira implementação do componente.
 
-## Beta {date="2025" status="active" color="#2563eb"}
+## 2025 — Beta {dot-color="#2563eb"}
 Validação e refinamento visual.
 
-## Release {date="2026" status="success" color="#16a34a"}
-Versão estável.
+## 2026-06 — Release candidate {dot-color="#f59e0b"}
+Congelamento da API para testes finais.
+
+## 2026-09 — Release {dot-color="#16a34a"}
+Versão estável publicada.
+
 :::
 ```
 
-Defaults configuráveis: `line-color`, `line-width`, `marker-size`, `marker-color` e `marker-fill`. Cada item pode sobrescrever `date`, `status`, `color`, `marker-fill` e `marker-size`.
+Isso mantém `steps` como primitive reutilizável em vez de criar outro componente com a mesma geometria.
 
-Em PDF/DOCX, os headings e o conteúdo original permanecem legíveis.
+Para fluxos e diagramas mais gerais, a extensão não cria um `pipeline` próprio: o Quarto já oferece integração com Mermaid e outras ferramentas de diagramas.
 
-## Pipeline
+## Aside
 
-`pipeline` representa fluxo de processamento e não apenas instruções sequenciais. Em HTML pode ser horizontal (`LR`) ou vertical (`TB`/`BT`).
+`aside` é um bloco semântico genérico. Em HTML, ele é emitido como um elemento real `<aside>`; em PDF/DOCX, o conteúdo permanece como um bloco estrutural legível.
 
 ```markdown
-::: {.pipeline direction="LR"}
-- [Coleta]{icon="◉" status="done"}
-- [Validação]{icon="✓" status="done"}
-- [Deduplicação]{icon="◇" status="active"}
-- [Gold layer]{icon="★" status="warning"}
-- [Publicação]{icon="↗" status="todo"}
+::: {.aside variant="note" title="Nota"}
+Conteúdo complementar ao fluxo principal do documento.
+:::
+
+::: {.aside variant="warning" title="Atenção"}
+Este conteúdo merece destaque, mas continua sendo semanticamente um aside.
 :::
 ```
 
-Também pode ser vertical:
+Variantes: `default`, `note`, `warning`, `danger` e `success`.
 
-```markdown
-::: {.pipeline direction="TB"}
-- [Extrair]{status="done"}
-- [Transformar]{status="active"}
-- [Validar]{status="warning"}
-- [Publicar]{status="todo"}
-:::
-```
-
-Defaults: `direction`, `line-color`, `line-width` e `gap`. Estados reconhecidos visualmente incluem `done`/`success`, `active`/`running`/`info`, `warning`, `blocked`/`danger` e `todo`.
-
-Em PDF/DOCX, a lista original é preservada.
-
-## Details
-
-Em HTML, `details` usa o elemento nativo `<details>`; em PDF/DOCX o conteúdo fica sempre visível.
-
-```markdown
-::: {.details summary="Como funciona internamente?" open="false"}
-O conteúdo pode conter **Markdown**, listas, código e outros componentes.
-:::
-```
-
-Pode definir defaults no projeto:
+O default pode ser definido no projeto:
 
 ```yaml
 extensions:
-  details:
-    open: false
+  aside:
     variant: default
 ```
 
-Variantes visuais disponíveis: `default`, `note`, `warning` e `danger`.
+## Article
 
-## Changelog
-
-`changelog` estrutura releases e grupos de mudanças em um formato próximo a Keep a Changelog.
+`article` é um contêiner agnóstico para uma unidade de conteúdo autocontida. Em HTML, ele é emitido como um elemento real `<article>` com borda arredondada por padrão.
 
 ```markdown
-:::changelog
-## 0.8.0 {date="2026-09-17" status="released"}
+:::article
+
+## 0.9.0 — 2026-09-17
 
 ### Added
+- `aside`
+- `article`
+
+### Changed
+- Timeline demonstrada com `steps type="dots"`.
+- Fluxos gerais ficam a cargo de Mermaid/Quarto.
+
+### Removed
 - `timeline`
 - `pipeline`
 - `details`
 - `changelog`
 
-### Changed
-- Git tree com conteúdo alinhado à lane.
-
-### Fixed
-- Ajustes de layout e defaults.
-
-## 0.7.1 {date="2026-09-17"}
-
-### Changed
-- `content-gap` no `git-tree`.
 :::
 ```
 
-Os grupos `Added`, `Changed`, `Fixed`, `Removed`, `Deprecated` e `Security` recebem marcadores próprios no HTML. `compact: true` reduz o espaçamento entre releases.
+O exemplo acima é um changelog, mas `article` não conhece nenhuma semântica específica de changelog. Ele pode conter posts, releases, notas técnicas, resumos, especificações ou qualquer outra unidade autocontida.
+
+Defaults disponíveis: `border-color`, `radius`, `padding`, `background` e `shadow`.
+
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, badges, tooltips, file tree interativo, Git DAG em SVG, timeline, pipeline, details nativo e changelog estilizado;
+- **HTML**: apresentação completa, ícones, badges, tooltips, file tree interativo, Git DAG em SVG e elementos semânticos `<aside>`/`<article>`;
 - **PDF**: conteúdo estrutural e links são preservados; componentes interativos degradam com segurança;
 - **DOCX**: listas, headings, links e texto permanecem editáveis.
 
