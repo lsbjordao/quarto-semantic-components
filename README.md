@@ -16,6 +16,7 @@ Some ergonomics and syntax ideas came from the [Vocs](https://vocs.dev/) framewo
 
 - `steps`: numbered sequence;
 - `steps type="dots"`: steps with hollow dots by default and extensive customization;
+- `roadmap`: responsive milestone path with a sinuous SVG route in horizontal or vertical layouts;
 - `circle-list`: ordered list with circled numbers;
 - `tree`: generic expandable hierarchy;
 - `git-tree`: Git commit graph (DAG) with branches, merges, tags, `HEAD`, and TB/BT directions;
@@ -69,6 +70,11 @@ extensions:
   steps:
     dot-size: "0.72rem"
     line-width: "1.5px"
+
+  roadmap:
+    orientation: horizontal
+    curve: "0.6"
+    markers: dot
 
   tree:
     expanded: true
@@ -139,6 +145,7 @@ Supported theme-aware color properties:
 | Component | Properties |
 |---|---|
 | `steps` | `surface-color`, `line-color`, `dot-color`, `dot-fill` |
+| `roadmap` | `road-color`, `point-color`, `surface-color` |
 | `tree` | `line-color` |
 | `git-tree` | `line-color`, `node-bg` |
 | `article` | `border-color`, `background`, `accent-color` |
@@ -286,6 +293,38 @@ Stable version released.
 This keeps `steps` as a reusable primitive instead of creating another component with the same geometry.
 
 For more general flows and diagrams, the extension does not create its own `pipeline`: Quarto already provides integration with Mermaid and other diagramming tools.
+
+## Roadmap
+
+`roadmap` is intentionally different from the vertical timeline pattern above: it represents a project journey or milestone path whose route is part of the visual language. HTML draws a smooth SVG path through the markers; horizontal roadmaps automatically switch to vertical on narrow screens.
+
+```markdown
+::: {.roadmap orientation="horizontal" curve="0.6"}
+
+::: {.roadmap-item title="Research" status="done"}
+Review references and define requirements.
+:::
+
+::: {.roadmap-item title="Prototype" status="done"}
+Build the first working version.
+:::
+
+::: {.roadmap-item title="Validation" status="current"}
+Test the component with real documents.
+:::
+
+::: {.roadmap-item title="Release" status="milestone"}
+Publish the stable version.
+:::
+
+:::
+```
+
+Options: `orientation="horizontal|vertical"`, `curve="0..1"`, `markers="dot|numbers|none"`, `road-width`, `road-background-width`, and `point-size`. Statuses are `done`, `current`, `future`, and `milestone`.
+
+The colors `road-color`, `point-color`, and `surface-color` support the usual unsuffixed, `-light`, and `-dark` forms; individual `.roadmap-item` blocks can override the point color. PDF and DOCX degrade to an ordered list with titles, statuses, and content preserved.
+
+A fuller gallery is available in [`examples/roadmap.qmd`](examples/roadmap.qmd).
 
 ## Circled Ordered List
 
@@ -566,7 +605,7 @@ In addition to the options above, `article` accepts `border-color`, `radius`, `p
 
 ## Formats
 
-- **HTML**: full presentation, light/dark color overrides, generic/file trees, Git DAG in SVG, native progress/meter, keyboard/abbreviation semantics, and the semantic `<article>` element;
+- **HTML**: full presentation, light/dark color overrides, sinuous roadmaps, generic/file trees, Git DAG in SVG, native progress/meter, keyboard/abbreviation semantics, and the semantic `<article>` element;
 - **PDF**: structural content and links are preserved; interactive components degrade safely;
 - **DOCX**: lists, headings, links, and text remain editable.
 
