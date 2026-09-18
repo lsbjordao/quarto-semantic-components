@@ -1,6 +1,7 @@
 .semantic-roadmap{
   --roadmap-road-width:3px;
   --roadmap-road-background-width:10px;
+  --roadmap-road-dash:10px 8px;
   --roadmap-point-size:14px;
   --roadmap-road-color:var(--roadmap-road-color-base,color-mix(in srgb,currentColor 42%,transparent));
   --roadmap-point-color:var(--roadmap-point-color-base,currentColor);
@@ -42,10 +43,12 @@ body.quarto-dark .semantic-roadmap,[data-bs-theme="dark"] .semantic-roadmap{
 .semantic-roadmap .roadmap-road-bed{
   stroke:color-mix(in srgb,var(--roadmap-road-color) 18%,transparent);
   stroke-width:var(--roadmap-road-background-width);
+  stroke-dasharray:none;
 }
 .semantic-roadmap .roadmap-road{
   stroke:var(--roadmap-road-color);
   stroke-width:var(--roadmap-road-width);
+  stroke-dasharray:var(--roadmap-road-dash);
 }
 .semantic-roadmap .semantic-roadmap-item{
   position:relative;
