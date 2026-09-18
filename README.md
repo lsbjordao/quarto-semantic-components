@@ -111,6 +111,8 @@ Os exemplos usam `##` como padrão. O filtro considera o primeiro nível de head
 
 ### Numerado
 
+No modo numerado, a aresta também é contínua de centro a centro e passa por trás dos círculos. O interior de cada marcador usa a superfície do tema para ocultar a linha. `line-color`, `line-width` e `surface-color` funcionam tanto em steps numerados quanto em dots.
+
 ```markdown
 :::steps
 ## Primeiro passo
@@ -271,7 +273,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.7" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.8" head="true"} merge feature/badges
 :::
 ```
 
@@ -426,7 +428,7 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 ```markdown
 :::article
 
-## 0.10.7 — 2026-09-17
+## 0.10.8 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
