@@ -23,9 +23,13 @@ This page is both a gallery and a usage guide. Every example follows the same pa
 | `badge` | Inline status, versions, labels | Variants, sizes, shapes, links, theme-aware colors |
 | `steps` | Procedures, workflows, timelines | Continuous numbered or dot connectors |
 | `circle-list` | Compact ordered lists | Circled numbers |
+| `tree` | Generic hierarchies and classifications | Connectors and expandable branches |
 | `git-tree` | Git histories, branches and merges | SVG commit DAG |
 | `file-tree` | Project layouts and repository structure | Icons, info hints, expandable folders |
+| `properties` | Key/value metadata | Responsive description-list grid |
 | `article` | Self-contained blocks of content | Rounded container, accent, collapse/expand |
+| `progress` / `meter` | Quantitative indicators | Native HTML indicators |
+| `kbd` / `abbr` | Inline semantics | Native `<kbd>` and `<abbr>` elements |
 
 The extension intentionally avoids components that Quarto already handles well. A timeline can be expressed with `steps type="dots"`, while general diagrams can use Mermaid.
 
@@ -89,10 +93,17 @@ extensions:
     dot-size: "0.72rem"
     line-width: "1.5px"
 
+  tree:
+    expanded: true
+    indent: "1.5rem"
+
   file-tree:
     icons: devicon
     expanded: true
     indent: "1.8rem"
+
+  properties:
+    term-width: "9rem"
 
   git-tree:
     direction: TB
@@ -155,9 +166,11 @@ The theme-aware color API is available wherever a component exposes color custom
 | Component | Theme-aware properties |
 |---|---|
 | `steps` | `surface-color`, `line-color`, `dot-color`, `dot-fill` |
+| `tree` | `line-color` |
 | `git-tree` | `line-color`, `node-bg` |
 | `article` | `border-color`, `background`, `accent-color` |
 | `badge` | `fg`, `bg`, `border` |
+| `progress` / `meter` | `color`, `track-color` |
 
 Each property accepts the normal form plus `-light` and `-dark`, such as `accent-color`, `accent-color-light`, and `accent-color-dark`.
 
@@ -252,10 +265,10 @@ Use the AST-native form when the label itself should contain inline Markdown.
 
 ```markdown
 [**Stable**]{.badge type="success" appearance="outline" size="md"}
-[`v0.11.0`]{.badge type="accent" font="mono"}
+[`v0.12.0`]{.badge type="accent" font="mono"}
 ```
 
-**Output:** [**Stable**]{.badge type="success" appearance="outline" size="md"} [`v0.11.0`]{.badge type="accent" font="mono"}
+**Output:** [**Stable**]{.badge type="success" appearance="outline" size="md"} [`v0.12.0`]{.badge type="accent" font="mono"}
 
 # Steps
 
@@ -558,7 +571,7 @@ Because the content remains ordinary Markdown, links, code, emphasis, and other 
     - `test/badges` covers links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.11.0
+- `main` release v0.12.0
 :::
 ```
 
@@ -581,7 +594,7 @@ Because the content remains ordinary Markdown, links, code, emphasis, and other 
     - `test/badges` covers links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.11.0
+- `main` release v0.12.0
 :::
 
 ## Same topology — BT direction
@@ -675,7 +688,7 @@ Use explicit relationships for histories where indentation alone is not enough. 
     - `test/badges`{#c5 parent="c4"} covers variants
     - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.11.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.12.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -689,8 +702,71 @@ Use explicit relationships for histories where indentation alone is not enough. 
     - `test/badges`{#c5 parent="c4"} covers variants
     - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.11.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.12.0" head="true"} merge feature/badges
 :::
+
+
+# Tree
+
+`tree` is a neutral hierarchy component. Unlike `file-tree`, it does not assume that nodes are files or folders; unlike `git-tree`, it does not model commits or parent relationships. It simply renders nested Markdown lists as a readable hierarchy.
+
+## Taxonomic hierarchy
+
+```markdown
+:::tree
+- Plantae
+  - Fabaceae
+    - Mimosa
+      - Mimosa pudica
+      - Mimosa caesalpiniifolia
+    - Acacia
+  - Asteraceae
+:::
+```
+
+**Output:**
+
+:::tree
+- Plantae
+  - Fabaceae
+    - Mimosa
+      - Mimosa pudica
+      - Mimosa caesalpiniifolia
+    - Acacia
+  - Asteraceae
+:::
+
+## Expand, collapse, info, and indentation
+
+Any item with children becomes a branch in HTML. The whole tree can define a default state, and individual branches can override it.
+
+```markdown
+::: {.tree expanded="false" indent="1.8rem"}
+- [Life]{expanded="true" info="Top-level classification"}
+  - +Eukaryota
+  - [Plantae]{expanded="true"}
+    - Fabaceae
+      - Mimosa
+      - Acacia
+    - Asteraceae
+  - Animalia
+:::
+```
+
+**Output:**
+
+::: {.tree expanded="false" indent="1.8rem"}
+- [Life]{expanded="true" info="Top-level classification"}
+  - +Eukaryota
+  - [Plantae]{expanded="true"}
+    - Fabaceae
+      - Mimosa
+      - Acacia
+    - Asteraceae
+  - Animalia
+:::
+
+The `+` character has no special meaning in `tree`; it is shown above only as ordinary content. Branches are inferred solely from nested children. Use `expanded=`, `open=`, or `collapsed=` on a span when a branch needs a specific initial state. `line-color-light` and `line-color-dark` can tune connector contrast by theme.
 
 # File tree
 
@@ -1047,7 +1123,7 @@ A changelog does not require a dedicated component. It is simply one possible us
 
 ```markdown
 :::article
-## 0.11.0 — 2026-09-18
+## 0.12.0 — 2026-09-18
 
 ### Added
 - Theme-specific color overrides with `-light` and `-dark` suffixes.
@@ -1061,7 +1137,7 @@ A changelog does not require a dedicated component. It is simply one possible us
 **Output:**
 
 :::article
-## 0.11.0 — 2026-09-18
+## 0.12.0 — 2026-09-18
 
 ### Added
 - Theme-specific color overrides with `-light` and `-dark` suffixes.
@@ -1071,6 +1147,161 @@ A changelog does not require a dedicated component. It is simply one possible us
 - Automatic theme colors remain the default whenever no explicit color is supplied.
 :::
 
+
+# Properties
+
+`properties` enhances an ordinary Pandoc definition list. The underlying structure remains semantic in PDF and DOCX, while HTML presents it as a responsive key/value grid.
+
+## Basic metadata
+
+```markdown
+:::properties
+Project
+: Quarto Semantic Components
+
+Version
+: 0.12.0
+
+Language
+: Lua
+
+License
+: MIT
+:::
+```
+
+**Output:**
+
+:::properties
+Project
+: Quarto Semantic Components
+
+Version
+: 0.12.0
+
+Language
+: Lua
+
+License
+: MIT
+:::
+
+## Rich values
+
+Definition values can contain ordinary Markdown.
+
+```markdown
+::: {.properties term-width="10rem"}
+Repository
+: [lsbjordao/quarto-semantic-components](https://github.com/lsbjordao/quarto-semantic-components)
+
+Formats
+: **HTML**, PDF, and DOCX
+
+Status
+: [Stable]{.badge type="success" appearance="solid" size="xs"}
+
+Entry point
+: `_extensions/semantic-components/`
+:::
+```
+
+**Output:**
+
+::: {.properties term-width="10rem"}
+Repository
+: [lsbjordao/quarto-semantic-components](https://github.com/lsbjordao/quarto-semantic-components)
+
+Formats
+: **HTML**, PDF, and DOCX
+
+Status
+: [Stable]{.badge type="success" appearance="solid" size="xs"}
+
+Entry point
+: `_extensions/semantic-components/`
+:::
+
+Use `compact="true"` for denser metadata and `term-width=` (alias `key-width=`) to control the first column.
+
+# Progress
+
+`progress` uses the native HTML `<progress>` element. It is appropriate for completion or advancement toward a goal.
+
+```{.markdown shortcodes=false}
+{{< progress value="72" label="Build" >}}
+{{< progress value="43" max="60" label="Processed records" value-label="43 / 60" >}}
+```
+
+**Output:**
+
+{{< progress value="72" label="Build" >}}
+
+{{< progress value="43" max="60" label="Processed records" value-label="43 / 60" >}}
+
+Theme-specific colors follow the same fallback rule used elsewhere:
+
+```{.markdown shortcodes=false}
+{{< progress value="84" label="Coverage"
+  color-light="#2563eb" color-dark="#60a5fa"
+  track-color-light="#e5e7eb" track-color-dark="#374151" >}}
+```
+
+**Output:**
+
+{{< progress value="84" label="Coverage"
+  color-light="#2563eb" color-dark="#60a5fa"
+  track-color-light="#e5e7eb" track-color-dark="#374151" >}}
+
+# Meter
+
+`meter` uses the native HTML `<meter>` element. Unlike progress, it represents a scalar measurement within a known range rather than task completion.
+
+```{.markdown shortcodes=false}
+{{< meter value="82" min="0" max="100" label="Test coverage" value-label="82%" >}}
+{{< meter value="7.2" min="0" max="10" low="4" high="8" optimum="9" label="Quality score" >}}
+```
+
+**Output:**
+
+{{< meter value="82" min="0" max="100" label="Test coverage" value-label="82%" >}}
+
+{{< meter value="7.2" min="0" max="10" low="4" high="8" optimum="9" label="Quality score" >}}
+
+The attributes `low`, `high`, and `optimum` preserve the semantics of native `<meter>`.
+
+# Keyboard input
+
+`kbd` renders keyboard input with the native HTML `<kbd>` element. A `+`-separated shortcut is automatically split into individual keys.
+
+```{.markdown shortcodes=false}
+Press {{< kbd "Ctrl+Shift+P" >}} to open the command palette.
+
+Use {{< kbd "Ctrl+C" >}} and {{< kbd "Ctrl+V" >}} to copy and paste.
+```
+
+**Output:**
+
+Press {{< kbd "Ctrl+Shift+P" >}} to open the command palette.
+
+Use {{< kbd "Ctrl+C" >}} and {{< kbd "Ctrl+V" >}} to copy and paste.
+
+# Abbreviations
+
+`abbr` emits the native HTML `<abbr>` element with its expansion in `title`. In non-HTML formats it degrades to the abbreviation followed by its full form.
+
+```{.markdown shortcodes=false}
+A {{< abbr KBA "Key Biodiversity Area" >}} identifies a site of global importance for biodiversity.
+
+The extension is built on the {{< abbr AST "Abstract Syntax Tree" >}} produced by Pandoc.
+```
+
+**Output:**
+
+A {{< abbr KBA "Key Biodiversity Area" >}} identifies a site of global importance for biodiversity.
+
+The extension is built on the {{< abbr AST "Abstract Syntax Tree" >}} produced by Pandoc.
+
 # Combining components
 
 The primitives are intentionally composable. A component can contain normal Markdown and, where the document structure permits it, other semantic components.
@@ -1079,7 +1310,7 @@ The primitives are intentionally composable. A component can contain normal Mark
 
 ```markdown
 :::: {.article accent="left" accent-color="success"}
-## Release package [v0.11.0]{.badge type="success" appearance="solid" size="xs"}
+## Release package [v0.12.0]{.badge type="success" appearance="solid" size="xs"}
 
 The release contains the extension source, documentation, and examples.
 
@@ -1100,7 +1331,7 @@ The release contains the extension source, documentation, and examples.
 **Output:**
 
 :::: {.article accent="left" accent-color="success"}
-## Release package [v0.11.0]{.badge type="success" appearance="solid" size="xs"}
+## Release package [v0.12.0]{.badge type="success" appearance="solid" size="xs"}
 
 The release contains the extension source, documentation, and examples.
 
@@ -1123,7 +1354,7 @@ The components are designed around Pandoc structure rather than HTML-only widget
 
 | Format | Behavior |
 |---|---|
-| **HTML** | Full styling, light/dark color overrides, badges, SVG Git DAG, expandable file tree, info hints, and native article collapse/expand |
+| **HTML** | Full styling, light/dark color overrides, generic/file trees, SVG Git DAG, native progress/meter, keyboard/abbreviation semantics, and article collapse/expand |
 | **PDF** | Structural content and links are preserved; interactive behavior degrades to readable static content |
 | **DOCX** | Lists, headings, links, and text remain editable |
 
