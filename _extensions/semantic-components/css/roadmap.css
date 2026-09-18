@@ -3,26 +3,29 @@
   --roadmap-road-background-width:10px;
   --roadmap-road-dash:10px 8px;
   --roadmap-point-size:14px;
-  --roadmap-road-color:var(--roadmap-road-color-base,color-mix(in srgb,currentColor 42%,transparent));
-  --roadmap-point-color:var(--roadmap-point-color-base,currentColor);
+  --roadmap-body-color:var(--bs-body-color,CanvasText);
+  --roadmap-body-bg:var(--bs-body-bg,Canvas);
+  --roadmap-road-color:var(--roadmap-road-color-base,color-mix(in srgb,var(--roadmap-body-color) 42%,transparent));
+  --roadmap-point-color:var(--roadmap-point-color-base,var(--roadmap-body-color));
   --roadmap-surface-color:var(--roadmap-surface-color-base,transparent);
-  --roadmap-marker-fill:var(--roadmap-surface-color-base,var(--bs-body-bg,Canvas));
+  --roadmap-marker-fill:var(--roadmap-surface-color-base,var(--roadmap-body-bg));
+  --roadmap-marker-number-color:var(--roadmap-body-bg);
   --roadmap-card-gap:1rem;
   position:relative;
   margin:1.5rem 0 2rem;
   isolation:isolate;
 }
 body.quarto-light .semantic-roadmap,[data-bs-theme="light"] .semantic-roadmap{
-  --roadmap-road-color:var(--roadmap-road-color-light,var(--roadmap-road-color-base,color-mix(in srgb,currentColor 42%,transparent)));
-  --roadmap-point-color:var(--roadmap-point-color-light,var(--roadmap-point-color-base,currentColor));
+  --roadmap-road-color:var(--roadmap-road-color-light,var(--roadmap-road-color-base,color-mix(in srgb,var(--roadmap-body-color) 42%,transparent)));
+  --roadmap-point-color:var(--roadmap-point-color-light,var(--roadmap-point-color-base,var(--roadmap-body-color)));
   --roadmap-surface-color:var(--roadmap-surface-color-light,var(--roadmap-surface-color-base,transparent));
-  --roadmap-marker-fill:var(--roadmap-surface-color-light,var(--roadmap-surface-color-base,var(--bs-body-bg,Canvas)));
+  --roadmap-marker-fill:var(--roadmap-surface-color-light,var(--roadmap-surface-color-base,var(--roadmap-body-bg)));
 }
 body.quarto-dark .semantic-roadmap,[data-bs-theme="dark"] .semantic-roadmap{
-  --roadmap-road-color:var(--roadmap-road-color-dark,var(--roadmap-road-color-base,color-mix(in srgb,currentColor 42%,transparent)));
-  --roadmap-point-color:var(--roadmap-point-color-dark,var(--roadmap-point-color-base,currentColor));
+  --roadmap-road-color:var(--roadmap-road-color-dark,var(--roadmap-road-color-base,color-mix(in srgb,var(--roadmap-body-color) 42%,transparent)));
+  --roadmap-point-color:var(--roadmap-point-color-dark,var(--roadmap-point-color-base,var(--roadmap-body-color)));
   --roadmap-surface-color:var(--roadmap-surface-color-dark,var(--roadmap-surface-color-base,transparent));
-  --roadmap-marker-fill:var(--roadmap-surface-color-dark,var(--roadmap-surface-color-base,var(--bs-body-bg,Canvas)));
+  --roadmap-marker-fill:var(--roadmap-surface-color-dark,var(--roadmap-surface-color-base,var(--roadmap-body-bg)));
 }
 .semantic-roadmap .roadmap-svg{
   position:absolute;
@@ -108,12 +111,16 @@ body.quarto-dark .semantic-roadmap .semantic-roadmap-item,[data-bs-theme="dark"]
   line-height:1;
   box-shadow:0 0 0 3px color-mix(in srgb,var(--roadmap-item-point-color,var(--roadmap-point-color)) 10%,transparent);
 }
+.semantic-roadmap .roadmap-marker-label{
+  display:inline-block;
+  line-height:1;
+}
 .semantic-roadmap[data-roadmap-markers="none"] .roadmap-marker{opacity:0}
 .semantic-roadmap[data-roadmap-markers="numbers"] .roadmap-marker{
   width:calc(var(--roadmap-point-size) * 1.55);
   height:calc(var(--roadmap-point-size) * 1.55);
   background:var(--roadmap-item-point-color,var(--roadmap-point-color));
-  color:var(--roadmap-marker-fill);
+  color:var(--roadmap-marker-number-color);
 }
 .semantic-roadmap .roadmap-status-done .roadmap-marker{
   background:var(--roadmap-item-point-color,var(--roadmap-point-color));
@@ -135,7 +142,6 @@ body.quarto-dark .semantic-roadmap .semantic-roadmap-item,[data-bs-theme="dark"]
   transform:rotate(45deg);
 }
 .semantic-roadmap[data-roadmap-markers="numbers"] .roadmap-status-milestone .roadmap-marker-label{
-  display:inline-block;
   transform:rotate(-45deg);
 }
 .semantic-roadmap[data-roadmap-effective-orientation="horizontal"]{
