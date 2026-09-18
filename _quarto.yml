@@ -49,6 +49,7 @@ extensions:
     orientation: horizontal
     curve: "0.6"
     markers: dot
+    road-dash: "10px 8px"
 
   tree:
     expanded: true
