@@ -10,10 +10,6 @@ local function is_html() return FORMAT and FORMAT:match('html') ~= nil end
 local function esc(value)
   return tostring(value or ''):gsub('&','&amp;'):gsub('<','&lt;'):gsub('>','&gt;'):gsub('"','&quot;')
 end
-local function slug(value)
-  value=(value or 'default'):lower():gsub('[^%w_-]+','-'):gsub('^-+',''):gsub('-+$','')
-  return value~='' and value or 'default'
-end
 local function truthy(value)
   if value==nil then return nil end
   value=tostring(value):lower()
@@ -29,6 +25,22 @@ local function append_style(el,declaration)
 end
 local function setting(el,meta,key,aliases)
   return attr(el,key) or config.default(meta,'article',key,aliases)
+end
+local accent_colors={
+  note='var(--quarto-callout-color-note,var(--bs-info,#0dcaf0))',
+  info='var(--quarto-callout-color-note,var(--bs-info,#0dcaf0))',
+  warning='var(--quarto-callout-color-warning,var(--bs-warning,#ffc107))',
+  danger='var(--quarto-callout-color-caution,var(--bs-danger,#dc3545))',
+  caution='var(--quarto-callout-color-caution,var(--bs-danger,#dc3545))',
+  success='var(--quarto-callout-color-tip,var(--bs-success,#198754))',
+  tip='var(--quarto-callout-color-tip,var(--bs-success,#198754))',
+  important='var(--quarto-callout-color-important,var(--bs-primary,#0d6efd))'
+}
+local function accent_color(el,meta)
+  local value=setting(el,meta,'accent-color',{'accent-colour'})
+  if not value or value=='' then return nil end
+  local named=accent_colors[tostring(value):lower()]
+  return named or value
 end
 local function append_unique(list,value)
   if not value or value=='' then return end
@@ -62,7 +74,7 @@ end
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-article',
-    version='0.10.3',
+    version='0.10.5',
     stylesheets={'css/article.css'}
   })
 end
@@ -96,13 +108,12 @@ local function collapse_settings(el,meta)
   return collapsible,expanded,summary
 end
 
-local function article_classes(el,variant,left,collapsible)
+local function article_classes(el,left,collapsible)
   local classes={'semantic-article'}
   for _,class in ipairs(el.classes or {}) do
     if class~='article' then append_unique(classes,class) end
   end
   if left then append_unique(classes,'article-accent-left') end
-  if variant and variant~='' then append_unique(classes,'article-variant-'..slug(variant)) end
   if collapsible then append_unique(classes,'article-collapsible') end
   return table.concat(classes,' ')
 end
@@ -110,7 +121,6 @@ end
 local function transform(el,meta)
   if not has_class(el,'article') then return nil end
 
-  local variant=setting(el,meta,'variant') or 'default'
   local left=accent_left(el,meta)
   local collapsible,expanded,summary=collapse_settings(el,meta)
 
@@ -120,14 +130,14 @@ local function transform(el,meta)
     {'--article-padding',setting(el,meta,'padding')},
     {'--article-background',setting(el,meta,'background',{'bg'})},
     {'--article-shadow',setting(el,meta,'shadow')},
-    {'--article-accent-color',setting(el,meta,'accent-color')},
+    {'--article-accent-color',accent_color(el,meta)},
     {'--article-accent-width',setting(el,meta,'accent-width')}
   }
   for _,pair in ipairs(styles) do
     if pair[2] and pair[2]~='' then append_style(el,pair[1]..':'..pair[2]) end
   end
 
-  local classes=article_classes(el,variant,left,collapsible)
+  local classes=article_classes(el,left,collapsible)
 
   if is_html() then
     local id=el.identifier and el.identifier~='' and (' id="'..esc(el.identifier)..'"') or ''
@@ -153,7 +163,6 @@ local function transform(el,meta)
 
   local fallback_classes={'semantic-article'}
   if left then fallback_classes[#fallback_classes+1]='article-accent-left' end
-  fallback_classes[#fallback_classes+1]='article-variant-'..slug(variant)
 
   local blocks=pandoc.List()
   if collapsible and summary and summary~='' then
