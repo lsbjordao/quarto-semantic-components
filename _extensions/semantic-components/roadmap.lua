@@ -132,6 +132,9 @@ end
 local function html_item(item,index,markers)
   ensure_title(item)
   add_class(item,'semantic-roadmap-item')
+  item.attributes.title=nil
+  item.attributes.role='listitem'
+
   local status=normalize_status(attr(item,'status'))
   if status then add_class(item,'roadmap-status-'..status); item.attributes['data-roadmap-status']=status end
   item.attributes['data-roadmap-index']=tostring(index)
@@ -140,6 +143,11 @@ local function html_item(item,index,markers)
   append_theme_style(item,'--roadmap-item-point-color',point,point_light,point_dark)
 
   local original=pandoc.List()
+  if status then
+    original:insert(pandoc.Plain({
+      pandoc.Span({pandoc.Str('Status: '..status)},pandoc.Attr('',{'roadmap-status-label'}))
+    }))
+  end
   for _,block in ipairs(item.content or {}) do original:insert(block) end
   local card=pandoc.Div(original,pandoc.Attr('',{'roadmap-card'}))
   local marker=pandoc.Div({},pandoc.Attr('',{'roadmap-marker'},{['aria-hidden']='true'}))
@@ -155,6 +163,7 @@ local function transform(el,meta)
   if not is_html() then return static_roadmap(el) end
 
   add_class(el,'semantic-roadmap')
+  el.attributes.role='list'
   local orientation=normalize_orientation(setting(el,meta,'orientation',{'direction','layout'}))
   local markers=normalize_markers(setting(el,meta,'markers',{'marker','marker-style'}))
   local curve=clamp_curve(setting(el,meta,'curve',{'curvature','sinuosity'}))
