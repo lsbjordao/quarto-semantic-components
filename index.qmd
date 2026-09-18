@@ -28,7 +28,7 @@ This page is both a gallery and a usage guide. Every example follows the same pa
 |---|---|---|
 | `badge` | Inline status, versions, labels | Variants, sizes, shapes, links, theme-aware colors |
 | `steps` | Procedures, workflows, timelines | Continuous numbered or dot connectors |
-| `roadmap` | Milestones, product plans, project journeys | Responsive sinuous SVG path with horizontal/vertical layouts |
+| `roadmap` | Milestones, product plans, project journeys | Responsive sinuous SVG road with horizontal/vertical layouts |
 | `circle-list` | Compact ordered lists | Circled numbers |
 | `tree` | Generic hierarchies and classifications | Connectors and expandable branches |
 | `git-tree` | Git histories, branches and merges | SVG commit DAG |
@@ -104,6 +104,7 @@ extensions:
     orientation: horizontal
     curve: "0.6"
     markers: dot
+    road-dash: "10px 8px"
 
   tree:
     expanded: true
@@ -516,12 +517,14 @@ Stable version released.
 
 # Roadmap
 
-`roadmap` is for milestone paths and project journeys where the route itself carries part of the visual meaning. In HTML the path is drawn as a responsive SVG curve through the markers; a horizontal roadmap automatically becomes vertical on narrow screens.
+`roadmap` is for milestone paths and project journeys where the route itself carries part of the visual meaning. In HTML the route is a responsive SVG: the **outer road bed stays continuous** while the narrower center line is **dashed by default**, which gives the curve a road-like appearance. Horizontal roadmaps automatically become vertical on narrow screens.
 
-The example below deliberately uses the component to show the **roadmap of Quarto Semantic Components itself**.
+## Roadmap of this extension
+
+The first example uses the component to describe **Quarto Semantic Components itself** and links to the other rendered formats.
 
 ```markdown
-::: {.roadmap orientation="horizontal" curve="0.65"}
+::: {.roadmap orientation="horizontal" curve="0.65" markers="dot"}
 
 ::: {.roadmap-item title="Semantic core" status="done"}
 Pandoc-AST components that remain meaningful outside HTML.
@@ -532,7 +535,7 @@ Steps, trees, badges, articles, properties, progress, meter, `kbd`, `abbr`, and 
 :::
 
 ::: {.roadmap-item title="Cross-format outputs" status="done"}
-The same gallery is available as [PDF](quarto-semantic-components.pdf) and [DOCX](quarto-semantic-components.docx).
+Open the [PDF](quarto-semantic-components.pdf) or [DOCX](quarto-semantic-components.docx) version of this gallery.
 :::
 
 ::: {.roadmap-item title="Version 0.1.0" status="milestone"}
@@ -546,9 +549,9 @@ Refine components from real documentation use and add only primitives that earn 
 :::
 ```
 
-**Output — the roadmap of this extension:**
+**Output:**
 
-::: {.roadmap orientation="horizontal" curve="0.65"}
+::: {.roadmap orientation="horizontal" curve="0.65" markers="dot"}
 
 ::: {.roadmap-item title="Semantic core" status="done"}
 Pandoc-AST components that remain meaningful outside HTML.
@@ -559,7 +562,7 @@ Steps, trees, badges, articles, properties, progress, meter, `kbd`, `abbr`, and 
 :::
 
 ::: {.roadmap-item title="Cross-format outputs" status="done"}
-The same gallery is available as [PDF](quarto-semantic-components.pdf) and [DOCX](quarto-semantic-components.docx).
+Open the [PDF](quarto-semantic-components.pdf) or [DOCX](quarto-semantic-components.docx) version of this gallery.
 :::
 
 ::: {.roadmap-item title="Version 0.1.0" status="milestone"}
@@ -572,11 +575,339 @@ Refine components from real documentation use and add only primitives that earn 
 
 :::
 
-`orientation` accepts `horizontal` or `vertical`; `curve` ranges from `0` to `1`; and `markers` accepts `dot`, `numbers`, or `none`. Item statuses are `done`, `current`, `future`, and `milestone`.
+## Vertical orientation
 
-Theme-aware customization follows the same extension-wide convention. `road-color`, `point-color`, and `surface-color` accept unsuffixed values plus `-light` and `-dark` overrides. Individual items can override `point-color` in the same way.
+`orientation="vertical"` keeps the same curved-road idea while moving the road into a left-side gutter. It does **not** require a separate component.
 
-In PDF and DOCX the SVG route intentionally degrades to a readable ordered list, preserving the item title, status, links, and Markdown content. That means the two links in **Cross-format outputs** also demonstrate the component's own fallback behavior.
+```markdown
+::: {.roadmap orientation="vertical" markers="numbers" curve="0.8"}
+
+::: {.roadmap-item title="Install" status="done"}
+Add the extension to a Quarto project.
+:::
+
+::: {.roadmap-item title="Configure" status="done"}
+Set project defaults in `_quarto.yml`.
+:::
+
+::: {.roadmap-item title="Compose" status="current"}
+Use semantic components in Markdown.
+:::
+
+::: {.roadmap-item title="Publish" status="future"}
+Render the project to the required formats.
+:::
+
+:::
+```
+
+**Output:**
+
+::: {.roadmap orientation="vertical" markers="numbers" curve="0.8"}
+
+::: {.roadmap-item title="Install" status="done"}
+Add the extension to a Quarto project.
+:::
+
+::: {.roadmap-item title="Configure" status="done"}
+Set project defaults in `_quarto.yml`.
+:::
+
+::: {.roadmap-item title="Compose" status="current"}
+Use semantic components in Markdown.
+:::
+
+::: {.roadmap-item title="Publish" status="future"}
+Render the project to the required formats.
+:::
+
+:::
+
+## Marker styles
+
+The `markers` option accepts `dot`, `numbers`, or `none`.
+
+### Dots
+
+```markdown
+::: {.roadmap markers="dot" curve="0.5"}
+::: {.roadmap-item title="Alpha"}First stage.:::
+::: {.roadmap-item title="Beta"}Second stage.:::
+::: {.roadmap-item title="Stable"}Third stage.:::
+:::
+```
+
+**Output:**
+
+::: {.roadmap markers="dot" curve="0.5"}
+::: {.roadmap-item title="Alpha"}
+First stage.
+:::
+::: {.roadmap-item title="Beta"}
+Second stage.
+:::
+::: {.roadmap-item title="Stable"}
+Third stage.
+:::
+:::
+
+### Numbers
+
+```markdown
+::: {.roadmap markers="numbers" curve="0.5"}
+::: {.roadmap-item title="Alpha"}First stage.:::
+::: {.roadmap-item title="Beta"}Second stage.:::
+::: {.roadmap-item title="Stable"}Third stage.:::
+:::
+```
+
+**Output:**
+
+::: {.roadmap markers="numbers" curve="0.5"}
+::: {.roadmap-item title="Alpha"}
+First stage.
+:::
+::: {.roadmap-item title="Beta"}
+Second stage.
+:::
+::: {.roadmap-item title="Stable"}
+Third stage.
+:::
+:::
+
+### No markers
+
+```markdown
+::: {.roadmap markers="none" curve="0.5"}
+::: {.roadmap-item title="Alpha"}First stage.:::
+::: {.roadmap-item title="Beta"}Second stage.:::
+::: {.roadmap-item title="Stable"}Third stage.:::
+:::
+```
+
+**Output:**
+
+::: {.roadmap markers="none" curve="0.5"}
+::: {.roadmap-item title="Alpha"}
+First stage.
+:::
+::: {.roadmap-item title="Beta"}
+Second stage.
+:::
+::: {.roadmap-item title="Stable"}
+Third stage.
+:::
+:::
+
+## Curvature
+
+`curve` accepts values from `0` to `1`. `0` removes the wave, while `1` uses the full amplitude.
+
+### `curve="0"`
+
+::: {.roadmap curve="0"}
+::: {.roadmap-item title="A"}Straight.:::
+::: {.roadmap-item title="B"}Straight.:::
+::: {.roadmap-item title="C"}Straight.:::
+::: {.roadmap-item title="D"}Straight.:::
+:::
+
+### `curve="0.35"`
+
+::: {.roadmap curve="0.35"}
+::: {.roadmap-item title="A"}Subtle curve.:::
+::: {.roadmap-item title="B"}Subtle curve.:::
+::: {.roadmap-item title="C"}Subtle curve.:::
+::: {.roadmap-item title="D"}Subtle curve.:::
+:::
+
+### `curve="1"`
+
+::: {.roadmap curve="1"}
+::: {.roadmap-item title="A"}Full curve.:::
+::: {.roadmap-item title="B"}Full curve.:::
+::: {.roadmap-item title="C"}Full curve.:::
+::: {.roadmap-item title="D"}Full curve.:::
+:::
+
+## Item states
+
+A single roadmap can mix all four item states: `done`, `current`, `future`, and `milestone`.
+
+```markdown
+::: {.roadmap curve="0.65" markers="dot"}
+
+::: {.roadmap-item title="Done" status="done"}
+A completed item.
+:::
+
+::: {.roadmap-item title="Current" status="current"}
+The active item receives stronger emphasis.
+:::
+
+::: {.roadmap-item title="Future" status="future"}
+Future content is intentionally quieter.
+:::
+
+::: {.roadmap-item title="Milestone" status="milestone"}
+A larger conceptual milestone uses a diamond marker.
+:::
+
+:::
+```
+
+**Output:**
+
+::: {.roadmap curve="0.65" markers="dot"}
+
+::: {.roadmap-item title="Done" status="done"}
+A completed item.
+:::
+
+::: {.roadmap-item title="Current" status="current"}
+The active item receives stronger emphasis.
+:::
+
+::: {.roadmap-item title="Future" status="future"}
+Future content is intentionally quieter.
+:::
+
+::: {.roadmap-item title="Milestone" status="milestone"}
+A larger conceptual milestone uses a diamond marker.
+:::
+
+:::
+
+## Road width, border, dash, and point size
+
+The visual proportions are independent. `road-background-width` controls the continuous outer road bed; `road-width` controls the dashed center line; `road-dash` controls its dash pattern; and `point-size` controls the marker.
+
+```markdown
+::: {.roadmap
+  curve="0.75"
+  road-background-width="18px"
+  road-width="4px"
+  road-dash="14px 10px"
+  point-size="20px"}
+
+::: {.roadmap-item title="Wide road"}A wider continuous road bed.:::
+::: {.roadmap-item title="Long dashes"}A custom center-line rhythm.:::
+::: {.roadmap-item title="Large points"}Larger markers.:::
+:::
+```
+
+**Output:**
+
+::: {.roadmap curve="0.75" road-background-width="18px" road-width="4px" road-dash="14px 10px" point-size="20px"}
+::: {.roadmap-item title="Wide road"}
+A wider continuous road bed.
+:::
+::: {.roadmap-item title="Long dashes"}
+A custom center-line rhythm.
+:::
+::: {.roadmap-item title="Large points"}
+Larger markers.
+:::
+:::
+
+Set `road-dash="none"` when a continuous center line is desired. The outer road bed remains continuous in either case.
+
+```markdown
+::: {.roadmap road-dash="none" road-background-width="14px" road-width="3px"}
+::: {.roadmap-item title="Continuous"}No center dashes.:::
+::: {.roadmap-item title="Still a road"}The outer road bed remains continuous.:::
+::: {.roadmap-item title="Finish"}Same geometry.:::
+:::
+```
+
+**Output:**
+
+::: {.roadmap road-dash="none" road-background-width="14px" road-width="3px"}
+::: {.roadmap-item title="Continuous"}
+No center dashes.
+:::
+::: {.roadmap-item title="Still a road"}
+The outer road bed remains continuous.
+:::
+::: {.roadmap-item title="Finish"}
+Same geometry.
+:::
+:::
+
+## Theme-aware colors
+
+`road-color`, `point-color`, and `surface-color` follow the extension-wide color rule: the unsuffixed property applies to both modes and `-light` / `-dark` can override it for one theme.
+
+```markdown
+::: {.roadmap
+  road-color-light="#64748b"
+  road-color-dark="#cbd5e1"
+  point-color-light="#2563eb"
+  point-color-dark="#60a5fa"
+  surface-color-light="#ffffff"
+  surface-color-dark="#212529"
+  curve="0.7"}
+
+::: {.roadmap-item title="Default point" status="done"}
+Uses the roadmap-level point color.
+:::
+
+::: {.roadmap-item title="Per-item override" status="current"
+  point-color-light="#7c3aed"
+  point-color-dark="#c4b5fd"}
+This item overrides only its marker color.
+:::
+
+::: {.roadmap-item title="Future" status="future"
+  point-color="#16a34a"}
+An unsuffixed value is reused in both themes.
+:::
+
+:::
+```
+
+**Output:**
+
+::: {.roadmap road-color-light="#64748b" road-color-dark="#cbd5e1" point-color-light="#2563eb" point-color-dark="#60a5fa" surface-color-light="#ffffff" surface-color-dark="#212529" curve="0.7"}
+
+::: {.roadmap-item title="Default point" status="done"}
+Uses the roadmap-level point color.
+:::
+
+::: {.roadmap-item title="Per-item override" status="current" point-color-light="#7c3aed" point-color-dark="#c4b5fd"}
+This item overrides only its marker color.
+:::
+
+::: {.roadmap-item title="Future" status="future" point-color="#16a34a"}
+An unsuffixed value is reused in both themes.
+:::
+
+:::
+
+## Roadmap option reference
+
+| Option | Accepted values / purpose | Default | Aliases |
+|---|---|---|---|
+| `orientation` | `horizontal`, `vertical` | `horizontal` | `direction`, `layout` |
+| `curve` | `0` to `1` | `0.6` | `curvature`, `sinuosity` |
+| `markers` | `dot`, `numbers`, `none` | `dot` | `marker`, `marker-style` |
+| `road-color` | CSS color | automatic | `line-color`, `path-color` |
+| `road-color-light` | light-theme road color | fallback | `line-color-light`, `path-color-light` |
+| `road-color-dark` | dark-theme road color | fallback | `line-color-dark`, `path-color-dark` |
+| `point-color` | CSS marker color | automatic | `marker-color`, `dot-color` |
+| `point-color-light` | light-theme marker color | fallback | `marker-color-light`, `dot-color-light` |
+| `point-color-dark` | dark-theme marker color | fallback | `marker-color-dark`, `dot-color-dark` |
+| `surface-color` | card / marker surface | automatic | `card-color`, `card-background` |
+| `surface-color-light` | light-theme surface | fallback | `card-color-light`, `card-background-light` |
+| `surface-color-dark` | dark-theme surface | fallback | `card-color-dark`, `card-background-dark` |
+| `road-width` | center-line width | `3px` | `line-width`, `path-width` |
+| `road-background-width` | continuous road-bed width | `10px` | `road-bed-width`, `path-background-width` |
+| `road-dash` | SVG dash pattern or `none` | `10px 8px` | `dash`, `dash-pattern`, `line-dash` |
+| `point-size` | marker diameter | `14px` | `marker-size`, `dot-size` |
+
+Per `.roadmap-item`, `title` creates the card title, `status` accepts `done`, `current`, `future`, or `milestone`, and `point-color`, `point-color-light`, and `point-color-dark` can override the marker color. Status aliases accepted by the filter are `complete` / `completed`, `active` / `now` / `in-progress`, `pending` / `planned`, and `major`.
+
+In PDF and DOCX the SVG route intentionally degrades to a readable ordered list, preserving item titles, statuses, links, and Markdown content. The [PDF](quarto-semantic-components.pdf) and [DOCX](quarto-semantic-components.docx) links in the first roadmap are therefore also a demonstration of the cross-format strategy.
 
 # Circled Ordered List
 
