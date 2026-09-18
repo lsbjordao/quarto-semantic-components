@@ -6,7 +6,7 @@ Quarto/Pandoc extension with reusable semantic components for **HTML, PDF, and D
 
 Some ergonomics and syntax ideas came from the [Vocs](https://vocs.dev/) framework, especially Markdown components such as **Steps** and **File Tree**. The implementation here is original and adapted to the Quarto/Pandoc ecosystem, with additional focus on cross-format rendering, project metadata, and safe degradation to PDF/DOCX.
 
-## Componentes
+## Components
 
 - `steps`: numbered sequence;
 - `steps type="dots"`: steps with hollow dots by default and extensive customization;
@@ -22,14 +22,14 @@ Some ergonomics and syntax ideas came from the [Vocs](https://vocs.dev/) framewo
 quarto add lsbjordao/quarto-semantic-components
 ```
 
-No documento ou `_quarto.yml`:
+In the document or `_quarto.yml`:
 
 ```yaml
 filters:
   - semantic-components
 ```
 
-## Defaults no `_quarto.yml`
+## Defaults in `_quarto.yml`
 
 Precedence is:
 
@@ -325,7 +325,7 @@ extensions:
     indent: "1.8rem"
 ```
 
-Aliases aceitos: `level-indent`, `indent-size` e `child-indent`.
+Accepted aliases: `level-indent`, `indent-size`, and `child-indent`.
 
 For `.qmd`, `_quarto.yml`, and `quarto.yml`, the default provider uses Quarto's official symbol served from the Quarto website.
 
@@ -353,7 +353,7 @@ Aliases: `expanded`, `open`, and `collapsed`.
 
 ```markdown
 :::file-tree
-- analysis.R texto normal
+- analysis.R plain text
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) regular link
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
