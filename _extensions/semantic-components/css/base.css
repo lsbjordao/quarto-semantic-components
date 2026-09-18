@@ -5,4 +5,5 @@
   --semantic-git-line:#9aa0a6;
   --semantic-git-line:color-mix(in srgb,currentColor 34%,var(--semantic-git-node-bg));
   --semantic-step-dot-color:currentColor; --semantic-step-line-color:currentColor;
+  --semantic-step-surface:var(--bs-body-bg,var(--quarto-body-bg,Canvas));
 }
