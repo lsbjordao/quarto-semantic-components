@@ -168,7 +168,7 @@ Conteúdo.
 :::
 ```
 
-Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color` e `line-width`.
+Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color` e `line-width`. Nos steps com dots, a aresta é contínua de centro a centro dos nós, sem lacunas junto às bolinhas.
 
 ### Exemplo de timeline com `steps type="dots"`
 
@@ -271,7 +271,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.4" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.5" head="true"} merge feature/badges
 :::
 ```
 
@@ -375,13 +375,13 @@ Conteúdo autocontido com **Markdown** normal.
 O artigo genérico não tem barra lateral. Para acrescentar uma barra esquerda com pontas arredondadas, use `accent="left"`:
 
 ```markdown
-::: {.article accent="left" variant="warning"}
+::: {.article accent="left" accent-color="warning"}
 ## Atenção
 A barra lateral é apenas uma apresentação opcional do mesmo `article`.
 :::
 ```
 
-`variant=` define a cor semântica do accent quando ele está ativo. Valores prontos: `default`, `note`/`info`, `warning`, `danger` e `success`. Também é possível usar `accent-color=` diretamente.
+`accent-color=` aceita qualquer cor CSS ou um nome semântico predefinido. Presets: `note`/`info`, `warning`, `danger`/`caution`, `success`/`tip` e `important`. Esses nomes usam as variáveis de cor dos callouts do Quarto, com fallback para Bootstrap.
 
 Parâmetros do accent: `accent`, `accent-color` e `accent-width`. `left-border="true"` é alias para `accent="left"`.
 
@@ -409,7 +409,7 @@ Accent e collapse podem ser combinados:
 ```markdown
 ::: {.article
   accent="left"
-  variant="note"
+  accent-color="note"
   collapsible="true"
   summary="Metodologia"
   expanded="true"}
@@ -426,7 +426,7 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 ```markdown
 :::article
 
-## 0.10.4 — 2026-09-17
+## 0.10.5 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
