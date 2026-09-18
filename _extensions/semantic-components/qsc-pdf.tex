@@ -1,0 +1,88 @@
+% Quarto Semantic Components - native PDF support
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,arrows.meta}
+\usepackage{forest}
+\usepackage{dirtree}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{menukeys}
+\usepackage{progressbar}
+\usepackage{etoolbox}
+\usepackage{xcolor}
+\usepackage{fvextra}
+\usepackage{microtype}
+
+\definecolor{qscText}{HTML}{24292F}
+\definecolor{qscLine}{HTML}{9AA0A6}
+\definecolor{qscSurface}{HTML}{FFFFFF}
+\definecolor{qscNeutral}{HTML}{6B7280}
+\definecolor{qscInfo}{HTML}{2563EB}
+\definecolor{qscSuccess}{HTML}{15803D}
+\definecolor{qscWarning}{HTML}{D97706}
+\definecolor{qscDanger}{HTML}{DC2626}
+\definecolor{qscAccent}{HTML}{7C3AED}
+\definecolor{qscBorder}{HTML}{D1D5DB}
+\definecolor{qscSoft}{HTML}{F3F4F6}
+
+\newcommand{\qscvariantcolor}[1]{%
+  \def\qscbadgecolor{qscNeutral}%
+  \ifstrequal{#1}{info}{\def\qscbadgecolor{qscInfo}}{}%
+  \ifstrequal{#1}{success}{\def\qscbadgecolor{qscSuccess}}{}%
+  \ifstrequal{#1}{warning}{\def\qscbadgecolor{qscWarning}}{}%
+  \ifstrequal{#1}{danger}{\def\qscbadgecolor{qscDanger}}{}%
+  \ifstrequal{#1}{accent}{\def\qscbadgecolor{qscAccent}}{}%
+}
+\newtcbox{\qscBadgeBox}[1][]{on line,box align=base,nobeforeafter,
+  colback=qscSoft,colframe=qscBorder,coltext=qscText,
+  boxrule=.45pt,arc=3pt,left=4pt,right=4pt,top=1.2pt,bottom=1.2pt,
+  fontupper=\sffamily\footnotesize\bfseries,#1}
+\newcommand{\qscbadge}[2]{\begingroup\qscvariantcolor{#1}\qscBadgeBox[colback=\qscbadgecolor!10,colframe=\qscbadgecolor!45,coltext=\qscbadgecolor!75!black]{#2}\endgroup}
+
+\newcommand{\qscCircleNumber}[1]{\textcircled{\scriptsize\bfseries #1}}
+
+\newenvironment{qscsteps}{%
+  \begin{list}{}{\setlength{\leftmargin}{3.1em}\setlength{\labelwidth}{2.2em}\setlength{\labelsep}{.7em}\setlength{\itemsep}{.85em}\setlength{\topsep}{.4em}}%
+}{\end{list}}
+\tikzset{
+  qsc step number/.style={circle,draw=qscLine,fill=qscSurface,minimum size=20pt,inner sep=1pt,font=\sffamily\scriptsize\bfseries},
+  qsc step dot/.style={circle,draw=qscLine,fill=qscSurface,minimum size=7pt,inner sep=0pt},
+  qsc step edge/.style={draw=qscLine,line width=.65pt,line cap=round}
+}
+
+\forestset{qsc tree/.style={
+  for tree={grow'=0,anchor=west,parent anchor=east,child anchor=west,
+    edge={draw=qscLine,line width=.6pt},
+    rounded corners=1pt,inner xsep=3pt,inner ysep=2pt,
+    l sep=13pt,s sep=5pt,font=\small},
+}}
+
+\newenvironment{qscfiletree}{\begin{tcolorbox}[enhanced,breakable,colback=qscSurface,colframe=qscBorder,boxrule=.5pt,arc=4pt,left=7pt,right=7pt,top=6pt,bottom=6pt]}{\end{tcolorbox}}
+\renewcommand*\DTstyle{\ttfamily\small}
+
+\tikzset{
+ qsc git/.style={x=1cm,y=1cm},
+ qsc git edge/.style={draw=qscLine,line width=.7pt,line cap=round,line join=round},
+ qsc git node/.style={circle,draw=qscText,fill=qscSurface,line width=.7pt,minimum size=7pt,inner sep=0pt},
+ qsc git text/.style={font=\ttfamily\small,text=qscText},
+}
+\newcommand{\qscgitref}[1]{\qscBadgeBox[colback=qscSoft,colframe=qscBorder,coltext=qscText,fontupper=\ttfamily\footnotesize\bfseries]{#1}}
+\newcommand{\qscgittag}[1]{\qscBadgeBox[colback=qscAccent!8,colframe=qscAccent!35,coltext=qscAccent!70!black,fontupper=\sffamily\scriptsize\bfseries]{#1}}
+
+\newenvironment{qscproperties}{%
+  \renewcommand{\arraystretch}{1.25}%
+  \begin{tabular}{@{}>{\bfseries\raggedright\arraybackslash}p{0.26\linewidth}p{0.68\linewidth}@{}}
+}{\end{tabular}}
+
+\tcbset{qsc article/.style={enhanced,breakable,colback=qscSurface,colframe=qscBorder,boxrule=.55pt,arc=5pt,left=9pt,right=9pt,top=8pt,bottom=8pt,before skip=7pt,after skip=7pt}}
+
+\newcommand{\qscprogress}[3]{%
+  \begingroup\setlength{\fboxsep}{0pt}%
+  \textbf{#1}\hspace{.6em}\progressbar[width=.42\linewidth,heighta=1.2ex,filledcolor=qscInfo,emptycolor=qscSoft,linecolor=qscBorder,borderwidth=.3pt]{#2}\hspace{.55em}{\small #3}%
+  \endgroup%
+}
+\newcommand{\qscmeter}[3]{\qscprogress{#1}{#2}{#3}}
+\newcommand{\qsckbd}[1]{\keys{#1}}
+\newcommand{\qscabbr}[2]{#1\,(\emph{#2})}
