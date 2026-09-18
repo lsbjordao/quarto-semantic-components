@@ -84,12 +84,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.10.0" type="accent" appearance="solid" >}}
+{{< badge "v0.10.1" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.0" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.1" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -246,6 +246,50 @@ Bolinha laranja preenchida.
 Bolinha verde preenchida.
 :::
 
+### Exemplo — timeline com Steps dots
+
+Não existe um componente `timeline` separado. O mesmo padrão visual é produzido com `steps type="dots"`, mantendo a API menor e mais reutilizável.
+
+```markdown
+::: {.steps type="dots"
+  line-color="#9aa0a6"
+  line-width="2px"
+  dot-size="0.78rem"}
+
+## 2024 — Protótipo {dot-color="#16a34a"}
+Primeira implementação do componente.
+
+## 2025 — Beta {dot-color="#2563eb"}
+Validação e refinamento visual.
+
+## 2026-06 — Release candidate {dot-color="#f59e0b"}
+Congelamento da API para testes finais.
+
+## 2026-09 — Release {dot-color="#16a34a"}
+Versão estável publicada.
+
+:::
+```
+
+**Output:**
+
+::: {.steps type="dots" line-color="#9aa0a6" line-width="2px" dot-size="0.78rem"}
+
+## 2024 — Protótipo {dot-color="#16a34a"}
+Primeira implementação do componente.
+
+## 2025 — Beta {dot-color="#2563eb"}
+Validação e refinamento visual.
+
+## 2026-06 — Release candidate {dot-color="#f59e0b"}
+Congelamento da API para testes finais.
+
+## 2026-09 — Release {dot-color="#16a34a"}
+Versão estável publicada.
+
+:::
+
+
 ## Lista ordenada circulada
 
 ```markdown
@@ -290,7 +334,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.0
+- `main` release v0.10.1
 :::
 ```
 
@@ -313,7 +357,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.0
+- `main` release v0.10.1
 :::
 
 ### Mesmo DAG — direção BT
@@ -351,7 +395,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.1" head="true"} merge feature/badges
 :::
 ```
 
@@ -365,7 +409,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.1" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -492,49 +536,6 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
 - `golden.parquet`{icon="★"}
 :::
 
-## Timeline usando Steps — bolinhas
-
-Não existe um componente `timeline` separado. O mesmo padrão visual é produzido com `steps type="dots"`, mantendo a API menor e mais reutilizável.
-
-```markdown
-::: {.steps type="dots"
-  line-color="#9aa0a6"
-  line-width="2px"
-  dot-size="0.78rem"}
-
-## 2024 — Protótipo {dot-color="#16a34a"}
-Primeira implementação do componente.
-
-## 2025 — Beta {dot-color="#2563eb"}
-Validação e refinamento visual.
-
-## 2026-06 — Release candidate {dot-color="#f59e0b"}
-Congelamento da API para testes finais.
-
-## 2026-09 — Release {dot-color="#16a34a"}
-Versão estável publicada.
-
-:::
-```
-
-**Output:**
-
-::: {.steps type="dots" line-color="#9aa0a6" line-width="2px" dot-size="0.78rem"}
-
-## 2024 — Protótipo {dot-color="#16a34a"}
-Primeira implementação do componente.
-
-## 2025 — Beta {dot-color="#2563eb"}
-Validação e refinamento visual.
-
-## 2026-06 — Release candidate {dot-color="#f59e0b"}
-Congelamento da API para testes finais.
-
-## 2026-09 — Release {dot-color="#16a34a"}
-Versão estável publicada.
-
-:::
-
 ## Article
 
 `article` é a primitive genérica para conteúdo autocontido. O HTML externo é sempre `<article>`.
@@ -632,7 +633,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 ```markdown
 :::article
 
-## 0.10.0 — 2026-09-17
+## 0.10.1 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
@@ -662,7 +663,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 :::article
 
-## 0.10.0 — 2026-09-17
+## 0.10.1 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
