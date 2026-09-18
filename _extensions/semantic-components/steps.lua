@@ -10,7 +10,7 @@ local function is_html() return FORMAT and FORMAT:match('html') ~= nil end
 
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
-    name = 'quarto-semantic-components', version = '0.10.9',
+    name = 'quarto-semantic-components', version = '0.11.0',
     stylesheets = {
       'css/base.css', 'css/steps.css', 'css/file-tree.css',
       'css/git-tree.css', 'css/badges.css'
@@ -20,6 +20,19 @@ end
 
 local function setting(el, meta, key, aliases)
   return attr(el,key) or config.default(meta,'steps',key,aliases)
+end
+
+local function suffixed_aliases(aliases, suffix)
+  local out={}
+  for _,alias in ipairs(aliases or {}) do out[#out+1]=alias..suffix end
+  return out
+end
+
+local function themed_setting(el, meta, key, aliases)
+  return
+    setting(el,meta,key,aliases),
+    setting(el,meta,key..'-light',suffixed_aliases(aliases,'-light')),
+    setting(el,meta,key..'-dark',suffixed_aliases(aliases,'-dark'))
 end
 
 local function mode(el,meta)
@@ -47,6 +60,13 @@ local function heading_attr(header, primary, alias)
   return header.attributes[primary] or (alias and header.attributes[alias]) or nil
 end
 
+local function heading_theme_attr(header, primary, alias)
+  return
+    heading_attr(header,primary,alias),
+    heading_attr(header,primary..'-light',alias and (alias..'-light') or nil),
+    heading_attr(header,primary..'-dark',alias and (alias..'-dark') or nil)
+end
+
 local function surface_fill(value)
   if not value or value=='' then return value end
   local normalized=tostring(value):lower()
@@ -60,22 +80,29 @@ local function step_title(header, list_mode)
   local title = pandoc.Span(header.content, pandoc.Attr(header.identifier or '', {'semantic-step-title'}))
   if list_mode ~= 'dots' or not is_html() then return pandoc.Plain({title}) end
 
-  local dot_color = heading_attr(header, 'dot-color', 'marker-color')
-  local dot_fill = surface_fill(heading_attr(header, 'dot-fill', 'marker-fill'))
+  local dot_color,dot_color_light,dot_color_dark = heading_theme_attr(header, 'dot-color', 'marker-color')
+  local dot_fill,dot_fill_light,dot_fill_dark = heading_theme_attr(header, 'dot-fill', 'marker-fill')
+  dot_fill=surface_fill(dot_fill); dot_fill_light=surface_fill(dot_fill_light); dot_fill_dark=surface_fill(dot_fill_dark)
   local dot_size = heading_attr(header, 'dot-size', 'marker-size')
   local dot_border_width = heading_attr(header, 'dot-border-width', 'marker-border-width')
-  local line_color = heading_attr(header, 'line-color', 'connector-color')
+  local line_color,line_color_light,line_color_dark = heading_theme_attr(header, 'line-color', 'connector-color')
   local line_width = heading_attr(header, 'line-width', 'connector-width')
 
   return pandoc.Plain({
     visual_span('semantic-step-marker', {
-      {'--semantic-step-item-dot-color', dot_color},
-      {'--semantic-step-item-dot-fill', dot_fill},
+      {'--semantic-step-item-dot-color-base', dot_color},
+      {'--semantic-step-item-dot-color-light', dot_color_light},
+      {'--semantic-step-item-dot-color-dark', dot_color_dark},
+      {'--semantic-step-item-dot-fill-base', dot_fill},
+      {'--semantic-step-item-dot-fill-light', dot_fill_light},
+      {'--semantic-step-item-dot-fill-dark', dot_fill_dark},
       {'--semantic-step-item-dot-size', dot_size},
       {'--semantic-step-item-dot-border-width', dot_border_width}
     }),
     visual_span('semantic-step-connector', {
-      {'--semantic-step-item-line-color', line_color},
+      {'--semantic-step-item-line-color-base', line_color},
+      {'--semantic-step-item-line-color-light', line_color_light},
+      {'--semantic-step-item-line-color-dark', line_color_dark},
       {'--semantic-step-item-line-width', line_width},
       {'--semantic-step-item-dot-size', dot_size}
     }),
@@ -118,6 +145,12 @@ local function append_style(el, declaration)
   el.attributes.style = value .. declaration .. ';'
 end
 
+local function append_theme_style(el, variable, base, light, dark)
+  if base and base~='' then append_style(el,variable..'-base:'..base) end
+  if light and light~='' then append_style(el,variable..'-light:'..light) end
+  if dark and dark~='' then append_style(el,variable..'-dark:'..dark) end
+end
+
 local function has_marker(item)
   for _, block in ipairs(item) do
     if block.t == 'Plain' or block.t == 'Para' then
@@ -152,21 +185,22 @@ local function transform_steps(el,meta)
   add_class(el, 'semantic-steps'); add_class(el, 'semantic-steps-' .. list_mode)
 
   if list_mode == 'dots' or list_mode == 'numbered' then
-    local line_color = setting(el,meta,'line-color',{'connector-color'})
+    local line_color,line_color_light,line_color_dark = themed_setting(el,meta,'line-color',{'connector-color'})
     local line_width = setting(el,meta,'line-width',{'connector-width'})
-    local surface_color = setting(el,meta,'surface-color',{'surface','dot-surface'})
-    if line_color and line_color ~= '' then append_style(el, '--semantic-step-line-color:' .. line_color) end
+    local surface_color,surface_color_light,surface_color_dark = themed_setting(el,meta,'surface-color',{'surface','dot-surface'})
+    append_theme_style(el,'--semantic-step-line-color',line_color,line_color_light,line_color_dark)
+    append_theme_style(el,'--semantic-step-surface',surface_color,surface_color_light,surface_color_dark)
     if line_width and line_width ~= '' then append_style(el, '--semantic-step-line-width:' .. line_width) end
-    if surface_color and surface_color ~= '' then append_style(el, '--semantic-step-surface:' .. surface_color) end
   end
 
   if list_mode == 'dots' then
-    local dot_color = setting(el,meta,'dot-color',{'marker-color'})
-    local dot_fill = surface_fill(setting(el,meta,'dot-fill',{'marker-fill'}))
+    local dot_color,dot_color_light,dot_color_dark = themed_setting(el,meta,'dot-color',{'marker-color'})
+    local dot_fill,dot_fill_light,dot_fill_dark = themed_setting(el,meta,'dot-fill',{'marker-fill'})
+    dot_fill=surface_fill(dot_fill); dot_fill_light=surface_fill(dot_fill_light); dot_fill_dark=surface_fill(dot_fill_dark)
     local dot_size = setting(el,meta,'dot-size',{'marker-size'})
     local dot_border_width = setting(el,meta,'dot-border-width',{'marker-border-width'})
-    if dot_color and dot_color ~= '' then append_style(el, '--semantic-step-dot-color:' .. dot_color) end
-    if dot_fill and dot_fill ~= '' then append_style(el, '--semantic-step-dot-fill:' .. dot_fill) end
+    append_theme_style(el,'--semantic-step-dot-color',dot_color,dot_color_light,dot_color_dark)
+    append_theme_style(el,'--semantic-step-dot-fill',dot_fill,dot_fill_light,dot_fill_dark)
     if dot_size and dot_size ~= '' then append_style(el, '--semantic-step-dot-size:' .. dot_size) end
     if dot_border_width and dot_border_width ~= '' then append_style(el, '--semantic-step-dot-border-width:' .. dot_border_width) end
   end
