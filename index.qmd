@@ -3,6 +3,9 @@ title: "Quarto Semantic Components — exemplos"
 format:
   html:
     toc: true
+    theme:
+      dark: darkly
+      light: cosmos
 execute:
   echo: true
 filters:

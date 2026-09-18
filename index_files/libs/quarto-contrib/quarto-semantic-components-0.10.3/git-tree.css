@@ -1,0 +1,104 @@
+.semantic-git-tree{
+  --git-node-size:.68rem;
+  --git-lane-gap:.82rem;
+  --git-line-width:2px;
+  --git-content-gap:.55rem;
+  border:1px solid color-mix(in srgb,currentColor 18%,transparent);
+  border-radius:.7rem;
+  padding:.9rem 1rem;
+  overflow-x:auto;
+  text-align:left;
+}
+.semantic-git-tree .git-tree-rows{
+  min-width:max-content;
+  text-align:left;
+}
+.semantic-git-tree .git-tree-layout{
+  position:relative;
+  width:max-content;
+  min-width:max-content;
+  min-height:var(--git-graph-height);
+}
+.semantic-git-tree .git-tree-graph{
+  position:absolute;
+  inset:0 auto auto 0;
+  display:block;
+  overflow:visible;
+  pointer-events:none;
+  z-index:0;
+}
+.semantic-git-tree .git-tree-content-rows{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  width:max-content;
+  min-width:max-content;
+}
+.semantic-git-tree .git-tree-entry{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  width:max-content;
+  min-width:max-content;
+  height:var(--git-row-height);
+  min-height:var(--git-row-height);
+  margin:0;
+  padding:0 0 0 var(--git-entry-offset);
+  box-sizing:content-box;
+  text-align:left;
+}
+.semantic-git-tree .git-tree-entry>p{margin:0}
+.semantic-git-tree .git-tree-edge{
+  fill:none;
+  stroke:var(--semantic-git-line);
+  stroke-width:var(--git-line-width);
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.semantic-git-tree .git-tree-node{
+  fill:var(--semantic-git-node-bg);
+  stroke:currentColor;
+  stroke-width:var(--git-line-width);
+  vector-effect:non-scaling-stroke;
+}
+.semantic-git-tree .git-tree-content{
+  display:inline-flex;
+  align-items:baseline;
+  justify-content:flex-start;
+  gap:.42rem;
+  white-space:nowrap;
+  line-height:1.25;
+  padding:0;
+  text-align:left;
+}
+.semantic-git-tree .git-tree-ref code{
+  display:inline-block;
+  padding:.06em .4em;
+  border:1px solid color-mix(in srgb,currentColor 22%,transparent);
+  border-radius:999px;
+  background:color-mix(in srgb,currentColor 6%,transparent);
+  color:inherit;
+  font-size:.76em;
+  font-weight:650;
+}
+.semantic-git-tree .git-tree-head,
+.semantic-git-tree .git-tree-tag{
+  display:inline-flex;
+  align-items:center;
+  padding:.04em .38em;
+  border:1px solid color-mix(in srgb,currentColor 28%,transparent);
+  border-radius:999px;
+  font:650 .7em/1.35 var(--bs-font-monospace,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace);
+  white-space:nowrap;
+}
+.semantic-git-tree .git-tree-head::before{content:"→";margin-right:.25em}
+.semantic-git-tree .git-tree-tag::before{content:"⌑";margin-right:.25em}
+.semantic-git-tree .git-tree-message{
+  font-family:var(--bs-font-monospace,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace);
+  font-size:.9em;
+  text-align:left;
+}
