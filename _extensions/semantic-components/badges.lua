@@ -34,8 +34,17 @@ local function transform(el,meta)
 
   for _,class in ipairs(config.classes(value('class',{'classes'}))) do append_unique(el.classes,class) end
 
-  local style={}; css(style,'--semantic-badge-fg',value('fg',{'foreground','text-colour','text-color'})); css(style,'--semantic-badge-bg',value('bg',{'background','colour','color'}))
-  css(style,'--semantic-badge-border',value('border')); css(style,'--semantic-badge-border-width',value('border-width')); css(style,'--semantic-badge-radius',value('radius'))
+  local style={}
+  css(style,'--semantic-badge-fg',value('fg',{'foreground','text-colour','text-color'}))
+  css(style,'--semantic-badge-fg-light',value('fg-light',{'foreground-light','text-colour-light','text-color-light'}))
+  css(style,'--semantic-badge-fg-dark',value('fg-dark',{'foreground-dark','text-colour-dark','text-color-dark'}))
+  css(style,'--semantic-badge-bg',value('bg',{'background','colour','color'}))
+  css(style,'--semantic-badge-bg-light',value('bg-light',{'background-light','colour-light','color-light'}))
+  css(style,'--semantic-badge-bg-dark',value('bg-dark',{'background-dark','colour-dark','color-dark'}))
+  css(style,'--semantic-badge-border',value('border'))
+  css(style,'--semantic-badge-border-light',value('border-light'))
+  css(style,'--semantic-badge-border-dark',value('border-dark'))
+  css(style,'--semantic-badge-border-width',value('border-width')); css(style,'--semantic-badge-radius',value('radius'))
   css(style,'--semantic-badge-padding',value('padding')); css(style,'--semantic-badge-weight',value('weight')); css(style,'--semantic-badge-font-size',value('font-size'))
   css(style,'--semantic-badge-letter-spacing',value('letter-spacing')); css(style,'--semantic-badge-shadow',value('shadow'))
   if #style>0 then
