@@ -88,12 +88,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.10.5" type="accent" appearance="solid" >}}
+{{< badge "v0.10.6" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.5" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.6" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -338,7 +338,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.5
+- `main` release v0.10.6
 :::
 ```
 
@@ -361,7 +361,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.5
+- `main` release v0.10.6
 :::
 
 ### Mesmo DAG — direção BT
@@ -399,7 +399,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.5" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.6" head="true"} merge feature/badges
 :::
 ```
 
@@ -413,7 +413,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.5" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.6" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -542,7 +542,7 @@ Use valores maiores, como `indent="2.4rem"`, para abrir mais visualmente os nív
   - processed.parquet
 :::
 
-## File tree — texto, code, links, tooltip e ícones
+## File tree — texto, code, links, info e ícones
 
 ```markdown
 :::file-tree
@@ -550,7 +550,7 @@ Use valores maiores, como `indent="2.4rem"`, para abrir mais visualmente os nív
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-- [analysis.R]{tooltip="Script principal de análise em R"}
+- [analysis.R]{info="Script principal de análise em R"}
 - [`pipeline.py`]{info="Pipeline de ingestão e validação"}
 - `species.csv`{icon="leaf"}
 - `golden.parquet`{icon="★"}
@@ -564,7 +564,7 @@ Use valores maiores, como `indent="2.4rem"`, para abrir mais visualmente os nív
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-- [analysis.R]{tooltip="Script principal de análise em R"}
+- [analysis.R]{info="Script principal de análise em R"}
 - [`pipeline.py`]{info="Pipeline de ingestão e validação"}
 - `species.csv`{icon="leaf"}
 - `golden.parquet`{icon="★"}
@@ -667,7 +667,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 ```markdown
 :::article
 
-## 0.10.5 — 2026-09-17
+## 0.10.6 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
@@ -697,7 +697,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 :::article
 
-## 0.10.5 — 2026-09-17
+## 0.10.6 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
@@ -748,6 +748,6 @@ Um `article` também pode representar posts, releases, resumos ou especificaçõ
 
 As ideias de **Steps** e **File Tree** foram inspiradas em componentes do [Vocs](https://vocs.dev/), mas a implementação é própria e orientada ao AST do Pandoc.
 
-- **HTML**: apresentação completa, badges, file tree interativo, tooltips, Git DAG em SVG e o elemento semântico `article`;
+- **HTML**: apresentação completa, badges, file tree interativo, info, Git DAG em SVG e o elemento semântico `article`;
 - **PDF**: conteúdo estrutural e links são preservados;
 - **DOCX**: listas, headings, links e texto permanecem editáveis.
