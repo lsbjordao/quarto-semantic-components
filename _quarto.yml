@@ -44,4 +44,3 @@ extensions:
     radius: "0.75rem"
     padding: "1rem 1.1rem"
     accent: none
-    expanded: true
