@@ -11,8 +11,14 @@ Some ergonomics and syntax ideas came from the [Vocs](https://vocs.dev/) framewo
 - `steps`: numbered sequence;
 - `steps type="dots"`: steps with hollow dots by default and extensive customization;
 - `circle-list`: ordered list with circled numbers;
+- `tree`: generic expandable hierarchy;
 - `git-tree`: Git commit graph (DAG) with branches, merges, tags, `HEAD`, and TB/BT directions;
 - `file-tree`: file tree with deep nesting, links, info, icons, and collapsible folders in HTML;
+- `properties`: semantic key/value metadata based on definition lists;
+- `progress`: native completion indicator;
+- `meter`: native scalar-range indicator;
+- `kbd`: keyboard input;
+- `abbr`: abbreviations with expansions;
 - `badge`: inline badge with project presets and per-instance customization;
 - `article`: semantic container based on the HTML `<article>` element, with border, optional side accent, and collapse/expand in HTML.
 
@@ -58,10 +64,17 @@ extensions:
     dot-size: "0.72rem"
     line-width: "1.5px"
 
+  tree:
+    expanded: true
+    indent: "1.5rem"
+
   file-tree:
     icons: devicon
     expanded: true
     indent: "1.8rem"
+
+  properties:
+    term-width: "9rem"
 
   git-tree:
     direction: TB
@@ -120,9 +133,11 @@ Supported theme-aware color properties:
 | Component | Properties |
 |---|---|
 | `steps` | `surface-color`, `line-color`, `dot-color`, `dot-fill` |
+| `tree` | `line-color` |
 | `git-tree` | `line-color`, `node-bg` |
 | `article` | `border-color`, `background`, `accent-color` |
 | `badge` | `fg`, `bg`, `border` |
+| `progress` / `meter` | `color`, `track-color` |
 
 Each property also accepts `-light` and `-dark`, for example `accent-color-light` and `accent-color-dark`.
 
@@ -346,7 +361,7 @@ Theme-specific graph colors are supported:
     - `test/badges`{#c5 parent="c4"} covers variants
     - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.11.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.12.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -434,6 +449,59 @@ Aliases: `expanded`, `open`, and `collapsed`.
 :::
 ```
 
+
+## Tree
+
+```markdown
+:::tree
+- Plantae
+  - Fabaceae
+    - Mimosa
+      - Mimosa pudica
+      - Mimosa caesalpiniifolia
+    - Acacia
+  - Asteraceae
+:::
+```
+
+Nested items are branches. In HTML they can expand/collapse; `indent`, `expanded`, `open`, `collapsed`, `info`, and theme-aware `line-color` are supported.
+
+## Properties
+
+```markdown
+:::properties
+Project
+: Quarto Semantic Components
+
+Version
+: 0.12.0
+
+Language
+: Lua
+:::
+```
+
+The source remains a native Pandoc definition list. Options: `term-width` / `key-width`, `gap`, and `compact`.
+
+## Progress and meter
+
+```markdown
+{{< progress value="72" label="Build" >}}
+{{< meter value="82" min="0" max="100" label="Coverage" value-label="82%" >}}
+```
+
+Both use native HTML elements and support `color`, `track-color`, and their `-light` / `-dark` variants.
+
+## Keyboard input and abbreviations
+
+```markdown
+Press {{< kbd "Ctrl+Shift+P" >}}.
+
+{{< abbr KBA "Key Biodiversity Area" >}}
+```
+
+HTML uses native `<kbd>` and `<abbr>`. Non-HTML output degrades to readable text.
+
 ## Article
 
 `article` is the generic block for a self-contained unit of content. In HTML, the extension emits a real `<article>` element. The default behavior is a subtle rounded border.
@@ -492,7 +560,7 @@ In addition to the options above, `article` accepts `border-color`, `radius`, `p
 
 ## Formats
 
-- **HTML**: full presentation, light/dark color overrides, icons, badges, info, interactive file tree, Git DAG in SVG, and the semantic `<article>` element;
+- **HTML**: full presentation, light/dark color overrides, generic/file trees, Git DAG in SVG, native progress/meter, keyboard/abbreviation semantics, and the semantic `<article>` element;
 - **PDF**: structural content and links are preserved; interactive components degrade safely;
 - **DOCX**: lists, headings, links, and text remain editable.
 
