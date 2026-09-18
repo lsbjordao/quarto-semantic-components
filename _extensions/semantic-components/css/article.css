@@ -4,6 +4,10 @@
   --article-padding:1rem 1.1rem;
   --article-background:color-mix(in srgb,currentColor 1.5%,transparent);
   --article-shadow:none;
+  --article-accent-color:currentColor;
+  --article-accent-width:4px;
+  --article-accent-inset:.45rem;
+  position:relative;
   display:block;
   margin:1rem 0;
   padding:var(--article-padding);
@@ -18,3 +22,55 @@
 .semantic-article>h2:first-child,
 .semantic-article>h3:first-child,
 .semantic-article>h4:first-child{margin-top:0}
+
+.semantic-article.article-accent-left::before{
+  content:"";
+  position:absolute;
+  z-index:1;
+  left:var(--article-accent-inset);
+  top:var(--article-accent-inset);
+  bottom:var(--article-accent-inset);
+  width:var(--article-accent-width);
+  border-radius:999px;
+  background:var(--article-accent-color);
+  pointer-events:none;
+}
+.semantic-article.article-variant-note,
+.semantic-article.article-variant-info{--article-accent-color:#2563eb}
+.semantic-article.article-variant-warning{--article-accent-color:#d97706}
+.semantic-article.article-variant-danger{--article-accent-color:#dc2626}
+.semantic-article.article-variant-success{--article-accent-color:#1f883d}
+
+.semantic-article.article-collapsible{padding:0}
+.semantic-article-details{margin:0;padding:0}
+.semantic-article-summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  margin:0;
+  padding:var(--article-padding);
+  font-weight:700;
+  user-select:none;
+}
+.semantic-article-summary::-webkit-details-marker{display:none}
+.semantic-article-summary::before{
+  content:"›";
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:1rem;
+  height:1rem;
+  flex:0 0 1rem;
+  font-size:1.2em;
+  line-height:1;
+  transition:transform .16s ease;
+  transform-origin:center;
+}
+.semantic-article-details[open]>.semantic-article-summary::before{transform:rotate(90deg)}
+.semantic-article-summary:hover{background:color-mix(in srgb,currentColor 4%,transparent)}
+.semantic-article-summary:focus-visible{outline:2px solid currentColor;outline-offset:-2px}
+.semantic-article-body{padding:0 var(--article-padding) var(--article-padding)}
+.semantic-article-body>:first-child{margin-top:0}
+.semantic-article-body>:last-child{margin-bottom:0}
