@@ -86,6 +86,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="index_files/libs/quarto-contrib/quarto-semantic-components-properties-0.1.0/properties.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/quarto-semantic-components-article-0.1.0/article.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/quarto-semantic-components-primitives-0.1.0/primitives.css" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2Z19J7RBW1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2Z19J7RBW1');
+</script>
 
 
 </head>
@@ -260,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#at-a-glance" id="toc-at-a-glance" class="nav-link active" data-scroll-target="#at-a-glance">At a glance</a></li>
   <li><a href="#quick-start" id="toc-quick-start" class="nav-link" data-scroll-target="#quick-start">Quick start</a></li>
-  <li><a href="#project-defaults-in-_quarto.yml" id="toc-project-defaults-in-_quarto.yml" class="nav-link" data-scroll-target="#project-defaults-in-_quarto.yml">Project defaults in <code>_quarto.yml</code></a></li>
+  <li><a href="#project-defaults-in-_quarto.yml" id="toc-project-defaults-in-_quarto.yml" class="nav-link" data-scroll-target="#project-defaults-in-_quarto.yml">Project defaults in _quarto.yml</a></li>
   <li><a href="#theme-aware-colors" id="toc-theme-aware-colors" class="nav-link" data-scroll-target="#theme-aware-colors">Theme-aware colors</a></li>
   <li><a href="#badges" id="toc-badges" class="nav-link" data-scroll-target="#badges">Badges</a>
   <ul class="collapse">
@@ -489,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="project-defaults-in-_quarto.yml" class="level1">
-<h1>Project defaults in <code>_quarto.yml</code></h1>
+<h1>Project defaults in _quarto.yml</h1>
 <p>Component defaults can be centralized at the project level. This repository intentionally leaves most colors automatic so Quarto can choose values that work naturally in both light and dark themes.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extensions</span><span class="kw">:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">badge</span><span class="kw">:</span></span>
@@ -629,7 +637,7 @@ automatic theme default</code></pre>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>{{&lt; badge deprecated &gt;}}</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Stable release" key="stable" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-appearance="solid" data-badge-key="stable" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-size="sm"><span class="qsc-badge-icon">✓</span> Stable</span> <span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-badge-appearance="outline" data-badge-key="experimental" data-badge-variant="info" data-qsc-badge-resolved="true" data-badge-size="sm"><span class="qsc-badge-icon">⚗</span> Experimental</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-key="deprecated" data-badge-variant="danger" data-qsc-badge-resolved="true" data-badge-size="sm"><span class="qsc-badge-icon">!</span> Deprecated</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-appearance="solid" data-badge-key="stable" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-size="sm"><span class="qsc-badge-icon">✓</span> Stable release</span></p>
+<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-variant="success" data-badge-key="stable" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="solid"><span class="qsc-badge-icon">✓</span> Stable</span> <span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-badge-variant="info" data-badge-key="experimental" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="outline"><span class="qsc-badge-icon">⚗</span> Experimental</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-variant="danger" data-badge-key="deprecated" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="soft"><span class="qsc-badge-icon">!</span> Deprecated</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-variant="success" data-badge-key="stable" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="solid"><span class="qsc-badge-icon">✓</span> Stable release</span></p>
 </section>
 <section id="variants-and-appearances" class="level2">
 <h2 class="anchored" data-anchor-id="variants-and-appearances">Variants and appearances</h2>
@@ -640,7 +648,7 @@ automatic theme default</code></pre>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Blocked" type="danger" appearance="soft" &gt;}}</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Featured" type="accent" appearance="solid" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-variant="info" data-qsc-badge-resolved="true" data-badge-size="sm">Info</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-appearance="solid" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-size="sm">Ready</span> <span class="qsc-badge qsc-badge-warning qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-badge-appearance="outline" data-badge-variant="warning" data-qsc-badge-resolved="true" data-badge-size="sm">Review</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-variant="danger" data-qsc-badge-resolved="true" data-badge-size="sm">Blocked</span> <span class="qsc-badge qsc-badge-accent qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-appearance="solid" data-badge-variant="accent" data-qsc-badge-resolved="true" data-badge-size="sm">Featured</span></p>
+<p><span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-variant="info" data-badge-size="sm" data-badge-appearance="soft">Info</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-qsc-badge-resolved="true" data-badge-variant="success" data-badge-size="sm" data-badge-appearance="solid">Ready</span> <span class="qsc-badge qsc-badge-warning qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-qsc-badge-resolved="true" data-badge-variant="warning" data-badge-size="sm" data-badge-appearance="outline">Review</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-variant="danger" data-badge-size="sm" data-badge-appearance="soft">Blocked</span> <span class="qsc-badge qsc-badge-accent qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-qsc-badge-resolved="true" data-badge-variant="accent" data-badge-size="sm" data-badge-appearance="solid">Featured</span></p>
 </section>
 <section id="sizes-and-shapes" class="level2">
 <h2 class="anchored" data-anchor-id="sizes-and-shapes">Sizes and shapes</h2>
@@ -649,7 +657,7 @@ automatic theme default</code></pre>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Medium" size="md" shape="rounded" &gt;}}</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Large" size="lg" shape="square" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-xs qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-size="xs">XS</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-size="sm">Small</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-md qsc-badge-shape-rounded qsc-badge-soft" data-badge-appearance="soft" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-size="md">Medium</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-lg qsc-badge-shape-square qsc-badge-soft" data-badge-appearance="soft" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-size="lg">Large</span></p>
+<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-xs qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-variant="neutral" data-badge-size="xs" data-badge-appearance="soft">XS</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-variant="neutral" data-badge-size="sm" data-badge-appearance="soft">Small</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-md qsc-badge-shape-rounded qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-variant="neutral" data-badge-size="md" data-badge-appearance="soft">Medium</span> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-lg qsc-badge-shape-square qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-variant="neutral" data-badge-size="lg" data-badge-appearance="soft">Large</span></p>
 </section>
 <section id="icons-links-and-custom-styling" class="level2">
 <h2 class="anchored" data-anchor-id="icons-links-and-custom-styling">Icons, links, and custom styling</h2>
@@ -657,7 +665,7 @@ automatic theme default</code></pre>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "External docs" type="info" icon="↗" icon-position="end" href="https://quarto.org" &gt;}}</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Custom" bg="#111827" fg="#f9fafb" border="#60a5fa" border-width="2px" radius="0.35rem" size="md" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-size="sm"><span class="qsc-badge-icon">✓</span> Stable</span> <a href="https://quarto.org"><span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-variant="info" data-qsc-badge-resolved="true" data-badge-size="sm">External docs <span class="qsc-badge-icon">↗</span></span></a> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-md qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" style="--semantic-badge-fg:#f9fafb;--semantic-badge-bg:#111827;--semantic-badge-border:#60a5fa;--semantic-badge-radius:0.35rem;--semantic-badge-border-width:2px;" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-size="md">Custom</span></p>
+<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-variant="success" data-badge-size="sm" data-badge-appearance="soft"><span class="qsc-badge-icon">✓</span> Stable</span> <a href="https://quarto.org"><span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-variant="info" data-badge-size="sm" data-badge-appearance="soft">External docs <span class="qsc-badge-icon">↗</span></span></a> <span class="qsc-badge qsc-badge-neutral qsc-badge-size-md qsc-badge-shape-pill qsc-badge-soft" style="--semantic-badge-fg:#f9fafb;--semantic-badge-bg:#111827;--semantic-badge-border:#60a5fa;--semantic-badge-radius:0.35rem;--semantic-badge-border-width:2px;" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-size="md" data-badge-appearance="soft">Custom</span></p>
 </section>
 <section id="theme-specific-badge-colors" class="level2">
 <h2 class="anchored" data-anchor-id="theme-specific-badge-colors">Theme-specific badge colors</h2>
@@ -665,7 +673,7 @@ automatic theme default</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  fg-light="#1f2937" bg-light="#e5e7eb" border-light="#9ca3af"</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  fg-dark="#f9fafb" bg-dark="#374151" border-dark="#6b7280" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" style="--semantic-badge-fg-light:#1f2937;--semantic-badge-fg-dark:#f9fafb;--semantic-badge-bg-light:#e5e7eb;--semantic-badge-bg-dark:#374151;--semantic-badge-border-light:#9ca3af;--semantic-badge-border-dark:#6b7280;" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-size="sm">Adaptive</span></p>
+<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" style="--semantic-badge-fg-light:#1f2937;--semantic-badge-fg-dark:#f9fafb;--semantic-badge-bg-light:#e5e7eb;--semantic-badge-bg-dark:#374151;--semantic-badge-border-light:#9ca3af;--semantic-badge-border-dark:#6b7280;" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-size="sm" data-badge-appearance="soft">Adaptive</span></p>
 </section>
 <section id="ast-native-form" class="level2">
 <h2 class="anchored" data-anchor-id="ast-native-form">AST-native form</h2>
@@ -1762,55 +1770,55 @@ automatic theme default</code></pre>
 <div class="git-tree-layout" style="--git-graph-height:612px;--git-graph-width:43.12px;">
 <svg class="git-tree-graph" viewbox="0 0 43.12 612" width="43.12" height="612" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 8.44 54 C 8.44 67.68, 21.56 76.32, 21.56 90"></path><line class="git-tree-edge" x1="21.56" y1="90" x2="21.56" y2="126"></line><path class="git-tree-edge" d="M 21.56 126 C 21.56 139.68, 34.68 148.32, 34.68 162"></path><line class="git-tree-edge" x1="34.68" y1="162" x2="34.68" y2="198"></line><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="234"></line><path class="git-tree-edge" d="M 34.68 198 C 34.68 211.68, 21.56 220.32, 21.56 234"></path><line class="git-tree-edge" x1="21.56" y1="234" x2="21.56" y2="270"></line><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="306"></line><path class="git-tree-edge" d="M 21.56 270 C 21.56 283.68, 8.44 292.32, 8.44 306"></path><line class="git-tree-edge" x1="8.44" y1="306" x2="8.44" y2="342"></line><path class="git-tree-edge" d="M 8.44 342 C 8.44 355.68, 21.56 364.32, 21.56 378"></path><line class="git-tree-edge" x1="21.56" y1="378" x2="21.56" y2="414"></line><path class="git-tree-edge" d="M 21.56 414 C 21.56 427.68, 34.68 436.32, 34.68 450"></path><line class="git-tree-edge" x1="34.68" y1="450" x2="34.68" y2="486"></line><line class="git-tree-edge" x1="21.56" y1="414" x2="21.56" y2="522"></line><path class="git-tree-edge" d="M 34.68 486 C 34.68 499.68, 21.56 508.32, 21.56 522"></path><line class="git-tree-edge" x1="8.44" y1="342" x2="8.44" y2="558"></line><path class="git-tree-edge" d="M 21.56 522 C 21.56 535.68, 8.44 544.32, 8.44 558"></path><line class="git-tree-edge" x1="8.44" y1="558" x2="8.44" y2="594"></line><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="34.68" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="34.68" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c7" cx="21.56" cy="234" r="5.44"></circle><circle class="git-tree-node" data-commit="c8" cx="21.56" cy="270" r="5.44"></circle><circle class="git-tree-node" data-commit="c9" cx="8.44" cy="306" r="5.44"></circle><circle class="git-tree-node" data-commit="c10" cx="8.44" cy="342" r="5.44"></circle><circle class="git-tree-node" data-commit="c11" cx="21.56" cy="378" r="5.44"></circle><circle class="git-tree-node" data-commit="c12" cx="21.56" cy="414" r="5.44"></circle><circle class="git-tree-node" data-commit="c13" cx="34.68" cy="450" r="5.44"></circle><circle class="git-tree-node" data-commit="c14" cx="34.68" cy="486" r="5.44"></circle><circle class="git-tree-node" data-commit="c15" cx="21.56" cy="522" r="5.44"></circle><circle class="git-tree-node" data-commit="c16" cx="8.44" cy="558" r="5.44"></circle><circle class="git-tree-node" data-commit="c17" cx="8.44" cy="594" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c1" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c2" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">creates the base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c3" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">opens the icons branch</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c4" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">adds Devicon</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c5" data-depth="2">
+<div class="git-tree-entry git-tree-depth-2" data-commit="c5" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>docs/icons</code></span> <span class="git-tree-message">documents providers</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c6" data-depth="2">
+<div class="git-tree-entry git-tree-depth-2" data-commit="c6" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>docs/icons</code></span> <span class="git-tree-message">adds examples</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c7" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c7" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">merge docs/icons</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c8" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c8" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">adds file links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c9" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c9" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/icons</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c10" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c10" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">starts inline components</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c11" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c11" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">creates badge</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c12" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c12" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">adds visual customization</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c13" data-depth="2">
+<div class="git-tree-entry git-tree-depth-2" data-commit="c13" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers variants</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c14" data-depth="2">
+<div class="git-tree-entry git-tree-depth-2" data-commit="c14" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c15" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c15" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">merge test/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c16" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c16" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c17" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c17" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">release v0.1.0</span></span>
 </div>
 </div>
@@ -1834,22 +1842,22 @@ automatic theme default</code></pre>
 <div class="git-tree-layout" style="--git-graph-height:216px;--git-graph-width:30px;">
 <svg class="git-tree-graph" viewbox="0 0 30 216" width="30" height="216" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="198" x2="8.44" y2="162"></line><path class="git-tree-edge" d="M 8.44 162 C 8.44 148.32, 21.56 139.68, 21.56 126"></path><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="90"></line><line class="git-tree-edge" x1="8.44" y1="162" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 21.56 90 C 21.56 76.32, 8.44 67.68, 8.44 54"></path><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="18"></line><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="8.44" cy="18" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c6" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c6" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">release</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c5" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c5" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/api</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c4" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/api</code></span> <span class="git-tree-message">implements endpoints</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c3" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/api</code></span> <span class="git-tree-message">creates API</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c2" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c1" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
 </div>
@@ -1876,28 +1884,28 @@ automatic theme default</code></pre>
 <div class="git-tree-layout" style="--git-graph-height:288px;--git-graph-width:43.12px;">
 <svg class="git-tree-graph" viewbox="0 0 43.12 288" width="43.12" height="288" aria-hidden="true"><path class="git-tree-edge" d="M 8.44 18 C 8.44 31.68, 21.56 40.32, 21.56 54"></path><line class="git-tree-edge" x1="21.56" y1="54" x2="21.56" y2="90"></line><path class="git-tree-edge" d="M 21.56 90 C 21.56 103.68, 34.68 112.32, 34.68 126"></path><line class="git-tree-edge" x1="34.68" y1="126" x2="34.68" y2="162"></line><line class="git-tree-edge" x1="21.56" y1="90" x2="21.56" y2="198"></line><path class="git-tree-edge" d="M 34.68 162 C 34.68 175.68, 21.56 184.32, 21.56 198"></path><line class="git-tree-edge" x1="21.56" y1="198" x2="21.56" y2="234"></line><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="270"></line><path class="git-tree-edge" d="M 21.56 234 C 21.56 247.68, 8.44 256.32, 8.44 270"></path><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="21.56" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="34.68" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="34.68" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="21.56" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c7" cx="21.56" cy="234" r="5.44"></circle><circle class="git-tree-node" data-commit="c8" cx="8.44" cy="270" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c1" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">project skeleton</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c2" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c2" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">creates badge renderer</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c3" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">adds presets</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c4" data-depth="2">
+<div class="git-tree-entry git-tree-depth-2" data-commit="c4" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">adds variant tests</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c5" data-depth="2">
+<div class="git-tree-entry git-tree-depth-2" data-commit="c5" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">adds link tests</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c6" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c6" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">merge test/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c7" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c7" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">documents badge API</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c8" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c8" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/badges</span></span>
 </div>
 </div>
@@ -1923,16 +1931,16 @@ automatic theme default</code></pre>
 <div class="git-tree-layout" style="--git-graph-height:144px;--git-graph-width:30px;">
 <svg class="git-tree-graph" viewbox="0 0 30 144" width="30" height="144" aria-hidden="true"><path class="git-tree-edge" d="M 8.44 18 C 8.44 31.68, 21.56 40.32, 21.56 54"></path><line class="git-tree-edge" x1="21.56" y1="54" x2="21.56" y2="90"></line><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="126"></line><path class="git-tree-edge" d="M 21.56 90 C 21.56 103.68, 8.44 112.32, 8.44 126"></path><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="21.56" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="8.44" cy="126" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c1" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c2" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c2" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/theme</code></span> <span class="git-tree-message">adds color-mode support</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c3" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/theme</code></span> <span class="git-tree-message">documents overrides</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c4" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c4" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/theme</span></span>
 </div>
 </div>
@@ -1959,28 +1967,28 @@ automatic theme default</code></pre>
 <div class="git-tree-layout" style="--git-graph-height:288px;--git-graph-width:43.12px;">
 <svg class="git-tree-graph" viewbox="0 0 43.12 288" width="43.12" height="288" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 8.44 54 C 8.44 67.68, 21.56 76.32, 21.56 90"></path><line class="git-tree-edge" x1="21.56" y1="90" x2="21.56" y2="126"></line><path class="git-tree-edge" d="M 21.56 126 C 21.56 139.68, 34.68 148.32, 34.68 162"></path><line class="git-tree-edge" x1="34.68" y1="162" x2="34.68" y2="198"></line><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="234"></line><path class="git-tree-edge" d="M 34.68 198 C 34.68 211.68, 21.56 220.32, 21.56 234"></path><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="270"></line><path class="git-tree-edge" d="M 21.56 234 C 21.56 247.68, 8.44 256.32, 8.44 270"></path><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="34.68" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="34.68" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c7" cx="21.56" cy="234" r="5.44"></circle><circle class="git-tree-node" data-commit="c8" cx="8.44" cy="270" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c1" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c2" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c3" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">creates badge</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c4" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">visual customization</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c5" data-depth="2">
+<div class="git-tree-entry git-tree-depth-2" data-commit="c5" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers variants</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c6" data-depth="2">
+<div class="git-tree-entry git-tree-depth-2" data-commit="c6" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c7" data-depth="1">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c7" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">merge test/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c8" data-depth="0">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c8" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-head">HEAD</span> <span class="git-tree-tag">v0.1.0</span> <span class="git-tree-message">merge feature/badges</span></span>
 </div>
 </div>
@@ -2006,11 +2014,11 @@ automatic theme default</code></pre>
 <p><strong>Output:</strong></p>
 <div class="tree semantic-tree" style="--tree-indent:1.5rem;" data-tree-expanded="true">
 <ul>
-<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true" data-tree-label="Plantae"><button class="tree-toggle" type="button" aria-label="Collapse Plantae" aria-expanded="true"></button> Plantae</span>
+<li><span class="tree-row tree-branch" data-tree-expanded="true" data-tree-toggle="true" aria-expanded="true" data-tree-label="Plantae"><button class="tree-toggle" type="button" aria-label="Collapse Plantae" aria-expanded="true"></button> Plantae</span>
 <ul>
-<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true" data-tree-label="Fabaceae"><button class="tree-toggle" type="button" aria-label="Collapse Fabaceae" aria-expanded="true"></button> Fabaceae</span>
+<li><span class="tree-row tree-branch" data-tree-expanded="true" data-tree-toggle="true" aria-expanded="true" data-tree-label="Fabaceae"><button class="tree-toggle" type="button" aria-label="Collapse Fabaceae" aria-expanded="true"></button> Fabaceae</span>
 <ul>
-<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true" data-tree-label="Mimosa"><button class="tree-toggle" type="button" aria-label="Collapse Mimosa" aria-expanded="true"></button> Mimosa</span>
+<li><span class="tree-row tree-branch" data-tree-expanded="true" data-tree-toggle="true" aria-expanded="true" data-tree-label="Mimosa"><button class="tree-toggle" type="button" aria-label="Collapse Mimosa" aria-expanded="true"></button> Mimosa</span>
 <ul>
 <li><span class="tree-row tree-leaf">Mimosa pudica</span></li>
 <li><span class="tree-row tree-leaf">Mimosa caesalpiniifolia</span></li>
@@ -2038,12 +2046,12 @@ automatic theme default</code></pre>
 <p><strong>Output:</strong></p>
 <div class="tree semantic-tree" data-expanded="false" data-indent="1.8rem" style="--tree-indent:1.8rem;" data-tree-expanded="false">
 <ul>
-<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true" data-tree-label="Life"><button class="tree-toggle" type="button" aria-label="Collapse Life" aria-expanded="true"></button> <span data-expanded="true" data-info="Top-level classification">Life</span> <span class="tree-info" title="Top-level classification" aria-label="Top-level classification" tabindex="0">i</span></span>
+<li><span class="tree-row tree-branch" data-tree-expanded="true" data-tree-toggle="true" aria-expanded="true" data-tree-label="Life"><button class="tree-toggle" type="button" aria-label="Collapse Life" aria-expanded="true"></button> <span data-expanded="true" data-info="Top-level classification">Life</span> <span class="tree-info" title="Top-level classification" aria-label="Top-level classification" tabindex="0">i</span></span>
 <ul>
 <li><span class="tree-row tree-leaf">Eukaryota</span></li>
-<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-expanded="true" aria-expanded="true" data-tree-label="Plantae"><button class="tree-toggle" type="button" aria-label="Collapse Plantae" aria-expanded="true"></button> <span data-expanded="true">Plantae</span></span>
+<li><span class="tree-row tree-branch" data-tree-expanded="true" data-tree-toggle="true" aria-expanded="true" data-tree-label="Plantae"><button class="tree-toggle" type="button" aria-label="Collapse Plantae" aria-expanded="true"></button> <span data-expanded="true">Plantae</span></span>
 <ul>
-<li><span class="tree-row tree-branch" data-tree-toggle="true" data-tree-expanded="false" aria-expanded="false" data-tree-label="Fabaceae"><button class="tree-toggle" type="button" aria-label="Expand Fabaceae" aria-expanded="false"></button> Fabaceae</span>
+<li><span class="tree-row tree-branch" data-tree-expanded="false" data-tree-toggle="true" aria-expanded="false" data-tree-label="Fabaceae"><button class="tree-toggle" type="button" aria-label="Expand Fabaceae" aria-expanded="false"></button> Fabaceae</span>
 <ul>
 <li><span class="tree-row tree-leaf">Mimosa</span></li>
 <li><span class="tree-row tree-leaf">Acacia</span></li>
@@ -2092,27 +2100,27 @@ automatic theme default</code></pre>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="project" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>project</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="project"><strong>project</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="src"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="pipelines" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>pipelines</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="pipelines"><strong>pipelines</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="python" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>python</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="python"><strong>python</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> pipeline.py <span class="file-tree-comment">ingestion</span></span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> validate.py <span class="file-tree-comment">validation</span></span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="r" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>r</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="r"><strong>r</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> analysis.R <span class="file-tree-comment">statistical analysis</span></span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> report.Rmd <span class="file-tree-comment">report</span></span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="web" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>web</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="web"><strong>web</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="src"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="components" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="components"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> chart.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> table.ts</span></li>
@@ -2121,21 +2129,21 @@ automatic theme default</code></pre>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="database" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>database</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="database"><strong>database</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="migrations" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>migrations</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="migrations"><strong>migrations</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-database">schema.sql</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="docs" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>docs</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="docs"><strong>docs</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> report.qmd</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="data" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>data</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="data"><strong>data</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="processed" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>processed</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="processed"><strong>processed</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-data">occurrences.parquet</span></li>
 </ul></li>
@@ -2216,16 +2224,16 @@ automatic theme default</code></pre>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" data-indent="1rem" style="--file-tree-indent:1rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="src"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="components" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="components"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Button.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Card.ts</span></li>
 </ul></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> app.ts</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="database" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>database</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="database"><strong>database</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-database">schema.sql</span></li>
 </ul></li>
@@ -2242,9 +2250,9 @@ automatic theme default</code></pre>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" data-indent="2.4rem" style="--file-tree-indent:2.4rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="src"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="components" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="components"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Button.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Card.ts</span></li>
@@ -2273,21 +2281,21 @@ automatic theme default</code></pre>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" data-expanded="false" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="false">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="src" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="src"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="components" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="false" data-file-tree-expanded="false" data-file-tree-name="components"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Button.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Card.ts</span></li>
 </ul></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> app.ts</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="docs" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true"><strong>docs</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="false" data-file-tree-expanded="false" data-file-tree-name="docs"><strong>docs</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> index.qmd</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> api.qmd</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="data" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true"><strong>data</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="false" data-file-tree-expanded="false" data-file-tree-name="data"><strong>data</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-data">raw.csv</span></li>
 <li><span class="file-tree-row file-tree-file file-icon-data">processed.parquet</span></li>
@@ -2628,7 +2636,7 @@ Release package <span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-b
 <p>The release contains the extension source, documentation, and examples.</p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-name="semantic-components" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true"><strong>semantic-components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-toggle="true" aria-expanded="true" data-file-tree-expanded="true" data-file-tree-name="semantic-components"><strong>semantic-components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-lua-plain colored" aria-hidden="true"></i> theme-colors.lua</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-lua-plain colored" aria-hidden="true"></i> steps.lua</span></li>

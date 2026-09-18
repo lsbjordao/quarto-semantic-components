@@ -71,7 +71,7 @@ Render to HTML, PDF, or DOCX.
 :::
 ```
 
-# Project defaults in `_quarto.yml`
+# Project defaults in _quarto.yml
 
 Component defaults can be centralized at the project level. This repository intentionally leaves most colors automatic so Quarto can choose values that work naturally in both light and dark themes.
 
