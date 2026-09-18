@@ -1,5 +1,9 @@
 project:
   type: default
+  resources:
+    - assets/quarto-semantic-components.svg
+    - quarto-semantic-components.pdf
+    - quarto-semantic-components.docx
 
 lang: en
 
