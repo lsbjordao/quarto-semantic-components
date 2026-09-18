@@ -1,8 +1,13 @@
 .qsc-progress,.qsc-meter{
   --qsc-indicator-color:var(--qsc-indicator-color-base,var(--bs-primary,currentColor));
   --qsc-indicator-track:var(--qsc-indicator-track-base,color-mix(in srgb,currentColor 12%,transparent));
-  display:inline-grid;grid-template-columns:auto minmax(8rem,14rem) auto;align-items:center;gap:.55rem;
-  vertical-align:middle;max-width:100%
+  display:inline-grid;
+  grid-template-columns:auto minmax(var(--qsc-indicator-bar-min,8rem),var(--qsc-indicator-bar-max,14rem)) auto;
+  align-items:center;
+  gap:.55rem;
+  width:var(--qsc-indicator-width,auto);
+  vertical-align:middle;
+  max-width:100%
 }
 body.quarto-light .qsc-progress,body.quarto-light .qsc-meter,
 [data-bs-theme="light"] .qsc-progress,[data-bs-theme="light"] .qsc-meter{
