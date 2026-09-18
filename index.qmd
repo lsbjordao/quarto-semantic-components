@@ -53,12 +53,11 @@ extensions:
     row-height: "36px"
     content-gap: "0.55rem"
 
-  aside:
-    variant: default
-
   article:
     radius: "0.75rem"
     padding: "1rem 1.1rem"
+    accent: none
+    expanded: true
 ```
 
 A precedência é **defaults do projeto → preset → componente → item individual**.
@@ -86,12 +85,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.9.0" type="accent" appearance="solid" >}}
+{{< badge "v0.10.0" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.9.0" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.0" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -292,7 +291,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.9.0
+- `main` release v0.10.0
 :::
 ```
 
@@ -315,7 +314,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.9.0
+- `main` release v0.10.0
 :::
 
 ### Mesmo DAG — direção BT
@@ -353,7 +352,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.9.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -367,7 +366,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.9.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.0" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -537,67 +536,119 @@ Versão estável publicada.
 
 :::
 
-## Aside
-
-`aside` é um bloco semântico genérico. No HTML ele vira um elemento real `<aside>`; em PDF/DOCX permanece como bloco estrutural.
-
-### Variante note
-
-```markdown
-::: {.aside variant="note" title="Nota"}
-Este conteúdo é complementar ao fluxo principal do documento.
-
-Ele pode conter **Markdown**, listas e código.
-:::
-```
-
-**Output:**
-
-::: {.aside variant="note" title="Nota"}
-Este conteúdo é complementar ao fluxo principal do documento.
-
-Ele pode conter **Markdown**, listas e código.
-:::
-
-### Variante warning
-
-```markdown
-::: {.aside variant="warning" title="Atenção"}
-Use o `variant` para mudar o destaque sem alterar a semântica do bloco.
-:::
-```
-
-**Output:**
-
-::: {.aside variant="warning" title="Atenção"}
-Use o `variant` para mudar o destaque sem alterar a semântica do bloco.
-:::
-
 ## Article
 
-`article` é um contêiner autocontido e agnóstico. O HTML usa um elemento real `<article>` com borda arredondada. O changelog abaixo é apenas um exemplo de uso.
+`article` é a primitive genérica para conteúdo autocontido. O HTML externo é sempre `<article>`.
+
+### Genérico — apenas borda arredondada
+
+```markdown
+:::article
+## Nota técnica
+Este é o `article` padrão, sem accent e sem collapse.
+:::
+```
+
+**Output:**
+
+:::article
+## Nota técnica
+Este é o `article` padrão, sem accent e sem collapse.
+:::
+
+### Accent esquerdo com pontas arredondadas
+
+```markdown
+::: {.article accent="left" variant="warning"}
+## Atenção
+A barra lateral é opcional. O componente continua sendo um `article`.
+:::
+```
+
+**Output:**
+
+::: {.article accent="left" variant="warning"}
+## Atenção
+A barra lateral é opcional. O componente continua sendo um `article`.
+:::
+
+Também é possível controlar diretamente `accent-color`, `accent-width` e `accent-inset`.
+
+### Collapsed por padrão
+
+```markdown
+::: {.article
+  collapsible="true"
+  summary="Detalhes técnicos"
+  expanded="false"}
+
+O conteúdo está dentro de um `details` nativo, mas o elemento externo continua sendo `article`.
+
+- Markdown normal
+- listas
+- código
+- outros componentes
+
+:::
+```
+
+**Output:**
+
+::: {.article collapsible="true" summary="Detalhes técnicos" expanded="false"}
+
+O conteúdo está dentro de um `details` nativo, mas o elemento externo continua sendo `article`.
+
+- Markdown normal
+- listas
+- código
+- outros componentes
+
+:::
+
+### Expanded + accent
+
+```markdown
+::: {.article
+  accent="left"
+  variant="note"
+  collapsible="true"
+  summary="Metodologia"
+  expanded="true"}
+
+Este exemplo começa expandido e combina o accent com o collapse.
+
+:::
+```
+
+**Output:**
+
+::: {.article accent="left" variant="note" collapsible="true" summary="Metodologia" expanded="true"}
+
+Este exemplo começa expandido e combina o accent com o collapse.
+
+:::
 
 ### Exemplo — changelog dentro de um article
 
 ```markdown
 :::article
 
-## 0.9.0 — 2026-09-17
+## 0.10.0 — 2026-09-17
 
 ### Added
-- `aside`
-- `article`
+- Accent esquerdo opcional em `article`.
+- Collapse/expand nativo.
 
 ### Changed
 - Timeline demonstrada com `steps type="dots"`.
-- O `git-tree` usa um DAG de commits.
-- O `file-tree` permite pastas expansíveis.
+- Blocos genéricos convergiram para `article`.
 
 ### Removed
 - `timeline`
 - `pipeline`
 - `details`
 - `changelog`
+- `aside`
 
 ## 0.7.1 — 2026-09-17
 
@@ -612,22 +663,22 @@ Use o `variant` para mudar o destaque sem alterar a semântica do bloco.
 
 :::article
 
-## 0.9.0 — 2026-09-17
+## 0.10.0 — 2026-09-17
 
 ### Added
-- `aside`
-- `article`
+- Accent esquerdo opcional em `article`.
+- Collapse/expand nativo.
 
 ### Changed
 - Timeline demonstrada com `steps type="dots"`.
-- O `git-tree` usa um DAG de commits.
-- O `file-tree` permite pastas expansíveis.
+- Blocos genéricos convergiram para `article`.
 
 ### Removed
 - `timeline`
 - `pipeline`
 - `details`
 - `changelog`
+- `aside`
 
 ## 0.7.1 — 2026-09-17
 
@@ -640,17 +691,22 @@ Use o `variant` para mudar o destaque sem alterar a semântica do bloco.
 ### Article customizado
 
 ```markdown
-::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6"}
-## Nota técnica
-Um `article` também pode representar qualquer unidade independente de conteúdo.
+::: {.article
+  radius="1.2rem"
+  padding="1.25rem"
+  border-color="#8b5cf6"
+  background="transparent"}
+
+## Conteúdo autocontido
+Um `article` também pode representar posts, releases, resumos ou especificações.
 :::
 ```
 
 **Output:**
 
-::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6"}
-## Nota técnica
-Um `article` também pode representar qualquer unidade independente de conteúdo.
+::: {.article radius="1.2rem" padding="1.25rem" border-color="#8b5cf6" background="transparent"}
+## Conteúdo autocontido
+Um `article` também pode representar posts, releases, resumos ou especificações.
 :::
 
 
@@ -658,6 +714,6 @@ Um `article` também pode representar qualquer unidade independente de conteúdo
 
 As ideias de **Steps** e **File Tree** foram inspiradas em componentes do [Vocs](https://vocs.dev/), mas a implementação é própria e orientada ao AST do Pandoc.
 
-- **HTML**: apresentação completa, badges, file tree interativo, tooltips, Git DAG em SVG e elementos semânticos `aside`/`article`;
+- **HTML**: apresentação completa, badges, file tree interativo, tooltips, Git DAG em SVG e o elemento semântico `article`;
 - **PDF**: conteúdo estrutural e links são preservados;
 - **DOCX**: listas, headings, links e texto permanecem editáveis.
