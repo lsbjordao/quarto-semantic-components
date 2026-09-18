@@ -88,12 +88,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.10.6" type="accent" appearance="solid" >}}
+{{< badge "v0.10.7" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.6" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.7" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -141,7 +141,7 @@ Cada heading inicia uma etapa.
 
 ## Steps — bolinhas
 
-As bolinhas são vazadas por padrão. `dot-color` controla o contorno e `dot-fill` permite preenchimento opcional.
+As bolinhas parecem vazadas por padrão: o centro usa a cor de superfície do tema, ocultando a aresta contínua que passa por trás. `dot-color` controla o contorno e `dot-fill` permite preenchimento explícito.
 
 ### Default do projeto
 
@@ -176,6 +176,30 @@ Prepare os dados.
 ## Publicar
 Publique o resultado.
 :::
+
+### Fundo customizado
+
+Se os steps estiverem sobre uma superfície diferente do fundo do documento, use `surface-color` para o centro dos dots acompanhar esse fundo:
+
+```markdown
+::: {.steps type="dots"
+  surface-color="#f3f4f6"
+  line-color="#9aa0a6"}
+
+## Preparar
+Primeira etapa.
+
+## Processar
+Segunda etapa.
+
+## Revisar
+Terceira etapa.
+
+## Publicar
+Quarta etapa.
+
+:::
+```
 
 ### Cor e tamanho por bolinha
 
@@ -338,7 +362,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.6
+- `main` release v0.10.7
 :::
 ```
 
@@ -361,7 +385,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.6
+- `main` release v0.10.7
 :::
 
 ### Mesmo DAG — direção BT
@@ -399,7 +423,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.6" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.7" head="true"} merge feature/badges
 :::
 ```
 
@@ -413,7 +437,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.6" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.7" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -667,7 +691,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 ```markdown
 :::article
 
-## 0.10.6 — 2026-09-17
+## 0.10.7 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
@@ -697,7 +721,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 :::article
 
-## 0.10.6 — 2026-09-17
+## 0.10.7 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
