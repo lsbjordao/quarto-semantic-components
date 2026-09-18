@@ -1,5 +1,5 @@
 -- File tree with links, selectable icon providers, optional inline-code labels,
--- tooltips, and collapsible folders in HTML.
+-- info annotations, and collapsible folders in HTML.
 local config=require('./config')
 local function has_class(el, name)
   for _, class in ipairs(el.classes or {}) do if class == name then return true end end
@@ -25,7 +25,7 @@ end
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-file-tree',
-    version='0.10.4',
+    version='0.10.6',
     scripts={'js/file-tree.js'}
   })
 end
@@ -97,7 +97,7 @@ end
 local function apply_attrs(source, row)
   row.icon = attr(source,'icon') or row.icon
   row.icon_library = attr(source,'icon-library') or attr(source,'icons') or row.icon_library
-  row.tooltip = attr(source,'tooltip') or attr(source,'info') or row.tooltip
+  row.info = attr(source,'info') or row.info
   row.expanded = attr(source,'expanded') or attr(source,'open') or row.expanded
   row.collapsed = attr(source,'collapsed') or row.collapsed
 end
@@ -165,7 +165,7 @@ local function custom_icon(value)
   return pandoc.Span({pandoc.Str(value)},pandoc.Attr('',{'file-tree-custom-icon'}))
 end
 
-local function tooltip_icon(text)
+local function info_icon(text)
   if not is_html() or not text or text == '' then return nil end
   return pandoc.Span(
     {pandoc.Str('i')},
@@ -203,7 +203,7 @@ local function make_row(row, folder, default_lib, default_expanded, has_children
   if icon then classes:insert('file-tree-has-inline-icon') end
   if builtin_name then classes:insert('file-icon-'..builtin_name) end
   if row.href then classes:insert('file-tree-linked') end
-  if row.tooltip then classes:insert('file-tree-has-tooltip') end
+  if row.info then classes:insert('file-tree-has-info') end
 
   local attrs={}
   if is_html() and folder and has_children then
@@ -221,7 +221,7 @@ local function make_row(row, folder, default_lib, default_expanded, has_children
   local label = make_label(row, folder)
   out:insert(row.href and pandoc.Link({label},row.href,row.title or '') or label)
 
-  local info = tooltip_icon(row.tooltip)
+  local info = info_icon(row.info)
   if info then out:insert(pandoc.Space()); out:insert(info) end
 
   if row.comment and #row.comment > 0 then
