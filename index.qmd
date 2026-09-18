@@ -28,6 +28,7 @@ This page is both a gallery and a usage guide. Every example follows the same pa
 |---|---|---|
 | `badge` | Inline status, versions, labels | Variants, sizes, shapes, links, theme-aware colors |
 | `steps` | Procedures, workflows, timelines | Continuous numbered or dot connectors |
+| `roadmap` | Milestones, product plans, project journeys | Responsive sinuous SVG path with horizontal/vertical layouts |
 | `circle-list` | Compact ordered lists | Circled numbers |
 | `tree` | Generic hierarchies and classifications | Connectors and expandable branches |
 | `git-tree` | Git histories, branches and merges | SVG commit DAG |
@@ -37,7 +38,7 @@ This page is both a gallery and a usage guide. Every example follows the same pa
 | `progress` / `meter` | Quantitative indicators | Native HTML indicators |
 | `kbd` / `abbr` | Inline semantics | Native `<kbd>` and `<abbr>` elements |
 
-The extension intentionally avoids components that Quarto already handles well. A timeline can be expressed with `steps type="dots"`, while general diagrams can use Mermaid.
+The extension intentionally avoids components that Quarto already handles well. A timeline can be expressed with `steps type="dots"`; `roadmap` is reserved for milestone paths and project journeys where the route itself is part of the presentation. General diagrams can use Mermaid.
 
 # Quick start
 
@@ -98,6 +99,11 @@ extensions:
   steps:
     dot-size: "0.72rem"
     line-width: "1.5px"
+
+  roadmap:
+    orientation: horizontal
+    curve: "0.6"
+    markers: dot
 
   tree:
     expanded: true
@@ -162,7 +168,7 @@ You can also specify both values explicitly:
   surface-color-light="#f3f4f6"
   surface-color-dark="#2b3035"
   line-color-light="#6b7280"
-  line-color-dark="#adb5bd"}
+  line-color-dark="#adb5bd"
 ...
 :::
 ```
@@ -172,6 +178,7 @@ The theme-aware color API is available wherever a component exposes color custom
 | Component | Theme-aware properties |
 |---|---|
 | `steps` | `surface-color`, `line-color`, `dot-color`, `dot-fill` |
+| `roadmap` | `road-color`, `point-color`, `surface-color` |
 | `tree` | `line-color` |
 | `git-tree` | `line-color`, `node-bg` |
 | `article` | `border-color`, `background`, `accent-color` |
@@ -506,6 +513,70 @@ API freeze for final testing.
 ## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
 Stable version released.
 :::
+
+# Roadmap
+
+`roadmap` is for milestone paths and project journeys where the route itself carries part of the visual meaning. In HTML the path is drawn as a responsive SVG curve through the markers; a horizontal roadmap automatically becomes vertical on narrow screens.
+
+The example below deliberately uses the component to show the **roadmap of Quarto Semantic Components itself**.
+
+```markdown
+::: {.roadmap orientation="horizontal" curve="0.65"}
+
+::: {.roadmap-item title="Semantic core" status="done"}
+Pandoc-AST components that remain meaningful outside HTML.
+:::
+
+::: {.roadmap-item title="Component library" status="done"}
+Steps, trees, badges, articles, properties, progress, meter, `kbd`, `abbr`, and roadmap.
+:::
+
+::: {.roadmap-item title="Cross-format outputs" status="done"}
+The same gallery is available as [PDF](quarto-semantic-components.pdf) and [DOCX](quarto-semantic-components.docx).
+:::
+
+::: {.roadmap-item title="Version 0.1.0" status="milestone"}
+A coherent first release with theme-aware colors and graceful degradation.
+:::
+
+::: {.roadmap-item title="Next iterations" status="future"}
+Refine components from real documentation use and add only primitives that earn their place.
+:::
+
+:::
+```
+
+**Output — the roadmap of this extension:**
+
+::: {.roadmap orientation="horizontal" curve="0.65"}
+
+::: {.roadmap-item title="Semantic core" status="done"}
+Pandoc-AST components that remain meaningful outside HTML.
+:::
+
+::: {.roadmap-item title="Component library" status="done"}
+Steps, trees, badges, articles, properties, progress, meter, `kbd`, `abbr`, and roadmap.
+:::
+
+::: {.roadmap-item title="Cross-format outputs" status="done"}
+The same gallery is available as [PDF](quarto-semantic-components.pdf) and [DOCX](quarto-semantic-components.docx).
+:::
+
+::: {.roadmap-item title="Version 0.1.0" status="milestone"}
+A coherent first release with theme-aware colors and graceful degradation.
+:::
+
+::: {.roadmap-item title="Next iterations" status="future"}
+Refine components from real documentation use and add only primitives that earn their place.
+:::
+
+:::
+
+`orientation` accepts `horizontal` or `vertical`; `curve` ranges from `0` to `1`; and `markers` accepts `dot`, `numbers`, or `none`. Item statuses are `done`, `current`, `future`, and `milestone`.
+
+Theme-aware customization follows the same extension-wide convention. `road-color`, `point-color`, and `surface-color` accept unsuffixed values plus `-light` and `-dark` overrides. Individual items can override `point-color` in the same way.
+
+In PDF and DOCX the SVG route intentionally degrades to a readable ordered list, preserving the item title, status, links, and Markdown content. That means the two links in **Cross-format outputs** also demonstrate the component's own fallback behavior.
 
 # Circled Ordered List
 
@@ -1325,6 +1396,7 @@ The release contains the extension source, documentation, and examples.
 - +semantic-components
   - theme-colors.lua
   - steps.lua
+  - roadmap.lua
   - tree.lua
   - file-tree.lua
   - git-tree.lua
@@ -1350,6 +1422,7 @@ The release contains the extension source, documentation, and examples.
 - +semantic-components
   - theme-colors.lua
   - steps.lua
+  - roadmap.lua
   - file-tree.lua
   - git-tree.lua
   - article.lua
@@ -1365,9 +1438,9 @@ The components are designed around Pandoc structure rather than HTML-only widget
 
 | Format | Behavior |
 |---|---|
-| **HTML** | Full styling, light/dark color overrides, generic/file trees, SVG Git DAG, native progress/meter, keyboard/abbreviation semantics, and article collapse/expand |
-| **PDF** | Structural content and links are preserved; interactive behavior degrades to readable static content |
-| **DOCX** | Lists, headings, links, and text remain editable |
+| **HTML** | Full styling, light/dark color overrides, sinuous roadmaps, generic/file trees, SVG Git DAG, native progress/meter, keyboard/abbreviation semantics, and article collapse/expand |
+| **PDF** | Structural content, roadmap items, statuses, links, and other content are preserved as readable static output |
+| **DOCX** | Lists, headings, roadmap items, links, and text remain editable |
 
 # Inspiration
 
