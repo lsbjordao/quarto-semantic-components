@@ -10,6 +10,7 @@
   --roadmap-surface-color:var(--roadmap-surface-color-base,transparent);
   --roadmap-marker-fill:var(--roadmap-surface-color-base,var(--roadmap-body-bg));
   --roadmap-marker-number-color:var(--roadmap-body-bg);
+  --roadmap-milestone-fill:var(--roadmap-milestone-color-base,var(--roadmap-marker-fill));
   --roadmap-card-gap:1rem;
   position:relative;
   margin:1.5rem 0 2rem;
@@ -20,12 +21,14 @@ body.quarto-light .semantic-roadmap,[data-bs-theme="light"] .semantic-roadmap{
   --roadmap-point-color:var(--roadmap-point-color-light,var(--roadmap-point-color-base,var(--roadmap-body-color)));
   --roadmap-surface-color:var(--roadmap-surface-color-light,var(--roadmap-surface-color-base,transparent));
   --roadmap-marker-fill:var(--roadmap-surface-color-light,var(--roadmap-surface-color-base,var(--roadmap-body-bg)));
+  --roadmap-milestone-fill:var(--roadmap-milestone-color-light,var(--roadmap-milestone-color-base,var(--roadmap-marker-fill)));
 }
 body.quarto-dark .semantic-roadmap,[data-bs-theme="dark"] .semantic-roadmap{
   --roadmap-road-color:var(--roadmap-road-color-dark,var(--roadmap-road-color-base,color-mix(in srgb,var(--roadmap-body-color) 42%,transparent)));
   --roadmap-point-color:var(--roadmap-point-color-dark,var(--roadmap-point-color-base,var(--roadmap-body-color)));
   --roadmap-surface-color:var(--roadmap-surface-color-dark,var(--roadmap-surface-color-base,transparent));
   --roadmap-marker-fill:var(--roadmap-surface-color-dark,var(--roadmap-surface-color-base,var(--roadmap-body-bg)));
+  --roadmap-milestone-fill:var(--roadmap-milestone-color-dark,var(--roadmap-milestone-color-base,var(--roadmap-marker-fill)));
 }
 .semantic-roadmap .roadmap-svg{
   position:absolute;
@@ -58,12 +61,15 @@ body.quarto-dark .semantic-roadmap,[data-bs-theme="dark"] .semantic-roadmap{
   z-index:1;
   min-width:0;
   --roadmap-item-point-color:var(--roadmap-item-point-color-base,var(--roadmap-point-color));
+  --roadmap-item-milestone-fill:var(--roadmap-item-milestone-color-base,var(--roadmap-milestone-fill));
 }
 body.quarto-light .semantic-roadmap .semantic-roadmap-item,[data-bs-theme="light"] .semantic-roadmap .semantic-roadmap-item{
   --roadmap-item-point-color:var(--roadmap-item-point-color-light,var(--roadmap-item-point-color-base,var(--roadmap-point-color)));
+  --roadmap-item-milestone-fill:var(--roadmap-item-milestone-color-light,var(--roadmap-item-milestone-color-base,var(--roadmap-milestone-fill)));
 }
 body.quarto-dark .semantic-roadmap .semantic-roadmap-item,[data-bs-theme="dark"] .semantic-roadmap .semantic-roadmap-item{
   --roadmap-item-point-color:var(--roadmap-item-point-color-dark,var(--roadmap-item-point-color-base,var(--roadmap-point-color)));
+  --roadmap-item-milestone-fill:var(--roadmap-item-milestone-color-dark,var(--roadmap-item-milestone-color-base,var(--roadmap-milestone-fill)));
 }
 .semantic-roadmap .roadmap-card{
   border:1px solid color-mix(in srgb,currentColor 14%,transparent);
@@ -138,11 +144,32 @@ body.quarto-dark .semantic-roadmap .semantic-roadmap-item,[data-bs-theme="dark"]
 .semantic-roadmap .roadmap-status-future .roadmap-marker,
 .semantic-roadmap .roadmap-status-future .roadmap-card{opacity:.68}
 .semantic-roadmap .roadmap-status-milestone .roadmap-marker{
-  border-radius:.22rem;
-  transform:rotate(45deg);
+  width:calc(var(--roadmap-point-size) * 1.12);
+  height:calc(var(--roadmap-point-size) * 1.78);
+  border:0;
+  border-radius:0;
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  background:var(--roadmap-item-point-color,var(--roadmap-point-color));
+  box-shadow:none;
+  filter:drop-shadow(0 .2rem .28rem color-mix(in srgb,var(--roadmap-item-point-color,var(--roadmap-point-color)) 24%,transparent));
+  transform:none;
+}
+.semantic-roadmap .roadmap-status-milestone .roadmap-marker::before{
+  content:"";
+  position:absolute;
+  inset:2px;
+  clip-path:inherit;
+  background:var(--roadmap-item-milestone-fill);
+}
+.semantic-roadmap[data-roadmap-markers="numbers"] .roadmap-status-milestone .roadmap-marker{
+  width:calc(var(--roadmap-point-size) * 1.5);
+  height:calc(var(--roadmap-point-size) * 2.1);
+  color:var(--roadmap-item-point-color,var(--roadmap-point-color));
 }
 .semantic-roadmap[data-roadmap-markers="numbers"] .roadmap-status-milestone .roadmap-marker-label{
-  transform:rotate(-45deg);
+  position:relative;
+  z-index:1;
+  transform:none;
 }
 .semantic-roadmap[data-roadmap-effective-orientation="horizontal"]{
   display:grid;
