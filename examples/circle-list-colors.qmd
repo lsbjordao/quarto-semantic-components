@@ -1,0 +1,107 @@
+---
+title: "Circled Ordered List — color examples"
+format:
+  html:
+    theme:
+      light: cosmos
+      dark: darkly
+filters:
+  - semantic-components
+---
+
+# Circled Ordered List
+
+`circle-list` keeps ordinary ordered-list semantics while allowing the marker border, number, and background to be styled independently.
+
+## One palette for both themes
+
+```markdown
+::: {.circle-list
+  border-color="#7c3aed"
+  text-color="#ffffff"
+  background-color="#7c3aed"}
+1. Research
+2. Prototype
+3. Validate
+4. Release
+:::
+```
+
+**Output:**
+
+::: {.circle-list border-color="#7c3aed" text-color="#ffffff" background-color="#7c3aed"}
+1. Research
+2. Prototype
+3. Validate
+4. Release
+:::
+
+## Theme-aware palette
+
+Use the `-light` and `-dark` suffixes when contrast needs to change with the Quarto theme.
+
+```markdown
+::: {.circle-list
+  border-color-light="#2563eb"
+  border-color-dark="#60a5fa"
+  text-color-light="#1e3a8a"
+  text-color-dark="#f8fafc"
+  background-color-light="#dbeafe"
+  background-color-dark="#1e3a8a"}
+1. Install
+2. Configure
+3. Compose
+4. Publish
+:::
+```
+
+**Output:**
+
+::: {.circle-list
+  border-color-light="#2563eb"
+  border-color-dark="#60a5fa"
+  text-color-light="#1e3a8a"
+  text-color-dark="#f8fafc"
+  background-color-light="#dbeafe"
+  background-color-dark="#1e3a8a"}
+1. Install
+2. Configure
+3. Compose
+4. Publish
+:::
+
+## Separate border, text, and fill
+
+The three channels are independent, so the marker can also be outlined with a contrasting fill.
+
+```markdown
+::: {.circle-list
+  border-color-light="#d97706"
+  border-color-dark="#fbbf24"
+  text-color-light="#92400e"
+  text-color-dark="#fef3c7"
+  background-color-light="#fffbeb"
+  background-color-dark="#451a03"}
+1. Extract
+2. Deduplicate
+3. Review
+4. Publish
+:::
+```
+
+**Output:**
+
+::: {.circle-list
+  border-color-light="#d97706"
+  border-color-dark="#fbbf24"
+  text-color-light="#92400e"
+  text-color-dark="#fef3c7"
+  background-color-light="#fffbeb"
+  background-color-dark="#451a03"}
+1. Extract
+2. Deduplicate
+3. Review
+4. Publish
+:::
+
+The canonical properties are `border-color`, `text-color`, and `background-color`. Each accepts an unsuffixed value plus optional `-light` and `-dark` overrides.
