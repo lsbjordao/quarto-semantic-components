@@ -77,20 +77,20 @@ local function ensure_title(item)
     pandoc.Span({pandoc.Str(title)},pandoc.Attr('',{'roadmap-title'}))
   }))
 end
-local function item_theme(item)
-  local function read(key,aliases)
-    local value=attr(item,key)
+local function item_themed_setting(item,key,aliases)
+  local function read(name,name_aliases)
+    local value=attr(item,name)
     if value and value~='' then return value end
-    for _,alias in ipairs(aliases or {}) do
+    for _,alias in ipairs(name_aliases or {}) do
       value=attr(item,alias)
       if value and value~='' then return value end
     end
     return nil
   end
   return
-    read('point-color',{'marker-color'}),
-    read('point-color-light',{'marker-color-light'}),
-    read('point-color-dark',{'marker-color-dark'})
+    read(key,aliases),
+    read(key..'-light',suffixed_aliases(aliases,'-light')),
+    read(key..'-dark',suffixed_aliases(aliases,'-dark'))
 end
 
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
@@ -139,8 +139,11 @@ local function html_item(item,index,markers)
   if status then add_class(item,'roadmap-status-'..status); item.attributes['data-roadmap-status']=status end
   item.attributes['data-roadmap-index']=tostring(index)
 
-  local point,point_light,point_dark=item_theme(item)
+  local point,point_light,point_dark=item_themed_setting(item,'point-color',{'marker-color'})
   append_theme_style(item,'--roadmap-item-point-color',point,point_light,point_dark)
+
+  local milestone,milestone_light,milestone_dark=item_themed_setting(item,'milestone-color',{'crystal-color','milestone-fill'})
+  append_theme_style(item,'--roadmap-item-milestone-color',milestone,milestone_light,milestone_dark)
 
   local original=pandoc.List()
   if status then
@@ -175,9 +178,11 @@ local function transform(el,meta)
   local road,road_light,road_dark=themed_setting(el,meta,'road-color',{'line-color','path-color'})
   local point,point_light,point_dark=themed_setting(el,meta,'point-color',{'marker-color','dot-color'})
   local surface,surface_light,surface_dark=themed_setting(el,meta,'surface-color',{'card-color','card-background'})
+  local milestone,milestone_light,milestone_dark=themed_setting(el,meta,'milestone-color',{'crystal-color','milestone-fill'})
   append_theme_style(el,'--roadmap-road-color',road,road_light,road_dark)
   append_theme_style(el,'--roadmap-point-color',point,point_light,point_dark)
   append_theme_style(el,'--roadmap-surface-color',surface,surface_light,surface_dark)
+  append_theme_style(el,'--roadmap-milestone-color',milestone,milestone_light,milestone_dark)
 
   local road_width=setting(el,meta,'road-width',{'line-width','path-width'})
   local road_background_width=setting(el,meta,'road-background-width',{'road-bed-width','path-background-width'})
