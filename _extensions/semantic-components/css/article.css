@@ -6,7 +6,6 @@
   --article-shadow:none;
   --article-accent-color:currentColor;
   --article-accent-width:4px;
-  --article-accent-inset:.45rem;
   position:relative;
   display:block;
   margin:1rem 0;
@@ -34,20 +33,11 @@
 .semantic-article-heading-6{font-size:.95rem}
 .semantic-article-heading>p{margin:0}
 
-.semantic-article.article-accent-left::before{
-  content:"";
-  position:absolute;
-  z-index:1;
-  left:var(--article-accent-inset);
-  top:var(--article-accent-inset);
-  bottom:var(--article-accent-inset);
-  width:var(--article-accent-width);
-  min-height:1.25rem;
-  border-radius:999px;
-  background:var(--article-accent-color);
-  box-shadow:0 0 0 1px color-mix(in srgb,var(--article-accent-color) 15%,transparent);
-  pointer-events:none;
+.semantic-article.article-accent-left{
+  border-left-width:var(--article-accent-width);
+  border-left-color:var(--article-accent-color);
 }
+
 .semantic-article.article-variant-note,
 .semantic-article.article-variant-info{--article-accent-color:#2563eb}
 .semantic-article.article-variant-warning{--article-accent-color:#d97706}
