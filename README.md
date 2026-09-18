@@ -145,7 +145,7 @@ Conteúdo.
 :::
 ```
 
-`dot-color` controla o contorno. O preenchimento só aparece se `dot-fill` for definido.
+`dot-color` controla o contorno. Sem `dot-fill`, o centro do nó usa a cor de superfície do tema para mascarar a aresta contínua; `dot-fill` aplica um preenchimento explícito.
 
 ```markdown
 ::: {.steps type="dots"
@@ -168,7 +168,7 @@ Conteúdo.
 :::
 ```
 
-Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color` e `line-width`. Nos steps com dots, a aresta é contínua de centro a centro dos nós, sem lacunas junto às bolinhas.
+Defaults e overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color`, `line-width` e `surface-color`. Nos steps com dots, a aresta é contínua de centro a centro dos nós e passa por trás das bolinhas; o centro usa a superfície do tema para ocultar a linha. Em fundos customizados, use `surface-color=`.
 
 ### Exemplo de timeline com `steps type="dots"`
 
@@ -271,7 +271,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.6" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.7" head="true"} merge feature/badges
 :::
 ```
 
@@ -426,7 +426,7 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 ```markdown
 :::article
 
-## 0.10.6 — 2026-09-17
+## 0.10.7 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
