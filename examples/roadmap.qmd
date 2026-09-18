@@ -1,0 +1,177 @@
+---
+title: "Roadmap component"
+format:
+  html:
+    toc: true
+    theme:
+      dark: darkly
+      light: cosmos
+  pdf:
+    toc: true
+  docx:
+    toc: true
+filters:
+  - semantic-components
+---
+
+# Roadmap
+
+`roadmap` draws a lightweight, sinuous path through a set of semantic roadmap items. The horizontal layout alternates cards above and below the path; the vertical layout keeps the cards readable while the road gently bends through the marker gutter.
+
+Horizontal roadmaps automatically switch to the vertical layout on narrow screens.
+
+## Horizontal
+
+```markdown
+::: {.roadmap orientation="horizontal" curve="0.6"}
+
+::: {.roadmap-item title="Research" status="done"}
+Review references and define requirements.
+:::
+
+::: {.roadmap-item title="Prototype" status="done"}
+Build the first working version.
+:::
+
+::: {.roadmap-item title="Validation" status="current"}
+Test the component with real documents.
+:::
+
+::: {.roadmap-item title="Release" status="milestone"}
+Publish the stable version.
+:::
+
+:::
+```
+
+::: {.roadmap orientation="horizontal" curve="0.6"}
+
+::: {.roadmap-item title="Research" status="done"}
+Review references and define requirements.
+:::
+
+::: {.roadmap-item title="Prototype" status="done"}
+Build the first working version.
+:::
+
+::: {.roadmap-item title="Validation" status="current"}
+Test the component with real documents.
+:::
+
+::: {.roadmap-item title="Release" status="milestone"}
+Publish the stable version.
+:::
+
+:::
+
+## Vertical with numbered markers
+
+```markdown
+::: {.roadmap orientation="vertical" markers="numbers" curve="0.75"}
+
+::: {.roadmap-item title="Collect" status="done"}
+Gather the source material.
+:::
+
+::: {.roadmap-item title="Process" status="current"}
+Transform and validate the data.
+:::
+
+::: {.roadmap-item title="Review" status="future"}
+Review the result.
+:::
+
+::: {.roadmap-item title="Publish" status="milestone"}
+Publish the final output.
+:::
+
+:::
+```
+
+::: {.roadmap orientation="vertical" markers="numbers" curve="0.75"}
+
+::: {.roadmap-item title="Collect" status="done"}
+Gather the source material.
+:::
+
+::: {.roadmap-item title="Process" status="current"}
+Transform and validate the data.
+:::
+
+::: {.roadmap-item title="Review" status="future"}
+Review the result.
+:::
+
+::: {.roadmap-item title="Publish" status="milestone"}
+Publish the final output.
+:::
+
+:::
+
+## Theme-aware colors
+
+Every exposed color follows the extension-wide fallback convention: an unsuffixed value applies to both themes, while `-light` and `-dark` override it only in the corresponding mode.
+
+```markdown
+::: {.roadmap
+  road-color-light="#64748b"
+  road-color-dark="#94a3b8"
+  point-color-light="#2563eb"
+  point-color-dark="#60a5fa"
+  surface-color-light="#ffffff"
+  surface-color-dark="#212529"}
+
+::: {.roadmap-item title="Plan" status="done"}
+Define scope and dependencies.
+:::
+
+::: {.roadmap-item title="Build" status="current"
+  point-color-light="#7c3aed"
+  point-color-dark="#c4b5fd"}
+Implement the component.
+:::
+
+::: {.roadmap-item title="Ship" status="future"}
+Release it.
+:::
+
+:::
+```
+
+::: {.roadmap road-color-light="#64748b" road-color-dark="#94a3b8" point-color-light="#2563eb" point-color-dark="#60a5fa" surface-color-light="#ffffff" surface-color-dark="#212529"}
+
+::: {.roadmap-item title="Plan" status="done"}
+Define scope and dependencies.
+:::
+
+::: {.roadmap-item title="Build" status="current" point-color-light="#7c3aed" point-color-dark="#c4b5fd"}
+Implement the component.
+:::
+
+::: {.roadmap-item title="Ship" status="future"}
+Release it.
+:::
+
+:::
+
+## Options
+
+| Option | Values / meaning | Default |
+|---|---|---|
+| `orientation` | `horizontal`, `vertical` | `horizontal` |
+| `curve` | number from `0` to `1` | `0.6` |
+| `markers` | `dot`, `numbers`, `none` | `dot` |
+| `road-width` | CSS length | `3px` |
+| `road-background-width` | CSS length | `10px` |
+| `point-size` | CSS length | `14px` |
+| `road-color` | road color | automatic |
+| `point-color` | marker color | automatic |
+| `surface-color` | card/marker surface | automatic |
+
+`road-color`, `point-color`, and `surface-color` also accept `-light` and `-dark`. Individual `.roadmap-item` blocks can override `point-color`, `point-color-light`, and `point-color-dark`.
+
+Item statuses are `done`, `current`, `future`, and `milestone`.
+
+## PDF and DOCX
+
+The SVG road is an HTML enhancement. In PDF and DOCX, the component becomes a normal ordered list and keeps item titles, statuses, and content readable and editable.
