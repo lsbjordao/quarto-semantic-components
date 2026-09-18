@@ -84,12 +84,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.10.1" type="accent" appearance="solid" >}}
+{{< badge "v0.10.2" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.1" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.2" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -256,16 +256,16 @@ Não existe um componente `timeline` separado. O mesmo padrão visual é produzi
   line-width="2px"
   dot-size="0.78rem"}
 
-## 2024 — Protótipo {dot-color="#16a34a"}
+## [2024]{.badge type="success" appearance="outline" size="xs"} Protótipo {dot-color="#16a34a"}
 Primeira implementação do componente.
 
-## 2025 — Beta {dot-color="#2563eb"}
+## [2025]{.badge type="info" appearance="outline" size="xs"} Beta {dot-color="#2563eb"}
 Validação e refinamento visual.
 
-## 2026-06 — Release candidate {dot-color="#f59e0b"}
+## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate {dot-color="#f59e0b"}
 Congelamento da API para testes finais.
 
-## 2026-09 — Release {dot-color="#16a34a"}
+## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
 Versão estável publicada.
 
 :::
@@ -275,16 +275,16 @@ Versão estável publicada.
 
 ::: {.steps type="dots" line-color="#9aa0a6" line-width="2px" dot-size="0.78rem"}
 
-## 2024 — Protótipo {dot-color="#16a34a"}
+## [2024]{.badge type="success" appearance="outline" size="xs"} Protótipo {dot-color="#16a34a"}
 Primeira implementação do componente.
 
-## 2025 — Beta {dot-color="#2563eb"}
+## [2025]{.badge type="info" appearance="outline" size="xs"} Beta {dot-color="#2563eb"}
 Validação e refinamento visual.
 
-## 2026-06 — Release candidate {dot-color="#f59e0b"}
+## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate {dot-color="#f59e0b"}
 Congelamento da API para testes finais.
 
-## 2026-09 — Release {dot-color="#16a34a"}
+## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
 Versão estável publicada.
 
 :::
@@ -334,7 +334,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.1
+- `main` release v0.10.2
 :::
 ```
 
@@ -357,7 +357,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.1
+- `main` release v0.10.2
 :::
 
 ### Mesmo DAG — direção BT
@@ -395,7 +395,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.1" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.2" head="true"} merge feature/badges
 :::
 ```
 
@@ -409,7 +409,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.1" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.2" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -633,7 +633,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 ```markdown
 :::article
 
-## 0.10.1 — 2026-09-17
+## 0.10.2 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
@@ -663,7 +663,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 :::article
 
-## 0.10.1 — 2026-09-17
+## 0.10.2 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
