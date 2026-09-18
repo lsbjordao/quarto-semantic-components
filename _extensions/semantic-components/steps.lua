@@ -10,7 +10,7 @@ local function is_html() return FORMAT and FORMAT:match('html') ~= nil end
 
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
-    name = 'quarto-semantic-components', version = '0.10.7',
+    name = 'quarto-semantic-components', version = '0.10.8',
     stylesheets = {
       'css/base.css', 'css/steps.css', 'css/file-tree.css',
       'css/git-tree.css', 'css/badges.css'
@@ -150,21 +150,25 @@ end
 local function transform_steps(el,meta)
   local list_mode = mode(el,meta)
   add_class(el, 'semantic-steps'); add_class(el, 'semantic-steps-' .. list_mode)
+
+  if list_mode == 'dots' or list_mode == 'numbered' then
+    local line_color = setting(el,meta,'line-color',{'connector-color'})
+    local line_width = setting(el,meta,'line-width',{'connector-width'})
+    local surface_color = setting(el,meta,'surface-color',{'surface','dot-surface'})
+    if line_color and line_color ~= '' then append_style(el, '--semantic-step-line-color:' .. line_color) end
+    if line_width and line_width ~= '' then append_style(el, '--semantic-step-line-width:' .. line_width) end
+    if surface_color and surface_color ~= '' then append_style(el, '--semantic-step-surface:' .. surface_color) end
+  end
+
   if list_mode == 'dots' then
     local dot_color = setting(el,meta,'dot-color',{'marker-color'})
     local dot_fill = surface_fill(setting(el,meta,'dot-fill',{'marker-fill'}))
     local dot_size = setting(el,meta,'dot-size',{'marker-size'})
     local dot_border_width = setting(el,meta,'dot-border-width',{'marker-border-width'})
-    local line_color = setting(el,meta,'line-color',{'connector-color'})
-    local line_width = setting(el,meta,'line-width',{'connector-width'})
-    local surface_color = setting(el,meta,'surface-color',{'surface','dot-surface'})
     if dot_color and dot_color ~= '' then append_style(el, '--semantic-step-dot-color:' .. dot_color) end
     if dot_fill and dot_fill ~= '' then append_style(el, '--semantic-step-dot-fill:' .. dot_fill) end
     if dot_size and dot_size ~= '' then append_style(el, '--semantic-step-dot-size:' .. dot_size) end
     if dot_border_width and dot_border_width ~= '' then append_style(el, '--semantic-step-dot-border-width:' .. dot_border_width) end
-    if line_color and line_color ~= '' then append_style(el, '--semantic-step-line-color:' .. line_color) end
-    if line_width and line_width ~= '' then append_style(el, '--semantic-step-line-width:' .. line_width) end
-    if surface_color and surface_color ~= '' then append_style(el, '--semantic-step-surface:' .. surface_color) end
   end
   el.content = from_headings(el.content, list_mode) or normalize_list(el.content, list_mode)
   if list_mode == 'dots' then ensure_dot_markers(el.content) end
