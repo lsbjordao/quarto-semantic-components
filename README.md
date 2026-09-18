@@ -324,7 +324,7 @@ Options: `orientation="horizontal|vertical"`, `curve="0..1"`, `markers="dot|numb
 
 The colors `road-color`, `point-color`, and `surface-color` support the usual unsuffixed, `-light`, and `-dark` forms; individual `.roadmap-item` blocks can override the point color. PDF and DOCX degrade to an ordered list with titles, statuses, and content preserved.
 
-A fuller gallery is available in [`examples/roadmap.qmd`](examples/roadmap.qmd).
+The complete rendered example now lives in [`index.qmd`](index.qmd), where the component shows the roadmap of the extension itself and links directly to the PDF and DOCX outputs.
 
 ## Circled Ordered List
 
