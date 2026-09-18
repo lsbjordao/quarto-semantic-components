@@ -26,7 +26,6 @@ local component_aliases = {
   ['file-tree'] = { 'file-tree', 'file_tree', 'filetree' },
   ['git-tree'] = { 'git-tree', 'git_tree', 'gittree' },
   ['circle-list'] = { 'circle-list', 'circle_list', 'circlelist' },
-  aside = { 'aside' },
   article = { 'article' }
 }
 
