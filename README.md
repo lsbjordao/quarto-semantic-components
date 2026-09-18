@@ -373,7 +373,7 @@ Conteúdo inicialmente recolhido.
 
 Internamente o HTML continua tendo `<article>` como elemento externo e usa um `<details>` nativo dentro dele. Por isso o controle funciona sem JavaScript e permanece acessível por teclado.
 
-`expanded=` e `open=` são equivalentes. `collapsed=` usa a lógica inversa. Se qualquer um desses estados for informado, `collapsible` é inferido automaticamente. Em PDF/DOCX, o conteúdo é sempre renderizado por completo.
+`expanded=`, `expand=` e `open=` são equivalentes. `collapsed=` usa a lógica inversa. Se qualquer um desses estados for informado, `collapsible` é inferido automaticamente. Em PDF/DOCX, o conteúdo é sempre renderizado por completo.
 
 Accent e collapse podem ser combinados:
 
