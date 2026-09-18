@@ -631,72 +631,114 @@ The `markers` option accepts `dot`, `numbers`, or `none`.
 
 ```markdown
 ::: {.roadmap markers="dot" curve="0.5"}
-::: {.roadmap-item title="Alpha"}First stage.:::
-::: {.roadmap-item title="Beta"}Second stage.:::
-::: {.roadmap-item title="Stable"}Third stage.:::
+
+::: {.roadmap-item title="Alpha"}
+First stage.
+:::
+
+::: {.roadmap-item title="Beta"}
+Second stage.
+:::
+
+::: {.roadmap-item title="Stable"}
+Third stage.
+:::
+
 :::
 ```
 
 **Output:**
 
 ::: {.roadmap markers="dot" curve="0.5"}
+
 ::: {.roadmap-item title="Alpha"}
 First stage.
 :::
+
 ::: {.roadmap-item title="Beta"}
 Second stage.
 :::
+
 ::: {.roadmap-item title="Stable"}
 Third stage.
 :::
+
 :::
 
 ### Numbers
 
 ```markdown
 ::: {.roadmap markers="numbers" curve="0.5"}
-::: {.roadmap-item title="Alpha"}First stage.:::
-::: {.roadmap-item title="Beta"}Second stage.:::
-::: {.roadmap-item title="Stable"}Third stage.:::
+
+::: {.roadmap-item title="Alpha"}
+First stage.
+:::
+
+::: {.roadmap-item title="Beta"}
+Second stage.
+:::
+
+::: {.roadmap-item title="Stable"}
+Third stage.
+:::
+
 :::
 ```
 
 **Output:**
 
 ::: {.roadmap markers="numbers" curve="0.5"}
+
 ::: {.roadmap-item title="Alpha"}
 First stage.
 :::
+
 ::: {.roadmap-item title="Beta"}
 Second stage.
 :::
+
 ::: {.roadmap-item title="Stable"}
 Third stage.
 :::
+
 :::
 
 ### No markers
 
 ```markdown
 ::: {.roadmap markers="none" curve="0.5"}
-::: {.roadmap-item title="Alpha"}First stage.:::
-::: {.roadmap-item title="Beta"}Second stage.:::
-::: {.roadmap-item title="Stable"}Third stage.:::
+
+::: {.roadmap-item title="Alpha"}
+First stage.
+:::
+
+::: {.roadmap-item title="Beta"}
+Second stage.
+:::
+
+::: {.roadmap-item title="Stable"}
+Third stage.
+:::
+
 :::
 ```
 
 **Output:**
 
 ::: {.roadmap markers="none" curve="0.5"}
+
 ::: {.roadmap-item title="Alpha"}
 First stage.
 :::
+
 ::: {.roadmap-item title="Beta"}
 Second stage.
 :::
+
 ::: {.roadmap-item title="Stable"}
 Third stage.
 :::
+
 :::
 
 ## Curvature
@@ -706,28 +748,67 @@ Third stage.
 ### `curve="0"`
 
 ::: {.roadmap curve="0"}
-::: {.roadmap-item title="A"}Straight.:::
-::: {.roadmap-item title="B"}Straight.:::
-::: {.roadmap-item title="C"}Straight.:::
-::: {.roadmap-item title="D"}Straight.:::
+
+::: {.roadmap-item title="A"}
+Straight.
+:::
+
+::: {.roadmap-item title="B"}
+Straight.
+:::
+
+::: {.roadmap-item title="C"}
+Straight.
+:::
+
+::: {.roadmap-item title="D"}
+Straight.
+:::
+
 :::
 
 ### `curve="0.35"`
 
 ::: {.roadmap curve="0.35"}
-::: {.roadmap-item title="A"}Subtle curve.:::
-::: {.roadmap-item title="B"}Subtle curve.:::
-::: {.roadmap-item title="C"}Subtle curve.:::
-::: {.roadmap-item title="D"}Subtle curve.:::
+
+::: {.roadmap-item title="A"}
+Subtle curve.
+:::
+
+::: {.roadmap-item title="B"}
+Subtle curve.
+:::
+
+::: {.roadmap-item title="C"}
+Subtle curve.
+:::
+
+::: {.roadmap-item title="D"}
+Subtle curve.
+:::
+
 :::
 
 ### `curve="1"`
 
 ::: {.roadmap curve="1"}
-::: {.roadmap-item title="A"}Full curve.:::
-::: {.roadmap-item title="B"}Full curve.:::
-::: {.roadmap-item title="C"}Full curve.:::
-::: {.roadmap-item title="D"}Full curve.:::
+
+::: {.roadmap-item title="A"}
+Full curve.
+:::
+
+::: {.roadmap-item title="B"}
+Full curve.
+:::
+
+::: {.roadmap-item title="C"}
+Full curve.
+:::
+
+::: {.roadmap-item title="D"}
+Full curve.
+:::
+
 :::
 
 ## Item states
@@ -750,7 +831,7 @@ Future content is intentionally quieter.
 :::
 
 ::: {.roadmap-item title="Milestone" status="milestone"}
-A larger conceptual milestone uses a diamond marker.
+A milestone uses a diamond marker.
 :::
 
 :::
@@ -773,7 +854,7 @@ Future content is intentionally quieter.
 :::
 
 ::: {.roadmap-item title="Milestone" status="milestone"}
-A larger conceptual milestone uses a diamond marker.
+A milestone uses a diamond marker.
 :::
 
 :::
@@ -790,48 +871,75 @@ The visual proportions are independent. `road-background-width` controls the con
   road-dash="14px 10px"
   point-size="20px"}
 
-::: {.roadmap-item title="Wide road"}A wider continuous road bed.:::
-::: {.roadmap-item title="Long dashes"}A custom center-line rhythm.:::
-::: {.roadmap-item title="Large points"}Larger markers.:::
+::: {.roadmap-item title="Wide road"}
+A wider continuous road bed.
+:::
+
+::: {.roadmap-item title="Long dashes"}
+A custom center-line rhythm.
+:::
+
+::: {.roadmap-item title="Large points"}
+Larger markers.
+:::
+
 :::
 ```
 
 **Output:**
 
 ::: {.roadmap curve="0.75" road-background-width="18px" road-width="4px" road-dash="14px 10px" point-size="20px"}
+
 ::: {.roadmap-item title="Wide road"}
 A wider continuous road bed.
 :::
+
 ::: {.roadmap-item title="Long dashes"}
 A custom center-line rhythm.
 :::
+
 ::: {.roadmap-item title="Large points"}
 Larger markers.
 :::
+
 :::
 
 Set `road-dash="none"` when a continuous center line is desired. The outer road bed remains continuous in either case.
 
 ```markdown
 ::: {.roadmap road-dash="none" road-background-width="14px" road-width="3px"}
-::: {.roadmap-item title="Continuous"}No center dashes.:::
-::: {.roadmap-item title="Still a road"}The outer road bed remains continuous.:::
-::: {.roadmap-item title="Finish"}Same geometry.:::
+
+::: {.roadmap-item title="Continuous"}
+No center dashes.
+:::
+
+::: {.roadmap-item title="Still a road"}
+The outer road bed remains continuous.
+:::
+
+::: {.roadmap-item title="Finish"}
+Same geometry.
+:::
+
 :::
 ```
 
 **Output:**
 
 ::: {.roadmap road-dash="none" road-background-width="14px" road-width="3px"}
+
 ::: {.roadmap-item title="Continuous"}
 No center dashes.
 :::
+
 ::: {.roadmap-item title="Still a road"}
 The outer road bed remains continuous.
 :::
+
 ::: {.roadmap-item title="Finish"}
 Same geometry.
 :::
+
 :::
 
 ## Theme-aware colors
