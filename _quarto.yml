@@ -24,9 +24,7 @@ extensions:
       icon: "!"
 
   steps:
-    dot-color: "#8c959f"
     dot-size: "0.72rem"
-    line-color: "#9aa0a6"
     line-width: "1.5px"
 
   file-tree:
@@ -36,7 +34,6 @@ extensions:
 
   git-tree:
     direction: TB
-    line-color: "#9aa0a6"
     line-width: "2px"
     node-size: "0.68rem"
     lane-gap: "0.82rem"
