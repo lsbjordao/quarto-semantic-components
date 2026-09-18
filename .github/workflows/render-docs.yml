@@ -1,0 +1,59 @@
+name: Render documentation outputs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.qmd"
+      - "_quarto.yml"
+      - "_extensions/**"
+      - "assets/**"
+      - ".github/workflows/render-docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-documentation
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto and TinyTeX
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
+      - name: Install SVG support
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+
+      - name: Render PDF
+        run: quarto render index.qmd --to pdf --output quarto-semantic-components.pdf
+
+      - name: Render DOCX
+        run: quarto render index.qmd --to docx --output quarto-semantic-components.docx
+
+      - name: Render HTML
+        run: |
+          rm -rf index_files
+          quarto render index.qmd --to html --output index.html
+
+      - name: Commit rendered outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add quarto-semantic-components.pdf quarto-semantic-components.docx index.html index_files
+          if git diff --cached --quiet; then
+            echo "Rendered outputs are already up to date."
+            exit 0
+          fi
+          git commit -m "docs: render PDF DOCX and HTML outputs"
+          git push
