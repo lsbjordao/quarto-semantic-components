@@ -14,8 +14,7 @@ Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.de
 - `git-tree`: grafo de commits Git (DAG) com branches, merges, tags, `HEAD` e direções TB/BT;
 - `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips, ícones e pastas colapsáveis em HTML;
 - `badge`: badge inline com presets de projeto e personalização por instância;
-- `aside`: bloco semântico lateral baseado no elemento HTML `<aside>`, com variantes visuais;
-- `article`: contêiner semântico baseado no elemento HTML `<article>`, neutro e reutilizável.
+- `article`: contêiner semântico baseado no elemento HTML `<article>`, com borda, accent lateral opcional e collapse/expand em HTML.
 
 ## Instalação
 
@@ -74,12 +73,11 @@ extensions:
     row-height: "36px"
     content-gap: "0.55rem"
 
-  aside:
-    variant: default
-
   article:
     radius: "0.75rem"
     padding: "1rem 1.1rem"
+    accent: none
+    expanded: true
 ```
 
 Também são aceitos os namespaces `semantic-components:` e `extensions.semantic-components`.
@@ -246,7 +244,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.9.0" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -333,64 +331,94 @@ Isso mantém `steps` como primitive reutilizável em vez de criar outro componen
 
 Para fluxos e diagramas mais gerais, a extensão não cria um `pipeline` próprio: o Quarto já oferece integração com Mermaid e outras ferramentas de diagramas.
 
-## Aside
-
-`aside` é um bloco semântico genérico. Em HTML, ele é emitido como um elemento real `<aside>`; em PDF/DOCX, o conteúdo permanece como um bloco estrutural legível.
-
-```markdown
-::: {.aside variant="note" title="Nota"}
-Conteúdo complementar ao fluxo principal do documento.
-:::
-
-::: {.aside variant="warning" title="Atenção"}
-Este conteúdo merece destaque, mas continua sendo semanticamente um aside.
-:::
-```
-
-Variantes: `default`, `note`, `warning`, `danger` e `success`.
-
-O default pode ser definido no projeto:
-
-```yaml
-extensions:
-  aside:
-    variant: default
-```
-
 ## Article
 
-`article` é um contêiner agnóstico para uma unidade de conteúdo autocontida. Em HTML, ele é emitido como um elemento real `<article>` com borda arredondada por padrão.
+`article` é o bloco genérico para uma unidade de conteúdo autocontida. Em HTML, a extensão emite um elemento real `<article>`. O comportamento padrão é apenas uma borda discreta e arredondada:
+
+```markdown
+:::article
+## Nota técnica
+Conteúdo autocontido com **Markdown** normal.
+:::
+```
+
+### Accent esquerdo opcional
+
+O artigo genérico não tem barra lateral. Para acrescentar uma barra esquerda com pontas arredondadas, use `accent="left"`:
+
+```markdown
+::: {.article accent="left" variant="warning"}
+## Atenção
+A barra lateral é apenas uma apresentação opcional do mesmo `article`.
+:::
+```
+
+`variant=` define a cor semântica do accent quando ele está ativo. Valores prontos: `default`, `note`/`info`, `warning`, `danger` e `success`. Também é possível usar `accent-color=` diretamente.
+
+Parâmetros do accent: `accent`, `accent-color`, `accent-width` e `accent-inset`. `left-border="true"` é alias para `accent="left"`.
+
+### Collapse e expand
+
+O mesmo `article` pode ser colapsável no HTML:
+
+```markdown
+::: {.article
+  collapsible="true"
+  summary="Detalhes técnicos"
+  expanded="false"}
+
+Conteúdo inicialmente recolhido.
+
+:::
+```
+
+Internamente o HTML continua tendo `<article>` como elemento externo e usa um `<details>` nativo dentro dele. Por isso o controle funciona sem JavaScript e permanece acessível por teclado.
+
+`expanded=` e `open=` são equivalentes. `collapsed=` usa a lógica inversa. Se qualquer um desses estados for informado, `collapsible` é inferido automaticamente. Em PDF/DOCX, o conteúdo é sempre renderizado por completo.
+
+Accent e collapse podem ser combinados:
+
+```markdown
+::: {.article
+  accent="left"
+  variant="note"
+  collapsible="true"
+  summary="Metodologia"
+  expanded="true"}
+
+Conteúdo da metodologia.
+
+:::
+```
+
+### Exemplo: changelog
+
+Um changelog não precisa de um componente próprio; é apenas um possível conteúdo de um `article`:
 
 ```markdown
 :::article
 
-## 0.9.0 — 2026-09-17
+## 0.10.0 — 2026-09-17
 
 ### Added
-- `aside`
-- `article`
+- Accent esquerdo opcional em `article`.
+- Collapse/expand nativo.
 
 ### Changed
-- Timeline demonstrada com `steps type="dots"`.
-- Fluxos gerais ficam a cargo de Mermaid/Quarto.
+- Todos os blocos genéricos convergiram para `article`.
 
 ### Removed
-- `timeline`
-- `pipeline`
-- `details`
-- `changelog`
+- `aside`.
 
 :::
 ```
 
-O exemplo acima é um changelog, mas `article` não conhece nenhuma semântica específica de changelog. Ele pode conter posts, releases, notas técnicas, resumos, especificações ou qualquer outra unidade autocontida.
-
-Defaults disponíveis: `border-color`, `radius`, `padding`, `background` e `shadow`.
+Além das opções acima, `article` aceita `border-color`, `radius`, `padding`, `background` e `shadow`.
 
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, badges, tooltips, file tree interativo, Git DAG em SVG e elementos semânticos `<aside>`/`<article>`;
+- **HTML**: apresentação completa, ícones, badges, tooltips, file tree interativo, Git DAG em SVG e o elemento semântico `<article>`;
 - **PDF**: conteúdo estrutural e links são preservados; componentes interativos degradam com segurança;
 - **DOCX**: listas, headings, links e texto permanecem editáveis.
 
