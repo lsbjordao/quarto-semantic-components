@@ -27,6 +27,19 @@ end
 local function cssvar(out,name,value)
   if value and value~='' then out[#out+1]=name..':'..value end
 end
+local function indicator_width(value)
+  if not value or value=='' then return nil end
+  local presets={
+    xs='14rem',
+    sm='18rem',
+    md='26rem',
+    lg='36rem',
+    xl='48rem',
+    full='100%'
+  }
+  local key=tostring(value):lower()
+  return presets[key] or value
+end
 local function indicator_style(kwargs)
   local style={}
   cssvar(style,'--qsc-indicator-color-base',kw(kwargs,'color'))
@@ -35,8 +48,12 @@ local function indicator_style(kwargs)
   cssvar(style,'--qsc-indicator-track-base',kw(kwargs,'track-color'))
   cssvar(style,'--qsc-indicator-track-light',kw(kwargs,'track-color-light'))
   cssvar(style,'--qsc-indicator-track-dark',kw(kwargs,'track-color-dark'))
-  local width=kw(kwargs,'width')
-  if width then style[#style+1]='width:'..width end
+  local width=indicator_width(kw(kwargs,'width') or kw(kwargs,'size'))
+  if width then
+    cssvar(style,'--qsc-indicator-width',width)
+    cssvar(style,'--qsc-indicator-bar-min','0')
+    cssvar(style,'--qsc-indicator-bar-max','1fr')
+  end
   return #style>0 and table.concat(style,';')..';' or ''
 end
 local function numeric(value,default) return tonumber(value) or default end
