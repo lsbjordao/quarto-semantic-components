@@ -1,64 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">Quarto Semantic Components logo</title>
-  <desc id="desc">A centered document containing semantic component symbols, layered over a stylized Quarto Q.</desc>
+  <desc id="desc">The Quarto quartered-circle icon behind a centered document containing semantic component symbols, with a short tail suggesting a Q.</desc>
   <defs>
-    <linearGradient id="qRing" x1="78" y1="72" x2="430" y2="442" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2563eb"/>
-      <stop offset=".48" stop-color="#0ea5e9"/>
-      <stop offset=".74" stop-color="#14b8a6"/>
-      <stop offset="1" stop-color="#7c3aed"/>
+    <linearGradient id="quartoBlue" x1="110" y1="90" x2="400" y2="405" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#75AADB"/>
+      <stop offset="1" stop-color="#39729E"/>
     </linearGradient>
-    <linearGradient id="qTail" x1="326" y1="326" x2="442" y2="442" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7c3aed"/>
-      <stop offset="1" stop-color="#2563eb"/>
+    <linearGradient id="paper" x1="175" y1="112" x2="345" y2="408" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F4F7FB"/>
     </linearGradient>
-    <linearGradient id="page" x1="184" y1="108" x2="332" y2="402" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#f8fafc"/>
+    <linearGradient id="fold" x1="318" y1="112" x2="384" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#DCE8F6"/>
+      <stop offset="1" stop-color="#C7D8EA"/>
     </linearGradient>
-    <linearGradient id="fold" x1="318" y1="100" x2="382" y2="168" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#dbeafe"/>
-      <stop offset="1" stop-color="#c4b5fd"/>
-    </linearGradient>
-    <linearGradient id="crystal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#fde68a"/>
-      <stop offset=".55" stop-color="#f59e0b"/>
-      <stop offset="1" stop-color="#b45309"/>
-    </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0f172a" flood-opacity=".18"/>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#0F172A" flood-opacity=".22"/>
     </filter>
+    <clipPath id="quartoCircle">
+      <circle cx="256" cy="244" r="174"/>
+    </clipPath>
   </defs>
 
-  <!-- Quarto-inspired Q behind the document -->
-  <circle cx="256" cy="246" r="176" fill="none" stroke="url(#qRing)" stroke-width="50" stroke-linecap="round" opacity=".78"/>
-  <path d="M350 348 L432 430" fill="none" stroke="url(#qTail)" stroke-width="50" stroke-linecap="round" opacity=".82"/>
-
-  <!-- Centered document -->
-  <g filter="url(#shadow)">
-    <path d="M182 104H318L382 168V376C382 396 366 412 346 412H182C162 412 146 396 146 376V140C146 120 162 104 182 104Z"
-          fill="url(#page)" stroke="#dbe3ef" stroke-width="6" stroke-linejoin="round"/>
-    <path d="M318 104V144C318 157 329 168 342 168H382L318 104Z" fill="url(#fold)"/>
+  <!-- Quarto icon: the familiar quartered blue circle -->
+  <g opacity=".96">
+    <circle cx="256" cy="244" r="174" fill="url(#quartoBlue)"/>
+    <g clip-path="url(#quartoCircle)">
+      <rect x="248" y="66" width="16" height="356" fill="#FFFFFF" fill-opacity=".94"/>
+      <rect x="78" y="236" width="356" height="16" fill="#FFFFFF" fill-opacity=".94"/>
+    </g>
+    <!-- short tail only to suggest a Q without replacing the Quarto mark -->
+    <path d="M361 349L421 409" stroke="#39729E" stroke-width="28" stroke-linecap="round"/>
   </g>
 
-  <!-- Text lines -->
-  <rect x="190" y="168" width="128" height="16" rx="8" fill="#cbd5e1"/>
-  <rect x="190" y="198" width="94" height="16" rx="8" fill="#e2e8f0"/>
+  <!-- Centered file -->
+  <g filter="url(#shadow)">
+    <path d="M184 108H318L382 172V376C382 397 365 414 344 414H184C163 414 146 397 146 376V146C146 125 163 108 184 108Z"
+          fill="url(#paper)" stroke="#D8E1EC" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M318 108V146C318 160 330 172 344 172H382L318 108Z" fill="url(#fold)"/>
+  </g>
 
-  <!-- Semantic steps, entirely inside the file -->
-  <path d="M206 252V330" stroke="#93c5fd" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="206" cy="252" r="14" fill="#2563eb"/>
-  <circle cx="206" cy="291" r="14" fill="#14b8a6"/>
-  <circle cx="206" cy="330" r="14" fill="#7c3aed"/>
-  <rect x="238" y="242" width="92" height="18" rx="9" fill="#bfdbfe"/>
-  <rect x="238" y="281" width="112" height="18" rx="9" fill="#99f6e4"/>
-  <rect x="238" y="320" width="96" height="18" rx="9" fill="#ddd6fe"/>
+  <!-- Content cues kept inside the file -->
+  <rect x="190" y="176" width="128" height="15" rx="7.5" fill="#C8D3E1"/>
+  <rect x="190" y="204" width="92" height="15" rx="7.5" fill="#DEE5EE"/>
 
-  <!-- Small semantic hierarchy -->
-  <path d="M272 358V370M226 370H318M226 370V382M272 370V382M318 370V382"
-        fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <polygon points="272,344 284,358 272,372 260,358" fill="url(#crystal)"/>
-  <rect x="208" y="384" width="36" height="16" rx="8" fill="#2563eb"/>
-  <rect x="254" y="384" width="36" height="16" rx="8" fill="#14b8a6"/>
-  <rect x="300" y="384" width="36" height="16" rx="8" fill="#7c3aed"/>
+  <path d="M208 258V330" stroke="#9DC5EA" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="208" cy="258" r="13" fill="#39729E"/>
+  <circle cx="208" cy="294" r="13" fill="#3FA7A3"/>
+  <circle cx="208" cy="330" r="13" fill="#7567C8"/>
+  <rect x="238" y="249" width="94" height="17" rx="8.5" fill="#BFD8EE"/>
+  <rect x="238" y="285" width="112" height="17" rx="8.5" fill="#BDE8E3"/>
+  <rect x="238" y="321" width="98" height="17" rx="8.5" fill="#D8D1F3"/>
+
+  <path d="M272 358V371M226 371H318M226 371V385M272 371V385M318 371V385"
+        fill="none" stroke="#D8A11F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="272,344 283,358 272,372 261,358" fill="#D8A11F"/>
+  <rect x="207" y="386" width="38" height="15" rx="7.5" fill="#39729E"/>
+  <rect x="253" y="386" width="38" height="15" rx="7.5" fill="#3FA7A3"/>
+  <rect x="299" y="386" width="38" height="15" rx="7.5" fill="#7567C8"/>
 </svg>
