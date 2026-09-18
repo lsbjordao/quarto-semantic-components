@@ -14,7 +14,7 @@ filters:
 
 This page demonstrates the **Quarto Semantic Components** extension. In each section, the source code appears **before** the rendered output.
 
-## Project defaults in `_quarto.yml`
+# Project defaults in `_quarto.yml`
 
 This repository uses shared defaults:
 
@@ -65,11 +65,11 @@ extensions:
 
 Precedence is **project defaults → preset → component → individual item**.
 
-## Badges inline
+# Badges
 
 > The public shortcode is `badge`. Since [`mcanouil/quarto-badge`](https://github.com/mcanouil/quarto-badge) uses the same name, the project must choose which badge extension to use.
 
-### Presets defined in the project
+## Presets defined in the project
 
 ```{.markdown shortcodes=false}
 {{< badge stable >}}
@@ -82,7 +82,7 @@ Precedence is **project defaults → preset → component → individual item**.
 
 {{< badge stable >}} {{< badge experimental >}} {{< badge deprecated >}} {{< badge "Stable release" key="stable" >}}
 
-### Free customization
+## Free customization
 
 ```{.markdown shortcodes=false}
 {{< badge "Beta" >}}
@@ -95,7 +95,7 @@ Precedence is **project defaults → preset → component → individual item**.
 
 {{< badge "Beta" >}} {{< badge "Stable" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.9" type="accent" appearance="solid" >}}
 
-### Forma AST-native
+## Forma AST-native
 
 ```markdown
 [AST-native]{.badge key="stable" appearance="outline" size="md"}
@@ -103,7 +103,9 @@ Precedence is **project defaults → preset → component → individual item**.
 
 **Output:** [AST-native]{.badge key="stable" appearance="outline" size="md"}
 
-## Steps — numerado
+# Steps 
+
+## Numbered
 
 All `steps` examples use four steps. In numbered mode, the edge is also continuous between circle centers and stays behind the markers; the inside follows the theme surface.
 
@@ -139,7 +141,7 @@ Set defaults in `_quarto.yml` if desired.
 Each heading starts a step.
 :::
 
-## Steps — dots
+## Dots
 
 Dots look hollow by default: the center uses the theme surface color, hiding the continuous edge that passes behind them. `dot-color` controls the outline and `dot-fill` enables explicit fill.
 
@@ -177,7 +179,7 @@ Prepare the data.
 Publish the result.
 :::
 
-### Custom background
+## Custom background
 
 If the steps sit on a surface different from the document background, use `surface-color` so the dot centers match that background:
 
@@ -201,7 +203,7 @@ Fourth step.
 :::
 ```
 
-### Dot color and size
+## Dot color and size
 
 ```markdown
 ::: {.steps type="dots"
@@ -240,7 +242,7 @@ Review the processed dataset.
 Update the curated dataset.
 :::
 
-### Optional fill
+## Optional fill
 
 ```markdown
 ::: {.steps type="dots" line-width="2px"}
@@ -274,7 +276,7 @@ Filled orange dot.
 Filled green dot.
 :::
 
-### Example — timeline with Steps dots
+## Example — timeline with Steps dots
 
 There is no separate `timeline` component. The same visual pattern is produced with `steps type="dots"`, keeping the API smaller and more reusable.
 
@@ -318,7 +320,7 @@ Stable version released.
 :::
 
 
-## Lista ordenada circulada
+# Circled Ordered List
 
 ```markdown
 :::circle-list
@@ -338,11 +340,11 @@ Stable version released.
 4. Fourth item
 :::
 
-## Git tree — commit DAG
+# Git tree
 
 The graph represents commits and parent → child relationships. Branches split from nodes; merges end at nodes; the tag and description follow the commit lane.
 
-### Simple syntax — TB direction
+## Simple syntax — TB direction
 
 ```markdown
 ::: {.git-tree direction="TB"}
@@ -388,7 +390,7 @@ The graph represents commits and parent → child relationships. Branches split 
 - `main` release v0.10.9
 :::
 
-### Same DAG — BT direction
+## Same DAG — BT direction
 
 ```markdown
 ::: {.git-tree direction="BT"}
@@ -412,7 +414,7 @@ The graph represents commits and parent → child relationships. Branches split 
 - `main` release
 :::
 
-### Explicit DAG — ids, parents, tag, and HEAD
+## Explicit DAG — ids, parents, tag, and HEAD
 
 ```markdown
 :::git-tree
@@ -440,7 +442,7 @@ The graph represents commits and parent → child relationships. Branches split 
 - `main`{#c8 parents="c2,c7" tag="v0.10.9" head="true"} merge feature/badges
 :::
 
-## File tree — deep nesting and icons
+# File tree
 
 ```markdown
 :::file-tree
@@ -502,7 +504,7 @@ The graph represents commits and parent → child relationships. Branches split 
   - _quarto.yml
 :::
 
-## File tree — horizontal indentation
+## Horizontal indentation
 
 The per-level indentation can be changed with `indent`. This gallery defaults to `1.8rem`.
 
@@ -532,7 +534,7 @@ The per-level indentation can be changed with `indent`. This gallery defaults to
 
 Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more visually.
 
-## File tree — expand and collapse folders
+## Expand and collapse folders
 
 ```markdown
 ::: {.file-tree expanded="false"}
@@ -566,7 +568,7 @@ Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more v
   - processed.parquet
 :::
 
-## File tree — text, code, links, info, and icons
+## Text, code, links, info, and icons
 
 ```markdown
 :::file-tree
@@ -594,11 +596,11 @@ Use larger values, such as `indent="2.4rem"`, to spread the hierarchy out more v
 - `golden.parquet`{icon="★"}
 :::
 
-## Article
+# Article
 
 `article` is the generic primitive for self-contained content. The outer HTML element is always `<article>`.
 
-### Generic — rounded border only
+## Generic — rounded border only
 
 ```markdown
 :::article
@@ -614,7 +616,7 @@ This is the default `article`, with no accent and no collapse.
 This is the default `article`, with no accent and no collapse.
 :::
 
-### Left accent with rounded ends
+## Left accent with rounded ends
 
 ```markdown
 ::: {.article accent="left" accent-color="warning"}
@@ -632,7 +634,7 @@ The side accent is optional. The component remains an `article`.
 
 Use `accent-color="warning"`, `note`, `danger`, `success`, `important`, or any CSS color such as `#8b5cf6`. `accent-width` controls the thickness.
 
-### Collapsed by default
+## Collapsed by default
 
 ```markdown
 ::: {.article
@@ -663,7 +665,7 @@ The content is inside a native `details`, while the outer element remains `artic
 
 :::
 
-### Expanded + accent
+## Expanded + accent
 
 ```markdown
 ::: {.article
@@ -686,7 +688,7 @@ This example starts expanded and combines accent with collapse.
 
 :::
 
-### Example — changelog inside an article
+## Example — changelog inside an article
 
 ```markdown
 :::article
@@ -746,7 +748,7 @@ This example starts expanded and combines accent with collapse.
 
 :::
 
-### Custom article
+## Custom article
 
 ```markdown
 ::: {.article
@@ -768,7 +770,7 @@ An `article` can also represent posts, releases, summaries, or specifications.
 :::
 
 
-## Inspiration and formats
+# Inspiration and formats
 
 The **Steps** and **File Tree** ideas were inspired by [Vocs](https://vocs.dev/) components, but the implementation is original and Pandoc-AST-oriented.
 

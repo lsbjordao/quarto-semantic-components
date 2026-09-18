@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quarto Semantic Components — exemplos</title>
+<title>Quarto Semantic Components — examples</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,13 +72,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="index_files/libs/bootstrap/bootstrap-dark-7c823468029c3b379f9b90e418026680.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.7/base.css" rel="stylesheet">
-<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.7/steps.css" rel="stylesheet">
-<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.7/file-tree.css" rel="stylesheet">
-<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.7/git-tree.css" rel="stylesheet">
-<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.7/badges.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.9/base.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.9/steps.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.9/file-tree.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.9/git-tree.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/quarto-semantic-components-0.10.9/badges.css" rel="stylesheet">
 <script src="index_files/libs/quarto-contrib/quarto-semantic-components-file-tree-0.10.6/file-tree.js"></script>
-<link href="index_files/libs/quarto-contrib/quarto-semantic-components-article-0.10.5/article.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/quarto-semantic-components-article-0.10.9/article.css" rel="stylesheet">
 
 
 </head>
@@ -251,43 +251,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#defaults-de-projeto-no-_quarto.yml" id="toc-defaults-de-projeto-no-_quarto.yml" class="nav-link active" data-scroll-target="#defaults-de-projeto-no-_quarto.yml">Defaults de projeto no <code>_quarto.yml</code></a></li>
-  <li><a href="#badges-inline" id="toc-badges-inline" class="nav-link" data-scroll-target="#badges-inline">Badges inline</a>
+  <li><a href="#project-defaults-in-_quarto.yml" id="toc-project-defaults-in-_quarto.yml" class="nav-link active" data-scroll-target="#project-defaults-in-_quarto.yml">Project defaults in <code>_quarto.yml</code></a></li>
+  <li><a href="#badges" id="toc-badges" class="nav-link" data-scroll-target="#badges">Badges</a>
   <ul class="collapse">
-  <li><a href="#presets-definidos-no-projeto" id="toc-presets-definidos-no-projeto" class="nav-link" data-scroll-target="#presets-definidos-no-projeto">Presets definidos no projeto</a></li>
-  <li><a href="#personalização-livre" id="toc-personalização-livre" class="nav-link" data-scroll-target="#personalização-livre">Personalização livre</a></li>
+  <li><a href="#presets-defined-in-the-project" id="toc-presets-defined-in-the-project" class="nav-link" data-scroll-target="#presets-defined-in-the-project">Presets defined in the project</a></li>
+  <li><a href="#free-customization" id="toc-free-customization" class="nav-link" data-scroll-target="#free-customization">Free customization</a></li>
   <li><a href="#forma-ast-native" id="toc-forma-ast-native" class="nav-link" data-scroll-target="#forma-ast-native">Forma AST-native</a></li>
   </ul></li>
-  <li><a href="#steps-numerado" id="toc-steps-numerado" class="nav-link" data-scroll-target="#steps-numerado">Steps — numerado</a></li>
-  <li><a href="#steps-bolinhas" id="toc-steps-bolinhas" class="nav-link" data-scroll-target="#steps-bolinhas">Steps — bolinhas</a>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a>
   <ul class="collapse">
-  <li><a href="#default-do-projeto" id="toc-default-do-projeto" class="nav-link" data-scroll-target="#default-do-projeto">Default do projeto</a></li>
-  <li><a href="#fundo-customizado" id="toc-fundo-customizado" class="nav-link" data-scroll-target="#fundo-customizado">Fundo customizado</a></li>
-  <li><a href="#cor-e-tamanho-por-bolinha" id="toc-cor-e-tamanho-por-bolinha" class="nav-link" data-scroll-target="#cor-e-tamanho-por-bolinha">Cor e tamanho por bolinha</a></li>
-  <li><a href="#preenchimento-opcional" id="toc-preenchimento-opcional" class="nav-link" data-scroll-target="#preenchimento-opcional">Preenchimento opcional</a></li>
-  <li><a href="#exemplo-timeline-com-steps-dots" id="toc-exemplo-timeline-com-steps-dots" class="nav-link" data-scroll-target="#exemplo-timeline-com-steps-dots">Exemplo — timeline com Steps dots</a></li>
-  </ul></li>
-  <li><a href="#lista-ordenada-circulada" id="toc-lista-ordenada-circulada" class="nav-link" data-scroll-target="#lista-ordenada-circulada">Lista ordenada circulada</a></li>
-  <li><a href="#git-tree-dag-de-commits" id="toc-git-tree-dag-de-commits" class="nav-link" data-scroll-target="#git-tree-dag-de-commits">Git tree — DAG de commits</a>
+  <li><a href="#numbered" id="toc-numbered" class="nav-link" data-scroll-target="#numbered">Numbered</a></li>
+  <li><a href="#dots" id="toc-dots" class="nav-link" data-scroll-target="#dots">Dots</a>
   <ul class="collapse">
-  <li><a href="#sintaxe-simples-direção-tb" id="toc-sintaxe-simples-direção-tb" class="nav-link" data-scroll-target="#sintaxe-simples-direção-tb">Sintaxe simples — direção TB</a></li>
-  <li><a href="#mesmo-dag-direção-bt" id="toc-mesmo-dag-direção-bt" class="nav-link" data-scroll-target="#mesmo-dag-direção-bt">Mesmo DAG — direção BT</a></li>
-  <li><a href="#dag-explícito-ids-parents-tag-e-head" id="toc-dag-explícito-ids-parents-tag-e-head" class="nav-link" data-scroll-target="#dag-explícito-ids-parents-tag-e-head">DAG explícito — ids, parents, tag e HEAD</a></li>
+  <li><a href="#project-default" id="toc-project-default" class="nav-link" data-scroll-target="#project-default">Project default</a></li>
   </ul></li>
-  <li><a href="#file-tree-aninhamento-profundo-e-ícones" id="toc-file-tree-aninhamento-profundo-e-ícones" class="nav-link" data-scroll-target="#file-tree-aninhamento-profundo-e-ícones">File tree — aninhamento profundo e ícones</a></li>
-  <li><a href="#file-tree-indentação-horizontal" id="toc-file-tree-indentação-horizontal" class="nav-link" data-scroll-target="#file-tree-indentação-horizontal">File tree — indentação horizontal</a></li>
-  <li><a href="#file-tree-expandir-e-colapsar-pastas" id="toc-file-tree-expandir-e-colapsar-pastas" class="nav-link" data-scroll-target="#file-tree-expandir-e-colapsar-pastas">File tree — expandir e colapsar pastas</a></li>
-  <li><a href="#file-tree-texto-code-links-info-e-ícones" id="toc-file-tree-texto-code-links-info-e-ícones" class="nav-link" data-scroll-target="#file-tree-texto-code-links-info-e-ícones">File tree — texto, code, links, info e ícones</a></li>
+  <li><a href="#custom-background" id="toc-custom-background" class="nav-link" data-scroll-target="#custom-background">Custom background</a></li>
+  <li><a href="#dot-color-and-size" id="toc-dot-color-and-size" class="nav-link" data-scroll-target="#dot-color-and-size">Dot color and size</a></li>
+  <li><a href="#optional-fill" id="toc-optional-fill" class="nav-link" data-scroll-target="#optional-fill">Optional fill</a></li>
+  <li><a href="#example-timeline-with-steps-dots" id="toc-example-timeline-with-steps-dots" class="nav-link" data-scroll-target="#example-timeline-with-steps-dots">Example — timeline with Steps dots</a></li>
+  </ul></li>
+  <li><a href="#circled-ordered-list" id="toc-circled-ordered-list" class="nav-link" data-scroll-target="#circled-ordered-list">Circled Ordered List</a></li>
+  <li><a href="#git-tree" id="toc-git-tree" class="nav-link" data-scroll-target="#git-tree">Git tree</a>
+  <ul class="collapse">
+  <li><a href="#simple-syntax-tb-direction" id="toc-simple-syntax-tb-direction" class="nav-link" data-scroll-target="#simple-syntax-tb-direction">Simple syntax — TB direction</a></li>
+  <li><a href="#same-dag-bt-direction" id="toc-same-dag-bt-direction" class="nav-link" data-scroll-target="#same-dag-bt-direction">Same DAG — BT direction</a></li>
+  <li><a href="#explicit-dag-ids-parents-tag-and-head" id="toc-explicit-dag-ids-parents-tag-and-head" class="nav-link" data-scroll-target="#explicit-dag-ids-parents-tag-and-head">Explicit DAG — ids, parents, tag, and HEAD</a></li>
+  </ul></li>
+  <li><a href="#file-tree" id="toc-file-tree" class="nav-link" data-scroll-target="#file-tree">File tree</a>
+  <ul class="collapse">
+  <li><a href="#horizontal-indentation" id="toc-horizontal-indentation" class="nav-link" data-scroll-target="#horizontal-indentation">Horizontal indentation</a></li>
+  <li><a href="#expand-and-collapse-folders" id="toc-expand-and-collapse-folders" class="nav-link" data-scroll-target="#expand-and-collapse-folders">Expand and collapse folders</a></li>
+  <li><a href="#text-code-links-info-and-icons" id="toc-text-code-links-info-and-icons" class="nav-link" data-scroll-target="#text-code-links-info-and-icons">Text, code, links, info, and icons</a></li>
+  </ul></li>
   <li><a href="#article" id="toc-article" class="nav-link" data-scroll-target="#article">Article</a>
   <ul class="collapse">
-  <li><a href="#genérico-apenas-borda-arredondada" id="toc-genérico-apenas-borda-arredondada" class="nav-link" data-scroll-target="#genérico-apenas-borda-arredondada">Genérico — apenas borda arredondada</a></li>
-  <li><a href="#accent-esquerdo-com-pontas-arredondadas" id="toc-accent-esquerdo-com-pontas-arredondadas" class="nav-link" data-scroll-target="#accent-esquerdo-com-pontas-arredondadas">Accent esquerdo com pontas arredondadas</a></li>
-  <li><a href="#collapsed-por-padrão" id="toc-collapsed-por-padrão" class="nav-link" data-scroll-target="#collapsed-por-padrão">Collapsed por padrão</a></li>
+  <li><a href="#generic-rounded-border-only" id="toc-generic-rounded-border-only" class="nav-link" data-scroll-target="#generic-rounded-border-only">Generic — rounded border only</a></li>
+  <li><a href="#left-accent-with-rounded-ends" id="toc-left-accent-with-rounded-ends" class="nav-link" data-scroll-target="#left-accent-with-rounded-ends">Left accent with rounded ends</a></li>
+  <li><a href="#collapsed-by-default" id="toc-collapsed-by-default" class="nav-link" data-scroll-target="#collapsed-by-default">Collapsed by default</a></li>
   <li><a href="#expanded-accent" id="toc-expanded-accent" class="nav-link" data-scroll-target="#expanded-accent">Expanded + accent</a></li>
-  <li><a href="#exemplo-changelog-dentro-de-um-article" id="toc-exemplo-changelog-dentro-de-um-article" class="nav-link" data-scroll-target="#exemplo-changelog-dentro-de-um-article">Exemplo — changelog dentro de um article</a></li>
-  <li><a href="#article-customizado" id="toc-article-customizado" class="nav-link" data-scroll-target="#article-customizado">Article customizado</a></li>
+  <li><a href="#example-changelog-inside-an-article" id="toc-example-changelog-inside-an-article" class="nav-link" data-scroll-target="#example-changelog-inside-an-article">Example — changelog inside an article</a></li>
+  <li><a href="#custom-article" id="toc-custom-article" class="nav-link" data-scroll-target="#custom-article">Custom article</a></li>
   </ul></li>
-  <li><a href="#inspiração-e-formatos" id="toc-inspiração-e-formatos" class="nav-link" data-scroll-target="#inspiração-e-formatos">Inspiração e formatos</a></li>
+  <li><a href="#inspiration-and-formats" id="toc-inspiration-and-formats" class="nav-link" data-scroll-target="#inspiration-and-formats">Inspiration and formats</a></li>
   </ul>
 </nav>
 </div>
@@ -296,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Quarto Semantic Components — exemplos</h1>
+<h1 class="title">Quarto Semantic Components — examples</h1>
 </div>
 
 
@@ -313,14 +318,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Esta página demonstra os componentes da extensão <strong>Quarto Semantic Components</strong>. Em cada seção, o código-fonte aparece <strong>antes</strong> do resultado renderizado.</p>
-<section id="defaults-de-projeto-no-_quarto.yml" class="level2">
-<h2 class="anchored" data-anchor-id="defaults-de-projeto-no-_quarto.yml">Defaults de projeto no <code>_quarto.yml</code></h2>
-<p>Este próprio repositório usa defaults compartilhados:</p>
+<p>This page demonstrates the <strong>Quarto Semantic Components</strong> extension. In each section, the source code appears <strong>before</strong> the rendered output.</p>
+<section id="project-defaults-in-_quarto.yml" class="level1">
+<h1>Project defaults in <code>_quarto.yml</code></h1>
+<p>This repository uses shared defaults:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extensions</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">badge</span><span class="kw">:</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> stable</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">label</span><span class="kw">:</span><span class="at"> Estável</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">label</span><span class="kw">:</span><span class="at"> Stable</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> success</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">appearance</span><span class="kw">:</span><span class="at"> solid</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> </span><span class="st">"✓"</span></span>
@@ -359,260 +364,263 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">radius</span><span class="kw">:</span><span class="at"> </span><span class="st">"0.75rem"</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">padding</span><span class="kw">:</span><span class="at"> </span><span class="st">"1rem 1.1rem"</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">accent</span><span class="kw">:</span><span class="at"> none</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A precedência é <strong>defaults do projeto → preset → componente → item individual</strong>.</p>
+<p>Precedence is <strong>project defaults → preset → component → individual item</strong>.</p>
 </section>
-<section id="badges-inline" class="level2">
-<h2 class="anchored" data-anchor-id="badges-inline">Badges inline</h2>
+<section id="badges" class="level1">
+<h1>Badges</h1>
 <blockquote class="blockquote">
-<p>O shortcode público é <code>badge</code>. Como <a href="https://github.com/mcanouil/quarto-badge"><code>mcanouil/quarto-badge</code></a> usa o mesmo nome, o projeto deve escolher qual extensão de badge deseja usar.</p>
+<p>The public shortcode is <code>badge</code>. Since <a href="https://github.com/mcanouil/quarto-badge"><code>mcanouil/quarto-badge</code></a> uses the same name, the project must choose which badge extension to use.</p>
 </blockquote>
-<section id="presets-definidos-no-projeto" class="level3">
-<h3 class="anchored" data-anchor-id="presets-definidos-no-projeto">Presets definidos no projeto</h3>
+<section id="presets-defined-in-the-project" class="level2">
+<h2 class="anchored" data-anchor-id="presets-defined-in-the-project">Presets defined in the project</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>{{&lt; badge stable &gt;}}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>{{&lt; badge experimental &gt;}}</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>{{&lt; badge deprecated &gt;}}</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Release estável" key="stable" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Stable release" key="stable" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-appearance="solid" data-badge-key="stable" data-badge-size="sm"><span class="qsc-badge-icon">✓</span> Estável</span> <span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-badge-variant="info" data-qsc-badge-resolved="true" data-badge-appearance="outline" data-badge-key="experimental" data-badge-size="sm"><span class="qsc-badge-icon">⚗</span> Experimental</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-variant="danger" data-qsc-badge-resolved="true" data-badge-appearance="soft" data-badge-key="deprecated" data-badge-size="sm"><span class="qsc-badge-icon">!</span> Deprecated</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-appearance="solid" data-badge-key="stable" data-badge-size="sm"><span class="qsc-badge-icon">✓</span> Release estável</span></p>
+<p><span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-qsc-badge-resolved="true" data-badge-appearance="solid" data-badge-size="sm" data-badge-key="stable" data-badge-variant="success"><span class="qsc-badge-icon">✓</span> Stable</span> <span class="qsc-badge qsc-badge-info qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-qsc-badge-resolved="true" data-badge-appearance="outline" data-badge-size="sm" data-badge-key="experimental" data-badge-variant="info"><span class="qsc-badge-icon">⚗</span> Experimental</span> <span class="qsc-badge qsc-badge-danger qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-qsc-badge-resolved="true" data-badge-appearance="soft" data-badge-size="sm" data-badge-key="deprecated" data-badge-variant="danger"><span class="qsc-badge-icon">!</span> Deprecated</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-qsc-badge-resolved="true" data-badge-appearance="solid" data-badge-size="sm" data-badge-key="stable" data-badge-variant="success"><span class="qsc-badge-icon">✓</span> Stable release</span></p>
 </section>
-<section id="personalização-livre" class="level3">
-<h3 class="anchored" data-anchor-id="personalização-livre">Personalização livre</h3>
+<section id="free-customization" class="level2">
+<h2 class="anchored" data-anchor-id="free-customization">Free customization</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Beta" &gt;}}</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Estável" type="success" icon="✓" &gt;}}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Stable" type="success" icon="✓" &gt;}}</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "Experimental" type="warning" appearance="outline" &gt;}}</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "v0.10.7" type="accent" appearance="solid" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>{{&lt; badge "v0.10.9" type="accent" appearance="solid" &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-variant="neutral" data-qsc-badge-resolved="true" data-badge-appearance="soft" data-badge-size="sm">Beta</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-variant="success" data-qsc-badge-resolved="true" data-badge-appearance="soft" data-badge-size="sm"><span class="qsc-badge-icon">✓</span> Estável</span> <span class="qsc-badge qsc-badge-warning qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-badge-variant="warning" data-qsc-badge-resolved="true" data-badge-appearance="outline" data-badge-size="sm">Experimental</span> <span class="qsc-badge qsc-badge-accent qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-variant="accent" data-qsc-badge-resolved="true" data-badge-appearance="solid" data-badge-size="sm">v0.10.7</span></p>
+<p><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-size="sm" data-qsc-badge-resolved="true" data-badge-variant="neutral">Beta</span> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" data-badge-appearance="soft" data-badge-size="sm" data-qsc-badge-resolved="true" data-badge-variant="success"><span class="qsc-badge-icon">✓</span> Stable</span> <span class="qsc-badge qsc-badge-warning qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-outline" data-badge-appearance="outline" data-badge-size="sm" data-qsc-badge-resolved="true" data-badge-variant="warning">Experimental</span> <span class="qsc-badge qsc-badge-accent qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-badge-appearance="solid" data-badge-size="sm" data-qsc-badge-resolved="true" data-badge-variant="accent">v0.10.9</span></p>
 </section>
-<section id="forma-ast-native" class="level3">
-<h3 class="anchored" data-anchor-id="forma-ast-native">Forma AST-native</h3>
+<section id="forma-ast-native" class="level2">
+<h2 class="anchored" data-anchor-id="forma-ast-native">Forma AST-native</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">AST-native</span><span class="co">]</span>{.badge key="stable" appearance="outline" size="md"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong> <span class="qsc-badge qsc-badge-success qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-solid" data-key="stable" data-appearance="outline" size="md" data-badge-key="stable" data-qsc-badge-resolved="true">AST-native</span></p>
 </section>
 </section>
-<section id="steps-numerado" class="level2">
-<h2 class="anchored" data-anchor-id="steps-numerado">Steps — numerado</h2>
-<p>Todos os exemplos de <code>steps</code> usam quatro etapas.</p>
+<section id="steps" class="level1">
+<h1>Steps</h1>
+<section id="numbered" class="level2">
+<h2 class="anchored" data-anchor-id="numbered">Numbered</h2>
+<p>All <code>steps</code> examples use four steps. In numbered mode, the edge is also continuous between circle centers and stays behind the markers; the inside follows the theme surface.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>:::steps</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Instale a extensão</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Install the extension</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`quarto add lsbjordao/quarto-semantic-components`</span>.</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ative o filtro</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Inclua <span class="in">`semantic-components`</span> em <span class="in">`filters`</span>.</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Enable the filter</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Add <span class="in">`semantic-components`</span> to <span class="in">`filters`</span>.</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Configure os componentes</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>Defina defaults no <span class="in">`_quarto.yml`</span> se desejar.</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Configure the components</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>Set defaults in <span class="in">`_quarto.yml`</span> if desired.</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Escreva normalmente</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>Cada heading inicia uma etapa.</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Write normally</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>Each heading starts a step.</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<div class="steps semantic-steps semantic-steps-numbered">
+<div class="steps semantic-steps semantic-steps-numbered" style="--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:1.5px;">
 <ol>
-<li><span id="instale-a-extensão" class="semantic-step-title">Instale a extensão</span>
+<li><span id="install-the-extension" class="semantic-step-title">Install the extension</span>
 <p>Use <code>quarto add lsbjordao/quarto-semantic-components</code>.</p></li>
-<li><span id="ative-o-filtro" class="semantic-step-title">Ative o filtro</span>
-<p>Inclua <code>semantic-components</code> em <code>filters</code>.</p></li>
-<li><span id="configure-os-componentes" class="semantic-step-title">Configure os componentes</span>
-<p>Defina defaults no <code>_quarto.yml</code> se desejar.</p></li>
-<li><span id="escreva-normalmente" class="semantic-step-title">Escreva normalmente</span>
-<p>Cada heading inicia uma etapa.</p></li>
+<li><span id="enable-the-filter" class="semantic-step-title">Enable the filter</span>
+<p>Add <code>semantic-components</code> to <code>filters</code>.</p></li>
+<li><span id="configure-the-components" class="semantic-step-title">Configure the components</span>
+<p>Set defaults in <code>_quarto.yml</code> if desired.</p></li>
+<li><span id="write-normally" class="semantic-step-title">Write normally</span>
+<p>Each heading starts a step.</p></li>
 </ol>
 </div>
 </section>
-<section id="steps-bolinhas" class="level2">
-<h2 class="anchored" data-anchor-id="steps-bolinhas">Steps — bolinhas</h2>
-<p>As bolinhas parecem vazadas por padrão: o centro usa a cor de superfície do tema, ocultando a aresta contínua que passa por trás. <code>dot-color</code> controla o contorno e <code>dot-fill</code> permite preenchimento explícito.</p>
-<section id="default-do-projeto" class="level3">
-<h3 class="anchored" data-anchor-id="default-do-projeto">Default do projeto</h3>
+<section id="dots" class="level2">
+<h2 class="anchored" data-anchor-id="dots">Dots</h2>
+<p>Dots look hollow by default: the center uses the theme surface color, hiding the continuous edge that passes behind them. <code>dot-color</code> controls the outline and <code>dot-fill</code> enables explicit fill.</p>
+<section id="project-default" class="level3">
+<h3 class="anchored" data-anchor-id="project-default">Project default</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>::: {.steps type="dots"}</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extrair</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Baixe os dados.</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extract</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Download the data.</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Validar</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Valide os registros.</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Validate</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Validate the records.</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Transformar</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Prepare os dados.</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Transform</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Prepare the data.</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publicar</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>Publique o resultado.</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publish</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>Publish the result.</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<div class="steps semantic-steps semantic-steps-dots" type="dots" style="--semantic-step-dot-color:#8c959f;--semantic-step-dot-size:0.72rem;--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:1.5px;">
+<div class="steps semantic-steps semantic-steps-dots" type="dots" style="--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:1.5px;--semantic-step-dot-color:#8c959f;--semantic-step-dot-size:0.72rem;">
 <ul>
-<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="extrair" class="semantic-step-title">Extrair</span>
-<p>Baixe os dados.</p></li>
-<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="validar" class="semantic-step-title">Validar</span>
-<p>Valide os registros.</p></li>
-<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="transformar" class="semantic-step-title">Transformar</span>
-<p>Prepare os dados.</p></li>
-<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="publicar" class="semantic-step-title">Publicar</span>
-<p>Publique o resultado.</p></li>
+<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="extract" class="semantic-step-title">Extract</span>
+<p>Download the data.</p></li>
+<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="validate" class="semantic-step-title">Validate</span>
+<p>Validate the records.</p></li>
+<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="transform" class="semantic-step-title">Transform</span>
+<p>Prepare the data.</p></li>
+<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="publish" class="semantic-step-title">Publish</span>
+<p>Publish the result.</p></li>
 </ul>
 </div>
 </section>
-<section id="fundo-customizado" class="level3">
-<h3 class="anchored" data-anchor-id="fundo-customizado">Fundo customizado</h3>
-<p>Se os steps estiverem sobre uma superfície diferente do fundo do documento, use <code>surface-color</code> para o centro dos dots acompanhar esse fundo:</p>
+</section>
+<section id="custom-background" class="level2">
+<h2 class="anchored" data-anchor-id="custom-background">Custom background</h2>
+<p>If the steps sit on a surface different from the document background, use <code>surface-color</code> so the dot centers match that background:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>::: {.steps type="dots"</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  surface-color="#f3f4f6"</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  line-color="#9aa0a6"}</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preparar</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>Primeira etapa.</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prepare</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>First step.</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Processar</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>Segunda etapa.</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Process</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>Second step.</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revisar</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>Terceira etapa.</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Review</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>Third step.</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publicar</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>Quarta etapa.</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publish</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>Fourth step.</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="cor-e-tamanho-por-bolinha" class="level3">
-<h3 class="anchored" data-anchor-id="cor-e-tamanho-por-bolinha">Cor e tamanho por bolinha</h3>
+<section id="dot-color-and-size" class="level2">
+<h2 class="anchored" data-anchor-id="dot-color-and-size">Dot color and size</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>::: {.steps type="dots"</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dot-color="#8c959f"</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dot-size="0.78rem"</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  line-color="#9aa0a6"</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  line-width="1.5px"}</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extrair {dot-color="#2563eb"}</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>Baixe os registros novos.</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extract {dot-color="#2563eb"}</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>Download the new records.</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deduplicar {dot-color="#f59e0b" dot-size="0.95rem"}</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Reconcilie coletas e identificações.</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deduplicate {dot-color="#f59e0b" dot-size="0.95rem"}</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Reconcile collections and identifications.</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revisar {dot-color="#8b5cf6"}</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>Revise a base processada.</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Review {dot-color="#8b5cf6"}</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>Review the processed dataset.</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publicar {dot-color="#16a34a"}</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>Atualize a base curada.</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publish {dot-color="#16a34a"}</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>Update the curated dataset.</span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<div class="steps semantic-steps semantic-steps-dots" type="dots" data-dot-color="#8c959f" data-dot-size="0.78rem" data-line-color="#9aa0a6" data-line-width="1.5px" style="--semantic-step-dot-color:#8c959f;--semantic-step-dot-size:0.78rem;--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:1.5px;">
+<div class="steps semantic-steps semantic-steps-dots" type="dots" data-dot-color="#8c959f" data-dot-size="0.78rem" data-line-color="#9aa0a6" data-line-width="1.5px" style="--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:1.5px;--semantic-step-dot-color:#8c959f;--semantic-step-dot-size:0.78rem;">
 <ul>
-<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#2563eb;"></span><span class="semantic-step-connector"></span><span id="extrair-1" class="semantic-step-title">Extrair</span>
-<p>Baixe os registros novos.</p></li>
-<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#f59e0b;--semantic-step-item-dot-size:0.95rem;"></span><span class="semantic-step-connector" style="--semantic-step-item-dot-size:0.95rem;"></span><span id="deduplicar" class="semantic-step-title">Deduplicar</span>
-<p>Reconcilie coletas e identificações.</p></li>
-<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#8b5cf6;"></span><span class="semantic-step-connector"></span><span id="revisar" class="semantic-step-title">Revisar</span>
-<p>Revise a base processada.</p></li>
-<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#16a34a;"></span><span class="semantic-step-connector"></span><span id="publicar-1" class="semantic-step-title">Publicar</span>
-<p>Atualize a base curada.</p></li>
+<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#2563eb;"></span><span class="semantic-step-connector"></span><span id="extract-1" class="semantic-step-title">Extract</span>
+<p>Download the new records.</p></li>
+<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#f59e0b;--semantic-step-item-dot-size:0.95rem;"></span><span class="semantic-step-connector" style="--semantic-step-item-dot-size:0.95rem;"></span><span id="deduplicate" class="semantic-step-title">Deduplicate</span>
+<p>Reconcile collections and identifications.</p></li>
+<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#8b5cf6;"></span><span class="semantic-step-connector"></span><span id="review" class="semantic-step-title">Review</span>
+<p>Review the processed dataset.</p></li>
+<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#16a34a;"></span><span class="semantic-step-connector"></span><span id="publish-1" class="semantic-step-title">Publish</span>
+<p>Update the curated dataset.</p></li>
 </ul>
 </div>
 </section>
-<section id="preenchimento-opcional" class="level3">
-<h3 class="anchored" data-anchor-id="preenchimento-opcional">Preenchimento opcional</h3>
+<section id="optional-fill" class="level2">
+<h2 class="anchored" data-anchor-id="optional-fill">Optional fill</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>::: {.steps type="dots" line-width="2px"}</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pendente</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Continua vazada.</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pending</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Remains hollow.</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Em execução {dot-color="#2563eb" dot-fill="#2563eb"}</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Bolinha azul preenchida.</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## In progress {dot-color="#2563eb" dot-fill="#2563eb"}</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Filled blue dot.</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Em revisão {dot-color="#f59e0b" dot-fill="#f59e0b"}</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Bolinha laranja preenchida.</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Under review {dot-color="#f59e0b" dot-fill="#f59e0b"}</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Filled orange dot.</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Concluído {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>Bolinha verde preenchida.</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Completed {dot-color="#16a34a" dot-fill="#16a34a" dot-border-width="2px"}</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>Filled green dot.</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<div class="steps semantic-steps semantic-steps-dots" type="dots" data-line-width="2px" style="--semantic-step-dot-color:#8c959f;--semantic-step-dot-size:0.72rem;--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:2px;">
+<div class="steps semantic-steps semantic-steps-dots" type="dots" data-line-width="2px" style="--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:2px;--semantic-step-dot-color:#8c959f;--semantic-step-dot-size:0.72rem;">
 <ul>
-<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="pendente" class="semantic-step-title">Pendente</span>
-<p>Continua vazada.</p></li>
-<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#2563eb;--semantic-step-item-dot-fill:#2563eb;"></span><span class="semantic-step-connector"></span><span id="em-execução" class="semantic-step-title">Em execução</span>
-<p>Bolinha azul preenchida.</p></li>
-<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#f59e0b;--semantic-step-item-dot-fill:#f59e0b;"></span><span class="semantic-step-connector"></span><span id="em-revisão" class="semantic-step-title">Em revisão</span>
-<p>Bolinha laranja preenchida.</p></li>
-<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#16a34a;--semantic-step-item-dot-fill:#16a34a;--semantic-step-item-dot-border-width:2px;"></span><span class="semantic-step-connector"></span><span id="concluído" class="semantic-step-title">Concluído</span>
-<p>Bolinha verde preenchida.</p></li>
+<li><span class="semantic-step-marker"></span><span class="semantic-step-connector"></span><span id="pending" class="semantic-step-title">Pending</span>
+<p>Remains hollow.</p></li>
+<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#2563eb;--semantic-step-item-dot-fill:#2563eb;"></span><span class="semantic-step-connector"></span><span id="in-progress" class="semantic-step-title">In progress</span>
+<p>Filled blue dot.</p></li>
+<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#f59e0b;--semantic-step-item-dot-fill:#f59e0b;"></span><span class="semantic-step-connector"></span><span id="under-review" class="semantic-step-title">Under review</span>
+<p>Filled orange dot.</p></li>
+<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#16a34a;--semantic-step-item-dot-fill:#16a34a;--semantic-step-item-dot-border-width:2px;"></span><span class="semantic-step-connector"></span><span id="completed" class="semantic-step-title">Completed</span>
+<p>Filled green dot.</p></li>
 </ul>
 </div>
 </section>
-<section id="exemplo-timeline-com-steps-dots" class="level3">
-<h3 class="anchored" data-anchor-id="exemplo-timeline-com-steps-dots">Exemplo — timeline com Steps dots</h3>
-<p>Não existe um componente <code>timeline</code> separado. O mesmo padrão visual é produzido com <code>steps type="dots"</code>, mantendo a API menor e mais reutilizável.</p>
+<section id="example-timeline-with-steps-dots" class="level2">
+<h2 class="anchored" data-anchor-id="example-timeline-with-steps-dots">Example — timeline with Steps dots</h2>
+<p>There is no separate <code>timeline</code> component. The same visual pattern is produced with <code>steps type="dots"</code>, keeping the API smaller and more reusable.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>::: {.steps type="dots"</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  line-color="#9aa0a6"</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  line-width="2px"</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  dot-size="0.78rem"}</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## [2024]{.badge type="success" appearance="outline" size="xs"} Protótipo {dot-color="#16a34a"}</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>Primeira implementação do componente.</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype {dot-color="#16a34a"}</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>First implementation of the component.</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## [2025]{.badge type="info" appearance="outline" size="xs"} Beta {dot-color="#2563eb"}</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Validação e refinamento visual.</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Validation and visual refinement.</span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate {dot-color="#f59e0b"}</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>Congelamento da API para testes finais.</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>API freeze for final testing.</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>Versão estável publicada.</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>Stable version released.</span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
-<div class="steps semantic-steps semantic-steps-dots" type="dots" data-line-color="#9aa0a6" data-line-width="2px" data-dot-size="0.78rem" style="--semantic-step-dot-color:#8c959f;--semantic-step-dot-size:0.78rem;--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:2px;">
+<div class="steps semantic-steps semantic-steps-dots" type="dots" data-line-color="#9aa0a6" data-line-width="2px" data-dot-size="0.78rem" style="--semantic-step-line-color:#9aa0a6;--semantic-step-line-width:2px;--semantic-step-dot-color:#8c959f;--semantic-step-dot-size:0.78rem;">
 <ul>
-<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#16a34a;"></span><span class="semantic-step-connector"></span><span id="protótipo" class="semantic-step-title"><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" type="success" data-appearance="outline" size="xs" data-qsc-badge-resolved="true">2024</span> Protótipo</span>
-<p>Primeira implementação do componente.</p></li>
+<li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#16a34a;"></span><span class="semantic-step-connector"></span><span id="prototype" class="semantic-step-title"><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" type="success" data-appearance="outline" size="xs" data-qsc-badge-resolved="true">2024</span> Prototype</span>
+<p>First implementation of the component.</p></li>
 <li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#2563eb;"></span><span class="semantic-step-connector"></span><span id="beta" class="semantic-step-title"><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" type="info" data-appearance="outline" size="xs" data-qsc-badge-resolved="true">2025</span> Beta</span>
-<p>Validação e refinamento visual.</p></li>
+<p>Validation and visual refinement.</p></li>
 <li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#f59e0b;"></span><span class="semantic-step-connector"></span><span id="release-candidate" class="semantic-step-title"><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" type="warning" data-appearance="outline" size="xs" data-qsc-badge-resolved="true">2026-06</span> Release candidate</span>
-<p>Congelamento da API para testes finais.</p></li>
+<p>API freeze for final testing.</p></li>
 <li><span class="semantic-step-marker" style="--semantic-step-item-dot-color:#16a34a;"></span><span class="semantic-step-connector"></span><span id="release" class="semantic-step-title"><span class="qsc-badge qsc-badge-neutral qsc-badge-size-sm qsc-badge-shape-pill qsc-badge-soft" type="success" data-appearance="solid" size="xs" data-qsc-badge-resolved="true">2026-09</span> Release</span>
-<p>Versão estável publicada.</p></li>
+<p>Stable version released.</p></li>
 </ul>
 </div>
 </section>
 </section>
-<section id="lista-ordenada-circulada" class="level2">
-<h2 class="anchored" data-anchor-id="lista-ordenada-circulada">Lista ordenada circulada</h2>
+<section id="circled-ordered-list" class="level1">
+<h1>Circled Ordered List</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>:::circle-list</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Primeiro item</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Segundo item, com **Markdown** normal</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Terceiro item</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Quarto item</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>First item</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Second item, with normal **Markdown**</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Third item</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Fourth item</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="circle-list semantic-circle-list">
 <ol type="1">
-<li>Primeiro item</li>
-<li>Segundo item, com <strong>Markdown</strong> normal</li>
-<li>Terceiro item</li>
-<li>Quarto item</li>
+<li>First item</li>
+<li>Second item, with normal <strong>Markdown</strong></li>
+<li>Third item</li>
+<li>Fourth item</li>
 </ol>
 </div>
 </section>
-<section id="git-tree-dag-de-commits" class="level2">
-<h2 class="anchored" data-anchor-id="git-tree-dag-de-commits">Git tree — DAG de commits</h2>
-<p>O gráfico representa commits e relações parent → child. Branches saem de nós; merges terminam em nós; tag e descrição acompanham a lane do commit.</p>
-<section id="sintaxe-simples-direção-tb" class="level3">
-<h3 class="anchored" data-anchor-id="sintaxe-simples-direção-tb">Sintaxe simples — direção TB</h3>
+<section id="git-tree" class="level1">
+<h1>Git tree</h1>
+<p>The graph represents commits and parent → child relationships. Branches split from nodes; merges end at nodes; the tag and description follow the commit lane.</p>
+<section id="simple-syntax-tb-direction" class="level2">
+<h2 class="anchored" data-anchor-id="simple-syntax-tb-direction">Simple syntax — TB direction</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>::: {.git-tree direction="TB"}</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> initial commit</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> cria a arquitetura base</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> abre o branch de ícones</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> adiciona Devicon</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`docs/icons`</span> documenta os providers</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`docs/icons`</span> adiciona exemplos</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> creates the base architecture</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> opens the icons branch</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> adds Devicon</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`docs/icons`</span> documents providers</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`docs/icons`</span> adds examples</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> merge docs/icons</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> adiciona links em arquivos</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/icons`</span> adds file links</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/icons</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> inicia componentes inline</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> cria badge</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> adiciona customização visual</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> cobre variantes</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> cobre links</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> starts inline components</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> creates badge</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> adds visual customization</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> covers variants</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span> covers links</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span> merge test/badges</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/badges</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> release v0.10.7</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> release v0.10.9</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="git-tree semantic-git-tree" data-direction="TB" data-git-direction="TB" style="--semantic-git-line:#9aa0a6;--git-line-width:2px;--git-node-size:0.68rem;--git-lane-gap:0.82rem;--git-content-gap:0.55rem;">
@@ -620,68 +628,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="git-tree-layout" style="--git-graph-height:612px;--git-graph-width:43.12px;">
 <svg class="git-tree-graph" viewbox="0 0 43.12 612" width="43.12" height="612" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 8.44 54 C 8.44 67.68, 21.56 76.32, 21.56 90"></path><line class="git-tree-edge" x1="21.56" y1="90" x2="21.56" y2="126"></line><path class="git-tree-edge" d="M 21.56 126 C 21.56 139.68, 34.68 148.32, 34.68 162"></path><line class="git-tree-edge" x1="34.68" y1="162" x2="34.68" y2="198"></line><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="234"></line><path class="git-tree-edge" d="M 34.68 198 C 34.68 211.68, 21.56 220.32, 21.56 234"></path><line class="git-tree-edge" x1="21.56" y1="234" x2="21.56" y2="270"></line><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="306"></line><path class="git-tree-edge" d="M 21.56 270 C 21.56 283.68, 8.44 292.32, 8.44 306"></path><line class="git-tree-edge" x1="8.44" y1="306" x2="8.44" y2="342"></line><path class="git-tree-edge" d="M 8.44 342 C 8.44 355.68, 21.56 364.32, 21.56 378"></path><line class="git-tree-edge" x1="21.56" y1="378" x2="21.56" y2="414"></line><path class="git-tree-edge" d="M 21.56 414 C 21.56 427.68, 34.68 436.32, 34.68 450"></path><line class="git-tree-edge" x1="34.68" y1="450" x2="34.68" y2="486"></line><line class="git-tree-edge" x1="21.56" y1="414" x2="21.56" y2="522"></line><path class="git-tree-edge" d="M 34.68 486 C 34.68 499.68, 21.56 508.32, 21.56 522"></path><line class="git-tree-edge" x1="8.44" y1="342" x2="8.44" y2="558"></line><path class="git-tree-edge" d="M 21.56 522 C 21.56 535.68, 8.44 544.32, 8.44 558"></path><line class="git-tree-edge" x1="8.44" y1="558" x2="8.44" y2="594"></line><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="34.68" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="34.68" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c7" cx="21.56" cy="234" r="5.44"></circle><circle class="git-tree-node" data-commit="c8" cx="21.56" cy="270" r="5.44"></circle><circle class="git-tree-node" data-commit="c9" cx="8.44" cy="306" r="5.44"></circle><circle class="git-tree-node" data-commit="c10" cx="8.44" cy="342" r="5.44"></circle><circle class="git-tree-node" data-commit="c11" cx="21.56" cy="378" r="5.44"></circle><circle class="git-tree-node" data-commit="c12" cx="21.56" cy="414" r="5.44"></circle><circle class="git-tree-node" data-commit="c13" cx="34.68" cy="450" r="5.44"></circle><circle class="git-tree-node" data-commit="c14" cx="34.68" cy="486" r="5.44"></circle><circle class="git-tree-node" data-commit="c15" cx="21.56" cy="522" r="5.44"></circle><circle class="git-tree-node" data-commit="c16" cx="8.44" cy="558" r="5.44"></circle><circle class="git-tree-node" data-commit="c17" cx="8.44" cy="594" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c1" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2">
-<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">cria a arquitetura base</span></span>
+<div class="git-tree-entry git-tree-depth-0" data-commit="c2" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">creates the base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3">
-<span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">abre o branch de ícones</span></span>
+<div class="git-tree-entry git-tree-depth-1" data-commit="c3" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">opens the icons branch</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4">
-<span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">adiciona Devicon</span></span>
+<div class="git-tree-entry git-tree-depth-1" data-commit="c4" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">adds Devicon</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c5">
-<span class="git-tree-content"><span class="git-tree-ref"><code>docs/icons</code></span> <span class="git-tree-message">documenta os providers</span></span>
+<div class="git-tree-entry git-tree-depth-2" data-commit="c5" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>docs/icons</code></span> <span class="git-tree-message">documents providers</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c6">
-<span class="git-tree-content"><span class="git-tree-ref"><code>docs/icons</code></span> <span class="git-tree-message">adiciona exemplos</span></span>
+<div class="git-tree-entry git-tree-depth-2" data-commit="c6" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>docs/icons</code></span> <span class="git-tree-message">adds examples</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c7">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c7" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">merge docs/icons</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c8">
-<span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">adiciona links em arquivos</span></span>
+<div class="git-tree-entry git-tree-depth-1" data-commit="c8" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>feature/icons</code></span> <span class="git-tree-message">adds file links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c9">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c9" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/icons</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c10">
-<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">inicia componentes inline</span></span>
+<div class="git-tree-entry git-tree-depth-0" data-commit="c10" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">starts inline components</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c11">
-<span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">cria badge</span></span>
+<div class="git-tree-entry git-tree-depth-1" data-commit="c11" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">creates badge</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c12">
-<span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">adiciona customização visual</span></span>
+<div class="git-tree-entry git-tree-depth-1" data-commit="c12" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">adds visual customization</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c13">
-<span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">cobre variantes</span></span>
+<div class="git-tree-entry git-tree-depth-2" data-commit="c13" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers variants</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c14">
-<span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">cobre links</span></span>
+<div class="git-tree-entry git-tree-depth-2" data-commit="c14" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c15">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c15" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">merge test/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c16">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c16" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c17">
-<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">release v0.10.7</span></span>
+<div class="git-tree-entry git-tree-depth-0" data-commit="c17" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">release v0.10.9</span></span>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="mesmo-dag-direção-bt" class="level3">
-<h3 class="anchored" data-anchor-id="mesmo-dag-direção-bt">Mesmo DAG — direção BT</h3>
+<section id="same-dag-bt-direction" class="level2">
+<h2 class="anchored" data-anchor-id="same-dag-bt-direction">Same DAG — BT direction</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>::: {.git-tree direction="BT"}</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> initial commit</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> arquitetura base</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/api`</span> cria API</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> base architecture</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/api`</span> creates API</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/api`</span> implementa endpoints</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> merge feature/api</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span> release</span>
@@ -692,22 +700,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="git-tree-layout" style="--git-graph-height:216px;--git-graph-width:30px;">
 <svg class="git-tree-graph" viewbox="0 0 30 216" width="30" height="216" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="198" x2="8.44" y2="162"></line><path class="git-tree-edge" d="M 8.44 162 C 8.44 148.32, 21.56 139.68, 21.56 126"></path><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="90"></line><line class="git-tree-edge" x1="8.44" y1="162" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 21.56 90 C 21.56 76.32, 8.44 67.68, 8.44 54"></path><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="18"></line><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="8.44" cy="18" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c6">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c6" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">release</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c5">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c5" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">merge feature/api</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c4" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/api</code></span> <span class="git-tree-message">implementa endpoints</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3">
-<span class="git-tree-content"><span class="git-tree-ref"><code>feature/api</code></span> <span class="git-tree-message">cria API</span></span>
+<div class="git-tree-entry git-tree-depth-1" data-commit="c3" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>feature/api</code></span> <span class="git-tree-message">creates API</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2">
-<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">arquitetura base</span></span>
+<div class="git-tree-entry git-tree-depth-0" data-commit="c2" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c1" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
 </div>
@@ -715,17 +723,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="dag-explícito-ids-parents-tag-e-head" class="level3">
-<h3 class="anchored" data-anchor-id="dag-explícito-ids-parents-tag-e-head">DAG explícito — ids, parents, tag e HEAD</h3>
+<section id="explicit-dag-ids-parents-tag-and-head" class="level2">
+<h2 class="anchored" data-anchor-id="explicit-dag-ids-parents-tag-and-head">Explicit DAG — ids, parents, tag, and HEAD</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>:::git-tree</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c1} initial commit</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c2 parent="c1"} arquitetura base</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c3 parent="c2"} cria badge</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c4 parent="c3"} customização visual</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span>{#c5 parent="c4"} cobre variantes</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span>{#c6 parent="c5"} cobre links</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c2 parent="c1"} base architecture</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c3 parent="c2"} creates badge</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c4 parent="c3"} visual customization</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span>{#c5 parent="c4"} covers variants</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`test/badges`</span>{#c6 parent="c5"} covers links</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`feature/badges`</span>{#c7 parents="c4,c6"} merge test/badges</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c8 parents="c2,c7" tag="v0.10.7" head="true"} merge feature/badges</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`main`</span>{#c8 parents="c2,c7" tag="v0.10.9" head="true"} merge feature/badges</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="git-tree semantic-git-tree" data-git-direction="TB" style="--semantic-git-line:#9aa0a6;--git-line-width:2px;--git-node-size:0.68rem;--git-lane-gap:0.82rem;--git-content-gap:0.55rem;">
@@ -733,29 +741,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="git-tree-layout" style="--git-graph-height:288px;--git-graph-width:43.12px;">
 <svg class="git-tree-graph" viewbox="0 0 43.12 288" width="43.12" height="288" aria-hidden="true"><line class="git-tree-edge" x1="8.44" y1="18" x2="8.44" y2="54"></line><path class="git-tree-edge" d="M 8.44 54 C 8.44 67.68, 21.56 76.32, 21.56 90"></path><line class="git-tree-edge" x1="21.56" y1="90" x2="21.56" y2="126"></line><path class="git-tree-edge" d="M 21.56 126 C 21.56 139.68, 34.68 148.32, 34.68 162"></path><line class="git-tree-edge" x1="34.68" y1="162" x2="34.68" y2="198"></line><line class="git-tree-edge" x1="21.56" y1="126" x2="21.56" y2="234"></line><path class="git-tree-edge" d="M 34.68 198 C 34.68 211.68, 21.56 220.32, 21.56 234"></path><line class="git-tree-edge" x1="8.44" y1="54" x2="8.44" y2="270"></line><path class="git-tree-edge" d="M 21.56 234 C 21.56 247.68, 8.44 256.32, 8.44 270"></path><circle class="git-tree-node" data-commit="c1" cx="8.44" cy="18" r="5.44"></circle><circle class="git-tree-node" data-commit="c2" cx="8.44" cy="54" r="5.44"></circle><circle class="git-tree-node" data-commit="c3" cx="21.56" cy="90" r="5.44"></circle><circle class="git-tree-node" data-commit="c4" cx="21.56" cy="126" r="5.44"></circle><circle class="git-tree-node" data-commit="c5" cx="34.68" cy="162" r="5.44"></circle><circle class="git-tree-node" data-commit="c6" cx="34.68" cy="198" r="5.44"></circle><circle class="git-tree-node" data-commit="c7" cx="21.56" cy="234" r="5.44"></circle><circle class="git-tree-node" data-commit="c8" cx="8.44" cy="270" r="5.44"></circle></svg>
 <div class="git-tree-content-rows">
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c1">
+<div class="git-tree-entry git-tree-depth-0" data-commit="c1" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">initial commit</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c2">
-<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">arquitetura base</span></span>
+<div class="git-tree-entry git-tree-depth-0" data-commit="c2" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-message">base architecture</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c3">
-<span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">cria badge</span></span>
+<div class="git-tree-entry git-tree-depth-1" data-commit="c3" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">creates badge</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c4">
-<span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">customização visual</span></span>
+<div class="git-tree-entry git-tree-depth-1" data-commit="c4" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">visual customization</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c5">
-<span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">cobre variantes</span></span>
+<div class="git-tree-entry git-tree-depth-2" data-commit="c5" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers variants</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-2" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;" data-commit="c6">
-<span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">cobre links</span></span>
+<div class="git-tree-entry git-tree-depth-2" data-commit="c6" data-depth="2" style="--git-row-height:36px;--git-entry-offset:48.92px;--git-depth:2;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>test/badges</code></span> <span class="git-tree-message">covers links</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-1" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;" data-commit="c7">
+<div class="git-tree-entry git-tree-depth-1" data-commit="c7" data-depth="1" style="--git-row-height:36px;--git-entry-offset:35.8px;--git-depth:1;">
 <span class="git-tree-content"><span class="git-tree-ref"><code>feature/badges</code></span> <span class="git-tree-message">merge test/badges</span></span>
 </div>
-<div class="git-tree-entry git-tree-depth-0" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;" data-commit="c8">
-<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-head">HEAD</span> <span class="git-tree-tag">v0.10.7</span> <span class="git-tree-message">merge feature/badges</span></span>
+<div class="git-tree-entry git-tree-depth-0" data-commit="c8" data-depth="0" style="--git-row-height:36px;--git-entry-offset:22.68px;--git-depth:0;">
+<span class="git-tree-content"><span class="git-tree-ref"><code>main</code></span> <span class="git-tree-head">HEAD</span> <span class="git-tree-tag">v0.10.9</span> <span class="git-tree-message">merge feature/badges</span></span>
 </div>
 </div>
 </div>
@@ -763,18 +771,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="file-tree-aninhamento-profundo-e-ícones" class="level2">
-<h2 class="anchored" data-anchor-id="file-tree-aninhamento-profundo-e-ícones">File tree — aninhamento profundo e ícones</h2>
+<section id="file-tree" class="level1">
+<h1>File tree</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+project</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+src</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>+pipelines</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+python</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>pipeline.py ingestão</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>validate.py validação</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>pipeline.py ingestion</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>validate.py validation</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+r</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>analysis.R análise estatística</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>report.Rmd relatório</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>analysis.R statistical analysis</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>report.Rmd report</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="ss">      - </span>+web</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>+src</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="ss">          - </span>+components</span>
@@ -795,27 +803,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="project"><strong>project</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="project" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>project</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="src"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="src" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="pipelines"><strong>pipelines</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="pipelines" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>pipelines</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="python"><strong>python</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="python" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>python</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> pipeline.py <span class="file-tree-comment">ingestão</span></span></li>
-<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> validate.py <span class="file-tree-comment">validação</span></span></li>
+<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> pipeline.py <span class="file-tree-comment">ingestion</span></span></li>
+<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> validate.py <span class="file-tree-comment">validation</span></span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="r"><strong>r</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="r" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>r</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> analysis.R <span class="file-tree-comment">análise estatística</span></span></li>
-<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> report.Rmd <span class="file-tree-comment">relatório</span></span></li>
+<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> analysis.R <span class="file-tree-comment">statistical analysis</span></span></li>
+<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> report.Rmd <span class="file-tree-comment">report</span></span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="web"><strong>web</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="web" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>web</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="src"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="src" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="components"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="components" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> chart.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> table.ts</span></li>
@@ -824,21 +832,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="database"><strong>database</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="database" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>database</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="migrations"><strong>migrations</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="migrations" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>migrations</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-database">schema.sql</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="docs"><strong>docs</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="docs" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>docs</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> report.qmd</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="data"><strong>data</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="data" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>data</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="processed"><strong>processed</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="processed" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>processed</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-data">occurrences.parquet</span></li>
 </ul></li>
@@ -848,10 +856,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </div>
-</section>
-<section id="file-tree-indentação-horizontal" class="level2">
-<h2 class="anchored" data-anchor-id="file-tree-indentação-horizontal">File tree — indentação horizontal</h2>
-<p>O recuo por nível pode ser alterado com <code>indent</code>. O default desta galeria é <code>1.8rem</code>.</p>
+<section id="horizontal-indentation" class="level2">
+<h2 class="anchored" data-anchor-id="horizontal-indentation">Horizontal indentation</h2>
+<p>The per-level indentation can be changed with <code>indent</code>. This gallery defaults to <code>1.8rem</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>::: {.file-tree indent="1rem"}</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>+src</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+components</span>
@@ -864,25 +871,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" data-indent="1rem" style="--file-tree-indent:1rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="src"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="src" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="components"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="components" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Button.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Card.ts</span></li>
 </ul></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> app.ts</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="database"><strong>database</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="database" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>database</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-database">schema.sql</span></li>
 </ul></li>
 </ul>
 </div>
-<p>Use valores maiores, como <code>indent="2.4rem"</code>, para abrir mais visualmente os níveis.</p>
+<p>Use larger values, such as <code>indent="2.4rem"</code>, to spread the hierarchy out more visually.</p>
 </section>
-<section id="file-tree-expandir-e-colapsar-pastas" class="level2">
-<h2 class="anchored" data-anchor-id="file-tree-expandir-e-colapsar-pastas">File tree — expandir e colapsar pastas</h2>
+<section id="expand-and-collapse-folders" class="level2">
+<h2 class="anchored" data-anchor-id="expand-and-collapse-folders">Expand and collapse folders</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>::: {.file-tree expanded="false"}</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">+src</span><span class="co">]</span>{expanded="true"}</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>+components</span>
@@ -899,21 +906,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" data-expanded="false" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="false">
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="true" aria-expanded="true" data-file-tree-toggle="true" data-file-tree-name="src"><strong>src</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="true" data-file-tree-name="src" data-file-tree-expanded="true" data-file-tree-toggle="true"><strong>src</strong></span>
 <ul>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true" data-file-tree-name="components"><strong>components</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="false" data-file-tree-name="components" data-file-tree-expanded="false" data-file-tree-toggle="true"><strong>components</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Button.ts</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> Card.ts</span></li>
 </ul></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> app.ts</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true" data-file-tree-name="docs"><strong>docs</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="false" data-file-tree-name="docs" data-file-tree-expanded="false" data-file-tree-toggle="true"><strong>docs</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> index.qmd</span></li>
 <li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><img class="file-tree-library-icon file-tree-quarto-icon" src="https://quarto.org/favicon.png" alt="" aria-hidden="true"> api.qmd</span></li>
 </ul></li>
-<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" data-file-tree-expanded="false" aria-expanded="false" data-file-tree-toggle="true" data-file-tree-name="data"><strong>data</strong></span>
+<li><span class="file-tree-row file-tree-folder file-icon-folder file-tree-collapsible" aria-expanded="false" data-file-tree-name="data" data-file-tree-expanded="false" data-file-tree-toggle="true"><strong>data</strong></span>
 <ul>
 <li><span class="file-tree-row file-tree-file file-icon-data">raw.csv</span></li>
 <li><span class="file-tree-row file-tree-file file-icon-data">processed.parquet</span></li>
@@ -921,134 +928,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </section>
-<section id="file-tree-texto-code-links-info-e-ícones" class="level2">
-<h2 class="anchored" data-anchor-id="file-tree-texto-code-links-info-e-ícones">File tree — texto, code, links, info e ícones</h2>
+<section id="text-code-links-info-and-icons" class="level2">
+<h2 class="anchored" data-anchor-id="text-code-links-info-and-icons">Text, code, links, info, and icons</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>:::file-tree</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>analysis.R texto normal</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>analysis.R plain text</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`pipeline.py`</span> inline code</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">app.ts</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components)</span> link normal</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">app.ts</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components)</span> regular link</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`steps.lua`</span><span class="co">](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua)</span> link + inline code</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">analysis.R</span><span class="co">]</span>{info="Script principal de análise em R"}</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`pipeline.py`</span><span class="co">]</span>{info="Pipeline de ingestão e validação"}</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">analysis.R</span><span class="co">]</span>{info="Main R analysis script"}</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`pipeline.py`</span><span class="co">]</span>{info="Ingestion and validation pipeline"}</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`species.csv`</span>{icon="leaf"}</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`golden.parquet`</span>{icon="★"}</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <div class="file-tree semantic-file-tree" style="--file-tree-indent:1.8rem;" data-icon-library="devicon" data-folders-expanded="true">
 <ul>
-<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> analysis.R <span class="file-tree-comment">texto normal</span></span></li>
+<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> analysis.R <span class="file-tree-comment">plain text</span></span></li>
 <li><span class="file-tree-row file-tree-file file-tree-code-label file-tree-has-inline-icon"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> <code>pipeline.py</code> <span class="file-tree-comment">inline code</span></span></li>
-<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon file-tree-linked"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> <a href="https://github.com/lsbjordao/quarto-semantic-components">app.ts</a> <span class="file-tree-comment">link normal</span></span></li>
+<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon file-tree-linked"><i class="file-tree-library-icon devicon-typescript-plain colored" aria-hidden="true"></i> <a href="https://github.com/lsbjordao/quarto-semantic-components">app.ts</a> <span class="file-tree-comment">regular link</span></span></li>
 <li><span class="file-tree-row file-tree-file file-tree-code-label file-tree-has-inline-icon file-tree-linked"><i class="file-tree-library-icon devicon-lua-plain colored" aria-hidden="true"></i> <a href="https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua"><code>steps.lua</code></a> <span class="file-tree-comment">link + inline code</span></span></li>
-<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon file-tree-has-info"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> analysis.R <span class="file-tree-info" title="Script principal de análise em R" tabindex="0" aria-label="Script principal de análise em R">i</span></span></li>
-<li><span class="file-tree-row file-tree-file file-tree-code-label file-tree-has-inline-icon file-tree-has-info"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> <code>pipeline.py</code> <span class="file-tree-info" title="Pipeline de ingestão e validação" tabindex="0" aria-label="Pipeline de ingestão e validação">i</span></span></li>
+<li><span class="file-tree-row file-tree-file file-tree-has-inline-icon file-tree-has-info"><i class="file-tree-library-icon devicon-r-plain colored" aria-hidden="true"></i> analysis.R <span class="file-tree-info" aria-label="Main R analysis script" title="Main R analysis script" tabindex="0">i</span></span></li>
+<li><span class="file-tree-row file-tree-file file-tree-code-label file-tree-has-inline-icon file-tree-has-info"><i class="file-tree-library-icon devicon-python-plain colored" aria-hidden="true"></i> <code>pipeline.py</code> <span class="file-tree-info" aria-label="Ingestion and validation pipeline" title="Ingestion and validation pipeline" tabindex="0">i</span></span></li>
 <li><span class="file-tree-row file-tree-file file-tree-code-label file-icon-leaf"><code>species.csv</code></span></li>
 <li><span class="file-tree-row file-tree-file file-tree-code-label file-tree-has-inline-icon"><span class="file-tree-custom-icon">★</span> <code>golden.parquet</code></span></li>
 </ul>
 </div>
 </section>
-<section id="article" class="level2">
-<h2 class="anchored" data-anchor-id="article">Article</h2>
-<p><code>article</code> é a primitive genérica para conteúdo autocontido. O HTML externo é sempre <code>&lt;article&gt;</code>.</p>
-<section id="genérico-apenas-borda-arredondada" class="level3">
-<h3 class="anchored" data-anchor-id="genérico-apenas-borda-arredondada">Genérico — apenas borda arredondada</h3>
+</section>
+<section id="article" class="level1">
+<h1>Article</h1>
+<p><code>article</code> is the generic primitive for self-contained content. The outer HTML element is always <code>&lt;article&gt;</code>.</p>
+<section id="generic-rounded-border-only" class="level2">
+<h2 class="anchored" data-anchor-id="generic-rounded-border-only">Generic — rounded border only</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>:::article</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Nota técnica</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Este é o <span class="in">`article`</span> padrão, sem accent e sem collapse.</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Technical note</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>This is the default <span class="in">`article`</span>, with no accent and no collapse.</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;">
 <div class="semantic-article-content">
-<div id="nota-técnica" class="semantic-article-heading semantic-article-heading-2" role="heading" data-heading-level="2" aria-level="2">
-Nota técnica
+<div id="technical-note" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" aria-level="2" role="heading">
+Technical note
 </div>
-<p>Este é o <code>article</code> padrão, sem accent e sem collapse.</p>
+<p>This is the default <code>article</code>, with no accent and no collapse.</p>
 </div>
 </article>
 </section>
-<section id="accent-esquerdo-com-pontas-arredondadas" class="level3">
-<h3 class="anchored" data-anchor-id="accent-esquerdo-com-pontas-arredondadas">Accent esquerdo com pontas arredondadas</h3>
+<section id="left-accent-with-rounded-ends" class="level2">
+<h2 class="anchored" data-anchor-id="left-accent-with-rounded-ends">Left accent with rounded ends</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>::: {.article accent="left" accent-color="warning"}</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Atenção</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>A barra lateral é opcional. O componente continua sendo um <span class="in">`article`</span>.</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Attention</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>The side accent is optional. The component remains an <span class="in">`article`</span>.</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-accent-left" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;--article-accent-color:var(--quarto-callout-color-warning,var(--bs-warning,#ffc107));">
 <div class="semantic-article-content">
-<div id="atenção" class="semantic-article-heading semantic-article-heading-2" role="heading" data-heading-level="2" aria-level="2">
-Atenção
+<div id="attention" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" aria-level="2" role="heading">
+Attention
 </div>
-<p>A barra lateral é opcional. O componente continua sendo um <code>article</code>.</p>
+<p>The side accent is optional. The component remains an <code>article</code>.</p>
 </div>
 </article>
-<p>Use <code>accent-color="warning"</code>, <code>note</code>, <code>danger</code>, <code>success</code>, <code>important</code> ou qualquer cor CSS, como <code>#8b5cf6</code>. <code>accent-width</code> controla a espessura.</p>
+<p>Use <code>accent-color="warning"</code>, <code>note</code>, <code>danger</code>, <code>success</code>, <code>important</code>, or any CSS color such as <code>#8b5cf6</code>. <code>accent-width</code> controls the thickness.</p>
 </section>
-<section id="collapsed-por-padrão" class="level3">
-<h3 class="anchored" data-anchor-id="collapsed-por-padrão">Collapsed por padrão</h3>
+<section id="collapsed-by-default" class="level2">
+<h2 class="anchored" data-anchor-id="collapsed-by-default">Collapsed by default</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>::: {.article</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  collapsible="true"</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  summary="Detalhes técnicos"</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  summary="Technical details"</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  expanded="false"}</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>O conteúdo está dentro de um <span class="in">`details`</span> nativo, mas o elemento externo continua sendo <span class="in">`article`</span>.</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>The content is inside a native <span class="in">`details`</span>, while the outer element remains <span class="in">`article`</span>.</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Markdown normal</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>normal Markdown</span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>listas</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>código</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>outros componentes</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>code</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>other components</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-collapsible" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;">
 <details class="semantic-article-details">
-<summary class="semantic-article-summary">Detalhes técnicos</summary>
+<summary class="semantic-article-summary">Technical details</summary>
 <div class="semantic-article-body">
-<p>O conteúdo está dentro de um <code>details</code> nativo, mas o elemento externo continua sendo <code>article</code>.</p>
+<p>The content is inside a native <code>details</code>, while the outer element remains <code>article</code>.</p>
 <ul>
-<li>Markdown normal</li>
+<li>normal Markdown</li>
 <li>listas</li>
-<li>código</li>
-<li>outros componentes</li>
+<li>code</li>
+<li>other components</li>
 </ul>
 </div>
 </details>
 </article>
 </section>
-<section id="expanded-accent" class="level3">
-<h3 class="anchored" data-anchor-id="expanded-accent">Expanded + accent</h3>
+<section id="expanded-accent" class="level2">
+<h2 class="anchored" data-anchor-id="expanded-accent">Expanded + accent</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>::: {.article</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  accent="left"</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  accent-color="note"</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  collapsible="true"</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  summary="Metodologia"</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  summary="Methodology"</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  expanded="true"}</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>Este exemplo começa expandido e combina o accent com o collapse.</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>This example starts expanded and combines accent with collapse.</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article article-accent-left article-collapsible" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;--article-accent-color:var(--quarto-callout-color-note,var(--bs-info,#0dcaf0));">
 <details class="semantic-article-details" open="">
-<summary class="semantic-article-summary">Metodologia</summary>
+<summary class="semantic-article-summary">Methodology</summary>
 <div class="semantic-article-body">
-<p>Este exemplo começa expandido e combina o accent com o collapse.</p>
+<p>This example starts expanded and combines accent with collapse.</p>
 </div>
 </details>
 </article>
 </section>
-<section id="exemplo-changelog-dentro-de-um-article" class="level3">
-<h3 class="anchored" data-anchor-id="exemplo-changelog-dentro-de-um-article">Exemplo — changelog dentro de um article</h3>
+<section id="example-changelog-inside-an-article" class="level2">
+<h2 class="anchored" data-anchor-id="example-changelog-inside-an-article">Example — changelog inside an article</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>:::article</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## 0.10.7 — 2026-09-17</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## 0.10.9 — 2026-09-17</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Added</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Accent esquerdo opcional em <span class="in">`article`</span>.</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optional left accent in <span class="in">`article`</span>.</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Collapse/expand nativo.</span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### Changed</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Timeline demonstrada com <span class="in">`steps type="dots"`</span>.</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Blocos genéricos convergiram para <span class="in">`article`</span>.</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Timeline demonstrated with <span class="in">`steps type="dots"`</span>.</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generic blocks converged on <span class="in">`article`</span>.</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### Removed</span></span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`timeline`</span></span>
@@ -1060,31 +1068,31 @@ Atenção
 <span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## 0.7.1 — 2026-09-17</span></span>
 <span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Changed</span></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Novo <span class="in">`content-gap`</span> no <span class="in">`git-tree`</span>.</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tags e descrições acompanham a lane do commit.</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>New <span class="in">`content-gap`</span> in <span class="in">`git-tree`</span>.</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tags and descriptions follow the commit lane.</span>
 <span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article" style="--article-radius:0.75rem;--article-padding:1rem 1.1rem;">
 <div class="semantic-article-content">
-<div id="section" class="semantic-article-heading semantic-article-heading-2" role="heading" data-heading-level="2" aria-level="2">
-0.10.7 — 2026-09-17
+<div id="section" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" aria-level="2" role="heading">
+0.10.9 — 2026-09-17
 </div>
-<div id="added" class="semantic-article-heading semantic-article-heading-3" role="heading" data-heading-level="3" aria-level="3">
+<div id="added" class="semantic-article-heading semantic-article-heading-3" data-heading-level="3" aria-level="3" role="heading">
 Added
 </div>
 <ul>
-<li>Accent esquerdo opcional em <code>article</code>.</li>
+<li>Optional left accent in <code>article</code>.</li>
 <li>Collapse/expand nativo.</li>
 </ul>
-<div id="changed" class="semantic-article-heading semantic-article-heading-3" role="heading" data-heading-level="3" aria-level="3">
+<div id="changed" class="semantic-article-heading semantic-article-heading-3" data-heading-level="3" aria-level="3" role="heading">
 Changed
 </div>
 <ul>
-<li>Timeline demonstrada com <code>steps type="dots"</code>.</li>
-<li>Blocos genéricos convergiram para <code>article</code>.</li>
+<li>Timeline demonstrated with <code>steps type="dots"</code>.</li>
+<li>Generic blocks converged on <code>article</code>.</li>
 </ul>
-<div id="removed" class="semantic-article-heading semantic-article-heading-3" role="heading" data-heading-level="3" aria-level="3">
+<div id="removed" class="semantic-article-heading semantic-article-heading-3" data-heading-level="3" aria-level="3" role="heading">
 Removed
 </div>
 <ul>
@@ -1094,48 +1102,48 @@ Removed
 <li><code>changelog</code></li>
 <li><code>aside</code></li>
 </ul>
-<div id="section-1" class="semantic-article-heading semantic-article-heading-2" role="heading" data-heading-level="2" aria-level="2">
+<div id="section-1" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" aria-level="2" role="heading">
 0.7.1 — 2026-09-17
 </div>
-<div id="changed-1" class="semantic-article-heading semantic-article-heading-3" role="heading" data-heading-level="3" aria-level="3">
+<div id="changed-1" class="semantic-article-heading semantic-article-heading-3" data-heading-level="3" aria-level="3" role="heading">
 Changed
 </div>
 <ul>
-<li>Novo <code>content-gap</code> no <code>git-tree</code>.</li>
-<li>Tags e descrições acompanham a lane do commit.</li>
+<li>New <code>content-gap</code> in <code>git-tree</code>.</li>
+<li>Tags and descriptions follow the commit lane.</li>
 </ul>
 </div>
 </article>
 </section>
-<section id="article-customizado" class="level3">
-<h3 class="anchored" data-anchor-id="article-customizado">Article customizado</h3>
+<section id="custom-article" class="level2">
+<h2 class="anchored" data-anchor-id="custom-article">Custom article</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>::: {.article</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  radius="1.2rem"</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  padding="1.25rem"</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  border-color="#8b5cf6"</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  background="transparent"}</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conteúdo autocontido</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>Um <span class="in">`article`</span> também pode representar posts, releases, resumos ou especificações.</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Self-contained content</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>An <span class="in">`article`</span> can also represent posts, releases, summaries, or specifications.</span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <article class="semantic-article" style="--article-border-color:#8b5cf6;--article-radius:1.2rem;--article-padding:1.25rem;--article-background:transparent;">
 <div class="semantic-article-content">
-<div id="conteúdo-autocontido" class="semantic-article-heading semantic-article-heading-2" role="heading" data-heading-level="2" aria-level="2">
-Conteúdo autocontido
+<div id="self-contained-content" class="semantic-article-heading semantic-article-heading-2" data-heading-level="2" aria-level="2" role="heading">
+Self-contained content
 </div>
-<p>Um <code>article</code> também pode representar posts, releases, resumos ou especificações.</p>
+<p>An <code>article</code> can also represent posts, releases, summaries, or specifications.</p>
 </div>
 </article>
 </section>
 </section>
-<section id="inspiração-e-formatos" class="level2">
-<h2 class="anchored" data-anchor-id="inspiração-e-formatos">Inspiração e formatos</h2>
-<p>As ideias de <strong>Steps</strong> e <strong>File Tree</strong> foram inspiradas em componentes do <a href="https://vocs.dev/">Vocs</a>, mas a implementação é própria e orientada ao AST do Pandoc.</p>
+<section id="inspiration-and-formats" class="level1">
+<h1>Inspiration and formats</h1>
+<p>The <strong>Steps</strong> and <strong>File Tree</strong> ideas were inspired by <a href="https://vocs.dev/">Vocs</a> components, but the implementation is original and Pandoc-AST-oriented.</p>
 <ul>
-<li><strong>HTML</strong>: apresentação completa, badges, file tree interativo, info, Git DAG em SVG e o elemento semântico <code>article</code>;</li>
-<li><strong>PDF</strong>: conteúdo estrutural e links são preservados;</li>
-<li><strong>DOCX</strong>: listas, headings, links e texto permanecem editáveis.</li>
+<li><strong>HTML</strong>: full presentation, badges, interactive file tree, info, Git DAG in SVG, and the semantic <code>article</code> element;</li>
+<li><strong>PDF</strong>: structural content and links are preserved;</li>
+<li><strong>DOCX</strong>: lists, headings, links, and text remain editable.</li>
 </ul>
 </section>
 
