@@ -55,11 +55,13 @@ end
 
 local function collapse_settings(el,meta)
   local collapsible_value=setting(el,meta,'collapsible',{'collapse'})
-  local expanded_value=attr(el,'expanded') or attr(el,'open') or config.default(meta,'article','expanded',{'open'})
-  local collapsed_value=attr(el,'collapsed') or config.default(meta,'article','collapsed')
+  local explicit_expanded=attr(el,'expanded') or attr(el,'open')
+  local explicit_collapsed=attr(el,'collapsed')
+  local expanded_value=explicit_expanded or config.default(meta,'article','expanded',{'open'})
+  local collapsed_value=explicit_collapsed or config.default(meta,'article','collapsed')
 
   local collapsible=truthy(collapsible_value)
-  if collapsible==nil and (expanded_value~=nil or collapsed_value~=nil) then collapsible=true end
+  if collapsible==nil and (explicit_expanded~=nil or explicit_collapsed~=nil) then collapsible=true end
   if collapsible==nil then collapsible=false end
 
   local expanded=truthy(expanded_value)
