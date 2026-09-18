@@ -1,0 +1,15 @@
+.semantic-aside{
+  margin:1rem 0;
+  padding:.85rem 1rem;
+  border:1px solid color-mix(in srgb,currentColor 18%,transparent);
+  border-left-width:3px;
+  border-radius:.7rem;
+  background:color-mix(in srgb,currentColor 2%,transparent);
+}
+.semantic-aside>:last-child{margin-bottom:0}
+.semantic-aside-title{font-weight:700;margin:0 0 .45rem}
+.semantic-aside-default{border-left-color:color-mix(in srgb,currentColor 45%,transparent)}
+.semantic-aside-note{border-left-color:#2563eb}
+.semantic-aside-warning{border-left-color:#d97706}
+.semantic-aside-danger{border-left-color:#dc2626}
+.semantic-aside-success{border-left-color:#1f883d}
