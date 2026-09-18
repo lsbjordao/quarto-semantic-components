@@ -55,9 +55,7 @@ extensions:
       icon: "✓"
 
   steps:
-    dot-color: "#8c959f"
     dot-size: "0.72rem"
-    line-color: "#9aa0a6"
     line-width: "1.5px"
 
   file-tree:
@@ -67,7 +65,6 @@ extensions:
 
   git-tree:
     direction: TB
-    line-color: "#9aa0a6"
     line-width: "2px"
     node-size: "0.68rem"
     lane-gap: "0.82rem"
@@ -82,6 +79,55 @@ extensions:
 
 The `semantic-components:` and `extensions.semantic-components` namespaces are also accepted.
 
+## Theme-aware colors
+
+Color options support a common fallback rule:
+
+```text
+property-light / property-dark
+            ↓
+      property
+            ↓
+automatic theme default
+```
+
+The unsuffixed property applies to **both** themes. A suffixed property overrides it only for the corresponding color mode.
+
+```markdown
+::: {.steps
+  line-color="#6b7280"
+  line-color-dark="#adb5bd"}
+...
+:::
+```
+
+In this example, the light theme uses `line-color`, while the dark theme uses `line-color-dark`.
+
+You can also define both theme values explicitly:
+
+```markdown
+::: {.steps
+  surface-color-light="#f3f4f6"
+  surface-color-dark="#2b3035"
+  line-color-light="#6b7280"
+  line-color-dark="#adb5bd"}
+...
+:::
+```
+
+Supported theme-aware color properties:
+
+| Component | Properties |
+|---|---|
+| `steps` | `surface-color`, `line-color`, `dot-color`, `dot-fill` |
+| `git-tree` | `line-color`, `node-bg` |
+| `article` | `border-color`, `background`, `accent-color` |
+| `badge` | `fg`, `bg`, `border` |
+
+Each property also accepts `-light` and `-dark`, for example `accent-color-light` and `accent-color-dark`.
+
+If no explicit color is supplied, the automatic theme-aware default is preserved.
+
 ## Badges
 
 The only public shortcode is **`badge`**:
@@ -91,6 +137,14 @@ The only public shortcode is **`badge`**:
 {{< badge "Stable" type="success" icon="✓" >}}
 {{< badge stable >}}
 {{< badge "Stable release" key="stable" >}}
+```
+
+Theme-specific custom colors are also supported:
+
+```markdown
+{{< badge "Adaptive"
+  fg-light="#1f2937" bg-light="#e5e7eb" border-light="#9ca3af"
+  fg-dark="#f9fafb" bg-dark="#374151" border-dark="#6b7280" >}}
 ```
 
 The AST-native form uses the same word:
@@ -111,11 +165,11 @@ Examples use `##` by default. The filter detects the first heading level found i
 
 ### Numbered
 
-In numbered mode, the edge is also continuous from center to center and passes behind the circles. The inside of each marker uses the theme surface to hide the line. `line-color`, `line-width`, and `surface-color` work for both numbered and dot steps.
+In numbered mode, the edge is continuous from center to center and passes behind the circles. The inside of each marker uses the theme surface to hide the line.
 
 ```markdown
 :::steps
-## Primeiro passo
+## First step
 Content.
 
 ## Second step
@@ -125,6 +179,29 @@ Content.
 Content.
 
 ## Fourth step
+Content.
+:::
+```
+
+For a custom surface, prefer theme-specific colors when contrast needs to differ between light and dark modes:
+
+```markdown
+::: {.steps
+  surface-color-light="#f3f4f6"
+  surface-color-dark="#2b3035"
+  line-color-light="#6b7280"
+  line-color-dark="#adb5bd"}
+
+## Prepare
+Content.
+
+## Import
+Content.
+
+## Validate
+Content.
+
+## Export
 Content.
 :::
 ```
@@ -149,46 +226,37 @@ Content.
 
 `dot-color` controls the outline. Without `dot-fill`, the node center uses the theme surface color to mask the continuous edge; `dot-fill` applies an explicit fill.
 
+Theme suffixes can also be used per heading:
+
 ```markdown
-::: {.steps type="dots"
-  dot-color="#8c959f"
-  dot-size="0.78rem"
-  line-color="#9aa0a6"
-  line-width="1.5px"}
-
-## Extract {dot-color="#2563eb"}
+::: {.steps type="dots"}
+## Extract {dot-color-light="#2563eb" dot-color-dark="#60a5fa"}
 Content.
 
-## Deduplicate {dot-color="#f59e0b" dot-size="0.95rem"}
-Content.
-
-## Review {dot-color="#8b5cf6"}
-Content.
-
-## Publish {dot-color="#16a34a"}
+## Review {dot-color-light="#d97706" dot-color-dark="#fbbf24"}
 Content.
 :::
 ```
 
-Defaults and overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color`, `line-width`, and `surface-color`. In dot steps, the edge is continuous from node center to node center and passes behind the dots; the center uses the theme surface to hide the line. For custom backgrounds, use `surface-color=`. `dot-fill="transparent"` and `dot-fill="none"` are also interpreted as the surface, preventing the edge from showing through the node.
+Defaults and overrides: `dot-color`, `dot-fill`, `dot-size`, `dot-border-width`, `line-color`, `line-width`, and `surface-color`. `dot-fill="transparent"` and `dot-fill="none"` are interpreted as the current surface, preventing the connector from showing through the node.
 
 ### Timeline example with `steps type="dots"`
 
 There is no separate `timeline` component. A vertical timeline is a natural use case for dot steps:
 
 ```markdown
-::: {.steps type="dots" line-color="#9aa0a6" line-width="2px"}
+::: {.steps type="dots" line-width="2px"}
 
-## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype {dot-color="#16a34a"}
+## [2024]{.badge type="success" appearance="outline" size="xs"} Prototype
 First implementation of the component.
 
-## [2025]{.badge type="info" appearance="outline" size="xs"} Beta {dot-color="#2563eb"}
+## [2025]{.badge type="info" appearance="outline" size="xs"} Beta
 Validation and visual refinement.
 
-## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate {dot-color="#f59e0b"}
+## [2026-06]{.badge type="warning" appearance="outline" size="xs"} Release candidate
 API freeze for final testing.
 
-## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release {dot-color="#16a34a"}
+## [2026-09]{.badge type="success" appearance="solid" size="xs"} Release
 Stable version released.
 
 :::
@@ -198,8 +266,7 @@ This keeps `steps` as a reusable primitive instead of creating another component
 
 For more general flows and diagrams, the extension does not create its own `pipeline`: Quarto already provides integration with Mermaid and other diagramming tools.
 
-
-## Circle list
+## Circled Ordered List
 
 ```markdown
 :::circle-list
@@ -254,10 +321,16 @@ The extension infers parents as follows:
 :::
 ```
 
-`TB` (`top → bottom`) shows the oldest commit at the top. `BT` (`bottom → top`) keeps the same DAG and only reverses vertical reading:
+`TB` (`top → bottom`) shows the oldest commit at the top. `BT` (`bottom → top`) keeps the same DAG and only reverses vertical reading.
+
+Theme-specific graph colors are supported:
 
 ```markdown
-::: {.git-tree direction="BT"}
+::: {.git-tree
+  line-color-light="#6b7280"
+  line-color-dark="#adb5bd"
+  node-bg-light="#ffffff"
+  node-bg-dark="#212529"}
 ...
 :::
 ```
@@ -273,7 +346,7 @@ The extension infers parents as follows:
     - `test/badges`{#c5 parent="c4"} covers variants
     - `test/badges`{#c6 parent="c5"} covers links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.9" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.11.0" head="true"} merge feature/badges
 :::
 ```
 
@@ -292,6 +365,8 @@ The extension infers parents as follows:
         - pipeline.py
       - +r
         - analysis.R
+    - +database
+      - schema.sql
   - +docs
     - report.qmd
   - _quarto.yml
@@ -327,8 +402,6 @@ extensions:
 
 Accepted aliases: `level-indent`, `indent-size`, and `child-indent`.
 
-For `.qmd`, `_quarto.yml`, and `quarto.yml`, the default provider uses Quarto's official symbol served from the Quarto website.
-
 ### Expandable folders in HTML
 
 ```yaml
@@ -363,7 +436,7 @@ Aliases: `expanded`, `open`, and `collapsed`.
 
 ## Article
 
-`article` is the generic block for a self-contained unit of content. In HTML, the extension emits a real `<article>` element. Internal Markdown headings are preserved visually and semantically with `role="heading"`/`aria-level`, without generating `<section>` elements that escape the box. The default behavior is simply a subtle rounded border:
+`article` is the generic block for a self-contained unit of content. In HTML, the extension emits a real `<article>` element. The default behavior is a subtle rounded border.
 
 ```markdown
 :::article
@@ -374,22 +447,31 @@ Self-contained content with normal **Markdown**.
 
 ### Optional left accent
 
-The generic article has no side accent. To add a left accent with rounded ends, use `accent="left"`:
-
 ```markdown
 ::: {.article accent="left" accent-color="warning"}
 ## Attention
-The side accent is only an optional presentation of the same `article`.
+The side accent is an optional presentation of the same `article`.
 :::
 ```
 
-`accent-color=` accepts any CSS color or a predefined semantic name. Presets: `note`/`info`, `warning`, `danger`/`caution`, `success`/`tip`, and `important`. These names use Quarto callout color variables, with Bootstrap as a fallback.
+`accent-color=` accepts any CSS color or a semantic name: `note`/`info`, `warning`, `danger`/`caution`, `success`/`tip`, and `important`.
 
-Accent parameters: `accent`, `accent-color`, and `accent-width`. `left-border="true"` is an alias for `accent="left"`.
+Theme-specific article colors are also supported:
+
+```markdown
+::: {.article
+  accent="left"
+  accent-color-light="#7c3aed"
+  accent-color-dark="#c4b5fd"
+  border-color-light="#d1d5db"
+  border-color-dark="#4b5563"
+  background-light="#fafafa"
+  background-dark="#1f2937"}
+...
+:::
+```
 
 ### Collapse and expand
-
-The same `article` can be collapsible in HTML:
 
 ```markdown
 ::: {.article
@@ -402,53 +484,15 @@ Content initially collapsed.
 :::
 ```
 
-Internally, HTML keeps `<article>` as the outer element and uses a native `<details>` inside it. This makes the control work without JavaScript and keeps it keyboard-accessible.
+Internally, HTML keeps `<article>` as the outer element and uses a native `<details>` inside it. This works without JavaScript and remains keyboard-accessible.
 
-`expanded=`, `expand=`, and `open=` are equivalent. `collapsed=` uses the inverse logic. If any of these states is provided, `collapsible` is inferred automatically. In PDF/DOCX, the content is always rendered in full.
-
-Accent and collapse can be combined:
-
-```markdown
-::: {.article
-  accent="left"
-  accent-color="note"
-  collapsible="true"
-  summary="Methodology"
-  expanded="true"}
-
-Methodology content.
-
-:::
-```
-
-### Example: changelog
-
-A changelog does not need its own component; it is simply one possible use of an `article`:
-
-```markdown
-:::article
-
-## 0.10.9 — 2026-09-17
-
-### Added
-- Optional left accent in `article`.
-- Collapse/expand nativo.
-
-### Changed
-- All generic blocks converged on `article`.
-
-### Removed
-- `aside`.
-
-:::
-```
+`expanded=`, `expand=`, and `open=` are equivalent. `collapsed=` uses the inverse logic. In PDF/DOCX, the content is always rendered in full.
 
 In addition to the options above, `article` accepts `border-color`, `radius`, `padding`, `background`, and `shadow`.
 
-
 ## Formats
 
-- **HTML**: full presentation, icons, badges, info, interactive file tree, Git DAG in SVG, and the semantic `<article>` element;
+- **HTML**: full presentation, light/dark color overrides, icons, badges, info, interactive file tree, Git DAG in SVG, and the semantic `<article>` element;
 - **PDF**: structural content and links are preserved; interactive components degrade safely;
 - **DOCX**: lists, headings, links, and text remain editable.
 
