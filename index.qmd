@@ -88,12 +88,12 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 {{< badge "Beta" >}}
 {{< badge "Estável" type="success" icon="✓" >}}
 {{< badge "Experimental" type="warning" appearance="outline" >}}
-{{< badge "v0.10.7" type="accent" appearance="solid" >}}
+{{< badge "v0.10.8" type="accent" appearance="solid" >}}
 ```
 
 **Output:**
 
-{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.7" type="accent" appearance="solid" >}}
+{{< badge "Beta" >}} {{< badge "Estável" type="success" icon="✓" >}} {{< badge "Experimental" type="warning" appearance="outline" >}} {{< badge "v0.10.8" type="accent" appearance="solid" >}}
 
 ### Forma AST-native
 
@@ -105,7 +105,7 @@ A precedência é **defaults do projeto → preset → componente → item indiv
 
 ## Steps — numerado
 
-Todos os exemplos de `steps` usam quatro etapas.
+Todos os exemplos de `steps` usam quatro etapas. No modo numerado, a aresta agora também é contínua entre os centros dos círculos e fica atrás dos marcadores; o interior acompanha a superfície do tema.
 
 ```markdown
 :::steps
@@ -362,7 +362,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.7
+- `main` release v0.10.8
 :::
 ```
 
@@ -385,7 +385,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges` cobre links
   - `feature/badges` merge test/badges
 - `main` merge feature/badges
-- `main` release v0.10.7
+- `main` release v0.10.8
 :::
 
 ### Mesmo DAG — direção BT
@@ -423,7 +423,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.7" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.8" head="true"} merge feature/badges
 :::
 ```
 
@@ -437,7 +437,7 @@ O gráfico representa commits e relações parent → child. Branches saem de n�
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.7" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.8" head="true"} merge feature/badges
 :::
 
 ## File tree — aninhamento profundo e ícones
@@ -691,7 +691,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 ```markdown
 :::article
 
-## 0.10.7 — 2026-09-17
+## 0.10.8 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
@@ -721,7 +721,7 @@ Este exemplo começa expandido e combina o accent com o collapse.
 
 :::article
 
-## 0.10.7 — 2026-09-17
+## 0.10.8 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
