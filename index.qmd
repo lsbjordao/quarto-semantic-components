@@ -20,8 +20,6 @@ This page is both a gallery and a usage guide. Every example follows the same pa
 
 **Version:** 0.1.0
 
-**Rendered formats:** [Open the PDF](quarto-semantic-components.pdf) · [Open the DOCX](quarto-semantic-components.docx)
-
 # At a glance
 
 | Component | Best suited for | HTML enhancement |
