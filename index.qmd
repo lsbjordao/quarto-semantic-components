@@ -743,7 +743,7 @@ Any item with children becomes a branch in HTML. The whole tree can define a def
 ```markdown
 ::: {.tree expanded="false" indent="1.8rem"}
 - [Life]{expanded="true" info="Top-level classification"}
-  - +Eukaryota
+  - Eukaryota
   - [Plantae]{expanded="true"}
     - Fabaceae
       - Mimosa
@@ -766,7 +766,7 @@ Any item with children becomes a branch in HTML. The whole tree can define a def
   - Animalia
 :::
 
-The `+` character has no special meaning in `tree`; it is shown above only as ordinary content. Branches are inferred solely from nested children. Use `expanded=`, `open=`, or `collapsed=` on a span when a branch needs a specific initial state. `line-color-light` and `line-color-dark` can tune connector contrast by theme.
+Branches are inferred solely from nested children. Use `expanded=`, `open=`, or `collapsed=` on a span when a branch needs a specific initial state. `line-color-light` and `line-color-dark` can tune connector contrast by theme.
 
 # File tree
 
@@ -1126,11 +1126,12 @@ A changelog does not require a dedicated component. It is simply one possible us
 ## 0.12.0 — 2026-09-18
 
 ### Added
-- Theme-specific color overrides with `-light` and `-dark` suffixes.
-- Theme-aware examples for steps, badges, Git trees, and articles.
+- Generic `tree` and semantic `properties`.
+- Native `progress` and `meter` indicators.
+- Inline `kbd` and `abbr` primitives.
 
 ### Changed
-- Automatic theme colors remain the default whenever no explicit color is supplied.
+- Theme-aware colors continue to support unsuffixed, `-light`, and `-dark` values.
 :::
 ```
 
@@ -1318,10 +1319,14 @@ The release contains the extension source, documentation, and examples.
 - +semantic-components
   - theme-colors.lua
   - steps.lua
+  - tree.lua
   - file-tree.lua
   - git-tree.lua
+  - properties.lua
   - article.lua
+  - primitives.lua
   - badges.lua
+  - semantic-shortcodes.lua
 - README.md
 - index.qmd
 :::
