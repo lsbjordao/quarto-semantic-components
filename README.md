@@ -270,7 +270,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.2" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.3" head="true"} merge feature/badges
 :::
 ```
 
@@ -355,7 +355,7 @@ A barra lateral é apenas uma apresentação opcional do mesmo `article`.
 
 `variant=` define a cor semântica do accent quando ele está ativo. Valores prontos: `default`, `note`/`info`, `warning`, `danger` e `success`. Também é possível usar `accent-color=` diretamente.
 
-Parâmetros do accent: `accent`, `accent-color`, `accent-width` e `accent-inset`. `left-border="true"` é alias para `accent="left"`.
+Parâmetros do accent: `accent`, `accent-color` e `accent-width`. `left-border="true"` é alias para `accent="left"`.
 
 ### Collapse e expand
 
@@ -398,7 +398,7 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 ```markdown
 :::article
 
-## 0.10.2 — 2026-09-17
+## 0.10.3 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
