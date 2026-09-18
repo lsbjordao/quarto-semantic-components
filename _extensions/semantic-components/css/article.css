@@ -1,0 +1,20 @@
+.semantic-article{
+  --article-border-color:color-mix(in srgb,currentColor 18%,transparent);
+  --article-radius:.75rem;
+  --article-padding:1rem 1.1rem;
+  --article-background:color-mix(in srgb,currentColor 1.5%,transparent);
+  --article-shadow:none;
+  display:block;
+  margin:1rem 0;
+  padding:var(--article-padding);
+  border:1px solid var(--article-border-color);
+  border-radius:var(--article-radius);
+  background:var(--article-background);
+  box-shadow:var(--article-shadow);
+}
+.semantic-article>:first-child{margin-top:0}
+.semantic-article>:last-child{margin-bottom:0}
+.semantic-article>h1:first-child,
+.semantic-article>h2:first-child,
+.semantic-article>h3:first-child,
+.semantic-article>h4:first-child{margin-top:0}
