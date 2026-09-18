@@ -181,9 +181,11 @@ local function transform(el,meta)
 
   local road_width=setting(el,meta,'road-width',{'line-width','path-width'})
   local road_background_width=setting(el,meta,'road-background-width',{'road-bed-width','path-background-width'})
+  local road_dash=setting(el,meta,'road-dash',{'dash','dash-pattern','line-dash'})
   local point_size=setting(el,meta,'point-size',{'marker-size','dot-size'})
   if road_width and road_width~='' then append_style(el,'--roadmap-road-width:'..road_width) end
   if road_background_width and road_background_width~='' then append_style(el,'--roadmap-road-background-width:'..road_background_width) end
+  if road_dash and road_dash~='' then append_style(el,'--roadmap-road-dash:'..road_dash) end
   if point_size and point_size~='' then append_style(el,'--roadmap-point-size:'..point_size) end
 
   local transformed=pandoc.List()
