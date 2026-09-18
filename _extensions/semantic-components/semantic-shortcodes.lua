@@ -59,7 +59,8 @@ local function progress(args,kwargs)
   end
   local html='<span class="qsc-progress" style="'..esc(indicator_style(kwargs))..'">'
   if label~='' then html=html..'<span class="qsc-indicator-label">'..esc(label)..'</span>' else html=html..'<span></span>' end
-  html=html..'<progress value="'..esc(value)..'" max="'..esc(max)..'">'..esc(value_label)..'</progress>'
+  local aria=label~='' and (' aria-label="'..esc(label)..'"') or ''
+  html=html..'<progress'..aria..' value="'..esc(value)..'" max="'..esc(max)..'">'..esc(value_label)..'</progress>'
   html=html..(show and '<span class="qsc-indicator-value">'..esc(value_label)..'</span>' or '<span></span>')..'</span>'
   return pandoc.RawInline('html',html)
 end
@@ -85,7 +86,8 @@ local function meter(args,kwargs)
   if optimum then attrs=attrs..' optimum="'..esc(optimum)..'"' end
   local html='<span class="qsc-meter" style="'..esc(indicator_style(kwargs))..'">'
   if label~='' then html=html..'<span class="qsc-indicator-label">'..esc(label)..'</span>' else html=html..'<span></span>' end
-  html=html..'<meter'..attrs..'>'..esc(value_label)..'</meter>'
+  local aria=label~='' and (' aria-label="'..esc(label)..'"') or ''
+  html=html..'<meter'..aria..attrs..'>'..esc(value_label)..'</meter>'
   html=html..(show and '<span class="qsc-indicator-value">'..esc(value_label)..'</span>' or '<span></span>')..'</span>'
   return pandoc.RawInline('html',html)
 end
