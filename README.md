@@ -12,7 +12,7 @@ Algumas ideias de ergonomia e sintaxe vieram do framework [Vocs](https://vocs.de
 - `steps type="dots"`: steps com bolinhas vazadas por padrão e ampla personalização;
 - `circle-list`: lista ordenada com números circulados;
 - `git-tree`: grafo de commits Git (DAG) com branches, merges, tags, `HEAD` e direções TB/BT;
-- `file-tree`: árvore de arquivos com aninhamento profundo, links, tooltips, ícones e pastas colapsáveis em HTML;
+- `file-tree`: árvore de arquivos com aninhamento profundo, links, info, ícones e pastas colapsáveis em HTML;
 - `badge`: badge inline com presets de projeto e personalização por instância;
 - `article`: contêiner semântico baseado no elemento HTML `<article>`, com borda, accent lateral opcional e collapse/expand em HTML.
 
@@ -271,7 +271,7 @@ A extensão infere os parents da seguinte forma:
     - `test/badges`{#c5 parent="c4"} cobre variantes
     - `test/badges`{#c6 parent="c5"} cobre links
   - `feature/badges`{#c7 parents="c4,c6"} merge test/badges
-- `main`{#c8 parents="c2,c7" tag="v0.10.5" head="true"} merge feature/badges
+- `main`{#c8 parents="c2,c7" tag="v0.10.6" head="true"} merge feature/badges
 :::
 ```
 
@@ -347,7 +347,7 @@ extensions:
 
 Aliases: `expanded`, `open` e `collapsed`.
 
-### Texto normal, links e tooltip
+### Texto normal, links e info
 
 ```markdown
 :::file-tree
@@ -355,7 +355,7 @@ Aliases: `expanded`, `open` e `collapsed`.
 - `pipeline.py` inline code
 - [app.ts](https://github.com/lsbjordao/quarto-semantic-components) link normal
 - [`steps.lua`](https://github.com/lsbjordao/quarto-semantic-components/blob/main/_extensions/semantic-components/steps.lua) link + inline code
-- [analysis.R]{tooltip="Script principal de análise em R"}
+- [analysis.R]{info="Script principal de análise em R"}
 :::
 ```
 
@@ -426,7 +426,7 @@ Um changelog não precisa de um componente próprio; é apenas um possível cont
 ```markdown
 :::article
 
-## 0.10.5 — 2026-09-17
+## 0.10.6 — 2026-09-17
 
 ### Added
 - Accent esquerdo opcional em `article`.
@@ -446,7 +446,7 @@ Além das opções acima, `article` aceita `border-color`, `radius`, `padding`, 
 
 ## Formatos
 
-- **HTML**: apresentação completa, ícones, badges, tooltips, file tree interativo, Git DAG em SVG e o elemento semântico `<article>`;
+- **HTML**: apresentação completa, ícones, badges, info, file tree interativo, Git DAG em SVG e o elemento semântico `<article>`;
 - **PDF**: conteúdo estrutural e links são preservados; componentes interativos degradam com segurança;
 - **DOCX**: listas, headings, links e texto permanecem editáveis.
 
