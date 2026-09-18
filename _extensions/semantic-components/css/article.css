@@ -38,12 +38,6 @@
   border-left-color:var(--article-accent-color);
 }
 
-.semantic-article.article-variant-note,
-.semantic-article.article-variant-info{--article-accent-color:#2563eb}
-.semantic-article.article-variant-warning{--article-accent-color:#d97706}
-.semantic-article.article-variant-danger{--article-accent-color:#dc2626}
-.semantic-article.article-variant-success{--article-accent-color:#1f883d}
-
 .semantic-article.article-collapsible{padding:0}
 .semantic-article-details{margin:0;padding:0}
 .semantic-article-summary{
