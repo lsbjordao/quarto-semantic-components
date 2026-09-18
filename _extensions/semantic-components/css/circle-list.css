@@ -1,0 +1,21 @@
+.semantic-circle-list{
+  --circle-list-body-color:var(--bs-body-color,CanvasText);
+  --circle-list-border-color:var(--circle-list-border-color-base,var(--circle-list-body-color));
+  --circle-list-text-color:var(--circle-list-text-color-base,var(--circle-list-body-color));
+  --circle-list-background-color:var(--circle-list-background-color-base,transparent);
+}
+body.quarto-light .semantic-circle-list,[data-bs-theme="light"] .semantic-circle-list{
+  --circle-list-border-color:var(--circle-list-border-color-light,var(--circle-list-border-color-base,var(--circle-list-body-color)));
+  --circle-list-text-color:var(--circle-list-text-color-light,var(--circle-list-text-color-base,var(--circle-list-body-color)));
+  --circle-list-background-color:var(--circle-list-background-color-light,var(--circle-list-background-color-base,transparent));
+}
+body.quarto-dark .semantic-circle-list,[data-bs-theme="dark"] .semantic-circle-list{
+  --circle-list-border-color:var(--circle-list-border-color-dark,var(--circle-list-border-color-base,var(--circle-list-body-color)));
+  --circle-list-text-color:var(--circle-list-text-color-dark,var(--circle-list-text-color-base,var(--circle-list-body-color)));
+  --circle-list-background-color:var(--circle-list-background-color-dark,var(--circle-list-background-color-base,transparent));
+}
+.semantic-circle-list>ol>li::before{
+  border-color:var(--circle-list-border-color);
+  color:var(--circle-list-text-color);
+  background:var(--circle-list-background-color);
+}
