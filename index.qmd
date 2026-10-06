@@ -1344,6 +1344,27 @@ Any item with children becomes a branch in HTML. The whole tree can define a def
 
 Branches are inferred solely from nested children. Use `expanded=`, `open=`, or `collapsed=` on a span when a branch needs a specific initial state. `line-color-light` and `line-color-dark` can tune connector contrast by theme.
 
+### Optional tree controls
+
+Add `controls="true"` to render a compact HTML control panel above the tree. The panel provides global **Expand all** / **Collapse all** actions and synchronized expand/collapse buttons for every branch depth detected in the tree.
+
+```markdown
+::: {.tree controls="true" expanded="false"}
+- Life
+  - Eukaryota
+    - Plantae
+      - Fabaceae
+        - Mimosa
+        - Acacia
+    - Animalia
+  - Bacteria
+:::
+```
+
+For example, clicking **+** beside `L1` expands every level-1 branch at once, while **−** collapses all level-1 branches. The same behavior is generated automatically for `L2`, `L3`, and deeper levels when present. Individual branch toggles continue to work normally.
+
+`panel="true"` and `toolbar="true"` are accepted as aliases for `controls="true"`. The control panel is HTML-only; PDF and DOCX preserve the full semantic tree without interactive controls.
+
 # File tree
 
 `file-tree` describes a project or directory hierarchy using an ordinary nested list. File names are automatically mapped to useful icons, while links, inline code, comments, info hints, custom icons, and collapsible folders remain optional.
