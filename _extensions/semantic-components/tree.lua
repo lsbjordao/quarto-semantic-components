@@ -41,7 +41,7 @@ end
 if quarto and quarto.doc and quarto.doc.add_html_dependency and is_html() then
   quarto.doc.add_html_dependency({
     name='quarto-semantic-components-tree',
-    version='0.1.4',
+    version='0.1.5',
     scripts={'js/tree.js'},
     stylesheets={'css/tree.css'}
   })
