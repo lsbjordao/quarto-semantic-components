@@ -1,5 +1,7 @@
 .semantic-tree{
   --tree-indent:1.5rem;
+  --tree-row-offset:.85rem;
+  --tree-junction-y:.93rem;
   --tree-line-color:var(--tree-line-color-base,color-mix(in srgb,currentColor 28%,transparent));
   margin:1rem 0;
 }
@@ -17,35 +19,45 @@ body.quarto-dark .semantic-tree,[data-bs-theme="dark"] .semantic-tree{
 }
 .semantic-tree>ul{padding-left:0}
 
-/* One vertical spine per list level. This avoids overlapping vertical
-   borders at parent/child junctions and keeps every connector 1px wide. */
-.semantic-tree ul::before{
-  content:"";
-  position:absolute;
-  left:var(--tree-indent);
-  top:0;
-  bottom:1em;
-  border-left:1px solid var(--tree-line-color);
-  pointer-events:none
-}
-.semantic-tree>ul::before{
-  left:0;
-  top:1em
-}
-
+/* Connector geometry:
+   - every item owns one vertical segment;
+   - adjacent segments meet at their boundaries, never overlap;
+   - the horizontal elbow is exactly as long as the row offset. */
 .semantic-tree li{
   position:relative;
   margin:0;
-  padding:.18rem 0 .18rem .85rem
+  padding:.18rem 0 .18rem var(--tree-row-offset)
+}
+.semantic-tree li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  border-left:1px solid var(--tree-line-color);
+  pointer-events:none
 }
 .semantic-tree li::after{
   content:"";
   position:absolute;
   left:0;
-  top:1em;
-  width:.65rem;
+  top:var(--tree-junction-y);
+  width:var(--tree-row-offset);
   border-top:1px solid var(--tree-line-color);
   pointer-events:none
+}
+.semantic-tree li:last-child::before{
+  bottom:auto;
+  height:var(--tree-junction-y)
+}
+.semantic-tree>ul>li:first-child::before{
+  top:var(--tree-junction-y)
+}
+.semantic-tree>ul>li:only-child::before{
+  display:none
+}
+.semantic-tree>ul>li:only-child::after{
+  display:none
 }
 .semantic-tree .tree-row{display:inline-flex;align-items:center;gap:.25rem;min-height:1.5rem}
 .semantic-tree .tree-toggle{
