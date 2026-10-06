@@ -1,6 +1,7 @@
 .semantic-tree{
   --tree-indent:1.5rem;
-  --tree-row-offset:.85rem;
+  --tree-row-offset:1rem;
+  --tree-elbow-length:.78rem;
   --tree-junction-y:.93rem;
   --tree-line-color:var(--tree-line-color-base,color-mix(in srgb,currentColor 28%,transparent));
   margin:1rem 0;
@@ -42,9 +43,13 @@ body.quarto-dark .semantic-tree,[data-bs-theme="dark"] .semantic-tree{
   position:absolute;
   left:1px;
   top:var(--tree-junction-y);
-  width:calc(var(--tree-row-offset) - 1px);
+  width:calc(var(--tree-elbow-length) - 1px);
   border-top:1px solid var(--tree-line-color);
   pointer-events:none
+}
+.semantic-tree li:last-child::after{
+  left:0;
+  width:var(--tree-elbow-length)
 }
 .semantic-tree li:last-child::before{
   bottom:auto;
