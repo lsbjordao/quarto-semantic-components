@@ -1353,11 +1353,41 @@ Add `controls="true"` to render a compact HTML control panel above the tree. The
 - Life
   - Eukaryota
     - Plantae
-      - Fabaceae
-        - Mimosa
-        - Acacia
+      - Angiosperms
+        - Fabaceae
+          - Mimosa
+          - Acacia
+          - Senna
+        - Asteraceae
+          - Aster
+          - Helianthus
+        - Orchidaceae
+          - Vanilla
+          - Cattleya
+      - Bryophytes
+        - Sphagnaceae
+          - Sphagnum
     - Animalia
+      - Chordata
+        - Mammalia
+          - Primates
+          - Carnivora
+        - Aves
+          - Passeriformes
+      - Arthropoda
+        - Insecta
+          - Coleoptera
+          - Lepidoptera
   - Bacteria
+    - Proteobacteria
+      - Alphaproteobacteria
+        - Rhizobiales
+      - Gammaproteobacteria
+        - Enterobacterales
+  - Archaea
+    - Euryarchaeota
+      - Methanobacteria
+        - Methanobacteriales
 :::
 ```
 
@@ -1367,11 +1397,41 @@ Add `controls="true"` to render a compact HTML control panel above the tree. The
 - Life
   - Eukaryota
     - Plantae
-      - Fabaceae
-        - Mimosa
-        - Acacia
+      - Angiosperms
+        - Fabaceae
+          - Mimosa
+          - Acacia
+          - Senna
+        - Asteraceae
+          - Aster
+          - Helianthus
+        - Orchidaceae
+          - Vanilla
+          - Cattleya
+      - Bryophytes
+        - Sphagnaceae
+          - Sphagnum
     - Animalia
+      - Chordata
+        - Mammalia
+          - Primates
+          - Carnivora
+        - Aves
+          - Passeriformes
+      - Arthropoda
+        - Insecta
+          - Coleoptera
+          - Lepidoptera
   - Bacteria
+    - Proteobacteria
+      - Alphaproteobacteria
+        - Rhizobiales
+      - Gammaproteobacteria
+        - Enterobacterales
+  - Archaea
+    - Euryarchaeota
+      - Methanobacteria
+        - Methanobacteriales
 :::
 
 For example, clicking **+** beside `L1` expands every level-1 branch at once, while **−** collapses all level-1 branches. The same behavior is generated automatically for `L2`, `L3`, and deeper levels when present. Individual branch toggles continue to work normally.
