@@ -40,9 +40,9 @@ body.quarto-dark .semantic-tree,[data-bs-theme="dark"] .semantic-tree{
 .semantic-tree li::after{
   content:"";
   position:absolute;
-  left:0;
+  left:1px;
   top:var(--tree-junction-y);
-  width:var(--tree-row-offset);
+  width:calc(var(--tree-row-offset) - 1px);
   border-top:1px solid var(--tree-line-color);
   pointer-events:none
 }
