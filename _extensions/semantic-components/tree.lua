@@ -160,6 +160,9 @@ local function transform(el,meta)
   end
   el.attributes['data-tree-expanded']=default_expanded and 'true' or 'false'
 
+  local controls=truthy(setting(el,meta,'controls',{'panel','toolbar'}))
+  if controls then el.attributes['data-tree-controls']='true' end
+
   for i,block in ipairs(el.content) do
     if block.t=='BulletList' or block.t=='OrderedList' then
       if block.t=='OrderedList' then block=pandoc.BulletList(block.content) end
