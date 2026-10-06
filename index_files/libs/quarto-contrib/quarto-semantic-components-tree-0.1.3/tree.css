@@ -1,0 +1,117 @@
+.semantic-tree{
+  --tree-indent:1.5rem;
+  --tree-row-offset:.85rem;
+  --tree-junction-y:.93rem;
+  --tree-line-color:var(--tree-line-color-base,color-mix(in srgb,currentColor 28%,transparent));
+  margin:1rem 0;
+}
+body.quarto-light .semantic-tree,[data-bs-theme="light"] .semantic-tree{
+  --tree-line-color:var(--tree-line-color-light,var(--tree-line-color-base,color-mix(in srgb,currentColor 28%,transparent)));
+}
+body.quarto-dark .semantic-tree,[data-bs-theme="dark"] .semantic-tree{
+  --tree-line-color:var(--tree-line-color-dark,var(--tree-line-color-base,color-mix(in srgb,currentColor 28%,transparent)));
+}
+.semantic-tree ul{
+  list-style:none;
+  margin:0;
+  padding-left:var(--tree-indent);
+  position:relative
+}
+.semantic-tree>ul{padding-left:0}
+
+/* Connector geometry:
+   - every item owns one vertical segment;
+   - adjacent segments meet at their boundaries, never overlap;
+   - the horizontal elbow is exactly as long as the row offset. */
+.semantic-tree li{
+  position:relative;
+  margin:0;
+  padding:.18rem 0 .18rem var(--tree-row-offset)
+}
+.semantic-tree li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  border-left:1px solid var(--tree-line-color);
+  pointer-events:none
+}
+.semantic-tree li::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:var(--tree-junction-y);
+  width:var(--tree-row-offset);
+  border-top:1px solid var(--tree-line-color);
+  pointer-events:none
+}
+.semantic-tree li:last-child::before{
+  bottom:auto;
+  height:var(--tree-junction-y)
+}
+.semantic-tree>ul>li:first-child::before{
+  top:var(--tree-junction-y)
+}
+.semantic-tree>ul>li:only-child::before{
+  display:none
+}
+.semantic-tree>ul>li:only-child::after{
+  display:none
+}
+.semantic-tree .tree-row{display:inline-flex;align-items:center;gap:.25rem;min-height:1.5rem}
+.semantic-tree .tree-toggle{
+  appearance:none;border:0;background:transparent;color:inherit;padding:0;margin:0;
+  width:1rem;height:1rem;display:inline-grid;place-items:center;cursor:pointer;border-radius:.2rem
+}
+.semantic-tree .tree-toggle::before{content:"›";font-size:1.15em;line-height:1;transition:transform .14s ease}
+.semantic-tree .tree-toggle[aria-expanded="true"]::before{transform:rotate(90deg)}
+.semantic-tree .tree-toggle:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.semantic-tree .tree-info{
+  display:inline-flex;align-items:center;justify-content:center;width:1.05rem;height:1.05rem;
+  border:1px solid color-mix(in srgb,currentColor 30%,transparent);border-radius:50%;
+  font-size:.68em;font-weight:700;cursor:help
+}
+.semantic-tree ul[hidden]{display:none!important}
+
+.semantic-tree .tree-controls{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.55rem 1rem;
+  margin:0 0 .75rem;padding:.5rem .65rem;
+  border:1px solid color-mix(in srgb,currentColor 18%,transparent);
+  border-radius:.45rem;
+  background:color-mix(in srgb,currentColor 4%,transparent)
+}
+.semantic-tree .tree-controls-global,
+.semantic-tree .tree-controls-levels,
+.semantic-tree .tree-control-level{
+  display:inline-flex;align-items:center;gap:.35rem
+}
+.semantic-tree .tree-controls-levels{flex-wrap:wrap}
+.semantic-tree .tree-control-level{
+  padding-left:.5rem;
+  border-left:1px solid color-mix(in srgb,currentColor 18%,transparent)
+}
+.semantic-tree .tree-control-level-label{
+  font-size:.78em;font-weight:700;opacity:.72;min-width:1.4rem;text-align:center
+}
+.semantic-tree .tree-control{
+  appearance:none;
+  border:1px solid color-mix(in srgb,currentColor 24%,transparent);
+  background:transparent;color:inherit;
+  border-radius:.32rem;cursor:pointer;
+  line-height:1.15
+}
+.semantic-tree .tree-control-all{
+  padding:.28rem .5rem;font-size:.82em
+}
+.semantic-tree .tree-control-icon{
+  width:1.75rem;height:1.65rem;padding:0;
+  display:inline-grid;place-items:center;
+  font-size:1rem;font-weight:700
+}
+.semantic-tree .tree-control:hover{
+  background:color-mix(in srgb,currentColor 8%,transparent)
+}
+.semantic-tree .tree-control:focus-visible{
+  outline:2px solid currentColor;outline-offset:2px
+}
