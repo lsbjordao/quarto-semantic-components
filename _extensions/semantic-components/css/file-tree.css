@@ -1,7 +1,53 @@
 @import url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css");
 .semantic-file-tree{--file-tree-indent:1.8rem;border:1px solid color-mix(in srgb,currentColor 18%,transparent);border-radius:.7rem;padding:.9rem 1rem;overflow-x:auto}
-.semantic-file-tree ul{list-style:none;margin:0;padding-left:var(--file-tree-indent)}.semantic-file-tree>ul{padding-left:0}.semantic-file-tree li{position:relative;margin:0;padding:.17rem 0 .17rem .35rem}
-.semantic-file-tree li>ul{position:relative;margin-left:0}.semantic-file-tree li>ul::before{content:"";position:absolute;left:.38rem;top:.05rem;bottom:.58rem;border-left:1px solid currentColor;opacity:var(--semantic-soft-opacity)}
+.semantic-file-tree ul{
+  list-style:none;
+  margin:0;
+  padding-left:var(--file-tree-indent)
+}
+.semantic-file-tree>ul{padding-left:0}
+.semantic-file-tree li{
+  position:relative;
+  margin:0;
+  padding:.17rem 0 .17rem .35rem
+}
+
+/* Each nested list owns one vertical spine. Child items add only the
+   horizontal elbow that joins that spine to their row. */
+.semantic-file-tree li>ul{
+  position:relative;
+  margin-left:0
+}
+.semantic-file-tree li>ul::before{
+  content:"";
+  position:absolute;
+  left:.38rem;
+  top:.05rem;
+  bottom:.72rem;
+  border-left:1px solid currentColor;
+  opacity:var(--semantic-soft-opacity);
+  pointer-events:none
+}
+.semantic-file-tree li>ul>li::before{
+  content:"";
+  position:absolute;
+  left:calc(-1 * var(--file-tree-indent) + .38rem);
+  top:calc(.17rem + .675rem);
+  width:calc(var(--file-tree-indent) - .38rem + .18rem);
+  border-top:1px solid currentColor;
+  opacity:var(--semantic-soft-opacity);
+  pointer-events:none
+}
+.semantic-file-tree li>ul>li:last-child::after{
+  content:"";
+  position:absolute;
+  left:calc(-1 * var(--file-tree-indent) + .38rem);
+  top:calc(.17rem + .675rem);
+  bottom:0;
+  width:2px;
+  background:var(--bs-body-bg,Canvas);
+  pointer-events:none
+}
 .semantic-file-tree li>ul[hidden]{display:none!important}
 .file-tree-row{display:inline-flex;align-items:center;gap:.42rem;min-height:1.35rem;font-family:var(--bs-body-font-family,system-ui,sans-serif);white-space:nowrap}
 .file-tree-row::before,.file-tree-custom-icon,.file-tree-library-icon{flex:0 0 auto;width:var(--semantic-icon-size);height:var(--semantic-icon-size);box-sizing:border-box}.file-tree-row::before{content:"";display:inline-flex;align-items:center;justify-content:center}.file-tree-has-inline-icon::before{display:none}
